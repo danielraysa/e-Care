@@ -11,6 +11,24 @@
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
+}); */
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+Route::get('/', 'ChatsController@index');
+Route::get('messages', 'ChatsController@fetchMessages');
+Route::post('messages', 'ChatsController@sendMessage');
+
+Route::get('/pusher', function () {
+    return view('pusher');
+});
+Route::get('test', function () {
+    event(new App\Events\StatusLiked('Someone'));
+    return "Event has been sent!";
+});
+
+Broadcast::channel('chat', function ($user) {
+    return Auth::check();
 });
