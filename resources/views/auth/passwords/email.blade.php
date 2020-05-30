@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-<<<<<<< HEAD
-<!-- Main Content -->
-=======
->>>>>>> refresh
 @section('content')
 <div class="container">
     <div class="row">
