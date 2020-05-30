@@ -22,6 +22,8 @@ class ChatsController extends Controller
      */
     public function index()
     {
+        /* $msg = Message::with('user')->get();
+        dd($msg); */
         return view('chat');
     }
 

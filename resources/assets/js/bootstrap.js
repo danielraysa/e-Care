@@ -17,31 +17,36 @@ require('bootstrap-sass');
  */
 
 window.Vue = require('vue');
-require('vue-resource');
+// require('vue-resource');
 
 /**
  * We'll register a HTTP interceptor to attach the "CSRF" header to each of
  * the outgoing requests issued by this application. The CSRF middleware
  * included with Laravel will automatically verify the header's value.
  */
+window.axios = require('axios');
 
-Vue.http.interceptors.push((request, next) => {
+window.axios.defaults.headers.common = {
+    'X-CSRF-TOKEN': window.Laravel.csrfToken,
+    'X-Requested-With': 'XMLHttpRequest'
+};
+/* Vue.http.interceptors.push((request, next) => {
     request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
 
     next();
-});
+}); */
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
-
-import Echo from "laravel-echo"
-
+// import Pusher from "pusher-js"
+import Echo from "laravel-echo";
+// window.Pusher = require('pusher-js');
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: '8284629e5aa4b95ea203',
-    cluster: 'ap1',
+    key: Laravel.pusherKey,
+    cluster: Laravel.pusherCluster,
     encrypted: true
 });

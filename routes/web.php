@@ -11,24 +11,16 @@
 |
 */
 
-/* Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-}); */
+});
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-Route::get('/', 'ChatsController@index');
-Route::get('messages', 'ChatsController@fetchMessages');
-Route::post('messages', 'ChatsController@sendMessage');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/private', 'HomeController@private')->name('private');
+Route::get('/users', 'HomeController@users')->name('users');
 
-Route::get('/pusher', function () {
-    return view('pusher');
-});
-Route::get('test', function () {
-    event(new App\Events\StatusLiked('Someone'));
-    return "Event has been sent!";
-});
-
-Broadcast::channel('chat', function ($user) {
-    return Auth::check();
-});
+Route::get('messages', 'MessageController@fetchMessages');
+Route::post('messages', 'MessageController@sendMessage');
+Route::get('/private-messages/{user}', 'MessageController@privateMessages')->name('privateMessages');
+Route::post('/private-messages/{user}', 'MessageController@sendPrivateMessage')->name('privateMessages.store');
