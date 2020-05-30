@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,21 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
-    }
-    
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function private()
-    {
-        return view('private');
-    }
-
-    public function users()
-    {
-        return User::all();
+        $user = Auth::user();
+        if($user->role_id == 1){
+            return view('home');
+        }else{
+            return view('user.index');
+        }
     }
 }

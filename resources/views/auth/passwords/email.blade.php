@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
+<<<<<<< HEAD
 <!-- Main Content -->
+=======
+>>>>>>> refresh
 @section('content')
 <div class="container">
     <div class="row">
@@ -14,7 +17,7 @@
                         </div>
                     @endif
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">

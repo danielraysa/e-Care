@@ -11,18 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-        $adminId = App\User::insertGetId([
-            'name' => 'Administrator',
-            'email' => 'admin@mail.com',
-            'password' => Hash::make('password'),
-            'role' => 'admin'
-        ]);
-        $userId = App\User::insertGetId([
-            'name' => 'User One',
-            'email' => 'user1@mail.com',
-            'password' => Hash::make('password'),
-            'role' => 'user'
-        ]);
+        $this->call(UsersTableSeeder::class);
+        $this->call(RolesTableSeeder::class);
     }
 }
