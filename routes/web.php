@@ -12,7 +12,33 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front.home');
+});
+
+
+
+Route::get('/konselor', function () {
+    return view('front.konselor');
+});
+
+Route::get('/forum', function () {
+    return view('front.forum');
+});
+
+Route::get('/forumdetail', function () {
+    return view('front.forumdetail');
+});
+
+Route::get('/kontak', function () {
+    return view('front.kontak');
+});
+
+Route::get('/kuis', function () {
+    return view('front.kuis');
+});
+
+Route::get('/login1', function () {
+    return view('front.login');
 });
 
 Auth::routes();

@@ -1,69 +1,43 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+<div class="body-background">
+  <div class="modal-container">
+    <div class="title-bar">
+        <img src="http://phmail.co/wp-content/uploads/2016/01/phmail-login-logo.svg" class="brand" />Log In To Your Mail Account
     </div>
+    <div class="input-section">
+      <div id="success-tick">
+        <div class="success-graphic"><svg version="1.1" id="success-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="80px" height="80px" viewBox="0 0 80 80" enable-background="new 0 0 80 80" xml:space="preserve">
+<g id="circle">
+	<path fill="#79B77E" d="M40,2c20.953,0,38,17.047,38,38S60.953,78,40,78S2,60.953,2,40S19.047,2,40,2 M40,0C17.909,0,0,17.909,0,40
+		s17.909,40,40,40s40-17.909,40-40S62.091,0,40,0L40,0z"/>
+</g>
+<polyline id="tick" fill="none" stroke="#79B77E" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+	56,29.469 34.618,50.851 24,40.234 "/>
+</svg></div>
+        <span class="success-text">Logging In...</span>
+      </div>
+      <form method="POST" action="{{ route('login') }}">
+                        {{ csrf_field() }}
+      <div class="input-fields">
+        <input type="text" class="login-field" name="email" placeholder="Your Username">
+        <input type="password" class="login-field last-field" name="password" placeholder="Your Password">
+      </div>
+      <div class="submit-section">
+        <div class="forgot-pw">Forgot password?</div>
+        <button type="submit" class="submit-button correct">
+          Log In
+        </button>
+    </form>
+      </div>
+    </div>
+  </div>
 </div>
-@endsection
+<div class="code-rerun">Rerun</div>
+
+<!-- CSS Login -->
+    <!-- style CSS Login -->
+    <link rel="stylesheet" href="{{asset('assets/css/stylee.css')}}">
+
+<!-- JS Login -->
+      <!-- custom js -->
+      <script src="{{asset('assets/js/script.js')}}"></script>
