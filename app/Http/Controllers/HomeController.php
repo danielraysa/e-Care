@@ -26,9 +26,9 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         if($user->role_id == 1){
-            return view('home');
+            return view('backend.konselor.dashboard');
         }else{
-            return view('user.index');
+            return view('backend.konselor.dashboard');
         }
     }
 }

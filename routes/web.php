@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('front.home');
 });
@@ -40,6 +41,12 @@ Route::get('/kuis', function () {
 Route::get('/login1', function () {
     return view('front.login');
 });
+
+
+Route::get('/dbkonselor', function () {
+    return view('backend.konselor.dashboard');
+});
+
 
 Auth::routes();
 
