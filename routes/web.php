@@ -23,3 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
     
 })->middleware('auth'); */
 Route::resource('/chat', 'ChatController');
+Route::post('/chat/send', 'ChatController@sendMessage');
+Route::get('/chats', 'ChatsController@index');
+Route::get('messages', 'ChatsController@fetchMessages');
+Route::post('messages', 'ChatsController@sendMessage');
+Route::get('messages/{user}', 'ChatsController@fetchMessagesUser');
+Route::post('messages/{user}', 'ChatsController@sendMessageUser');

@@ -20,7 +20,7 @@ class MyEvent
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($message)
     {
         //
         $this->message = $message;
@@ -31,15 +31,16 @@ class MyEvent
      *
      * @return Channel|array
      */
-    /* public function broadcastOn()
-    {
-        return new PrivateChannel('channel-name');
-    } */
-
     public function broadcastOn()
     {
-        return ['my-channel'];
+        // return new PrivateChannel('channel-name');
+        return new PrivateChannel('my-channel');
     }
+
+    /* public function broadcastOn()
+    {
+        return ['my-channel'];
+    } */
 
     public function broadcastAs()
     {

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+Use App\Message;
+use App\Events\MyEvent;
+use App\Events\MessageSent;
 use Auth;
 
 class ChatController extends Controller
@@ -19,7 +22,12 @@ class ChatController extends Controller
     public function index()
     {
         //
-        return view('user.chat');
+        $user = Auth::user();
+        if($user->role_id == 1){
+            return view('admin.chat');
+        }else{
+            return view('user.chat');
+        }
     }
 
     /**
@@ -86,5 +94,32 @@ class ChatController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $user = Auth::user();
+
+        /* $message = $user->messages()->create([
+            'message' => $request->input('message')
+        ]); */
+        // dd($user);
+        /* $message = Message::create([
+            'user_id' => $user->id,
+            'receiver_id' => 2,
+            'message' => $request->input('message'),
+            // 'created_at' => date('Y-m-d H:i:s')
+        ]); */
+      
+        // broadcast(new MessageSent($user, $message))->toOthers();
+        // event(new MyEvent($request->input('message')));
+        broadcast(new MyEvent($request->input('message')));
+      
+        // return ['status' => 'Message Sent!'];
+    }
+
+    public function fetchMessages()
+    {
+        return Message::with('user')->get();
     }
 }
