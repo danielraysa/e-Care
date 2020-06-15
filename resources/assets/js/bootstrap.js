@@ -19,8 +19,8 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-// window.axios = require('axios');
-
+window.axios = require('axios');
+import axios from 'axios'
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
@@ -44,7 +44,7 @@ if (token) {
  */
 
 import Echo from 'laravel-echo'
-import axios from 'axios'
+
 window.Pusher = require('pusher-js');
 window.Echo = new Echo({
     broadcaster: 'pusher',

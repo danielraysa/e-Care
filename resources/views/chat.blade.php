@@ -61,7 +61,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Chats</div>
 
-                <div class="panel-body">
+                <div class="panel-body scroll-panel-body">
                     <chat-messages :messages="messages"></chat-messages>
                 </div>
                 <div class="panel-footer">

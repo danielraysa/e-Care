@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 Use App\Message;
+Use App\User;
 use App\Events\MyEvent;
 use App\Events\MessageSent;
 use Auth;
@@ -23,8 +24,9 @@ class ChatController extends Controller
     {
         //
         $user = Auth::user();
+        $all_users = User::where('id', '!=', $user->id)->get();
         if($user->role_id == 1){
-            return view('admin.chat');
+            return view('admin.chat', compact('all_users'));
         }else{
             return view('user.chat');
         }
