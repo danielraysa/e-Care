@@ -17,4 +17,14 @@
 
  <!-- END: Page JS-->
 
+ <script src="{{asset('assets/backend/app-assets/js/scripts/pages/app-chat.js')}}"></script>
+
+    <!-- BEGIN: Vendor JS-->
+    <script src="{{asset('asses/backend/app-assets/vendors/js/vendors.min.js')}}"></script>
+
+
+
+
+
+
  

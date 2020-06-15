@@ -47,7 +47,69 @@ Route::get('/dbkonselor', function () {
     return view('backend.konselor.dashboard');
 }); 
 
+//BACK END
+Route::get('/chat1', function () {
+    return view('backend.fitur.chat');
+}); 
+
+Route::get('/email', function () {
+    return view('backend.fitur.email');
+}); 
+
+Route::get('/kalender', function () {
+    return view('backend.fitur.kalender');
+}); 
+
+Route::get('/daftarmhs', function () {
+    return view('backend.konselor.daftarmhs');
+}); 
+
+Route::get('/jadwalkonselor', function () {
+    return view('backend.konselor.jadwalkonselor');
+}); 
+
+Route::get('/profilmhs', function () {
+    return view('backend.konselor.profilmhs');
+}); 
+
+Route::get('/tambahkonselor', function () {
+    return view('backend.konselor.tambahkonselor');
+}); 
+
+
+Route::get('/rekammedis', function () {
+    return view('backend.konselor.laprekammedis');
+});
+
+Route::get('/rekap', function () {
+    return view('backend.konselor.laprekapbulan');
+});
+
+
+Route::get('/buatappointment', function () {
+    return view('backend.mhs.buatappointment');
+});
+
+Route::get('/daftarkonselor', function () {
+    return view('backend.mhs.daftarkonselor');
+});
+
+Route::get('/profilkonselor', function () {
+    return view('backend.mhs.profilkonselor');
+});
+
+Route::get('/testmbti', function () {
+    return view('backend.mhs.testmbti');
+});
  
+Route::get('/testtingkat', function () {
+    return view('backend.mhs.testtingkatmasalah');
+});
+
+Route::get('/laprekapbulan', function () {
+    return view('backend.warek.laprekapperbulan');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
