@@ -45,9 +45,9 @@ Route::get('/login1', function () {
 
 Route::get('/dbkonselor', function () {
     return view('backend.konselor.dashboard');
-});
+}); 
 
-
+ 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

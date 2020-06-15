@@ -8,8 +8,8 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner text-center">
                         <div class="breadcrumb_iner_item">
-                            <h2>Contact us</h2>
-                            <p>Home<span>/<span>Contact us</p>
+                            <h2>Hubungi Kami</h2>
+                            <p>Home<span>/<span>Hubungi kami</p>
                         </div>
                     </div>
                 </div>
@@ -88,22 +88,22 @@
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-home"></i></span>
             <div class="media-body">
-              <h3>Buttonwood, California.</h3>
-              <p>Rosemead, CA 91770</p>
+              <h3>Jl. Raya Kedung Baruk No.98</h3>
+              <p>Kedung Baruk, Kec. Rungkut, Kota Surabaya, <br>Jawa Timur 60298</p>
             </div>
           </div>
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-tablet"></i></span>
             <div class="media-body">
-              <h3>00 (440) 9865 562</h3>
-              <p>Mon to Fri 9am to 6pm</p>
+              <h3>(031) 8721731</h3>
+              <p>Senin s/d Jumat | 08.00-16.30 </p>
             </div>
           </div>
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-email"></i></span>
             <div class="media-body">
-              <h3>support@colorlib.com</h3>
-              <p>Send us your query anytime!</p>
+              <h3>official@dinamika.ac.id</h3>
+              <p>Kirimkan pertanyaanmu kapan saja</p>
             </div>
           </div>
         </div>

@@ -317,7 +317,7 @@
                                                     </li>
                                                 </ul>
                                             </td>
-                                            <td>
+                                            <td> 
                                                 <button type="button" class="btn btn-sm btn-outline-danger round">Pediatrician</button>
                                             </td>
                                             <td class="text-truncate">5:00 P.M. - 8:00 P.M.</td>

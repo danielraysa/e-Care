@@ -30,5 +30,5 @@ class HomeController extends Controller
         }else{
             return view('backend.konselor.dashboard');
         }
-    }
+    } 
 }

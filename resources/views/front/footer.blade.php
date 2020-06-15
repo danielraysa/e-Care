@@ -5,9 +5,7 @@
                 <div class="col-sm-6 col-md-4 col-xl-3">
                     <div class="single-footer-widget footer_1">
                       <a href="index.html"> <img src="{{asset('assets/img/stikom.png')}}" width="50px" alt=""> </a><a href="index.html"> <img src="{{asset('assets/img/logo_footer.png')}}" width="120px" alt=""> </a>
-                        <p>But when shot real her. Chamber her one visite removal six
-                            sending himself boys scot exquisite existend an </p>
-                        <p>But when shot real her hamber her </p>
+                        <p>Kami membantu mahasiswa untuk dapat meningkatkan fokus dan produktivitas di kampus Universitas Dinamika. Ceritakan masalah kamu sekarang kepada konselor yang ramah dan terpercaya. </p>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-xl-4">
@@ -37,9 +35,9 @@
                 </div>
                 <div class="col-xl-3 col-sm-6 col-md-4">
                     <div class="single-footer-widget footer_2">
-                        <h4>Kontak kita</h4>
+                        <h4>Hubungi Kami</h4>
                         <div class="contact_info">
-                            <p><span> Alamat :</span> Raya Kedung Baruk No.98, Kedung Baruk, Kec. Rungkut, Kota SBY, Jawa Timur 60298</p>
+                            <p><span> Alamat :</span> Jl. Raya Kedung Baruk No.98, Kedung Baruk, Kec. Rungkut, Kota SBY, Jawa Timur 60298</p>
                             <p><span> Telepon :</span> (031) 8721731</p>
                             <p><span> Email : </span>official@dinamika.ac.id </p>
                         </div>

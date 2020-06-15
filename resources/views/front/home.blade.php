@@ -15,8 +15,8 @@
                             <p>E-Care adalah sebuah platform yang peduli terhadap kesehatan mental kamu sebagai mahasiswa. 
                                 Kami membantu mahasiswa untuk dapat meningkatkan fokus dan produktivitas di kampus Universitas Dinamika.
                                 Ceritakan masalah kamu sekarang kepada konselor yang ramah dan terpercaya.  </p>
-                            <a href="#" class="btn_1">Mulai Konseling </a>
-                            <a href="#" class="btn_2">Lihat Konselor </a>
+                            <a href="{{url('login')}}" class="btn_1">Mulai Konseling </a>
+                            <a href="{{url('konselor')}}" class="btn_2">Lihat Konselor </a>
                         </div>
                     </div>
                 </div>
@@ -178,8 +178,8 @@
                             <div class="col-sm-6 col-md-12 col-lg-6">
                                 <div class="learning_member_text_iner">
                                     <span class="ti-stamp"></span>
-                                    <h4>Kuis Konseling</h4>
-                                    <p>There earth face earth behold she star so made void two given and also our</p>
+                                    <h4>Test Tingkat Masalah</h4>
+                                    <p>Setiap orang memiliki tingkat permasalahan yang berbeda dengan yang lain. Test ingkat permasalahan ini akan membantu kamu untuk menentukan apakah kamu harus melakukan konseling online atau harus bertatap muka dengan konselor. </p>
                                 </div>
                             </div>
                         </div>

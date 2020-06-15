@@ -25,7 +25,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/core/colors/palette-gradient.css') }}">
 <link rel="stylesheet" type="text/css" href=" {{ asset ('assets/backend/app-assets/css/pages/hospital.css') }}">
 <!-- END: Page CSS-->
-
+ 
 <!-- BEGIN: Custom CSS-->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/assets/css/style.css') }}">
 <!-- END: Custom CSS-->

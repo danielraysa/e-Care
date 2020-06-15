@@ -22,8 +22,8 @@
                                         <h5 class="text-muted text-bold-500">Doctors Available</h5>
                                         <h3 class="text-bold-600">122</h3>
                                     </div>
-                                </div>
-                            </div>
+                                </div> 
+                            </div> 
                         </div>
                     </div>
                 </div>

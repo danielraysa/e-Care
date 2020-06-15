@@ -298,7 +298,7 @@
                                                         <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-12.png" alt="Avatar">
                                                     </li>
                                                 </ul>
-                                            </td>
+                                            </td> 
                                             <td>
                                                 <button type="button" class="btn btn-sm btn-outline-success round">Gastroenterologist</button>
                                             </td>

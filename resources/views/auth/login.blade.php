@@ -18,7 +18,7 @@
       </div>
       <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
-      <div class="input-fields">
+      <div class="input-fields"> 
         <input type="text" class="login-field" name="email" placeholder="Your Username">
         <input type="password" class="login-field last-field" name="password" placeholder="Your Password">
       </div>

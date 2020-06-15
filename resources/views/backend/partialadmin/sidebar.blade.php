@@ -62,7 +62,7 @@
                 </li>
                 <li class=" nav-item"><a href="app-chat.html"><i class="la la-comments"></i><span class="menu-title" data-i18n="Chat">Chat</span></a>
                 </li>
-              
+               
               
             </ul>
         </div>
