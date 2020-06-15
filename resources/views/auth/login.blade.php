@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<head>
+  <title>Login</title>
+  <!-- CSS Login -->
+  <!-- style CSS Login -->
+  <link rel="stylesheet" href="{{asset('assets/css/stylee.css')}}">
+</head>
+<body>
 <div class="body-background">
   <div class="modal-container">
     <div class="title-bar">
@@ -32,12 +40,10 @@
     </div>
   </div>
 </div>
-<div class="code-rerun">Rerun</div>
-
-<!-- CSS Login -->
-    <!-- style CSS Login -->
-    <link rel="stylesheet" href="{{asset('assets/css/stylee.css')}}">
 
 <!-- JS Login -->
-      <!-- custom js -->
-      <script src="{{asset('assets/js/script.js')}}"></script>
+<!-- custom js -->
+<script src="{{asset('js/jquery.js')}}"></script>
+<script src="{{asset('js/script.js')}}"></script>
+</body>
+</html>
