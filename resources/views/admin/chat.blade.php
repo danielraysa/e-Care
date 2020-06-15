@@ -20,7 +20,7 @@
         <div class="col-md-9">
             <div class="h-100 card card-primary mt-3">
                 <div class="card-header" id="chat_title">Chat with Admin</div>
-                <div class="card-body">
+                <div class="card-body py-1 px-1">
                     <chat-admin :messages="messages"></chat-admin>
                 </div>
                 <div class="card-footer">

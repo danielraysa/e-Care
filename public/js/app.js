@@ -51779,13 +51779,13 @@ var render = function() {
         message.user.id != 1
           ? _c("div", { staticClass: "direct-chat-msg" }, [
               _c("div", { staticClass: "direct-chat-info clearfix" }, [
-                _c("span", { staticClass: "direct-chat-name pull-left" }, [
+                _c("span", { staticClass: "direct-chat-name float-left" }, [
                   _vm._v(_vm._s(message.user.name))
                 ]),
                 _vm._v(" "),
                 _c(
                   "span",
-                  { staticClass: "direct-chat-timestamp pull-right" },
+                  { staticClass: "direct-chat-timestamp float-right" },
                   [_vm._v(_vm._s(message.created_at))]
                 )
               ]),
@@ -51808,13 +51808,15 @@ var render = function() {
             ])
           : _c("div", { staticClass: "direct-chat-msg right" }, [
               _c("div", { staticClass: "direct-chat-info clearfix" }, [
-                _c("span", { staticClass: "direct-chat-name pull-right" }, [
+                _c("span", { staticClass: "direct-chat-name float-right" }, [
                   _vm._v(_vm._s(message.user.name))
                 ]),
                 _vm._v(" "),
-                _c("span", { staticClass: "direct-chat-timestamp pull-left" }, [
-                  _vm._v(_vm._s(message.created_at))
-                ])
+                _c(
+                  "span",
+                  { staticClass: "direct-chat-timestamp float-left" },
+                  [_vm._v(_vm._s(message.created_at))]
+                )
               ]),
               _vm._v(" "),
               _c("img", {
