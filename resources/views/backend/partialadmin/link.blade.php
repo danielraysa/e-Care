@@ -34,8 +34,4 @@
   <!-- BEGIN: Vendor CSS-->
 <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/vendors/css/vendors.min.css')}}">
     <!-- END: Vendor CSS--> 
-
-<!--  -->
-
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/app-chat.css">
-    <!-- END: Page CSS-->
+<!-- END: Page CSS-->

@@ -36,7 +36,7 @@
                         <div class="col-lg-3">
                             <div class="card">
                                 <div class="card-header text-center">
-                                    <img src="../../../app-assets/images/portrait/small/avatar-s-2.png" alt="" class="card-img-top mb-1 img-fluid w-25 rounded-circle">
+                                    <img src="assets/backend/app-assets/images/portrait/small/avatar-s-2.png" alt="" class="card-img-top mb-1 img-fluid w-25 rounded-circle">
                                     <h1 class="card-title mb-1">Irene Baker</h1>
                                     <h6 class="text-light">Dermatologist</h6>
                                 </div>

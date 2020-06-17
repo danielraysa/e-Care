@@ -279,7 +279,7 @@
                                             </div>
                                             <div class="pr-50">
                                                 <div class="avatar">
-                                                    <img src="../../../app-assets/images/portrait/small/avatar-s-20.png" alt="avtar img holder">
+                                                    <img src="assets/backend/app-assets/images/portrait/small/avatar-s-20.png" alt="avtar img holder">
                                                 </div>
                                             </div>
                                             <div class="media-body">
@@ -318,7 +318,7 @@
                                             </div>
                                             <div class="pr-50">
                                                 <div class="avatar">
-                                                    <img class="rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-17.png" alt="Generic placeholder image">
+                                                    <img class="rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-17.png" alt="Generic placeholder image">
                                                 </div>
                                             </div>
                                             <div class="media-body">
@@ -359,7 +359,7 @@
                                             </div>
                                             <div class="pr-50">
                                                 <div class="avatar">
-                                                    <img class="rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-7.png" alt="Generic placeholder image">
+                                                    <img class="rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-7.png" alt="Generic placeholder image">
                                                 </div>
                                             </div>
                                             <div class="media-body">
@@ -401,7 +401,7 @@
                                             </div>
                                             <div class="pr-50">
                                                 <div class="avatar">
-                                                    <img class="rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-5.png" alt="Generic placeholder image">
+                                                    <img class="rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-5.png" alt="Generic placeholder image">
                                                 </div>
                                             </div>
                                             <div class="media-body">
@@ -443,7 +443,7 @@
                                             </div>
                                             <div class="pr-50">
                                                 <div class="avatar">
-                                                    <img class="rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-3.png" alt="Generic placeholder image">
+                                                    <img class="rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-3.png" alt="Generic placeholder image">
                                                 </div>
                                             </div>
                                             <div class="media-body">
@@ -484,7 +484,7 @@
                                             </div>
                                             <div class="pr-50">
                                                 <div class="avatar">
-                                                    <img class="rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-8.png" alt="Generic placeholder image">
+                                                    <img class="rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-8.png" alt="Generic placeholder image">
                                                 </div>
                                             </div>
                                             <div class="media-body">
@@ -526,7 +526,7 @@
                                             </div>
                                             <div class="pr-50">
                                                 <div class="avatar">
-                                                    <img class="rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-11.png" alt="Generic placeholder image">
+                                                    <img class="rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-11.png" alt="Generic placeholder image">
                                                 </div>
                                             </div>
                                             <div class="media-body">
@@ -566,7 +566,7 @@
                                             </div>
                                             <div class="pr-50">
                                                 <div class="avatar">
-                                                    <img class="rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-10.png" alt="Generic placeholder image">
+                                                    <img class="rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-10.png" alt="Generic placeholder image">
                                                 </div>
                                             </div>
                                             <div class="media-body">
@@ -607,7 +607,7 @@
                                             </div>
                                             <div class="pr-50">
                                                 <div class="avatar">
-                                                    <img class="rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-6.png" alt="Generic placeholder image">
+                                                    <img class="rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-6.png" alt="Generic placeholder image">
                                                 </div>
                                             </div>
                                             <div class="media-body">
@@ -648,7 +648,7 @@
                                             </div>
                                             <div class="pr-50">
                                                 <div class="avatar">
-                                                    <img class="rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-9.png" alt="Generic placeholder image">
+                                                    <img class="rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-9.png" alt="Generic placeholder image">
                                                 </div>
                                             </div>
                                             <div class="media-body">
@@ -691,7 +691,7 @@
                                             </div>
                                             <div class="pr-50">
                                                 <div class="avatar">
-                                                    <img class="rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-20.png" alt="Generic placeholder image">
+                                                    <img class="rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-20.png" alt="Generic placeholder image">
                                                 </div>
                                             </div>
                                             <div class="media-body">
@@ -731,7 +731,7 @@
                                             </div>
                                             <div class="pr-50">
                                                 <div class="avatar">
-                                                    <img class="rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-17.png" alt="Generic placeholder image">
+                                                    <img class="rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-17.png" alt="Generic placeholder image">
                                                 </div>
                                             </div>
                                             <div class="media-body">
@@ -864,7 +864,7 @@
                                                     <div class="collapse-title media">
                                                         <div class="pr-1">
                                                             <div class="avatar mr-75">
-                                                                <img src="../../../app-assets/images/portrait/small/avatar-s-18.png" alt="avtar img holder" width="30" height="30">
+                                                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-18.png" alt="avtar img holder" width="30" height="30">
                                                             </div>
                                                         </div>
                                                         <div class="media-body mt-25">
@@ -919,11 +919,11 @@
                                                             <label class="sidebar-label">Attached Files</label>
                                                             <ul class="list-unstyled mb-0">
                                                                 <li class="cursor-pointer pb-25">
-                                                                    <img src="../../../app-assets/images/icons/psd.png" height="30" alt="psd.png">
+                                                                    <img src="assets/backend/app-assets/images/icons/psd.png" height="30" alt="psd.png">
                                                                     <small class="text-muted ml-1 attchement-text">uikit-design.psd</small>
                                                                 </li>
                                                                 <li class="cursor-pointer">
-                                                                    <img src="../../../app-assets/images/icons/sketch.png" height="30" alt="sketch.png">
+                                                                    <img src="assets/backend/app-assets/images/icons/sketch.png" height="30" alt="sketch.png">
                                                                     <small class="text-muted ml-1 attchement-text">uikit-design.sketch</small>
                                                                 </li>
                                                             </ul>
@@ -936,7 +936,7 @@
                                                     <div class="collapse-title media">
                                                         <div class="pr-1">
                                                             <div class="avatar mr-75">
-                                                                <img src="../../../app-assets/images/portrait/small/avatar-s-19.png" alt="avtar img holder" width="30" height="30">
+                                                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-19.png" alt="avtar img holder" width="30" height="30">
                                                             </div>
                                                         </div>
                                                         <div class="media-body mt-25">
@@ -995,11 +995,11 @@
                                                             <label class="sidebar-label">Attached Files</label>
                                                             <ul class="list-unstyled mb-0">
                                                                 <li class="cursor-pointer pb-25">
-                                                                    <img src="../../../app-assets/images/icons/psd.png" height="30" alt="psd.png">
+                                                                    <img src="assets/backend/app-assets/images/icons/psd.png" height="30" alt="psd.png">
                                                                     <small class="text-muted ml-1 attchement-text">uikit-design.psd</small>
                                                                 </li>
                                                                 <li class="cursor-pointer">
-                                                                    <img src="../../../app-assets/images/icons/sketch.png" height="30" alt="sketch.png">
+                                                                    <img src="assets/backend/app-assets/images/icons/sketch.png" height="30" alt="sketch.png">
                                                                     <small class="text-muted ml-1 attchement-text">uikit-design.sketch</small>
                                                                 </li>
                                                             </ul>
@@ -1012,7 +1012,7 @@
                                                     <div class="collapse-title media">
                                                         <div class="pr-1">
                                                             <div class="avatar mr-75">
-                                                                <img src="../../../app-assets/images/portrait/small/avatar-s-18.png" alt="avtar img holder" width="30" height="30">
+                                                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-18.png" alt="avtar img holder" width="30" height="30">
                                                             </div>
                                                         </div>
                                                         <div class="media-body mt-25">
@@ -1069,11 +1069,11 @@
                                                             <label class="sidebar-label">Attached Files</label>
                                                             <ul class="list-unstyled mb-0">
                                                                 <li class="cursor-pointer pb-25">
-                                                                    <img src="../../../app-assets/images/icons/psd.png" height="30" alt="psd.png">
+                                                                    <img src="assets/backend/app-assets/images/icons/psd.png" height="30" alt="psd.png">
                                                                     <small class="text-muted ml-1 attchement-text">uikit-design.psd</small>
                                                                 </li>
                                                                 <li class="cursor-pointer">
-                                                                    <img src="../../../app-assets/images/icons/sketch.png" height="30" alt="sketch.png">
+                                                                    <img src="assets/backend/app-assets/images/icons/sketch.png" height="30" alt="sketch.png">
                                                                     <small class="text-muted ml-1 attchement-text">uikit-design.sketch</small>
                                                                 </li>
                                                             </ul>

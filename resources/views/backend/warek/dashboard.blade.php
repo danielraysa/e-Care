@@ -121,7 +121,7 @@
                                         <tr>
                                             <td class="text-truncate p-1 border-top-0">
                                                 <div class="avatar avatar-md">
-                                                    <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-4.png" alt="Avatar">
+                                                    <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-4.png" alt="Avatar">
                                                 </div>
                                             </td>
                                             <td class="text-truncate pl-0 border-top-0">
@@ -135,7 +135,7 @@
                                         <tr>
                                             <td class="text-truncate p-1">
                                                 <div class="avatar avatar-md">
-                                                    <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-7.png" alt="Avatar">
+                                                    <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-7.png" alt="Avatar">
                                                 </div>
                                             </td>
                                             <td class="text-truncate pl-0 border-top-0">
@@ -149,7 +149,7 @@
                                         <tr>
                                             <td class="text-truncate p-1">
                                                 <div class="avatar avatar-md">
-                                                    <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-1.png" alt="Avatar">
+                                                    <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-1.png" alt="Avatar">
                                                 </div>
                                             </td>
                                             <td class="text-truncate pl-0 border-top-0 border-top-0 ">
@@ -163,7 +163,7 @@
                                         <tr>
                                             <td class="text-truncate p-1">
                                                 <div class="avatar avatar-md">
-                                                    <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-11.png" alt="Avatar">
+                                                    <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-11.png" alt="Avatar">
                                                 </div>
                                             </td>
                                             <td class="text-truncate pl-0 border-top-0">
@@ -177,7 +177,7 @@
                                         <tr>
                                             <td class="text-truncate p-1 border-bottom-0 ">
                                                 <div class="avatar avatar-md">
-                                                    <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-6.png" alt="Avatar">
+                                                    <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-6.png" alt="Avatar">
                                                 </div>
                                             </td>
                                             <td class="text-truncate pl-0 border-top-0 border-bottom-0 ">
@@ -223,13 +223,13 @@
                                             <td class="text-truncate p-1">
                                                 <ul class="list-unstyled users-list m-0">
                                                     <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons" class="avatar avatar-sm pull-up">
-                                                        <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-4.png" alt="Avatar">
+                                                        <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-4.png" alt="Avatar">
                                                     </li>
                                                     <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Willie Torres" class="avatar avatar-sm pull-up">
-                                                        <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-5.png" alt="Avatar">
+                                                        <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-5.png" alt="Avatar">
                                                     </li>
                                                     <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Rebecca Jones" class="avatar avatar-sm pull-up">
-                                                        <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-6.png" alt="Avatar">
+                                                        <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-6.png" alt="Avatar">
                                                     </li>
                                                     <li class="avatar avatar-sm">
                                                         <span class="badge badge-info">+8 more</span>
@@ -247,10 +247,10 @@
                                             <td class="text-truncate p-1">
                                                 <ul class="list-unstyled users-list m-0">
                                                     <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons" class="avatar avatar-sm pull-up">
-                                                        <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-7.png" alt="Avatar">
+                                                        <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-7.png" alt="Avatar">
                                                     </li>
                                                     <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Willie Torres" class="avatar avatar-sm pull-up">
-                                                        <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-8.png" alt="Avatar">
+                                                        <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-8.png" alt="Avatar">
                                                     </li>
                                                     <li class="avatar avatar-sm">
                                                         <span class="badge badge-info">+5 more</span>
@@ -268,13 +268,13 @@
                                             <td class="text-truncate p-1">
                                                 <ul class="list-unstyled users-list m-0">
                                                     <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons" class="avatar avatar-sm pull-up">
-                                                        <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-1.png" alt="Avatar">
+                                                        <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-1.png" alt="Avatar">
                                                     </li>
                                                     <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Willie Torres" class="avatar avatar-sm pull-up">
-                                                        <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-2.png" alt="Avatar">
+                                                        <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-2.png" alt="Avatar">
                                                     </li>
                                                     <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Rebecca Jones" class="avatar avatar-sm pull-up">
-                                                        <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-3.png" alt="Avatar">
+                                                        <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-3.png" alt="Avatar">
                                                     </li>
                                                     <li class="avatar avatar-sm">
                                                         <span class="badge badge-info">+3 more</span>
@@ -292,10 +292,10 @@
                                             <td class="text-truncate p-1">
                                                 <ul class="list-unstyled users-list m-0">
                                                     <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons" class="avatar avatar-sm pull-up">
-                                                        <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-11.png" alt="Avatar">
+                                                        <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-11.png" alt="Avatar">
                                                     </li>
                                                     <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Willie Torres" class="avatar avatar-sm pull-up">
-                                                        <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-12.png" alt="Avatar">
+                                                        <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-12.png" alt="Avatar">
                                                     </li>
                                                 </ul>
                                             </td> 
@@ -310,10 +310,10 @@
                                             <td class="text-truncate p-1">
                                                 <ul class="list-unstyled users-list m-0">
                                                     <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons" class="avatar avatar-sm pull-up">
-                                                        <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-6.png" alt="Avatar">
+                                                        <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-6.png" alt="Avatar">
                                                     </li>
                                                     <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Willie Torres" class="avatar avatar-sm pull-up">
-                                                        <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-4.png" alt="Avatar">
+                                                        <img class="media-object rounded-circle" src="assets/backend/app-assets/images/portrait/small/avatar-s-4.png" alt="Avatar">
                                                     </li>
                                                 </ul>
                                             </td>

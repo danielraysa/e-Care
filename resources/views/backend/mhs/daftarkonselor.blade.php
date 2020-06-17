@@ -34,7 +34,7 @@
                     <div class="row match-height">
                         <div class=" col-xl-3 col-lg-4 col-md-6">
                             <div class="card">
-                                <img src="../../../app-assets/images/portrait/small/avatar-s-1.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
+                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-1.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
                                 <div class="card-body">
                                     <h6 class="card-title font-large-1 mb-0 text-center">Phil Gray</h6>
                                     <p class="card-text card font-medium-1 text-center mb-0">Dentist</p>
@@ -49,7 +49,7 @@
                         </div>
                         <div class=" col-xl-3 col-lg-4 col-md-6">
                             <div class="card">
-                                <img src="../../../app-assets/images/portrait/small/avatar-s-2.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
+                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-2.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
                                 <div class="card-body">
                                     <h6 class="card-title font-large-1 mb-0 text-center">Irene Baker</h6>
                                     <p class="card-text card font-medium-1 text-center mb-0">Dermatologist</p>
@@ -64,7 +64,7 @@
                         </div>
                         <div class=" col-xl-3 col-lg-4 col-md-6">
                             <div class="card">
-                                <img src="../../../app-assets/images/portrait/small/avatar-s-3.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
+                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-3.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
                                 <div class="card-body">
                                     <h6 class="card-title font-large-1 mb-0 text-center">Evan White</h6>
                                     <p class="card-text card font-medium-1 text-center mb-0">Surgeon</p>
@@ -79,7 +79,7 @@
                         </div>
                         <div class=" col-xl-3 col-lg-4 col-md-6">
                             <div class="card">
-                                <img src="../../../app-assets/images/portrait/small/avatar-s-4.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
+                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-4.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
                                 <div class="card-body">
                                     <h6 class="card-title font-large-1 mb-0 text-center">Sonia Clark</h6>
                                     <p class="card-text card font-medium-1 text-center mb-0">Psychiatrist</p>
@@ -94,7 +94,7 @@
                         </div>
                         <div class=" col-xl-3 col-lg-4 col-md-6">
                             <div class="card">
-                                <img src="../../../app-assets/images/portrait/small/avatar-s-5.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
+                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-5.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
                                 <div class="card-body">
                                     <h6 class="card-title font-large-1 mb-0 text-center">Colin Welch</h6>
                                     <p class="card-text card font-medium-1 text-center mb-0">Pediatrician</p>
@@ -109,7 +109,7 @@
                         </div>
                         <div class=" col-xl-3 col-lg-4 col-md-6">
                             <div class="card">
-                                <img src="../../../app-assets/images/portrait/small/avatar-s-6.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
+                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-6.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
                                 <div class="card-body">
                                     <h6 class="card-title font-large-1 mb-0 text-center">Zoe Duncan</h6>
                                     <p class="card-text card font-medium-1 text-center mb-0">Allergist</p>
@@ -123,7 +123,7 @@
                         </div>
                         <div class=" col-xl-3 col-lg-4 col-md-6">
                             <div class="card">
-                                <img src="../../../app-assets/images/portrait/small/avatar-s-7.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
+                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-7.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
                                 <div class="card-body">
                                     <h6 class="card-title font-large-1 mb-0 text-center">Phil Short</h6>
                                     <p class="card-text card font-medium-1 text-center mb-0">Audiologist</p>
@@ -137,7 +137,7 @@
                         </div>
                         <div class=" col-xl-3 col-lg-4 col-md-6">
                             <div class="card">
-                                <img src="../../../app-assets/images/portrait/small/avatar-s-8.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
+                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-8.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
                                 <div class="card-body">
                                     <h6 class="card-title font-large-1 mb-0 text-center">Jane Smith</h6>
                                     <p class="card-text card font-medium-1 text-center mb-0">Family Physician</p>
@@ -151,7 +151,7 @@
                         </div>
                         <div class=" col-xl-3 col-lg-4 col-md-6">
                             <div class="card">
-                                <img src="../../../app-assets/images/portrait/small/avatar-s-9.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
+                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-9.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
                                 <div class="card-body">
                                     <h6 class="card-title font-large-1 mb-0 text-center">Max Taylor</h6>
                                     <p class="card-text card font-medium-1 text-center mb-0">Gastroenterologist</p>
@@ -166,7 +166,7 @@
                         </div>
                         <div class=" col-xl-3 col-lg-4 col-md-6">
                             <div class="card">
-                                <img src="../../../app-assets/images/portrait/small/avatar-s-10.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
+                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-10.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
                                 <div class="card-body">
                                     <h6 class="card-title font-large-1 mb-0 text-center">Diane Paige</h6>
                                     <p class="card-text card font-medium-1 text-center mb-0"> ID physician</p>
@@ -180,7 +180,7 @@
                         </div>
                         <div class=" col-xl-3 col-lg-4 col-md-6">
                             <div class="card">
-                                <img src="../../../app-assets/images/portrait/small/avatar-s-11.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
+                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-11.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
                                 <div class="card-body">
                                     <h6 class="card-title font-large-1 mb-0 text-center">Liam Morgan</h6>
                                     <p class="card-text card font-medium-1 text-center mb-0">Oncologists</p>
@@ -194,7 +194,7 @@
                         </div>
                         <div class=" col-xl-3 col-lg-4 col-md-6">
                             <div class="card">
-                                <img src="../../../app-assets/images/portrait/small/avatar-s-12.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
+                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-12.png" alt="" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-1">
                                 <div class="card-body">
                                     <h6 class="card-title font-large-1 mb-0 text-center">Maria Bower</h6>
                                     <p class="card-text card font-medium-1 text-center mb-0">Nephrologist</p>

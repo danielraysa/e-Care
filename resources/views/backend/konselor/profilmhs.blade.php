@@ -36,7 +36,7 @@
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 d-flex justify-content-around">
                                             <div class="patient-img-name text-center">
-                                                <img src="../../../app-assets/images/portrait/small/avatar-s-18.png" alt="" class="card-img-top mb-1 patient-img img-fluid rounded-circle">
+                                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-18.png" alt="" class="card-img-top mb-1 patient-img img-fluid rounded-circle">
                                                 <h4>Sarah lance</h4>
                                             </div>
                                         </div>
@@ -99,7 +99,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td class=" border-top-0 align-middle">
-                                                        <img src="../../../app-assets/images/portrait/small/avatar-s-1.png" alt="" class="rounded-circle doctor-img">
+                                                        <img src="assets/backend/app-assets/images/portrait/small/avatar-s-1.png" alt="" class="rounded-circle doctor-img">
                                                     </td>
                                                     <td class="align-middle border-top-0">Dr. Phil Gray</td>
                                                     <td class="align-middle border-top-0">Dentist</td>
@@ -121,7 +121,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="align-middle">
-                                                        <img src="../../../app-assets/images/portrait/small/avatar-s-2.png" alt="" class="rounded-circle doctor-img">
+                                                        <img src="assets/backend/app-assets/images/portrait/small/avatar-s-2.png" alt="" class="rounded-circle doctor-img">
                                                     </td>
                                                     <td class="align-middle">Dr. Irene Baker</td>
                                                     <td class="align-middle">Dermatologist</td>
@@ -144,7 +144,7 @@
 
                                                 <tr>
                                                     <td class="align-middle border-bottom-0">
-                                                        <img src="../../../app-assets/images/portrait/small/avatar-s-10.png" alt="" class="rounded-circle doctor-img">
+                                                        <img src="assets/backend/app-assets/images/portrait/small/avatar-s-10.png" alt="" class="rounded-circle doctor-img">
                                                     </td>
                                                     <td class="align-middle border-bottom-0">Dr. Diane Paige</td>
                                                     <td class="align-middle border-bottom-0">ID Physician</td>
