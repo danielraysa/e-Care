@@ -56,8 +56,6 @@
         
                 <li class=" navigation-header"><span data-i18n="Apps">Apps</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Apps"></i>
                 </li>
-                <li class=" nav-item"><a href="{{url('kalender')}}"><i class="la la-calendar"></i><span class="menu-title" data-i18n="Calendar">Calendar</span></a>
-                </li>
                 <li class=" nav-item"><a href="{{url('email')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="Inbox">Inbox</span></a>
                 </li>
                 <li class=" nav-item"><a href="{{url('chat1')}}"><i class="la la-comments"></i><span class="menu-title" data-i18n="Chat">Chat</span></a>
