@@ -40,7 +40,7 @@
             }
         });
         // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
+        /* Pusher.logToConsole = true;
 
         var pusher = new Pusher('8284629e5aa4b95ea203', {
             cluster: 'ap1'
@@ -49,7 +49,7 @@
         var channel = pusher.subscribe('my-channel');
         channel.bind('my-event', function(data) {
             alert(JSON.stringify(data));
-        });
+        }); */
     </script>
     @stack('js')
 </body>

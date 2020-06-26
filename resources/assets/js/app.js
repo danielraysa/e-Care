@@ -20,16 +20,20 @@ Vue.component('chat-messages', require('./components/ChatMessages.vue'));
 Vue.component('chat-form', require('./components/ChatForm.vue'));
 Vue.component('chat-admin', require('./components/ChatMessages_Admin.vue'));
 Vue.component('chat-fadmin', require('./components/ChatForm_Admin.vue'));
+Vue.component('user-list', require('./components/UserList.vue'));
 
 const app = new Vue({
     el: '#app',
  
     data: {
-        messages: []
+        messages: [],
+        all_users: [],
+        activeFriend: null
     },
 
     created() {
-        this.fetchMessages();
+        this.fetchUsers();
+        // this.fetchMessagesPrivate();
 
         Echo.private('chat')
             .listen('MessageSent', (e) => {
@@ -39,18 +43,57 @@ const app = new Vue({
                 });
             });
     },
-
+    watch:{
+        /* files:{
+            deep:true,
+            handler(){
+                let success=this.files[0].success;
+                if(success){
+                    this.fetchMessages();
+                }
+            }
+        }, */
+        /* activeFriend(val){
+            this.fetchMessagesPrivate();
+        }, */
+    },
     methods: {
+        fetchUsers() {
+            axios.get('/get-users').then(response => {
+                // console.log(response);
+                this.all_users = response.data;
+                if(this.all_users.length > 0){
+                    this.activeFriend = this.all_users[0].id;
+                }
+                this.fetchMessagesPrivate();
+            });
+        },
         fetchMessages() {
             axios.get('/messages').then(response => {
                 this.messages = response.data;
             });
         },
+        fetchMessagesPrivate() {
+            /* if(!this.activeFriend){
+                return alert('Please select friend');
+            } */
+            // this.activeFriend = 2;
+            axios.get('/messages/'+this.activeFriend).then(response => {
+                this.messages = response.data;
+                console.log(response.data);
+            });
+        },
         addMessage(message) {
             this.messages.push(message);
 
-            axios.post('/messages', message).then(response => {});
-        }
+            axios.post('/messages', message).then(response => {
+
+            });
+        },
+        /* changeUser(){
+            // this.activeFriend = id;
+            alert(this.activeFriend);
+        } */
     }
 });
 

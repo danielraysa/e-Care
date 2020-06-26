@@ -1,12 +1,12 @@
 <template>
 <div class="direct-chat-messages">
     <div v-for="message in messages" :key="message.id">
-        <div class="direct-chat-msg" v-if="message.user.id != 1">
+        <div class="direct-chat-msg" v-if="message.user_id != user.id">
             <div class="direct-chat-info clearfix">
             <span class="direct-chat-name float-left">{{ message.user.name }}</span>
             <span class="direct-chat-timestamp float-right">{{ message.created_at }}</span>
             </div>
-            <img class="direct-chat-img" src="/dist/img/user1-128x128.jpg" alt="Message User Image">
+            <img class="direct-chat-img" src="/dist/img/user1-128x128.jpg" alt="Mess  age User Image">
             <div class="direct-chat-text">
             {{ message.message }}
             </div>
@@ -27,7 +27,7 @@
 
 <script>
     export default {
-        props: ['messages']
+        props: ['user','messages']
     };
 </script>
 

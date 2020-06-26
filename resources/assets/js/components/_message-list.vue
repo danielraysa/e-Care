@@ -23,7 +23,7 @@
               </div>
 
               <div class="image-container">
-                  <img v-if="message.image"  :src="'/storage/'+message.image" alt="">
+                  <img v-if="message.image"  :src="'/storage/app/public/'+message.image" alt="">
 
               </div>
 

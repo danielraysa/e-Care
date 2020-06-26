@@ -8,11 +8,12 @@
                 <div class="card-header">Users</div>
                 <div class="card-body">
                     <div class="list-group">
-                        @foreach ($all_users as $item)
+                        {{-- @foreach ($all_users as $item)
                         <a href="#" class="list-group-item @if($loop->first) active @endif">
                             {{ $item->name }}
                         </a>
-                        @endforeach
+                        @endforeach --}}
+                        <user-list :all_users="all_users"></user-list>
                     </div>
                 </div>
             </div>
@@ -21,7 +22,7 @@
             <div class="h-100 card card-primary mt-3">
                 <div class="card-header" id="chat_title">Chat with Admin</div>
                 <div class="card-body py-1 px-1">
-                    <chat-admin :messages="messages"></chat-admin>
+                    <chat-admin :user="{{ Auth::user() }}" :messages="messages"></chat-admin>
                 </div>
                 <div class="card-footer">
                     {{-- <form id="formChat" method="post">

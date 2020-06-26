@@ -25,11 +25,12 @@ class ChatController extends Controller
         //
         $user = Auth::user();
         $all_users = User::where('id', '!=', $user->id)->get();
-        if($user->role_id == 1){
+        return view('admin.chat', compact('all_users'));
+        /* if($user->role_id == 1){
             return view('admin.chat', compact('all_users'));
         }else{
             return view('user.chat');
-        }
+        } */
     }
 
     /**
@@ -98,10 +99,15 @@ class ChatController extends Controller
         //
     }
 
+    public function getUsers(){
+        $user = Auth::user();
+        return User::where('id','!=', $user->id)->get();
+    }
+
     public function sendMessage(Request $request)
     {
         $user = Auth::user();
-
+        $message = $request->input('message');
         /* $message = $user->messages()->create([
             'message' => $request->input('message')
         ]); */
@@ -115,13 +121,50 @@ class ChatController extends Controller
       
         // broadcast(new MessageSent($user, $message))->toOthers();
         // event(new MyEvent($request->input('message')));
-        broadcast(new MyEvent($request->input('message')));
-      
+        // broadcast(new MyEvent($request->input('message')));
+        broadcast(new MessageSent($user, $message->load('user')))->toOthers();
+        return response(['status' => 'Message sent successfully', 'message' => $message]);
         // return ['status' => 'Message Sent!'];
     }
 
     public function fetchMessages()
     {
         return Message::with('user')->get();
+    }
+
+    // public function privateMessages(User $user)
+    public function privateMessages($user)
+    {
+        $privateCommunication = Message::with('user')
+        ->where(['user_id' => auth()->id(), 'receiver_id' => $user])
+        ->orWhere(function($query) use($user){
+            $query->where(['user_id' => $user, 'receiver_id' => auth()->id()]);
+        })
+        ->get();
+
+        return $privateCommunication;
+    }
+
+
+    // public function sendPrivateMessage(Request $request,User $user)
+    public function sendPrivateMessage(Request $request, $user)
+    {
+        if(request()->has('file')){
+            $filename = request('file')->store('chat');
+            $message = Message::create([
+                'user_id' => request()->user()->id,
+                'image' => $filename,
+                'receiver_id' => $user
+            ]);
+        }else{
+            $input = $request->all();
+            $input['receiver_id'] = $user;
+            $message = auth()->user()->messages()->create($input);
+        }
+
+        broadcast(new PrivateMessageSent($message->load('user')))->toOthers();
+        
+        return response(['status'=>'Message private sent successfully','message' => $message]);
+
     }
 }

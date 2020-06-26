@@ -18,3 +18,6 @@
 Broadcast::channel('chat', function ($user) {
     return Auth::check();
 });
+Broadcast::channel('privatechat.{receiverid}', function ($user, $receiverid) {
+    return Auth::check();
+});

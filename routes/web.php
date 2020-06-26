@@ -119,8 +119,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 })->middleware('auth'); */
 Route::resource('/chat', 'ChatController');
 Route::post('/chat/send', 'ChatController@sendMessage');
+Route::post('/chat/{user}/send', 'ChatController@sendMessagePrivate');
+Route::get('/get-users', 'ChatController@getUsers');
+
 Route::get('/chats', 'ChatsController@index');
-Route::get('messages', 'ChatsController@fetchMessages');
-Route::post('messages', 'ChatsController@sendMessage');
-Route::get('messages/{user}', 'ChatsController@fetchMessagesUser');
-Route::post('messages/{user}', 'ChatsController@sendMessageUser');
+Route::get('messages', 'ChatController@fetchMessages');
+Route::post('messages', 'ChatController@sendMessage');
+Route::get('messages/{user}', 'ChatController@privateMessages');
+Route::post('messages/{user}', 'ChatController@sendPrivateMessage');
+// Route::get('messages', 'ChatsController@fetchMessages');
+// Route::post('messages', 'ChatsController@sendMessage');
+// Route::get('messages/{user}', 'ChatsController@fetchMessagesUser');
+// Route::post('messages/{user}', 'ChatsController@sendMessageUser');
