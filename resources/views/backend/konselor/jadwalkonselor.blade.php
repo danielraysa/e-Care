@@ -1,13 +1,13 @@
 @extends('backend.partialadmin.layout')
 @section('content')
 
-    <!-- BEGIN: Content-->
-    <div class="app-content content">
+   <!-- BEGIN: Content-->
+   <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">Doctor Schedule</h3>
+                    <h3 class="content-header-title">Tabel Form Pendaftaran</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
@@ -15,7 +15,7 @@
                                 </li>
                                 <li class="breadcrumb-item"><a href="#">Appointment</a>
                                 </li>
-                                <li class="breadcrumb-item active">Doctor Schedule
+                                <li class="breadcrumb-item active">Tabel Form Pendaftaran
                                 </li>
                             </ol>
                         </div>
@@ -29,57 +29,74 @@
                 </div>
             </div>
             <div class="content-body">
-                <!-- Doctor's Schedule -->
-                <section id="doctor-schedule">
+                <!-- List Of All Patients -->
+
+                <section id="patients-list">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Doctor Schedule</h4>
-                                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                    <h2 class="card-title">Form Pendaftaram</h2>
                                     <div class="heading-elements">
-                                        <ul class="list-inline mb-0">
-                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                            <li><a data-action="close"><i class="ft-x"></i></a></li>
-                                        </ul>
+                                        <!-- <a href="hospital-add-patient.html" class="btn btn-danger round btn-sm"><i class="la la-plus font-small-2"></i>
+                                            Add
+                                            Patient</a> -->
                                     </div>
                                 </div>
-                                <div class="card-content collapse show">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div id='external-events'>
-                                                    <h4>Doctor Schedule Events</h4>
-                                                    <div class="fc-events-container">
-                                                        <div class='fc-event' data-color='#2D95BF'>All Day Event</div>
-                                                        <div class='fc-event' data-color='#48CFAE'>Long Event</div>
-                                                        <div class='fc-event' data-color='#50C1E9'>Meeting</div>
-                                                        <div class='fc-event' data-color='#FB6E52'>Birthday party</div>
-                                                        <div class='fc-event' data-color='#ED5564'>Lunch</div>
-                                                        <div class='fc-event' data-color='#F8B195'>Conference Meeting</div>
-                                                        <div class='fc-event' data-color='#6C5B7B'>Party</div>
-                                                        <div class='fc-event' data-color='#355C7D'>Happy Hour</div>
-                                                        <div class='fc-event' data-color='#547A8B'>Dance party</div>
-                                                        <div class='fc-event' data-color='#3EACAB'>Dinner</div>
-                                                        <p>
-                                                            <input type='checkbox' id='drop-remove' />
-                                                            <label for='drop-remove'>remove after drop</label>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div id='fc-external-drag'></div>
-                                            </div>
-                                        </div>
+                                <div class="card-body collapse show">
+                                    <div class="card-body card-dashboard">
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered patients-list">
+                                            <thead>
+                                                <tr>
+                                                    <th>NIM</th>
+                                                    <th>Nama Lengkap</th>
+                                                    <th>Program Studi</th>
+                                                    <th>Wali Dosen</th>
+                                                    <th>Email</th>
+                                                    <th>Jenis Layanan</th>
+                                                    <th>Keluhan</th>
+                                                    <th>Konselor</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>16410100115</td>
+                                                    <td>Gusti Adistriani</td>
+                                                    <td>S1 Sistem Informasi</td>
+                                                    <td>Ayouvi</td>
+                                                    <td>115@dinamika.ac.id</td>
+                                                    <td>Appointment</td>
+                                                    <td>Masalah Pribadi</td>
+                                                    <td>Inez Kristanti</td>
+                                                    <td><a href="#"><i class="ft-edit text-success"></i></a><br>
+                                                        <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>
+                                                    </td>
+                                                </tr>
+                                              
+                                            </tbody>
+                                            <!-- <tfoot>
+                                                <tr>
+                                                    <th>NIM</th>
+                                                    <th>Nama Lengkap</th>
+                                                    <th>Program Studi</th>
+                                                    <th>Wali Dosen</th>
+                                                    <th>Email</th>
+                                                    <th>Jenis Layanan</th>
+                                                    <th>Keluhan</th>
+                                                    <th>Konselor</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </tfoot> -->
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-
             </div>
         </div>
     </div>

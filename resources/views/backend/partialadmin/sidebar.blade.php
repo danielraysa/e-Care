@@ -8,10 +8,11 @@
                 </li>
                 <li class=" nav-item"><a href="#"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Appointment</span></a>
                     <ul class="menu-content">
-                        <li><a class="menu-item" href="{{url('jadwalkonselor')}}"><i></i><span>Jadwal Appoinment</span></a>
-                        </li>
                         <li><a class="menu-item" href="{{url('/buatappointment')}}"><i></i><span>Buat Appointment</span></a>
                         </li>
+                        <li><a class="menu-item" href="{{url('jadwalkonselor')}}"><i></i><span>Tabel Form Pendaftaran</span></a>
+                        </li>
+                       
                     </ul>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="la la-stethoscope"></i><span class="menu-title" data-i18n="Doctors">Konselor</span></a>

@@ -7,26 +7,26 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">Doctors List</h3>
+                    <h3 class="content-header-title">Daftar Konselor</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="#">Doctors</a>
+                                <li class="breadcrumb-item"><a href="#">Konselor</a>
                                 </li>
-                                <li class="breadcrumb-item active">All Doctors
+                                <li class="breadcrumb-item active">Semua Konselor
                                 </li>
                             </ol>
                         </div>
                     </div>
                 </div>
-                <div class="content-header-right col-md-6 col-12">
+                <!-- <div class="content-header-right col-md-6 col-12">
                     <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
                         <button class="btn btn-info round dropdown-toggle dropdown-menu-right box-shadow-2 px-2 mb-1" id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ft-settings icon-left"></i> Settings</button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1"><a class="dropdown-item" href="card-bootstrap.html">Cards</a><a class="dropdown-item" href="component-buttons-extended.html">Buttons</a></div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="content-body">
                 <div id="doctors-list">
@@ -43,7 +43,7 @@
 
                                 </div>
                                 <div class="card-footer mx-auto">
-                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Book Appointment</a>
+                                    <a href="{{url('buatappointment')}}" class="btn btn-outline-danger btn-sm">Buat Appointment</a> <br><br> <a href="hospital-book-appointment.html"  class="btn btn-outline-danger btn-sm"> &nbsp; &nbsp; Mulai Chatting &nbsp; &nbsp;  </a>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                         specialist</p>
                                 </div>
                                 <div class="card-footer mx-auto">
-                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Book Appointment</a>
+                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Buat Appointment</a> <br><br> <a href="hospital-book-appointment.html"  class="btn btn-outline-danger btn-sm"> &nbsp; &nbsp;Mulai Chatting &nbsp; &nbsp;  </a>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                                         specialist</p>
                                 </div>
                                 <div class="card-footer mx-auto">
-                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Book Appointment</a>
+                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Buat Appointment</a> <br><br> <a href="hospital-book-appointment.html"  class="btn btn-outline-danger btn-sm"> &nbsp; &nbsp;Mulai Chatting &nbsp; &nbsp;  </a>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                                         specialist</p>
                                 </div>
                                 <div class="card-footer mx-auto">
-                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Book Appointment</a>
+                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Buat Appointment</a> <br><br> <a href="hospital-book-appointment.html"  class="btn btn-outline-danger btn-sm"> &nbsp; &nbsp;Mulai Chatting &nbsp; &nbsp;  </a>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
 
                                 </div>
                                 <div class="card-footer mx-auto">
-                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Book Appointment</a>
+                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Buat Appointment</a> <br><br> <a href="hospital-book-appointment.html"  class="btn btn-outline-danger btn-sm"> &nbsp; &nbsp;Mulai Chatting &nbsp; &nbsp;  </a>
                                 </div>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                                     <p class="font-small-3 text-center"><i class="ft-briefcase"></i> Allergic Reactions specialist</p>
                                 </div>
                                 <div class="card-footer mx-auto">
-                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Book Appointment</a>
+                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Buat Appointment</a> <br><br> <a href="hospital-book-appointment.html"  class="btn btn-outline-danger btn-sm"> &nbsp; &nbsp;Mulai Chatting &nbsp; &nbsp;  </a>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                                     <p class="font-small-3 text-center"><i class="ft-briefcase"></i> Human Hearing specialist</p>
                                 </div>
                                 <div class="card-footer mx-auto">
-                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Book Appointment</a>
+                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Buat Appointment</a> <br><br> <a href="hospital-book-appointment.html"  class="btn btn-outline-danger btn-sm"> &nbsp; &nbsp;Mulai Chatting &nbsp; &nbsp;  </a>
                                 </div>
                             </div>
                         </div>
@@ -145,7 +145,7 @@
                                     <p class="font-small-3 text-center"><i class="ft-briefcase"></i> Family Physics specialist</p>
                                 </div>
                                 <div class="card-footer mx-auto">
-                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Book Appointment</a>
+                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Buat Appointment</a> <br><br> <a href="hospital-book-appointment.html"  class="btn btn-outline-danger btn-sm"> &nbsp; &nbsp;Mulai Chatting &nbsp; &nbsp;  </a>
                                 </div>
                             </div>
                         </div>
@@ -160,7 +160,7 @@
 
                                 </div>
                                 <div class="card-footer mx-auto">
-                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Book Appointment</a>
+                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Buat Appointment</a> <br><br> <a href="hospital-book-appointment.html"  class="btn btn-outline-danger btn-sm"> &nbsp; &nbsp;Mulai Chatting &nbsp; &nbsp;  </a>
                                 </div>
                             </div>
                         </div>
@@ -174,7 +174,7 @@
                                     <p class="font-small-3 text-center"><i class="ft-briefcase"></i> Infectious Disease Specialists</p>
                                 </div>
                                 <div class="card-footer mx-auto">
-                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Book Appointment</a>
+                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Buat Appointment</a> <br><br> <a href="hospital-book-appointment.html"  class="btn btn-outline-danger btn-sm"> &nbsp; &nbsp;Mulai Chatting &nbsp; &nbsp;  </a>
                                 </div>
                             </div>
                         </div>
@@ -188,7 +188,7 @@
                                     <p class="font-small-3 text-center"><i class="ft-briefcase"></i> Cancer specialist</p>
                                 </div>
                                 <div class="card-footer mx-auto">
-                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Book Appointment</a>
+                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Buat Appointment</a> <br><br> <a href="hospital-book-appointment.html"  class="btn btn-outline-danger btn-sm"> &nbsp; &nbsp;Mulai Chatting &nbsp; &nbsp;  </a>
                                 </div>
                             </div>
                         </div>
@@ -202,7 +202,7 @@
                                     <p class="font-small-3 text-center"><i class="ft-briefcase"></i> Kidney specialist</p>
                                 </div>
                                 <div class="card-footer mx-auto">
-                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Book Appointment</a>
+                                    <a href="hospital-book-appointment.html" class="btn btn-outline-danger btn-sm">Buat Appointment</a> <br><br> <a href="hospital-book-appointment.html"  class="btn btn-outline-danger btn-sm"> &nbsp; &nbsp;Mulai Chatting &nbsp; &nbsp;  </a>
                                 </div>
                             </div>
                         </div>

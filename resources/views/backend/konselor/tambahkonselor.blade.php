@@ -7,15 +7,15 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">Add Doctors</h3>
+                    <h3 class="content-header-title">Tambah Konselor</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="#">Doctors</a>
+                                <li class="breadcrumb-item"><a href="#">Konselor</a>
                                 </li>
-                                <li class="breadcrumb-item active">Add Doctors
+                                <li class="breadcrumb-item active">Tambah Konselor
                                 </li>
                             </ol>
                         </div>
@@ -37,7 +37,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Add Doctors</h4>
+                                        <h4 class="card-title">Tambah Konselor</h4>
                                         <a href="#" class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
                                     </div>
                                     <div class="card-content collapse show">
@@ -46,18 +46,18 @@
 
                                                 <!-- step 1 => Personal Details -->
 
-                                                <h6><i class="step-icon la la-user font-medium-3"></i> Personal Details</h6>
+                                                <h6><i class="step-icon la la-user font-medium-3"></i> Detail Profil</h6>
                                                 <fieldset>
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="firstName">First Name:<span class="danger">*</span></label>
+                                                                <label for="firstName">Nama Lengkap<span class="danger">*</span></label>
                                                                 <input type="text" class="form-control required" id="firstName" name="firstname" />
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="lastName">Last Name:<span class="danger">*</span></label>
+                                                                <label for="lastName">Tanggal Lahir<span class="danger">*</span></label>
                                                                 <input type="text" class="form-control required" id="lastName" name="lastname" />
                                                             </div>
                                                         </div>
@@ -66,15 +66,15 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="address">Address:</label>
+                                                                <label for="address">Alamat</label>
                                                                 <input type="text" class="form-control" id="address">
                                                             </div>
                                                         </div>
+
                                                         <div class="col-md-3">
                                                             <div class="form-group">
-                                                                <label for="city">City:</label>
+                                                                <label for="city">Kota</label>
                                                                 <select id="city" class="custom-select">
-                                                                    <option value="">Select City</option>
                                                                     <option value="manhattan">Manhattan</option>
                                                                     <option value="seattle">Seattle</option>
                                                                     <option value="kingsville">Kingsville</option>
@@ -85,9 +85,8 @@
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div class="form-group">
-                                                                <label for="state">State:</label>
+                                                                <label for="state">Provinsi</label>
                                                                 <select id="state" class="custom-select">
-                                                                    <option value="">Select State</option>
                                                                     <option value="washingtondc">Washington DC</option>
                                                                     <option value="newyork">New York</option>
                                                                     <option value="texas">Texas</option>
@@ -101,14 +100,14 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="contact">Contact Number:<span class="danger">*</span></label>
+                                                                <label for="contact">No. Handphone<span class="danger">*</span></label>
                                                                 <input type="number" class="form-control required" id="contact" name="contact">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="dob">Date Of Birth:<span class="danger">*</span></label>
-                                                                <input type="date" class="form-control required" id="dob" name="dateofbirth">
+                                                                <label for="state">Email</label>
+                                                                <input type="email" class="form-control required" id="contact" name="contact">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -116,18 +115,18 @@
 
                                                 <!-- Step 2 => Education Details-->
 
-                                                <h6><i class="step-icon la la-book font-medium-3"></i> Education Details</h6>
+                                                <h6><i class="step-icon la la-book font-medium-3"></i> Detail Pendidikan</h6>
                                                 <fieldset>
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="school">School Attended:</label>
+                                                                <label for="school">Pendidikan Terakhir</label>
                                                                 <input type="text" class="form-control" id="school">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="degree">Degree Held:<span class="danger">*</span></label>
+                                                                <label for="degree">Nama Institusi<span class="danger">*</span></label>
                                                                 <input type="text" class="form-control required" id="degree" name="degree">
                                                             </div>
                                                         </div>
@@ -135,13 +134,13 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="license">License:<span class="danger">*</span></label>
+                                                                <label for="license">Lisensi<span class="danger">*</span></label>
                                                                 <input type="text" class="form-control required" id="license" name="license">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="hons">Hons & Awards:</label>
+                                                                <label for="hons">Penghargaan/Prestasi</label>
                                                                 <input type="text" class="form-control" id="hons">
                                                             </div>
                                                         </div>
@@ -150,12 +149,12 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="experties">Area Of Experties:<span class="danger">*</span></label>
+                                                                <label for="experties">Bidang Keahlian<span class="danger">*</span></label>
                                                                 <input type="text" class="form-control required" id="experties" name="expert">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <label for="research">Research Topic</label>
+                                                            <label for="research">Topik Penelitian</label>
                                                             <textarea id="research" cols="5" rows="1" class="form-control"></textarea>
                                                         </div>
                                                     </div>
@@ -163,18 +162,18 @@
 
                                                 <!-- Step 3 => Experience -->
 
-                                                <h6><i class="step-icon font-medium-3 la la-building"></i> Previous Experience Details</h6>
+                                                <h6><i class="step-icon font-medium-3 la la-building"></i> Pengalaman Kerja</h6>
                                                 <fieldset>
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="previousCompany">Previous Company:</label>
+                                                                <label for="previousCompany">Perusahaan Terakhir</label>
                                                                 <input type="text" class="form-control" id="previousCompany">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="previousJobTitle">Previous Title:</label>
+                                                                <label for="previousJobTitle">Jabatan</label>
                                                                 <input type="text" class="form-control" id="previousJobTitle">
                                                             </div>
                                                         </div>
@@ -182,13 +181,13 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="training">Trained By: <span class="danger">*</span></label>
+                                                                <label for="training">Lama Bekerja: <span class="danger">*</span></label>
                                                                 <input type="text" class="form-control" id="training" name="training" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="internship">Internship:</label>
+                                                                <label for="internship">Pelatihan/Workshop</label>
                                                                 <input type="text" class="form-control" id="internship">
                                                             </div>
                                                         </div>
@@ -197,7 +196,7 @@
 
                                                 <!-- Step 4 => Social Media -->
 
-                                                <h6><i class="step-icon ft-monitor font-medium-3"></i> Social Media</h6>
+                                                <h6><i class="step-icon ft-monitor font-medium-3"></i> Media Sosial</h6>
                                                 <fieldset>
                                                     <div class="row">
                                                         <div class="col-md-4">

@@ -6,15 +6,15 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">Patient Profile</h3>
+                    <h3 class="content-header-title">Profil Mahasiswa</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="#">Patients</a>
+                                <li class="breadcrumb-item"><a href="#">Mahasiswa</a>
                                 </li>
-                                <li class="breadcrumb-item active">Patient Profile
+                                <li class="breadcrumb-item active">Profil Mahasiswa
                                 </li>
                             </ol>
                         </div>
@@ -44,7 +44,7 @@
                                             <div class="patient-info">
                                                 <ul class="list-unstyled">
                                                     <li>
-                                                        <div class="patient-info-heading">Birth:</div> 20th Jan, 1992
+                                                        <div class="patient-info-heading">Tanggal Lahir:</div> 20th Jan, 1992
                                                     </li>
                                                     <li>
                                                         <div class="patient-info-heading">Email: </div> sarahlance@gmail.com

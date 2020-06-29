@@ -6,7 +6,7 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">Book Appointment</h3>
+                    <h3 class="content-header-title">Buat Appointment</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
@@ -14,7 +14,7 @@
                                 </li>
                                 <li class="breadcrumb-item"><a href="#">Appointment</a>
                                 </li>
-                                <li class="breadcrumb-item active">Book Appointment
+                                <li class="breadcrumb-item active">Buat Appointment
                                 </li>
                             </ol>
                         </div>
@@ -32,84 +32,117 @@
                 <section id="book-appointment">
                     <div class="card">
                         <div class="card-header">
-                            <h2 class="card-title">Book An Appointment</h2>
+                            <h2 class="card-title">Buat Appointment</h2>
                         </div>
                         <div class="card-body">
                             <form>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="firstname">First Name: <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" placeholder="First Name" required id="firstname">
+                                            <label for="firstname">NIM <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control" placeholder="NIM" required id="nim">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="lastname">Last Name: <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" placeholder="Last Name" id="lastname" required>
+                                            <label for="lastname">Nama Lengkap <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="Nama Lengkap" id="namalengkap" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-6">
+                                <div class="col-lg-3 col-md-6">
                                         <div class="form-group">
-                                            <label for="dob">Date Of Birth: <span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" id="dob" name="dob" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6">
-                                        <div class="form-group">
-                                            <label for="gender">Gender:</label>
+                                            <label for="gender">Program Studi:</label>
                                             <select name="gender" id="gender" class="form-control">
-                                                <option value="gender">Gender</option>
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
-                                                <option value="notsay">Rather not Say</option>
+                                                <option value="gender">S1 Sistem Informasi</option>
+                                                <option value="male">S1 Teknik Komputer</option>
+                                                <option value="female">S1 Desain Produk</option>
+                                                <option value="notsay">S1 Desain Komunikasi Visual</option>
+                                                <option value="notsay">S1 Manajemen</option>
+                                                <option value="notsay">S1 Akuntansi</option>
+                                                <option value="notsay">D4 Produksi Film dan Televisi</option>
+                                                <option value="notsay">D3 Sistem Informasi</option>
+                                                <option value="notsay">D3 Administrasi Perkantoran</option>
                                             </select></div>
                                     </div>
                                     <div class="col-lg-3 col-md-6">
                                         <div class="form-group">
-                                            <label for="service">Service <span class="text-danger">*</span></label>
-                                            <select name="Service" class="form-control" id="service" required>
-                                                <option value="">Service</option>
-                                                <option value="dental">Dental Checkup</option>
-                                                <option value="body">Full Body Checkup</option>
-                                                <option value="heart">Heart Checkup</option>
-                                                <option value="ent">ENT Checkup</option>
-                                            </select>
+                                            <label for="dob">Tanggal lahir <span class="text-danger">*</span></label>
+                                            <input type="date" class="form-control" id="tgl" name="tgl" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-6">
+                                        <div class="form-group">
+                                            <label for="dob">Wali Dosen <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="walidosen" name="walidosen" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-6">
                                         <div class="form-group">
-                                            <label for="date">Appointment Date <span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" id="date" name="date" required>
+                                            <label for="dob">No. Handphone Wali Dosen <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control" id="walidosen" name="walidosen" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="email">Email: <span class="text-danger">*</span></label>
-                                            <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email" required>
+                                            <label for="email">Email <span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="phone">Contact Number:</label>
-                                            <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter Contact Number" required>
+                                            <label for="phone">No. Handphone</label>
+                                            <input type="number" class="form-control" id="phone" name="phone" placeholder="Masukkan No Hp" required>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                <div class="col-lg-4 col-md-8">
+                                        <div class="form-group">
+                                            <label for="service">Keluhan<span class="text-danger">*</span></label>
+                                            <select name="Service" class="form-control" id="service" required>
+                                                <option value="dental">Masalah Pribadi</option>
+                                                <option value="body">Masalah Sosial</option>
+                                                <option value="heart">Masalah Karir</option>
+                                                <option value="ent">Masalah Keluarga</option>
+                                                <option value="ent">Dan lain-lain</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-8">
+                                        <div class="form-group">
+                                            <label for="date">Tanggal Appointment <span class="text-danger">*</span></label>
+                                            <input type="date" class="form-control" id="date" name="date" required>
+                                        </div>
+                                    </div> 
+
+                                    <div class="col-lg-4 col-md-8">
+                                        <div class="form-group">
+                                            <label for="date">Konselor <span class="text-danger">*</span></label>
+                                            <select name="Service" class="form-control" id="service" required>
+                                                <option value="dental">Fitriyani P.si</option>
+                                                <option value="body">Inez Kristanti</option>
+                                                <option value="heart">Jonathan End</option>
+                                            </select>
+                                        </div>
+                                    </div> 
+                                </div>
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="symptoms">Tell Us About Your Problems:</label>
-                                            <textarea cols="3" rows="3" id="symptoms" class="form-control" placeholder="Tell us about problems you are facing"></textarea>
+                                            <label for="symptoms">Ceritakan permasalahan kamu</label>
+                                            <textarea cols="3" rows="3" id="symptoms" class="form-control" placeholder="Tulis disini apa yang kamu alami"></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer ml-auto">
-                                    <button type="submit" class="btn btn-outline-success mr-1">Submit</button> <button type="submit" class="btn btn-outline-danger">Cancel</button>
+                                    <button type="submit" class="btn btn-outline-success mr-1">Kirim</button> <button type="submit" class="btn btn-outline-danger">Batal</button>
                                 </div>
                             </form>
                         </div>
