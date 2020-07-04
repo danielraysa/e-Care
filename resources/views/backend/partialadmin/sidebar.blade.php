@@ -6,6 +6,7 @@
                 </li>
                 <li class=" navigation-header"><span data-i18n="Professional">Professional</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Professional"></i>
                 </li>
+                @if(Auth::user()->role_id == 2)
                 <li class=" nav-item"><a href="#"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Appointment</span></a>
                     <ul class="menu-content">
                         <li><a class="menu-item" href="{{url('/buatappointment')}}"><i></i><span>Buat Appointment</span></a>
@@ -25,6 +26,16 @@
                         </li>
                     </ul>
                 </li>
+                <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Test</span></a>
+                    <ul class="menu-content">
+                        <li><a class="menu-item" href="{{url('testmbti')}}"><i></i><span>Kepribadian/MBTI</span></a>
+                        </li>
+                        <li><a class="menu-item" href="{{url('testtingkat')}}"><i></i><span>Tingkat Masalah</span></a>
+                        </li>
+                    </ul>
+                </li>
+                @endif
+                @if(Auth::user()->role_id == 1)
                 <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Mahasiswa</span></a>
                     <ul class="menu-content">
                         <li><a class="menu-item" href="{{url('daftarmhs')}}"><i></i><span>Daftar Mahasiswa</span></a>
@@ -35,16 +46,6 @@
                         </li>
                     </ul>
                 </li>
-
-                <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Test</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="{{url('testmbti')}}"><i></i><span>Kepribadian/MBTI</span></a>
-                        </li>
-                        <li><a class="menu-item" href="{{url('testtingkat')}}"><i></i><span>Tingkat Masalah</span></a>
-                        </li>
-                    </ul>
-                </li>
-
                 <li class=" nav-item"><a href="hospital-payment-reports.html"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Report">Laporan</span></a>
                     <ul class="menu-content">
                         <li><a class="menu-item" href="{{url('rekammedis')}}"><i></i><span>Rekam Medis</span></a>
@@ -53,7 +54,11 @@
                         </li>
                     </ul>
                 </li>
-
+                @endif
+                @if(Auth::user()->role_id == 3)
+                <li><a class="menu-item" href="{{url('rekap')}}"><i class="la la-bar-chart"></i><span>Rekap Bulanan</span></a>
+                </li>
+                @endif
         
                 <li class=" navigation-header"><span data-i18n="Apps">Apps</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Apps"></i>
                 </li>
