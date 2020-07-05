@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Counselor;
 
 class KonselorController extends Controller
 {
@@ -14,6 +15,7 @@ class KonselorController extends Controller
     public function index()
     {
         //
+        return view('backend.mhs.daftarkonselor');
     }
 
     /**
@@ -24,6 +26,7 @@ class KonselorController extends Controller
     public function create()
     {
         //
+        return view('backend.konselor.tambahkonselor');
     }
 
     /**
@@ -35,6 +38,27 @@ class KonselorController extends Controller
     public function store(Request $request)
     {
         //
+        $conselor = Counselor::create([
+            'email' => $request->email,
+            'no_hp' => $request->no_hp,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'provinsi' => $request->provinsi,
+            'pendidikan_terakhir' => $request->pendidikan_terakhir,
+            'nama_institusi' => $request->nama_institusi,
+            'lisensi' => $request->lisensi,
+            'penghargaan' => $request->penghargaan,
+            'bidang_keahlian' => $request->bidang_keahlian,
+            'topik_penelitian' => $request->topik_penelitian,
+            'perusahaan_terakhir' => $request->perusahaan_terakhir,
+            'jabatan' => $request->jabatan,
+            'lama_bekerja' => $request->lama_bekerja,
+            'pelatihan' => $request->pelatihan,
+            'facebook' => $request->facebook,
+            'instagram' => $request->instagram,
+            // 'created_at' => date('Y-m-d H:i:s')
+        ]);
+        return redirect()->action('KonselorController@index')->with('status', 'Data konselor berhasil ditambahkan');
     }
 
     /**

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Appointment;
 use App\User;
-use App\Counselor;
-
-class AppointmentController extends Controller
+use App\UserRole;
+use App\Mahasiswa;
+use App\Karyawan;
+use App\Role;
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +18,12 @@ class AppointmentController extends Controller
     public function index()
     {
         //
-        return view('backend.mhs.buatappointment');
+        $user = User::with('user_role')->get();
+        $mahasiswa = Mahasiswa::with('role_mhs')->get();
+        $karyawan = Karyawan::with('role_kary')->get();
+        $role = Role::all();
+        $userrole = UserRole::all();
+        return view('admin.user', compact('user', 'mahasiswa', 'karyawan','role','userrole'));
     }
 
     /**
@@ -39,14 +45,6 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         //
-        $appointment = Appointment::create([
-            'user_id' => $user->id,
-            'counselor_id' => $request->counselor,
-            'tgl_appointment' => $request->tgl_appointment,
-            'description' => $request->deskripsi,
-            // 'created_at' => date('Y-m-d H:i:s')
-        ]);
-        return redirect()->action('AppointmentController@index')->with('status', 'Data appointment berhasil ditambahkan');
     }
 
     /**

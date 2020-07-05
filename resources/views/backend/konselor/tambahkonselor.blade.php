@@ -52,13 +52,13 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="firstName">Nama Lengkap<span class="danger">*</span></label>
-                                                                <input type="text" class="form-control required" id="firstName" name="firstname" />
+                                                                <input type="text" name="nama" class="form-control required" id="firstName" name="firstname" />
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="lastName">Tanggal Lahir<span class="danger">*</span></label>
-                                                                <input type="text" class="form-control required" id="lastName" name="lastname" />
+                                                                <input type="text" name="tgl_lahir" class="form-control required" id="lastName" name="lastname" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -67,14 +67,14 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="address">Alamat</label>
-                                                                <input type="text" class="form-control" id="address">
+                                                                <input type="text" name="alamat" class="form-control" id="address">
                                                             </div>
                                                         </div>
 
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="city">Kota</label>
-                                                                <select id="city" class="custom-select">
+                                                                <select id="city" name="kota" class="custom-select">
                                                                     <option value="manhattan">Manhattan</option>
                                                                     <option value="seattle">Seattle</option>
                                                                     <option value="kingsville">Kingsville</option>
@@ -86,7 +86,7 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="state">Provinsi</label>
-                                                                <select id="state" class="custom-select">
+                                                                <select id="state" name="provinsi" class="custom-select">
                                                                     <option value="washingtondc">Washington DC</option>
                                                                     <option value="newyork">New York</option>
                                                                     <option value="texas">Texas</option>
@@ -101,13 +101,13 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="contact">No. Handphone<span class="danger">*</span></label>
-                                                                <input type="number" class="form-control required" id="contact" name="contact">
+                                                                <input type="number" name="no_hp" class="form-control required" id="contact" name="contact">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="state">Email</label>
-                                                                <input type="email" class="form-control required" id="contact" name="contact">
+                                                                <input type="email" name="email" class="form-control required" id="contact" name="contact">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -121,13 +121,13 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="school">Pendidikan Terakhir</label>
-                                                                <input type="text" class="form-control" id="school">
+                                                                <input type="text" name="pendidikan_terakhir" class="form-control" id="school">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="degree">Nama Institusi<span class="danger">*</span></label>
-                                                                <input type="text" class="form-control required" id="degree" name="degree">
+                                                                <input type="text" name="nama_institusi" class="form-control required" id="degree" name="degree">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -135,13 +135,13 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="license">Lisensi<span class="danger">*</span></label>
-                                                                <input type="text" class="form-control required" id="license" name="license">
+                                                                <input type="text" name="lisensi" class="form-control required" id="license" name="license">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="hons">Penghargaan/Prestasi</label>
-                                                                <input type="text" class="form-control" id="hons">
+                                                                <input type="text" name="penghargaan" class="form-control" id="hons">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -150,12 +150,12 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="experties">Bidang Keahlian<span class="danger">*</span></label>
-                                                                <input type="text" class="form-control required" id="experties" name="expert">
+                                                                <input type="text" name="bidang_keahlian" class="form-control required" id="experties" name="expert">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label for="research">Topik Penelitian</label>
-                                                            <textarea id="research" cols="5" rows="1" class="form-control"></textarea>
+                                                            <textarea id="research" name="topik_penelitian" cols="5" rows="1" class="form-control"></textarea>
                                                         </div>
                                                     </div>
                                                 </fieldset>
@@ -168,13 +168,13 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="previousCompany">Perusahaan Terakhir</label>
-                                                                <input type="text" class="form-control" id="previousCompany">
+                                                                <input type="text" name="perusahaan_terakhir" class="form-control" id="previousCompany">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="previousJobTitle">Jabatan</label>
-                                                                <input type="text" class="form-control" id="previousJobTitle">
+                                                                <input type="text" name="jabatan" class="form-control" id="previousJobTitle">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -182,13 +182,13 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="training">Lama Bekerja: <span class="danger">*</span></label>
-                                                                <input type="text" class="form-control" id="training" name="training" required>
+                                                                <input type="text" name="lama_bekerja" class="form-control" id="training" name="training" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="internship">Pelatihan/Workshop</label>
-                                                                <input type="text" class="form-control" id="internship">
+                                                                <input type="text" name="pelatihan" class="form-control" id="internship">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -208,13 +208,13 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label for="fb">Facebook:</label>
-                                                                <input type="url" class="form-control" id="fb">
+                                                                <input type="url" name="facebook" class="form-control" id="fb">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label for="ig">Instagram:</label>
-                                                                <input type="url" class="form-control" id="ig">
+                                                                <input type="url" name="instagram" class="form-control" id="ig">
                                                             </div>
                                                         </div>
                                                     </div>

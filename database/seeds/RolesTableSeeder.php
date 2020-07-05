@@ -20,5 +20,13 @@ class RolesTableSeeder extends Seeder
             'role_name' => 'User',
             'created_at' => date('Y-m-d H:i:s')
         ]);
+        DB::table('roles')->insert([
+            'role_name' => 'Warek',
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
+        DB::table('roles')->insert([
+            'role_name' => 'Konselor',
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
     }
 }

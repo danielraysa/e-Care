@@ -90,10 +90,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/buatappointment', function () {
         return view('backend.mhs.buatappointment');
     });
+    Route::resource('/appointment', 'AppointmentController');
     
     Route::get('/daftarkonselor', function () {
         return view('backend.mhs.daftarkonselor');
     });
+    Route::resource('/counselor', 'KonselorController');
     
     Route::get('/profilkonselor', function () {
         return view('backend.mhs.profilkonselor');
@@ -111,6 +113,7 @@ Route::group(['middleware' => 'auth'], function () {
         return view('backend.warek.laprekapperbulan');
     });    
     
+    Route::resource('/user', 'UserController');
     Route::resource('/chat', 'ChatController');
     Route::post('/chat/send', 'ChatController@sendMessage');
     Route::post('/chat/{user}/send', 'ChatController@sendMessagePrivate');
