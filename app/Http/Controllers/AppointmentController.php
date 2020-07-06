@@ -17,7 +17,8 @@ class AppointmentController extends Controller
     public function index()
     {
         //
-        return view('backend.mhs.buatappointment');
+        $counselor = Counselor::all();
+        return view('backend.mhs.buatappointment', compact('counselor'));
     }
 
     /**

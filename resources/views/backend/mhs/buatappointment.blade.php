@@ -35,7 +35,8 @@
                             <h2 class="card-title">Buat Appointment</h2>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form method="post" action="">
+                                {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -105,12 +106,12 @@
                                 <div class="col-lg-4 col-md-8">
                                         <div class="form-group">
                                             <label for="service">Keluhan<span class="text-danger">*</span></label>
-                                            <select name="Service" class="form-control" id="service" required>
-                                                <option value="dental">Masalah Pribadi</option>
-                                                <option value="body">Masalah Sosial</option>
-                                                <option value="heart">Masalah Karir</option>
-                                                <option value="ent">Masalah Keluarga</option>
-                                                <option value="ent">Dan lain-lain</option>
+                                            <select name="service" class="form-control" id="service" required>
+                                                <option value="Masalah Pribadi">Masalah Pribadi</option>
+                                                <option value="Masalah Sosial">Masalah Sosial</option>
+                                                <option value="Masalah Karir">Masalah Karir</option>
+                                                <option value="Masalah Keluarga">Masalah Keluarga</option>
+                                                <option value="lain-lain">Dan lain-lain</option>
                                             </select>
                                         </div>
                                     </div>
@@ -124,7 +125,7 @@
                                     <div class="col-lg-4 col-md-8">
                                         <div class="form-group">
                                             <label for="date">Konselor <span class="text-danger">*</span></label>
-                                            <select name="Service" class="form-control" id="service" required>
+                                            <select name="counselor" class="form-control" id="service" required>
                                                 <option value="dental">Fitriyani P.si</option>
                                                 <option value="body">Inez Kristanti</option>
                                                 <option value="heart">Jonathan End</option>
@@ -137,12 +138,12 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="symptoms">Ceritakan permasalahan kamu</label>
-                                            <textarea cols="3" rows="3" id="symptoms" class="form-control" placeholder="Tulis disini apa yang kamu alami"></textarea>
+                                            <textarea name="description" cols="3" rows="3" id="symptoms" class="form-control" placeholder="Tulis disini apa yang kamu alami"></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer ml-auto">
-                                    <button type="submit" class="btn btn-outline-success mr-1">Kirim</button> <button type="submit" class="btn btn-outline-danger">Batal</button>
+                                    <button type="submit" class="btn btn-outline-success mr-1">Kirim</button> <button type="reset" class="btn btn-outline-danger">Batal</button>
                                 </div>
                             </form>
                         </div>

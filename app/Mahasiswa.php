@@ -15,4 +15,9 @@ class Mahasiswa extends Model
     {
         return $this->hasOne(UserRole::class, 'nik_nim', 'nim');
     }
+
+    public function foto_mhs()
+    {
+        return "https://sicyca.dinamika.ac.id/photo/s_".$this->nim.".jpg";
+    }
 }

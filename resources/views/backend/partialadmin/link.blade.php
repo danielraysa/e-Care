@@ -4,7 +4,7 @@
 <meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
 <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
 <meta name="author" content="PIXINVENT">
-<title>Hospital Dashboard - Modern Admin - Clean Bootstrap 4 Dashboard HTML Template + Bitcoin Dashboard</title>
+<title>{{ env('APP_NAME') }}</title>
 <link rel="apple-touch-icon" href="{{ asset('assets/backend/app-assets/images/ico/apple-icon-120.png') }}">
 <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/backend/app-assets/images/ico/favicon.ico') }}">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CQuicksand:300,400,500,700" rel="stylesheet">
@@ -33,5 +33,6 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/app-chat.css')}}">
   <!-- BEGIN: Vendor CSS-->
 <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/vendors/css/vendors.min.css')}}">
-    <!-- END: Vendor CSS--> 
+<!-- END: Vendor CSS--> 
+<link rel="stylesheet" type="text/css" href="{{asset('css/select2.css')}}">
 <!-- END: Page CSS-->

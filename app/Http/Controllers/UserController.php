@@ -20,9 +20,10 @@ class UserController extends Controller
         //
         $user = User::with('user_role')->get();
         $mahasiswa = Mahasiswa::with('role_mhs')->get();
-        $karyawan = Karyawan::with('role_kary')->get();
+        $karyawan = Karyawan::where('nik','199116')->with('role_kary')->get();
         $role = Role::all();
         $userrole = UserRole::all();
+        // dd($karyawan);
         return view('admin.user', compact('user', 'mahasiswa', 'karyawan','role','userrole'));
     }
 
@@ -45,6 +46,19 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $user = User::create([
+            'name' => $request->nama,
+            'email' => $request->data_tabel,
+            // 'password' => bcrypt)($request->password),
+            'password' => bcrypt('password'),
+            'role_id' => $request->user_role,
+        ]);
+        if($request->user_role == 3){
+            $counselor = Counselor::create([
+                'user_id' => $user->id,
+            ]);
+        }
+        return redirect()->action('UserController@index')->with('status', 'Data user berhasil ditambahkan');
     }
 
     /**

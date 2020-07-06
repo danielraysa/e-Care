@@ -3,28 +3,25 @@
 <!-- BEGIN: Head-->
 
 <head>
- @include('backend.partialadmin.link')
-
+   @include('backend.partialadmin.link')
+   @stack('css')
 </head>
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
 <body class="vertical-layout vertical-menu 2-columns   fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="2-columns">
 
-   4 <!-- BEGIN: Header-->
+   <!-- BEGIN: Header-->
    @include('backend.partialadmin.header')
 
     <!-- END: Header-->
 
-
-   5 <!-- BEGIN: Main Menu/SIDEBAR-->
+   <!-- BEGIN: Main Menu/SIDEBAR-->
    @include('backend.partialadmin.sidebar')
-
  
     <!-- END: Main Menu-->
 
-
-    6<!-- BEGIN: Content-->
+   <!-- BEGIN: Content-->
     @yield('content')
     <!-- END: Content-->
 
@@ -39,9 +36,7 @@
    <!-- BEGIN: Script-->
    @include('backend.partialadmin.script')
    <!-- END: Script-->
-
-
-   
+   @stack('js')
 </body>
 <!-- END: Body-->
 
