@@ -9,7 +9,7 @@
                 @if(Auth::user()->role_id == 2)
                 <li class=" nav-item"><a href="#"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Appointment</span></a>
                     <ul class="menu-content">
-                        <li><a class="menu-item" href="{{url('/buatappointment')}}"><i></i><span>Buat Appointment</span></a>
+                        <li><a class="menu-item" href="{{url('/appointment')}}"><i></i><span>Buat Appointment</span></a>
                         </li>
                         <li><a class="menu-item" href="{{url('jadwalkonselor')}}"><i></i><span>Tabel Form Pendaftaran</span></a>
                         </li>
@@ -31,7 +31,7 @@
                         <li><a class="menu-item" href="{{url('daftarkonselor')}}"><i></i><span>Daftar Konselor</span></a>
                         </li>
                         @if(Auth::user()->role_id == 1)
-                        <li><a class="menu-item" href="{{url('tambahkonselor')}}"><i></i><span>Tambah Konselor</span></a>
+                        <li><a class="menu-item" href="{{url('counselor')}}"><i></i><span>Tambah Konselor</span></a>
                         </li>
                         @endif
                         <li><a class="menu-item" href="{{url('profilkonselor')}}"><i></i><span>Profil Konselor</span></a>
@@ -62,6 +62,10 @@
                 @if(Auth::user()->role_id == 3)
                 <li><a class="menu-item" href="{{url('rekap')}}"><i class="la la-bar-chart"></i><span>Rekap Bulanan</span></a>
                 </li>
+                @endif
+                @if(Auth::user()->role_id == 1)
+                <li><a class="menu-item" href="{{url('user')}}"><i></i><span>Link User</span></a>
+                </li>   
                 @endif
         
                 <li class=" navigation-header"><span data-i18n="Apps">Apps</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Apps"></i>
