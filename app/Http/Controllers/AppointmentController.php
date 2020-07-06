@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Appointment;
 use App\User;
 use App\Counselor;
-
+use App\Mahasiswa;
+use Auth;
+use DB;
 class AppointmentController extends Controller
 {
     /**
@@ -17,8 +19,15 @@ class AppointmentController extends Controller
     public function index()
     {
         //
-        $counselor = Counselor::all();
-        return view('backend.mhs.buatappointment', compact('counselor'));
+        // $user = Auth::user();
+        $counselor = Counselor::with('data_user')->get();
+        // $user = User::with('user_role')->find(Auth::id());
+        $user = DB::table('users')
+            ->join('v_mhs', 'users.email', '=', 'v_mhs.nim')
+            ->join('v_karyawan', 'v_mhs.dosen_wl', '=', 'v_karyawan.nik')
+            ->get()->first();
+        // dd($user);
+        return view('backend.mhs.buatappointment', compact('user','counselor'));
     }
 
     /**
@@ -40,11 +49,13 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         //
+        // dd($request->all());
+        $user = Auth::user();
         $appointment = Appointment::create([
             'user_id' => $user->id,
             'counselor_id' => $request->counselor,
             'tgl_appointment' => $request->tgl_appointment,
-            'description' => $request->deskripsi,
+            'description' => $request->description,
             // 'created_at' => date('Y-m-d H:i:s')
         ]);
         return redirect()->action('AppointmentController@index')->with('status', 'Data appointment berhasil ditambahkan');

@@ -21,29 +21,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-header-right col-md-6 col-12">
+                {{-- <div class="content-header-right col-md-6 col-12">
                     <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
                         <button class="btn btn-info round dropdown-toggle dropdown-menu-right box-shadow-2 px-2 mb-1" id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ft-settings icon-left"></i> Settings</button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1"><a class="dropdown-item" href="card-bootstrap.html">Cards</a><a class="dropdown-item" href="component-buttons-extended.html">Buttons</a></div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="content-body">
                 <!-- Add Doctors Form Wizard -->
-
                 <section id="add-doctors">
                     <div class="icon-tabs">
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                    <div class="card-header">
+                                    {{-- <div class="card-header">
                                         <h4 class="card-title">Tambah Konselor</h4>
                                         <a href="#" class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
-                                    </div>
+                                    </div> --}}
                                     <div class="card-content collapse show">
                                         <div class="card-body">
-                                            <form action="#" class="add-doctors-tabs icons-tab-steps steps-validation wizard-notification">
-
+                                            <form action="{{ route('counselor.store') }}" method="post" class="add-doctors-tabs icons-tab-steps steps-validation wizard-notification">
+                                                {{ csrf_field() }}
                                                 <!-- step 1 => Personal Details -->
 
                                                 <h6><i class="step-icon la la-user font-medium-3"></i> Detail Profil</h6>
@@ -74,7 +73,7 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="city">Kota</label>
-                                                                <select id="city" name="kota" class="custom-select">
+                                                                <select id="city" name="kota" class="form-control">
                                                                     <option value="manhattan">Manhattan</option>
                                                                     <option value="seattle">Seattle</option>
                                                                     <option value="kingsville">Kingsville</option>
@@ -86,7 +85,7 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="state">Provinsi</label>
-                                                                <select id="state" name="provinsi" class="custom-select">
+                                                                <select id="state" name="provinsi" class="form-control">
                                                                     <option value="washingtondc">Washington DC</option>
                                                                     <option value="newyork">New York</option>
                                                                     <option value="texas">Texas</option>
@@ -98,16 +97,22 @@
                                                     </div>
 
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label for="contact">No. Handphone<span class="danger">*</span></label>
                                                                 <input type="number" name="no_hp" class="form-control required" id="contact" name="contact">
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label for="state">Email</label>
+                                                                <label for="state">Email<span class="danger">*</span></label>
                                                                 <input type="email" name="email" class="form-control required" id="contact" name="contact">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="contact">Password<span class="danger">*</span></label>
+                                                                <input type="password" name="password" class="form-control required" id="contact" name="contact">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -201,8 +206,8 @@
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label for="email">Email: <span class="danger">*</span></label>
-                                                                <input type="email" class="form-control required" id="email" name="email">
+                                                                <label for="email">Email:</label>
+                                                                <input type="email" class="form-control required" id="email">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
@@ -219,7 +224,7 @@
                                                         </div>
                                                     </div>
                                                 </fieldset>
-
+                                                <button type="submit" class="btn btn-success">Simpan</button>
                                             </form>
                                         </div>
                                     </div>

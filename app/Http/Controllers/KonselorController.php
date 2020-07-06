@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Counselor;
+use App\User;
 
 class KonselorController extends Controller
 {
@@ -15,7 +16,8 @@ class KonselorController extends Controller
     public function index()
     {
         //
-        return view('backend.mhs.daftarkonselor');
+        $counselor = Counselor::all();
+        return view('backend.mhs.daftarkonselor', compact('counselor'));
     }
 
     /**
@@ -38,7 +40,14 @@ class KonselorController extends Controller
     public function store(Request $request)
     {
         //
-        $conselor = Counselor::create([
+        $user = User::create([
+            'name' => $request->nama,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role_id' => 4
+        ]);
+        $counselor = Counselor::create([
+            'user_id' => $user->id,
             'email' => $request->email,
             'no_hp' => $request->no_hp,
             'alamat' => $request->alamat,

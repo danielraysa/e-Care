@@ -29,8 +29,13 @@
                 </div> -->
             </div>
             <div class="content-body">
+                @if (session('status'))
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        {{ session('status') }}
+                    </div>
+                @endif
                 <div id="doctors-list">
-
                     <div class="row match-height">
                         <div class=" col-xl-3 col-lg-4 col-md-6">
                             <div class="card">

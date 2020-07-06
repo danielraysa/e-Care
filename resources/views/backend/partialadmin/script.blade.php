@@ -18,6 +18,9 @@
 <!-- END: Page JS-->
 <script src="{{asset('assets/backend/app-assets/js/scripts/pages/app-chat.js')}}"></script> 
 <script src="{{asset('js/select2.full.js')}}"></script>
+<script src="{{asset('js/jquery.dataTables.js')}}"></script>
+<script src="{{asset('js/bootstrap.dataTables.js')}}"></script>
 <script>
     $('.select2').select2();
+    $('.datatable').dataTable();
 </script>

@@ -16,16 +16,6 @@
                        
                     </ul>
                 </li>
-                <li class=" nav-item"><a href="#"><i class="la la-stethoscope"></i><span class="menu-title" data-i18n="Doctors">Konselor</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="{{url('daftarkonselor')}}"><i></i><span>Daftar Konselor</span></a>
-                        </li>
-                        <li><a class="menu-item" href="{{url('tambahkonselor')}}"><i></i><span>Tambah Konselor</span></a>
-                        </li>
-                        <li><a class="menu-item" href="{{url('profilkonselor')}}"><i></i><span>Profil Konselor</span></a>
-                        </li>
-                    </ul>
-                </li>
                 <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Test</span></a>
                     <ul class="menu-content">
                         <li><a class="menu-item" href="{{url('testmbti')}}"><i></i><span>Kepribadian/MBTI</span></a>
@@ -35,7 +25,21 @@
                     </ul>
                 </li>
                 @endif
-                @if(Auth::user()->role_id == 1)
+                @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+                <li class=" nav-item"><a href="#"><i class="la la-stethoscope"></i><span class="menu-title" data-i18n="Doctors">Konselor</span></a>
+                    <ul class="menu-content">
+                        <li><a class="menu-item" href="{{url('daftarkonselor')}}"><i></i><span>Daftar Konselor</span></a>
+                        </li>
+                        @if(Auth::user()->role_id == 1)
+                        <li><a class="menu-item" href="{{url('tambahkonselor')}}"><i></i><span>Tambah Konselor</span></a>
+                        </li>
+                        @endif
+                        <li><a class="menu-item" href="{{url('profilkonselor')}}"><i></i><span>Profil Konselor</span></a>
+                        </li>
+                    </ul>
+                </li>
+                @endif
+                @if(Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
                 <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Mahasiswa</span></a>
                     <ul class="menu-content">
                         <li><a class="menu-item" href="{{url('daftarmhs')}}"><i></i><span>Daftar Mahasiswa</span></a>

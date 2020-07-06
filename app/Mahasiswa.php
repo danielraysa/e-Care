@@ -20,4 +20,9 @@ class Mahasiswa extends Model
     {
         return "https://sicyca.dinamika.ac.id/photo/s_".$this->nim.".jpg";
     }
+    
+    public function dosen_wali()
+    {
+        return $this->hasOne(Karyawan::class, 'nik', 'dosen_wl');
+    }
 }

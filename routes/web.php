@@ -62,9 +62,9 @@ Route::group(['middleware' => 'auth'], function () {
         return view('backend.fitur.kalender');
     }); 
     
-    Route::get('/daftarmhs', function () {
-        return view('backend.konselor.daftarmhs');
-    }); 
+    Route::get('/daftarmhs', 'MahasiswaController@index');
+
+    Route::resource('/mahasiswa', 'MahasiswaController'); 
     
     Route::get('/jadwalkonselor', function () {
         return view('backend.konselor.jadwalkonselor');

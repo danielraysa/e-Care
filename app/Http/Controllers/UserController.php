@@ -7,6 +7,7 @@ use App\User;
 use App\UserRole;
 use App\Mahasiswa;
 use App\Karyawan;
+use App\Counselor;
 use App\Role;
 class UserController extends Controller
 {
@@ -20,7 +21,7 @@ class UserController extends Controller
         //
         $user = User::with('user_role')->get();
         $mahasiswa = Mahasiswa::with('role_mhs')->get();
-        $karyawan = Karyawan::where('nik','199116')->with('role_kary')->get();
+        $karyawan = Karyawan::with('role_kary')->get();
         $role = Role::all();
         $userrole = UserRole::all();
         // dd($karyawan);
@@ -53,7 +54,12 @@ class UserController extends Controller
             'password' => bcrypt('password'),
             'role_id' => $request->user_role,
         ]);
-        if($request->user_role == 3){
+        $user_role = UserRole::create([
+            'user_id' => $user->id,
+            'nik_nim' => $request->data_tabel,
+            'role_id' => $request->user_role,
+        ]);
+        if($request->user_role == 4){
             $counselor = Counselor::create([
                 'user_id' => $user->id,
             ]);

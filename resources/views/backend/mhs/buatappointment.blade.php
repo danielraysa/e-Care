@@ -20,14 +20,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-header-right col-md-6 col-12">
+                {{-- <div class="content-header-right col-md-6 col-12">
                     <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
                         <button class="btn btn-info round dropdown-toggle dropdown-menu-right box-shadow-2 px-2 mb-1" id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ft-settings icon-left"></i> Settings</button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1"><a class="dropdown-item" href="card-bootstrap.html">Cards</a><a class="dropdown-item" href="component-buttons-extended.html">Buttons</a></div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="content-body">
+                @if (session('status'))
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        {{ session('status') }}
+                    </div>
+                @endif
                 <!-- Book Appointment -->
                 <section id="book-appointment">
                     <div class="card">
@@ -35,19 +41,19 @@
                             <h2 class="card-title">Buat Appointment</h2>
                         </div>
                         <div class="card-body">
-                            <form method="post" action="">
+                            <form method="post" action="{{ route('appointment.store') }}">
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="firstname">NIM <span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control" placeholder="NIM" required id="nim">
+                                            <input type="number" class="form-control" placeholder="NIM" id="nim" value="{{ $user->NIM }}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="lastname">Nama Lengkap <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" placeholder="Nama Lengkap" id="namalengkap" required>
+                                            <input type="text" class="form-control" placeholder="Nama Lengkap" id="namalengkap" value="{{ Auth::user()->name }}" required>
                                         </div>
                                     </div>
                                 </div>
@@ -70,20 +76,20 @@
                                     <div class="col-lg-3 col-md-6">
                                         <div class="form-group">
                                             <label for="dob">Tanggal lahir <span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" id="tgl" name="tgl" required>
+                                            <input type="date" class="form-control" id="tgl" name="tgl" value="{{ $user->TGL_LAHIR }}" required>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-3 col-md-6">
                                         <div class="form-group">
                                             <label for="dob">Wali Dosen <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="walidosen" name="walidosen" required>
+                                            <input type="text" class="form-control" id="walidosen" name="walidosen" value="{{ $user->NAMA }}" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-6">
                                         <div class="form-group">
                                             <label for="dob">No. Handphone Wali Dosen <span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control" id="walidosen" name="walidosen" required>
+                                            <input type="number" class="form-control" id="walidosen" name="walidosen" value="{{ $user->TELP }}" required>
                                         </div>
                                     </div>
                                 </div>
@@ -91,13 +97,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="email">Email <span class="text-danger">*</span></label>
-                                            <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email" required>
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email" value="{{ $user->NIM.'@dinamika.ac.id' }}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="phone">No. Handphone</label>
-                                            <input type="number" class="form-control" id="phone" name="phone" placeholder="Masukkan No Hp" required>
+                                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Masukkan No Hp" value="{{ $user->TELP }}" required>
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +124,7 @@
                                     <div class="col-lg-4 col-md-8">
                                         <div class="form-group">
                                             <label for="date">Tanggal Appointment <span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" id="date" name="date" required>
+                                            <input type="date" class="form-control" id="date" name="tgl_appointment" required>
                                         </div>
                                     </div> 
 
@@ -126,9 +132,9 @@
                                         <div class="form-group">
                                             <label for="date">Konselor <span class="text-danger">*</span></label>
                                             <select name="counselor" class="form-control" id="service" required>
-                                                <option value="dental">Fitriyani P.si</option>
-                                                <option value="body">Inez Kristanti</option>
-                                                <option value="heart">Jonathan End</option>
+                                                @foreach ($counselor as $cons)
+                                                <option value="{{ $cons->user_id }}">{{ $cons->data_user->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div> 

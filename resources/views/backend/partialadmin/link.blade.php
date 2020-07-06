@@ -35,4 +35,5 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/vendors/css/vendors.min.css')}}">
 <!-- END: Vendor CSS--> 
 <link rel="stylesheet" type="text/css" href="{{asset('css/select2.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('css/dataTables.css')}}">
 <!-- END: Page CSS-->
