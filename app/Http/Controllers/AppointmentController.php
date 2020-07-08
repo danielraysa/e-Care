@@ -21,11 +21,11 @@ class AppointmentController extends Controller
         //
         // $user = Auth::user();
         $counselor = Counselor::with('data_user')->get();
-        // $user = User::with('user_role')->find(Auth::id());
-        $user = DB::table('users')
+        $user = User::with('user_role.data_mhs.dosen_wali')->find(Auth::id());
+        /* $user = DB::table('users')
             ->join('v_mhs', 'users.email', '=', 'v_mhs.nim')
             ->join('v_karyawan', 'v_mhs.dosen_wl', '=', 'v_karyawan.nik')
-            ->get()->first();
+            ->get()->first(); */
         // dd($user);
         return view('backend.mhs.buatappointment', compact('user','counselor'));
     }
@@ -105,4 +105,18 @@ class AppointmentController extends Controller
     {
         //
     }
+
+    public function index_konselor()
+    {
+        $counselor = Counselor::with('data_user')->get();
+        $appointment = Appointment::with('mahasiswa')->with('konselor')->get();
+        $user = User::with('user_role.data_mhs.dosen_wali')->find(Auth::id());
+        /* $user = DB::table('users')
+            ->join('v_mhs', 'users.email', '=', 'v_mhs.nim')
+            ->join('v_karyawan', 'v_mhs.dosen_wl', '=', 'v_karyawan.nik')
+            ->get()->first(); */
+        dd($appointment);
+        return view('backend.konselor.jadwalkonselor', compact('appointment'));
+    }
+
 }

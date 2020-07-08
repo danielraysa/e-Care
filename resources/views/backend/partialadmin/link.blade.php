@@ -25,15 +25,12 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/core/colors/palette-gradient.css') }}">
 <link rel="stylesheet" type="text/css" href=" {{ asset ('assets/backend/app-assets/css/pages/hospital.css') }}">
 <!-- END: Page CSS-->
+<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/app-chat.min.css')}}">
  
 <!-- BEGIN: Custom CSS-->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/assets/css/style.css') }}">
 <!-- END: Custom CSS-->
-
-<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/app-chat.css')}}">
-  <!-- BEGIN: Vendor CSS-->
-<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/vendors/css/vendors.min.css')}}">
-<!-- END: Vendor CSS--> 
+  
 <link rel="stylesheet" type="text/css" href="{{asset('css/select2.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('css/dataTables.css')}}">
 <!-- END: Page CSS-->

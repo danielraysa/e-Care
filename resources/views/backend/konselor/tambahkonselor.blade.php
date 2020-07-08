@@ -44,7 +44,6 @@
                                             <form action="{{ route('counselor.store') }}" method="post" class="add-doctors-tabs icons-tab-steps steps-validation wizard-notification">
                                                 {{ csrf_field() }}
                                                 <!-- step 1 => Personal Details -->
-
                                                 <h6><i class="step-icon la la-user font-medium-3"></i> Detail Profil</h6>
                                                 <fieldset>
                                                     <div class="row">

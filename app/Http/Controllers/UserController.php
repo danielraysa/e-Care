@@ -21,7 +21,7 @@ class UserController extends Controller
         //
         $user = User::with('user_role')->get();
         $mahasiswa = Mahasiswa::with('role_mhs')->get();
-        $karyawan = Karyawan::with('role_kary')->get();
+        $karyawan = Karyawan::with('role_kary')->where('status', 'A')->get();
         $role = Role::all();
         $userrole = UserRole::all();
         // dd($karyawan);
@@ -50,8 +50,8 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->nama,
             'email' => $request->data_tabel,
-            // 'password' => bcrypt)($request->password),
-            'password' => bcrypt('password'),
+            'password' => bcrypt($request->password),
+            // 'password' => bcrypt('password'),
             'role_id' => $request->user_role,
         ]);
         $user_role = UserRole::create([

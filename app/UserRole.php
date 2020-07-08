@@ -7,8 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class UserRole extends Model
 {
     //
+    protected $table = "user_roles";
     protected $guarded = [];
     public $timestamps = false;
+
+    public function user_data()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     public function data_mhs()
     {

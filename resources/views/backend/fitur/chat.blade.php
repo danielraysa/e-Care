@@ -1,7 +1,5 @@
 @extends('backend.partialadmin.layout')
 @section('content')
-
-    <!-- END: Main Menu-->
     <!-- BEGIN: Content-->
     <div class="app-content content">
         <div class="sidebar-left">
@@ -13,9 +11,7 @@
                             <i class="ft-x"></i>
                         </span>
                         <div class="my-2">
-
-                            <img src="assets/backend/app-assets/images/portrait/small/avatar-s-11.png" class="round mb-1" alt="user_avatar" height="100" width="100">
-
+                            <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-11.png') }}" class="round mb-1" alt="user_avatar" height="100" width="100">
                             <h5 class="mb-0">John Doe</h5>
                             <span>Designer</span>
                         </div>
@@ -64,7 +60,7 @@
                         <div class="d-flex align-items-center">
                             <div class="chat-sidebar-profile-toggle">
                                 <div class="avatar">
-                                    <img src="assets/backend/app-assets/images/portrait/small/avatar-s-11.png" class="cursor-pointer" alt="user_avatar" height="36" width="36">
+                                    <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-11.png') }}" class="cursor-pointer" alt="user_avatar" height="36" width="36">
                                 </div>
                             </div>
                             <fieldset class="form-group position-relative has-icon-left mx-75 mb-0">
@@ -89,7 +85,7 @@
                         <ul class="chat-sidebar-list">
                             <li>
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar m-0 mr-50"><img src="assets/backend/app-assets/images/portrait/small/avatar-s-26.png" height="36" width="36" alt="sidebar user image">
+                                    <div class="avatar m-0 mr-50"><img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}" height="36" width="36" alt="sidebar user image">
                                         <span class="avatar-status-busy"></span>
                                     </div>
                                     <div class="chat-sidebar-name">
@@ -99,7 +95,7 @@
                             </li>
                             <li>
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar m-0 mr-50"><img src="assets/backend/app-assets/images/portrait/small/avatar-s-7.png" height="36" width="36" alt="sidebar user image">
+                                    <div class="avatar m-0 mr-50"><img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-7.png') }}" height="36" width="36" alt="sidebar user image">
                                         <span class="avatar-status-online"></span>
                                     </div>
                                     <div class="chat-sidebar-name">
@@ -112,7 +108,7 @@
                         <ul class="chat-sidebar-list">
                             <li>
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar m-0 mr-50"><img src="assets/backend/app-assets/images/portrait/small/avatar-s-8.png" height="36" width="36" alt="sidebar user image">
+                                    <div class="avatar m-0 mr-50"><img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-8.png') }}" height="36" width="36" alt="sidebar user image">
                                         <span class="avatar-status-away"></span>
                                     </div>
                                     <div class="chat-sidebar-name">
@@ -133,7 +129,7 @@
                             </li>
                             <li>
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar m-0 mr-50"><img src="assets/backend/app-assets/images/portrait/small/avatar-s-5.png" height="36" width="36" alt="sidebar user image">
+                                    <div class="avatar m-0 mr-50"><img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-5.png') }}" height="36" width="36" alt="sidebar user image">
                                         <span class="avatar-status-online"></span>
                                     </div>
                                     <div class="chat-sidebar-name">
@@ -143,7 +139,7 @@
                             </li>
                             <li>
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar m-0 mr-50"><img src="assets/backend/app-assets/images/portrait/small/avatar-s-9.png" height="36" width="36" alt="sidebar user image">
+                                    <div class="avatar m-0 mr-50"><img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-9.png') }}" height="36" width="36" alt="sidebar user image">
                                         <span class="avatar-status-busy"></span>
                                     </div>
                                     <div class="chat-sidebar-name">
@@ -164,7 +160,7 @@
                             </li>
                             <li>
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar m-0 mr-50"><img src="assets/backend/app-assets/images/portrait/small/avatar-s-14.png" height="36" width="36" alt="sidebar user image">
+                                    <div class="avatar m-0 mr-50"><img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-14.png') }}" height="36" width="36" alt="sidebar user image">
                                         <span class="avatar-status-online"></span>
                                     </div>
                                     <div class="chat-sidebar-name">
@@ -174,7 +170,7 @@
                             </li>
                             <li>
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar m-0 mr-50"><img src="assets/backend/app-assets/images/portrait/small/avatar-s-3.png" height="36" width="36" alt="sidebar user image">
+                                    <div class="avatar m-0 mr-50"><img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-3.png') }}" height="36" width="36" alt="sidebar user image">
                                         <span class="avatar-status-offline"></span>
                                     </div>
                                     <div class="chat-sidebar-name">
@@ -184,7 +180,7 @@
                             </li>
                             <li>
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar m-0 mr-50"><img src="assets/backend/app-assets/images/portrait/small/avatar-s-7.png" height="36" width="36" alt="sidebar user image">
+                                    <div class="avatar m-0 mr-50"><img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-7.png') }}" height="36" width="36" alt="sidebar user image">
                                         <span class="avatar-status-online"></span>
                                     </div>
                                     <div class="chat-sidebar-name">
@@ -222,7 +218,7 @@
                                         <div class="chat-sidebar-toggle d-block d-lg-none mr-1"><i class="ft-align-justify font-large-1 cursor-pointer"></i>
                                         </div>
                                         <div class="avatar chat-profile-toggle m-0 mr-1">
-                                            <img src="assets/backend/app-assets/images/portrait/small/avatar-s-26.png" class="cursor-pointer" alt="avatar" height="36" width="36" />
+                                            <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}" class="cursor-pointer" alt="avatar" height="36" width="36" />
                                             <span class="avatar-status-busy"></span>
                                         </div>
                                         <h6 class="mb-0">Elizabeth Elliott</h6>
@@ -251,7 +247,7 @@
                                             <div class="chat">
                                                 <div class="chat-avatar">
                                                     <a class="avatar m-0">
-                                                        <img src="assets/backend/app-assets/images/portrait/small/avatar-s-11.png" alt="avatar" height="36" width="36" />
+                                                        <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-11.png') }}" alt="avatar" height="36" width="36" />
                                                     </a>
                                                 </div>
                                                 <div class="chat-body">
@@ -264,7 +260,7 @@
                                             <div class="chat chat-left">
                                                 <div class="chat-avatar">
                                                     <a class="avatar m-0">
-                                                        <img src="assets/backend/app-assets/images/portrait/small/avatar-s-26.png" alt="avatar" height="36" width="36" />
+                                                        <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}" alt="avatar" height="36" width="36" />
                                                     </a>
                                                 </div>
                                                 <div class="chat-body">
@@ -283,7 +279,7 @@
                                             <div class="chat">
                                                 <div class="chat-avatar">
                                                     <a class="avatar m-0">
-                                                        <img src="assets/backend/app-assets/images/portrait/small/avatar-s-11.png" alt="avatar" height="36" width="36" />
+                                                        <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-11.png') }}" alt="avatar" height="36" width="36" />
                                                     </a>
                                                 </div>
                                                 <div class="chat-body">
@@ -300,7 +296,7 @@
                                             <div class="chat chat-left">
                                                 <div class="chat-avatar">
                                                     <a class="avatar m-0">
-                                                        <img src="assets/backend/app-assets/images/portrait/small/avatar-s-26.png" alt="avatar" height="36" width="36" />
+                                                        <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}" alt="avatar" height="36" width="36" />
                                                     </a>
                                                 </div>
                                                 <div class="chat-body">
@@ -321,7 +317,7 @@
                                             <div class="chat">
                                                 <div class="chat-avatar">
                                                     <a class="avatar m-0">
-                                                        <img src="assets/backend/app-assets/images/portrait/small/avatar-s-11.png" alt="avatar" height="36" width="36" />
+                                                        <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-11.png') }}" alt="avatar" height="36" width="36" />
                                                     </a>
                                                 </div>
                                                 <div class="chat-body">
@@ -334,7 +330,7 @@
                                             <div class="chat chat-left">
                                                 <div class="chat-avatar">
                                                     <a class="avatar m-0">
-                                                        <img src="assets/backend/app-assets/images/portrait/small/avatar-s-26.png" alt="avatar" height="36" width="36" />
+                                                        <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}" alt="avatar" height="36" width="36" />
                                                     </a>
                                                 </div>
                                                 <div class="chat-body">
@@ -351,7 +347,7 @@
                                             <div class="chat">
                                                 <div class="chat-avatar">
                                                     <a class="avatar m-0">
-                                                        <img src="assets/backend/app-assets/images/portrait/small/avatar-s-11.png" alt="avatar" height="36" width="36" />
+                                                        <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-11.png') }}" alt="avatar" height="36" width="36" />
                                                     </a>
                                                 </div>
                                                 <div class="chat-body">
@@ -390,7 +386,7 @@
                             </span>
                             <div class="my-2">
 
-                                <img src="assets/backend/app-assets/images/portrait/small/avatar-s-26.png" class="round mb-1" alt="chat avatar" height="100" width="100">
+                                <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}" class="round mb-1" alt="chat avatar" height="100" width="100">
 
                                 <h5 class="app-chat-user-name mb-0">Elizabeth Elliott</h5>
                                 <span>Devloper</span>
@@ -413,8 +409,4 @@
         </div>
     </div>
     <!-- END: Content-->
-
-    <div class="sidenav-overlay"></div>
-    <div class="drag-target"></div>
-
 @endsection

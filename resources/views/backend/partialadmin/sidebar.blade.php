@@ -50,7 +50,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class=" nav-item"><a href="hospital-payment-reports.html"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Report">Laporan</span></a>
+                <li class=" nav-item"><a href="#"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Report">Laporan</span></a>
                     <ul class="menu-content">
                         <li><a class="menu-item" href="{{url('rekammedis')}}"><i></i><span>Rekam Medis</span></a>
                         </li>
@@ -64,7 +64,7 @@
                 </li>
                 @endif
                 @if(Auth::user()->role_id == 1)
-                <li><a class="menu-item" href="{{url('user')}}"><i></i><span>Link User</span></a>
+                <li><a class="menu-item" href="{{url('user')}}"><i class="la la-link"></i><span>Link User</span></a>
                 </li>   
                 @endif
         

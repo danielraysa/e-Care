@@ -16,6 +16,8 @@ class MahasiswaController extends Controller
     {
         //
         $mahasiswa = Mahasiswa::all();
+        // $mahasiswa = Mahasiswa::where('nim', '15410100100')->get();
+        // dd($mahasiswa);
         return view('backend.konselor.daftarmhs', compact('mahasiswa'));
     }
 

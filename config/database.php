@@ -78,6 +78,17 @@ return [
             'prefix' => '',
         ],
 
+        'oracle_temp' => [
+            'driver' => 'oracle',
+            'host' => env('ORACLE_DB_HOST', '10.10.10.23'),
+            'port' => env('ORACLE_DB_PORT', '1521'),
+            'database' => env('ORACLE_DB_DATABASE', 'ORA2K'),
+            'username' => env('ORACLE_DB_USERNAME', 'daniel'),
+            'password' => env('ORACLE_DB_PASSWORD', 'sembarang'),
+            'charset' => env('ORACLE_DB_CHARSET', 'AL32UTF8'),
+            'prefix' => env('ORACLE_DB_PREFIX', ''),
+        ]
+
     ],
 
     /*

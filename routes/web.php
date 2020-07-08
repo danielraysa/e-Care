@@ -66,9 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('/mahasiswa', 'MahasiswaController'); 
     
-    Route::get('/jadwalkonselor', function () {
-        return view('backend.konselor.jadwalkonselor');
-    }); 
+    Route::get('/jadwalkonselor', 'AppointmentController@index_konselor'); 
     
     Route::get('/profilmhs', function () {
         return view('backend.konselor.profilmhs');
@@ -87,14 +85,10 @@ Route::group(['middleware' => 'auth'], function () {
         return view('backend.konselor.laprekapbulan');
     });
     
-    Route::get('/buatappointment', function () {
-        return view('backend.mhs.buatappointment');
-    });
+    Route::get('/buatappointment', 'AppointmentController@index');
     Route::resource('/appointment', 'AppointmentController');
     
-    Route::get('/daftarkonselor', function () {
-        return view('backend.mhs.daftarkonselor');
-    });
+    Route::get('/daftarkonselor', 'KonselorController@index');
     Route::resource('/counselor', 'KonselorController');
     
     Route::get('/profilkonselor', function () {
@@ -111,7 +105,7 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::get('/laprekapbulan', function () {
         return view('backend.warek.laprekapperbulan');
-    });    
+    });
     
     Route::resource('/user', 'UserController');
     Route::resource('/chat', 'ChatController');
@@ -129,3 +123,6 @@ Route::group(['middleware' => 'auth'], function () {
 // Route::post('messages', 'ChatsController@sendMessage');
 // Route::get('messages/{user}', 'ChatsController@fetchMessagesUser');
 // Route::post('messages/{user}', 'ChatsController@sendMessageUser');
+
+Route::get('/tes-chat', 'MessageController@listchat');
+Route::post('/tes-chat', 'MessageController@teschat');
