@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Events\PrivateMessageSent;
 use Pusher;
 use Auth;
+use App\Events\MyEvent;
+
 class MessageController extends Controller
 {
     public function __construct()
@@ -80,42 +82,64 @@ class MessageController extends Controller
 
     public function listchat()
     {
-        $mahasiswa = Mahasiswa::all()->random(10);
+        // $mahasiswa = Mahasiswa::all()->random(10);
+        $mahasiswa = User::all()->except(auth()->id());
         return view('tes-chat', compact('mahasiswa'));
+    }
+
+    public function listmessage($id)
+    {
+        $messages = Message::with('user')
+        ->where(['user_id'=> auth()->id(), 'receiver_id'=> $id])
+        ->orWhere(function($query) use($id){
+            $query->where(['user_id' => $id, 'receiver_id' => auth()->id()]);
+        })->get();
+        $user_receiver = User::find($id);
+        // dd($messages);
+        return view('chat-card', compact('user_receiver','messages'));
     }
 
     public function teschat(Request $request)
     {
         $user = Auth::user();
-        // Change the following with your app details:
-        // Create your own pusher account @ www.pusher.com
-        $app_id = env('PUSHER_APP_ID'); // App ID
+        /* $app_id = env('PUSHER_APP_ID'); // App ID
         $app_key = env('PUSHER_APP_KEY'); // App Key
         $app_secret = env('PUSHER_APP_SECRET'); // App Secret
         $options = array(
             'cluster' => 'ap1',
             'useTLS' => true
-          );
+        );
         $pusher = new Pusher(
             $app_key,
             $app_secret,
             $app_id,
             $options
-        );
+        ); */
 
         // Check the receive message
-        if(isset($request->message) && !empty($request->message)) {    
+        if(isset($request->message) && !empty($request->message)) {
+            /* $data = new Message;
+            $data->message = $request->message;
+            $data->user_id = $user->id;
+            $data->user_name = $user->name;
+            $data->time = date('H:i'); */
             $data['message'] = $request->message;
             $data['user_id'] = $user->id;
             $data['user_name'] = $user->name;
             $data['time'] = date('H:i');
             // Return the received message
-            if($pusher->trigger('test_channel', 'my_event', $data)) {              
+            /* if($pusher->trigger('test_channel', 'my_event', $data)) {              
                 echo 'success';        
             } else {
                 echo 'error';  
+            } */
+            $event = broadcast(new MyEvent($data));
+            if($event){
+                return "success";
+            }else{
+                return "error";
             }
         }
     }
-   
+
 }

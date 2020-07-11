@@ -125,4 +125,5 @@ Route::group(['middleware' => 'auth'], function () {
 // Route::post('messages/{user}', 'ChatsController@sendMessageUser');
 
 Route::get('/tes-chat', 'MessageController@listchat');
+Route::get('/tes-chat/{id}', 'MessageController@listmessage');
 Route::post('/tes-chat', 'MessageController@teschat');

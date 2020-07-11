@@ -15,6 +15,9 @@
     return (int) $user->id === (int) $id;
 }); */
 
+Broadcast::channel('chat-channel', function () {
+    return Auth::check();
+});
 Broadcast::channel('chat', function ($user) {
     return Auth::check();
 });

@@ -1,4 +1,7 @@
 @extends('backend.partialadmin.layout')
+@push('css')
+{{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/css/emoji.css" /> --}}
+@endpush
 @section('content')
     <!-- BEGIN: Content-->
     <div class="app-content content">
@@ -58,12 +61,12 @@
                     </span>
                     <div class="chat-sidebar-search">
                         <div class="d-flex align-items-center">
-                            <div class="chat-sidebar-profile-toggle">
+                            {{-- <div class="chat-sidebar-profile-toggle">
                                 <div class="avatar">
                                     <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-11.png') }}" class="cursor-pointer" alt="user_avatar" height="36" width="36">
                                 </div>
-                            </div>
-                            <fieldset class="form-group position-relative has-icon-left mx-75 mb-0">
+                            </div> --}}
+                            <fieldset class="form-group position-relative has-icon-left w-100 mb-0">
                                 <input type="text" class="form-control round" id="chat-search" placeholder="Search">
                                 <div class="form-control-position">
                                     <i class="ft-search text-dark"></i>
@@ -73,7 +76,7 @@
                     </div>
                     <div class="chat-sidebar-list-wrapper pt-2">
                         <h6 class="px-2 pb-25 mb-0">CHATS</h6>
-                        <ul class="chat-sidebar-list">
+                        {{-- <ul class="chat-sidebar-list">
                             <li>
                                 <div class="d-flex align-items-center">
                                     <div class="avatar m-0 mr-50"><img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}" height="36" width="36" alt="sidebar user image">
@@ -95,16 +98,18 @@
                                 </div>
                             </li>
                         </ul>
-                        <h6 class="px-2 pt-2 pb-25 mb-0">CONTACTS<i class="ft-plus float-right cursor-pointer"></i></h6>
+                        <h6 class="px-2 pt-2 pb-25 mb-0">CONTACTS<i class="ft-plus float-right cursor-pointer"></i></h6> --}}
                         <ul class="chat-sidebar-list">
                             @foreach ($mahasiswa as $mhs)
-                            <li>
+                            <li class="user-chat" data-id="{{ $mhs->id }}">
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar m-0 mr-50"><img class="w-100 h-100" style="object-fit: cover;" src="{{ $mhs->foto_mhs() }}" height="36" width="36" alt="sidebar user image">
+                                    {{-- <div class="avatar m-0 mr-50"><img class="w-100 h-100" style="object-fit: cover;" src="{{ $mhs->foto_mhs() }}" height="36" width="36" alt="sidebar user image"> --}}
+                                    <div class="avatar m-0 mr-50"><img class="w-100 h-100" style="object-fit: cover;" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}" height="36" width="36" alt="sidebar user image">
                                         <span class="avatar-status-away"></span>
                                     </div>
                                     <div class="chat-sidebar-name">
-                                        <h6 class="mb-0">{{ $mhs->nama }}</h6><span class="text-muted">{{ $mhs->nim }}</span>
+                                        {{-- <h6 class="mb-0">{{ $mhs->nama }}</h6><span class="text-muted">{{ $mhs->nim }}</span> --}}
+                                        <h6 class="mb-0">{{ $mhs->name }}</h6><span class="text-muted">{{ $mhs->email }}</span>
                                     </div>
                                 </div>
                             </li>
@@ -132,58 +137,12 @@
                                 Conversation!</button>
                         </div>
                         <div class="chat-area d-none">
-                            <div class="chat-header">
-                                <header class="d-flex justify-content-between align-items-center px-1 py-75">
-                                    <div class="d-flex align-items-center">
-                                        <div class="chat-sidebar-toggle d-block d-lg-none mr-1"><i class="ft-align-justify font-large-1 cursor-pointer"></i>
-                                        </div>
-                                        <div class="avatar chat-profile-toggle m-0 mr-1">
-                                            <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}" class="cursor-pointer" alt="avatar" height="36" width="36" />
-                                            <span class="avatar-status-busy"></span>
-                                        </div>
-                                        <h6 class="mb-0">Elizabeth Elliott</h6>
-                                    </div>
-                                    <div class="chat-header-icons">
-                                        <span class="chat-icon-favorite">
-                                            <i class="ft-star font-medium-5 cursor-pointer"></i>
-                                        </span>
-                                        <span class="dropdown">
-                                            <i class="ft-more-vertical font-medium-4 ml-25 cursor-pointer dropdown-toggle nav-hide-arrow cursor-pointer" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                            </i>
-                                            <span class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="JavaScript:void(0);"><i class="ft-tag mr-25"></i> Pin to top</a>
-                                                <a class="dropdown-item" href="JavaScript:void(0);"><i class="ft-trash-2 mr-25"></i> Delete chat</a>
-                                                <a class="dropdown-item" href="JavaScript:void(0);"><i class="ft-x-circle mr-25"></i> Block</a>
-                                            </span>
-                                        </span>
-                                    </div>
-                                </header>
-                            </div>
-                            <!-- chat card start -->
-                            <div class="card chat-wrapper shadow-none mb-0">
-                                <div class="card-content">
-                                    <div class="card-body chat-container">
-                                        <div class="chat-content">
-                                            <!-- chat message -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer chat-footer px-2 py-1 pb-0">
-                                    <form class="d-flex align-items-center" onsubmit="chatMessagesSend();" action="javascript:void(0);">
-                                        <i class="ft-user cursor-pointer"></i>
-                                        <i class="ft-paperclip ml-1 cursor-pointer"></i>
-                                        <input type="text" id="chatInput" class="form-control chat-message-send mx-1" placeholder="Type your message here...">
-                                        <button type="submit" id="sendChat" class="btn btn-primary glow send d-lg-flex"><i class="ft-play"></i>
-                                            <span class="d-none d-lg-block mx-50">Send</span></button>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- chat card ends -->
+                            @include('chat-card')
                         </div>
                     </section>
                     <!-- app chat window ends -->
                     <!-- app chat profile right sidebar start -->
-                    <section class="chat-profile">
+                    {{-- <section class="chat-profile">
                         <header class="chat-profile-header text-center border-bottom">
                             <span class="chat-profile-close">
                                 <i class="ft-x"></i>
@@ -203,7 +162,7 @@
                                 <li>+1(789) 950-7654</li>
                             </ul>
                         </div>
-                    </section>
+                    </section> --}}
                     <!-- app chat profile right sidebar ends -->
 
                 </div>
@@ -214,6 +173,10 @@
 @endsection
 @push('js')
 <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/config.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/util.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/jquery.emojiarea.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/emoji-picker.js"></script> --}}
 <script type="text/javascript">
     var my_id = {{ Auth::id() }};
     $.ajaxSetup({
@@ -226,8 +189,10 @@
         cluster: 'ap1'
     });
     // Enter a unique channel you wish your users to be subscribed in.
-    var channel = pusher.subscribe('test_channel');
-    channel.bind('my_event', function(data) {
+    var channel = pusher.subscribe('chat-channel');
+    // var channel = pusher.subscribe('test_channel');
+    // channel.bind('my_event', function(data) {
+    channel.bind('chat-event', function(data) {
         // Add the new message to the container
         var url_image = "{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}";
         if(data.user_id != my_id){
@@ -299,6 +264,21 @@
     $('#chatInput').enterKey(function(e) {
         e.preventDefault();
         $('#sendChat').click();
+    });
+
+    $('.user-chat').click(function(){
+        var id_user = $(this).attr('data-id');
+        // alert('user id : '+id_user);
+        $('#receiver_id').val(id_user);
+        $.ajax({
+            url: 'tes-chat/'+id_user,
+            type: 'GET',
+            datatype: "html"
+        }).done(function(data){
+            $(".chat-area").empty().html(data);
+        }).fail(function(jqXHR, ajaxOptions, thrownError){
+              alert('No response from server');
+        });
     });
 </script>
 @endpush

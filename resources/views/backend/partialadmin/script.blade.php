@@ -20,6 +20,9 @@
 <script src="{{asset('js/select2.full.js')}}"></script>
 <script src="{{asset('js/jquery.dataTables.js')}}"></script>
 <script src="{{asset('js/bootstrap.dataTables.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"></script>
+{{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+<script src="{{ asset('js/bootstrap.js') }}"></script>
 <script>
     $('.select2').select2();
     $('.datatable').dataTable();
