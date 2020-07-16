@@ -1,3 +1,4 @@
+@if(isset($user_receiver))
 <div class="chat-header">
     <header class="d-flex justify-content-between align-items-center px-1 py-75">
         <div class="d-flex align-items-center">
@@ -8,11 +9,7 @@
                 <span class="avatar-status-busy"></span>
             </div>
             <h6 class="mb-0" id="chat-name">
-                @if(isset($user_receiver))
                 {{ $user_receiver->name }}
-                @else
-                Elizabeth
-                @endif
             </h6>
         </div>
         {{-- <div class="chat-header-icons">
@@ -34,7 +31,7 @@
 {{-- @include('chat-card') --}}
 <div class="card chat-wrapper shadow-none mb-0">
     <div class="card-content">
-        <div class="card-body chat-container">
+        <div class="card-body chat-container ps">
             <div class="chat-content">
                 <!-- chat message -->
             @if(isset($messages))
@@ -59,7 +56,7 @@
                 @endif
                     <div class="chat-body">
                         <div class="chat-message">
-                            <p>{{ $msg->message }} / {{ $loop->remaining }}</p>
+                            <p>{{ $msg->message }}</p>
                             <span class="chat-time">{{ date('H:i', strtotime($msg->created_at)) }}</span>
                         </div>
                     </div>
@@ -73,12 +70,12 @@
         <form class="d-flex align-items-center" onsubmit="chatMessagesSend();" action="javascript:void(0);">
             {{-- <i class="ft-user cursor-pointer"></i> --}}
             {{-- <i class="ft-paperclip ml-1 cursor-pointer"></i> --}}
-            {{-- <i class="far fa-laugh cursor-pointer"></i> --}}
+            <i class="far fa-laugh cursor-pointer emoji"></i>
             <input type="text" id="chatInput" data-emojiable="true" class="form-control chat-message-send mx-1" placeholder="Type your message here...">
-            <input type="hidden" id="receiver_id" />
+            <input type="hidden" id="receiver_id" value="{{ $user_receiver->id }}"/>
             <button type="submit" id="sendChat" class="btn btn-primary glow send d-lg-flex"><i class="ft-play"></i>
                 <span class="d-none d-lg-block mx-50">Send</span></button>
         </form>
     </div>
 </div>
-<!-- chat card ends -->
+@endif

@@ -14,7 +14,7 @@ class MyEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $message, $user_id, $user_name, $time;
+    public $message, $user_id, $time, $receiver_id;
     /**
      * Create a new event instance.
      *
@@ -25,7 +25,7 @@ class MyEvent implements ShouldBroadcast
         //
         $this->message = $message['message'];
         $this->user_id = $message['user_id'];
-        $this->user_name = $message['user_name'];
+        $this->receiver_id = $message['receiver_id'];
         $this->time = $message['time'];
     }
 
@@ -36,9 +36,8 @@ class MyEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        // return new PrivateChannel('channel-name');
-        // return new PrivateChannel('chat-channel');
-        return ['chat-channel'];
+        return new Channel('chat-channel.'.$this->receiver_id);
+        // return ['chat-channel.'.$this->receiver_id];
     }
 
     public function broadcastAs()

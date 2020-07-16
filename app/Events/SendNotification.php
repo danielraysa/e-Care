@@ -9,19 +9,25 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use App\Notification;
 
-class SendNotification
+class SendNotification implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $message, $user_id, $time;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Notification $notif)
     {
         //
+        $this->id = $notif->id;
+        $this->user_id = $notif->user_id;
+        $this->message = $notif->message;
+        $this->time = $notif->created_at;
     }
 
     /**
@@ -31,6 +37,11 @@ class SendNotification
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new Channel('notif-channel.'.$this->user_id);
+    }
+
+    public function broadcastAs()
+    {
+        return 'notif-event';
     }
 }

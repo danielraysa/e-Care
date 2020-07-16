@@ -107,6 +107,8 @@ Route::group(['middleware' => 'auth'], function () {
         return view('backend.warek.laprekapperbulan');
     });
     
+    Route::resource('notification', 'NotificationController');
+
     Route::resource('/user', 'UserController');
     Route::resource('/chat', 'ChatController');
     Route::post('/chat/send', 'ChatController@sendMessage');

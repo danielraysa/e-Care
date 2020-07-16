@@ -1,9 +1,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-<meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
-<meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
-<meta name="author" content="PIXINVENT">
+{{-- <meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard."> --}}
+{{-- <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard"> --}}
+{{-- <meta name="author" content="PIXINVENT"> --}}
 <title>{{ env('APP_NAME') }}</title>
 <link rel="apple-touch-icon" href="{{ asset('assets/backend/app-assets/images/ico/apple-icon-120.png') }}">
 <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/backend/app-assets/images/ico/favicon.ico') }}">
@@ -14,16 +14,16 @@
 <!-- END: Vendor CSS-->
 
 <!-- BEGIN: Theme CSS-->
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/bootstrap.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/bootstrap-extended.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/colors.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/components.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/bootstrap.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/bootstrap-extended.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/colors.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/components.min.css') }}">
 <!-- END: Theme CSS-->
 
 <!-- BEGIN: Page CSS-->
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/core/colors/palette-gradient.css') }}">
-<link rel="stylesheet" type="text/css" href=" {{ asset ('assets/backend/app-assets/css/pages/hospital.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/core/menu/menu-types/vertical-menu.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/core/colors/palette-gradient.min.css') }}">
+<link rel="stylesheet" type="text/css" href=" {{ asset ('assets/backend/app-assets/css/pages/hospital.min.css') }}">
 <!-- END: Page CSS-->
 <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/app-chat.min.css')}}">
  

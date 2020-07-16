@@ -85,6 +85,7 @@ class MessageController extends Controller
         // $mahasiswa = Mahasiswa::all()->random(10);
         $mahasiswa = User::all()->except(auth()->id());
         return view('tes-chat', compact('mahasiswa'));
+        // return view('tes-chat', compact('mahasiswa','messages','user_receiver'));
     }
 
     public function listmessage($id)
@@ -125,8 +126,13 @@ class MessageController extends Controller
             $data->time = date('H:i'); */
             $data['message'] = $request->message;
             $data['user_id'] = $user->id;
-            $data['user_name'] = $user->name;
+            $data['receiver_id'] = $request->receiver;
             $data['time'] = date('H:i');
+            $message = Message::create([
+                'user_id' => $user->id,
+                'receiver_id' => $request->receiver,
+                'message' => $request->message,
+            ]);
             // Return the received message
             /* if($pusher->trigger('test_channel', 'my_event', $data)) {              
                 echo 'success';        
@@ -135,7 +141,7 @@ class MessageController extends Controller
             } */
             $event = broadcast(new MyEvent($data));
             if($event){
-                return "success";
+                return $data;
             }else{
                 return "error";
             }

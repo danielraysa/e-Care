@@ -172,29 +172,19 @@
     <!-- END: Content-->
 @endsection
 @push('js')
-<script src="https://js.pusher.com/6.0/pusher.min.js"></script>
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/config.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/util.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/jquery.emojiarea.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/emoji-picker.js"></script> --}}
 <script type="text/javascript">
-    var my_id = {{ Auth::id() }};
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    // Enter your own Pusher App key
-    var pusher = new Pusher('8284629e5aa4b95ea203', {
-        cluster: 'ap1'
-    });
     // Enter a unique channel you wish your users to be subscribed in.
-    var channel = pusher.subscribe('chat-channel');
+    // var channel = pusher.subscribe('chat-channel');
+    
     // var channel = pusher.subscribe('test_channel');
     // channel.bind('my_event', function(data) {
     channel.bind('chat-event', function(data) {
         // Add the new message to the container
-        var url_image = "{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}";
+        // var url_image = "{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}";
         if(data.user_id != my_id){
             var class_left = 'chat-left';
         }else{
@@ -214,6 +204,28 @@
         $(".chat-container").scrollTop($(".chat-container")[0].scrollHeight);
     });
     
+    function chatPushContainer(data){
+        // Add the new message to the container
+        // var url_image = "{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}";
+        if(data.user_id != my_id){
+            var class_left = 'chat-left';
+        }else{
+            var class_left = '';
+        }
+        $('.chat-content').append(
+        '<div class="chat '+ class_left +'">'+
+            '<div class="chat-body">'+
+                '<div class="chat-message">'+
+                    '<p>'+ data.message + '</p>'+
+                    '<span class="chat-time">'+ data.time +'</span>'+
+                '</div>'+
+            '</div>'+
+        '</div>');
+        console.log(data);
+        // Scroll to the bottom of the container when a new message becomes available
+        $(".chat-container").scrollTop($(".chat-container")[0].scrollHeight);
+    }
+
     // AJAX request
     function ajaxCall(ajax_url, ajax_data) {
         $.ajax({
@@ -223,6 +235,7 @@
             data: ajax_data,
             success: function(response, textStatus, jqXHR) {
                 console.log(jqXHR.responseText);
+                chatPushContainer(response);
             },
             error: function(msg) {
                 // alert(msg);
@@ -245,13 +258,13 @@
     // Send the Message
     $('body').on('click', '#sendChat', function(e) {
         e.preventDefault();
-        var chat_message = $('#chatInput').val();
+        var chat_content = $('#chatInput').val();
+        var receiver_id = $('#receiver_id').val();
         if (chat_message !== '') {
             // Define ajax data
             var chat_message = {
-                // name: $('.chat_box .input_name').val(),
-                // message: '<strong>' + $('.chat_box .input_name').val() + '</strong>: ' + chat_message
-                message: chat_message
+                receiver: receiver_id,
+                message: chat_content
             }
             // Send the message to the server
             ajaxCall('tes-chat', chat_message);
@@ -269,133 +282,17 @@
     $('.user-chat').click(function(){
         var id_user = $(this).attr('data-id');
         // alert('user id : '+id_user);
-        $('#receiver_id').val(id_user);
         $.ajax({
             url: 'tes-chat/'+id_user,
             type: 'GET',
             datatype: "html"
         }).done(function(data){
             $(".chat-area").empty().html(data);
+            $(".chat-container").scrollTop($(".chat-container")[0].scrollHeight);
+            // $('#receiver_id').val(id_user);
         }).fail(function(jqXHR, ajaxOptions, thrownError){
-              alert('No response from server');
+            alert('No response from server');
         });
     });
 </script>
 @endpush
-{{-- <html>
-    <head>
-        <meta name="csrf-token" content="{{ csrf_token() }}" />
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript" ></script>
-        <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript" type="text/javascript" ></script>   
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript" ></script>  
-        <script src="//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.3.0/bootbox.min.js" type="text/javascript" ></script>
-
-        <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
-        <style>
-        .messages_display {height: 300px; overflow: auto;}     
-        .messages_display .message_item {padding: 0; margin: 0; }      
-        .bg-danger {padding: 10px;}
-        </style>
-    </head>
-    <body>
-        <div class = "container">      
-            <div class = "col-md-6 chat_box">                      
-                <div class = "form-control messages_display"></div>        
-                <br />                     
-                <div class = "form-group">             
-                    <label>Name</label>            
-                    <input type = "text" class = "input_name form-control" placeholder = "Name" />         
-                </div>                     
-                <div class = "form-group">             
-                    <label>Message</label>             
-                    <textarea class = "input_message form-control" placeholder = "Message"></textarea>         
-                </div>                     
-                <div class = "form-group input_send_holder">               
-                    <input type = "submit" value = "Send" class = "btn btn-primary input_send" />          
-                </div>                 
-            </div> 
-        </div>
-        <script type="text/javascript">
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            // Enter your own Pusher App key
-            var pusher = new Pusher('8284629e5aa4b95ea203', {
-                cluster: 'ap1'
-            });
-            // Enter a unique channel you wish your users to be subscribed in.
-            var channel = pusher.subscribe('test_channel');
-            channel.bind('my_event', function(data) {
-                // Add the new message to the container
-                $('.messages_display').append('<p class = "message_item">' + data.message + '</p>');
-                // Display the send button
-                $('.input_send_holder').html('<input type = "submit" value = "Send" class = "btn btn-primary input_send" />');
-                // Scroll to the bottom of the container when a new message becomes available
-                $(".messages_display").scrollTop($(".messages_display")[0].scrollHeight);
-            });
-            
-            // AJAX request
-            function ajaxCall(ajax_url, ajax_data) {
-                $.ajax({
-                    type: "POST",
-                    url: ajax_url,
-                    dataType: "json",
-                    data: ajax_data,
-                    success: function(response, textStatus, jqXHR) {
-                        console.log(jqXHR.responseText);
-                    },
-                    error: function(msg) {
-                        alert(msg);
-                    }
-                });
-            }
-            
-            // Trigger for the Enter key when clicked.
-            $.fn.enterKey = function(fnc) {
-                return this.each(function() {
-                    $(this).keypress(function(ev) {
-                        var keycode = (ev.keyCode ? ev.keyCode : ev.which);
-                        if (keycode == '13') {
-                            fnc.call(this, ev);
-                        }
-                    });
-                });
-            }
-            
-            // Send the Message
-            $('body').on('click', '.chat_box .input_send', function(e) {
-                e.preventDefault();
-               
-                var message = $('.chat_box .input_message').val();
-                var name = $('.chat_box .input_name').val();
-               
-                // Validate Name field
-                if (name === '') {
-                    bootbox.alert('<br /><p class = "bg-danger">Please enter a Name.</p>');
-               
-                } else if (message !== '') {
-                    // Define ajax data
-                    var chat_message = {
-                        name: $('.chat_box .input_name').val(),
-                        message: '<strong>' + $('.chat_box .input_name').val() + '</strong>: ' + message
-                    }
-                    // Send the message to the server
-                    ajaxCall('tes-chat', chat_message);
-                   
-                    // Clear the message input field
-                    $('.chat_box .input_message').val('');
-                    // Show a loading image while sending
-                    $('.input_send_holder').html('<input type = "submit" value = "Send" class = "btn btn-primary" disabled /> &nbsp;<img src = "loading.gif" />');
-                }
-            });
-            
-            // Send the message when enter key is clicked
-            $('.chat_box .input_message').enterKey(function(e) {
-                e.preventDefault();
-                $('.chat_box .input_send').click();
-            });
-        </script>
-    </body>
-</html> --}}
