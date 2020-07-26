@@ -3,15 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Events\SendNotification;
-use App\Notification;
-use App\User;
-use App\Mahasiswa;
-use App\Karyawan;
-use App\Counselor;
-use Auth;
 
-class NotificationController extends Controller
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +14,6 @@ class NotificationController extends Controller
     public function index()
     {
         //
-        $notification = Notification::where('user_id', auth()->id())->get();
-        return view('notification', compact('notification'));
     }
 
     /**
@@ -55,14 +46,6 @@ class NotificationController extends Controller
     public function show($id)
     {
         //
-        $data = new Notification;
-        $data->id = $id;
-        $data->user_id = $id;
-        $data->message = "This is new notification";
-        $data->created_at = date('Y-m-d H:i:s');
-        // $data->save();
-        $event = broadcast(new SendNotification($data));
-        return response()->json($data);
     }
 
     /**

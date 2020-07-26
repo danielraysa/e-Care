@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 Use App\Message;
 Use App\User;
-use App\Events\MyEvent;
+use App\Events\ChatEvent;
 use App\Events\MessageSent;
 use Auth;
 
