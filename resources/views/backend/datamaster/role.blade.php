@@ -42,25 +42,24 @@
                                     
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered patients-list datatable">
-
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Id</th>
+                                                    <th>ID</th>
                                                     <th>Role</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                              
+                                            @foreach( $roles as $role )
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>3</td>
-                                                    <td>Wakil Rektor</td>
+                                                    <td>{{ $role->id}}</td>
+                                                    <td>{{$role->role_name}}</td>
                                                     <td><a href="{{url('profilmhs')}}"><i class="ft-edit text-success"></i></a>
                                                         <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>
                                                 </tr>
+                                            @endforeach
+                                           
                                        
                                             </tbody>
                                         </table>
@@ -74,6 +73,4 @@
         </div>
     </div>
     <!-- END: Content-->
-
-
 @endsection

@@ -42,25 +42,23 @@
                                     
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered patients-list datatable">
-
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
                                                     <th>Id</th>
                                                     <th>Program Studi</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                              
+                                              @foreach ( $majors as $major )
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>41010</td>
-                                                    <td>S1 Sistem Informasi</td>
+                                                    <td>{{$major->id}}</td>
+                                                    <td>{{$major->major_name}}</td>
                                                     <td><a href="{{url('profilmhs')}}"><i class="ft-edit text-success"></i></a>
                                                         <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>
                                                 </tr>
+                                                @endforeach
                                        
                                             </tbody>
                                         </table>

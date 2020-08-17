@@ -63,19 +63,17 @@
 
                 <li class="nav-item"><a href="#"><i class="la la-stethoscope"></i><span class="menu-title" data-i18n="Doctors">Data Master</span></a>
                     <ul class="menu-content">
-                        <li class=""><a class="menu-item" href=""><i></i><span>Tabel Karyawan</span></a>
+                        <li class=""><a class="menu-item" href="{{url('tabelkaryawan')}}"><i></i><span>Tabel Karyawan</span></a>
                         </li>
-                        <li class=""><a class="menu-item" href=""><i></i><span>Tabel Mahasiswa</span></a>
+                        <li><a class="menu-item" href="{{url('daftarmhs')}}"><i></i><span>Tabel Mahasiswa</span></a>
                         </li>
-                        <li class=""><a class="menu-item" href=""><i></i><span>Tabel Jabatan</span></a>
+                        <li class=""><a class="menu-item" href="{{url('tabelrole')}}"><i></i><span>Tabel Role</span></a>
                         </li>
-                        <li class=""><a class="menu-item" href=""><i></i><span>Tabel Role</span></a>
+                        <li class=""><a class="menu-item" href="{{url('tabelprodi')}}"><i></i><span>Tabel Program Studi</span></a>
                         </li>
-                        <li class=""><a class="menu-item" href=""><i></i><span>Tabel Program Studi</span></a>
+                        <li class=""><a class="menu-item" href="{{url('tabelmbti')}}"><i></i><span>Tabel Hasil MBTI</span></a>
                         </li>
-                        <li class=""><a class="menu-item" href=""><i></i><span>Tabel Hasil MBTI</span></a>
-                        </li>
-                        <li class=""><a class="menu-item" href=""><i></i><span>Tabel Pertanyaan Kecemasan</span></a>
+                        <li class=""><a class="menu-item" href="{{url('tabelpertanyaan')}}"><i></i><span>Tabel Pertanyaan Kecemasan</span></a>
                         </li>
 
                     

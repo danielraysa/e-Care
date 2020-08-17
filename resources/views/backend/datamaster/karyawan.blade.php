@@ -70,6 +70,7 @@
                                                     <td>08364737232</td>
                                                     <td>fitriyah@dinamika.ac.id</td>
                                                     <td>S1 Psikologi</td>
+                                                    <td>Hang Tuah</td>
                                                     <td>4324234</td>
                                                     <td><a href="{{url('profilmhs')}}"><i class="ft-edit text-success"></i></a>
                                                         <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>

@@ -110,6 +110,23 @@ Route::group(['middleware' => 'auth'], function () {
         return view('backend.konselor.tambahmahasiswa');
     });
 
+    //Data Master
+   
+
+    Route::get('/tabelrole', 'RolesController@index');
+    Route::get('/tabelprodi', 'MajorsController@index');
+    Route::get('/tabelmbti', 'MbtiController@index');
+  
+
+    Route::get('/tabelpertanyaan', function () {
+        return view('backend.datamaster.pertanyaan');
+    });
+
+
+    Route::get('/tabelkaryawan', function () {
+        return view('backend.datamaster.karyawan');
+    });
+
     
     Route::resource('notification', 'NotificationController');
 

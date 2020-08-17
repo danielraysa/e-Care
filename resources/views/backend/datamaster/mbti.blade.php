@@ -44,24 +44,23 @@
                                         <table class="table table-striped table-bordered patients-list datatable">
 
                                             <thead>
+                                         
                                                 <tr>
-                                                    <th>No</th>
                                                     <th>Id</th>
                                                     <th>Jenis Kepribadian/MBTI</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                              
+                                            @foreach ( $mbti as $mbt )
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>23</td>
-                                                    <td>INFP-T</td>
+                                                    <td>{{ $mbt->id}}</td>
+                                                    <td>{{ $mbt->mbti_name}}</td>
                                                     <td><a href="{{url('profilmhs')}}"><i class="ft-edit text-success"></i></a>
                                                         <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>
                                                 </tr>
-                                       
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>
