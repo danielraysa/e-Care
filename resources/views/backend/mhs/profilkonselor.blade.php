@@ -56,10 +56,10 @@
                                     <p>Rumah Sakit Surabaya</p>
 
                                     <h6 class="text-bold-500">Spesialis:</h6>
-                                    <p>Skin Problems</p>
+                                    <p>Konseling </p>
 
                                     <h6 class="text-bold-500">Alamat:</h6>
-                                    <p>Manhattan</p>
+                                    <p>Surabaya</p>
                                     <hr class="my-2">
                                     <div id="maps-leaflet-user-location" class="height-250"></div>
                                 </div>
@@ -75,71 +75,7 @@
                                 </div>
                                 <div class="card-body">
                                     <form>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="firstname">NIM <span class="text-danger">*</span></label>
-                                                    <input type="number" class="form-control" placeholder="NIM" required id="nim">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="lastname">Nama Lengkap <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" placeholder="Nama Lengkap" id="namalengkap" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                        <div class="col-lg-3 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="gender">Program Studi:</label>
-                                                    <select name="gender" id="gender" class="form-control">
-                                                        <option value="gender">S1 Sistem Informasi</option>
-                                                        <option value="male">S1 Teknik Komputer</option>
-                                                        <option value="female">S1 Desain Produk</option>
-                                                        <option value="notsay">S1 Desain Komunikasi Visual</option>
-                                                        <option value="notsay">S1 Manajemen</option>
-                                                        <option value="notsay">S1 Akuntansi</option>
-                                                        <option value="notsay">D4 Produksi Film dan Televisi</option>
-                                                        <option value="notsay">D3 Sistem Informasi</option>
-                                                        <option value="notsay">D3 Administrasi Perkantoran</option>
-                                                    </select></div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="dob">Tanggal lahir <span class="text-danger">*</span></label>
-                                                    <input type="date" class="form-control" id="tgl" name="tgl" required>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="dob">Wali Dosen <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" id="walidosen" name="walidosen" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="dob">No. Hp Wali Dosen <span class="text-danger">*</span></label>
-                                                    <input type="number" class="form-control" id="walidosen" name="walidosen" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="email">Email <span class="text-danger">*</span></label>
-                                                    <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="phone">No. Handphone</label>
-                                                    <input type="number" class="form-control" id="phone" name="phone" placeholder="Masukkan No Hp" required>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                              
                                         <div class="row">
                                         <div class="col-lg-4 col-md-8">
                                                 <div class="form-group">
@@ -181,7 +117,7 @@
                                             </div>
                                         </div>
                                         <div class="card-footer ml-auto">
-                                            <button type="submit" class="btn btn-outline-success mr-1">Mulai Chatting</button> <button type="submit" class="btn btn-outline-danger">Batal</button>
+                                            <button type="submit" class="btn btn-outline-success mr-1">Buat Appointment</button> <button type="submit" class="btn btn-outline-danger">Batal</button>
                                         </div>
                                     </form>
                                 </div>
