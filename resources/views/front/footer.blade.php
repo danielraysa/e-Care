@@ -4,7 +4,7 @@
             <div class="row justify-content-between">
                 <div class="col-sm-6 col-md-4 col-xl-3">
                     <div class="single-footer-widget footer_1">
-                      <a href="index.html"> <img src="{{asset('assets/img/stikom.png')}}" width="50px" alt=""> </a><a href="index.html"> <img src="{{asset('assets/img/logo_footer.png')}}" width="120px" alt=""> </a>
+                      <a href="{{ url('/') }}"> <img src="{{asset('assets/img/stikom.png')}}" width="50px" alt=""> </a><a href="{{ url('home') }}"> <img src="{{asset('assets/img/logo_footer.png')}}" width="120px" alt=""> </a>
                         <p>Kami membantu mahasiswa untuk dapat meningkatkan fokus dan produktivitas di kampus Universitas Dinamika. Ceritakan masalah kamu sekarang kepada konselor yang ramah dan terpercaya. </p>
                     </div>
                 </div>

@@ -55,7 +55,9 @@ class AppointmentController extends Controller
             'user_id' => $user->id,
             'counselor_id' => $request->counselor,
             'tgl_appointment' => $request->tgl_appointment,
+            'jenis_problem' => $request->jenis_masalah,
             'description' => $request->description,
+            'status' => 'M',
             // 'created_at' => date('Y-m-d H:i:s')
         ]);
         return redirect()->action('AppointmentController@index')->with('status', 'Data appointment berhasil ditambahkan');
@@ -93,6 +95,15 @@ class AppointmentController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if($request->pilihan == 'Y')
+        $pilihan = 'Y';
+        else
+        $pilihan = 'T';
+        $appointment = Appointment::find($id)->create([
+            'status' => $pilihan,
+        ]);
+        return 1;
+        // return redirect()->action('AppointmentController@index')->with('status', 'Data appointment berhasil diupdate');
     }
 
     /**
@@ -109,13 +120,13 @@ class AppointmentController extends Controller
     public function index_konselor()
     {
         $counselor = Counselor::with('data_user')->get();
-        $appointment = Appointment::with('mahasiswa')->with('konselor')->get();
+        $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('counselor_id', Auth::id())->get();
         $user = User::with('user_role.data_mhs.dosen_wali')->find(Auth::id());
         /* $user = DB::table('users')
             ->join('v_mhs', 'users.email', '=', 'v_mhs.nim')
             ->join('v_karyawan', 'v_mhs.dosen_wl', '=', 'v_karyawan.nik')
             ->get()->first(); */
-        dd($appointment);
+        // dd($appointment);
         return view('backend.konselor.jadwalkonselor', compact('appointment'));
     }
 

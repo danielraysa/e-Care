@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::get('/', function () {
     return view('front.home');
 });
@@ -116,7 +115,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('/user', 'UserController');
     Route::resource('/chat', 'ChatController');
-    Route::post('/chat/send', 'ChatController@sendMessage');
+    /* Route::post('/chat/send', 'ChatController@sendMessage');
     Route::post('/chat/{user}/send', 'ChatController@sendMessagePrivate');
     Route::get('/get-users', 'ChatController@getUsers');
     
@@ -124,13 +123,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('messages', 'ChatController@fetchMessages');
     Route::post('messages', 'ChatController@sendMessage');
     Route::get('messages/{user}', 'ChatController@privateMessages');
-    Route::post('messages/{user}', 'ChatController@sendPrivateMessage');
+    Route::post('messages/{user}', 'ChatController@sendPrivateMessage'); */
+    
+    Route::get('/tes-chat', 'MessageController@listchat');
+    Route::get('/tes-chat/{id}', 'MessageController@listmessage');
+    Route::post('/tes-chat', 'MessageController@teschat');
 });
-// Route::get('messages', 'ChatsController@fetchMessages');
-// Route::post('messages', 'ChatsController@sendMessage');
-// Route::get('messages/{user}', 'ChatsController@fetchMessagesUser');
-// Route::post('messages/{user}', 'ChatsController@sendMessageUser');
-
-Route::get('/tes-chat', 'MessageController@listchat');
-Route::get('/tes-chat/{id}', 'MessageController@listmessage');
-Route::post('/tes-chat', 'MessageController@teschat');

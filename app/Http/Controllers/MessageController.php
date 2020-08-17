@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Events\PrivateMessageSent;
 use Pusher;
 use Auth;
-use App\Events\MyEvent;
+use App\Events\ChatEvent;
 
 class MessageController extends Controller
 {
@@ -84,7 +84,7 @@ class MessageController extends Controller
     {
         // $mahasiswa = Mahasiswa::all()->random(10);
         $mahasiswa = User::all()->except(auth()->id());
-        return view('tes-chat', compact('mahasiswa'));
+        return view('chat', compact('mahasiswa'));
         // return view('tes-chat', compact('mahasiswa','messages','user_receiver'));
     }
 
@@ -139,7 +139,7 @@ class MessageController extends Controller
             } else {
                 echo 'error';  
             } */
-            $event = broadcast(new MyEvent($data));
+            $event = broadcast(new ChatEvent($data));
             if($event){
                 return $data;
             }else{

@@ -11,7 +11,7 @@
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a>
                                 </li>
                                 <li class="breadcrumb-item"><a href="#">Appointment</a>
                                 </li>
@@ -21,12 +21,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-header-right col-md-6 col-12">
-                    <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
-                        <button class="btn btn-info round dropdown-toggle dropdown-menu-right box-shadow-2 px-2 mb-1" id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ft-settings icon-left"></i> Settings</button>
-                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1"><a class="dropdown-item" href="card-bootstrap.html">Cards</a><a class="dropdown-item" href="component-buttons-extended.html">Buttons</a></div>
-                    </div>
-                </div>
+                
             </div>
             <div class="content-body">
                 <!-- List Of All Patients -->
@@ -51,10 +46,9 @@
                                             <thead>
                                                 <tr>
                                                     <th>NIM</th>
-                                                    <th>Nama Lengkap</th>
+                                                    <th>Nama</th>
                                                     <th>Program Studi</th>
-                                                    <th>Wali Dosen</th>
-                                                    <th>Email</th>
+                                                    <th>Tanggal Appointment</th>
                                                     <th>Jenis Layanan</th>
                                                     <th>Keluhan</th>
                                                     <th>Konselor</th>
@@ -62,19 +56,21 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach ($appointment as $item)    
                                                 <tr>
-                                                    <td>16410100115</td>
-                                                    <td>Gusti Adistriani</td>
+                                                    <td>{{ $item->mahasiswa->user_role->nik_nim }}</td>
+                                                    <td>{{ $item->mahasiswa->user_role->data_mhs->nama }}</td>
                                                     <td>S1 Sistem Informasi</td>
-                                                    <td>Ayouvi</td>
-                                                    <td>115@dinamika.ac.id</td>
+                                                    <td>{{ $item->tgl_appointment }}</td>
                                                     <td>Appointment</td>
-                                                    <td>Masalah Pribadi</td>
+                                                    <td>{{ $item->jenis_problem }}</td>
                                                     <td>Inez Kristanti</td>
-                                                    <td><a href="#"><i class="ft-edit text-success"></i></a><br>
+                                                    <td>
+                                                        <a href="#"><i class="ft-edit text-success"></i></a><br>
                                                         <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>
                                                 </tr>
+                                                @endforeach
                                               
                                             </tbody>
                                             <!-- <tfoot>

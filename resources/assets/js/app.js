@@ -16,11 +16,6 @@ window.Vue = require('vue');
  */
 
 Vue.component('example', require('./components/Example.vue'));
-Vue.component('chat-messages', require('./components/ChatMessages.vue'));
-Vue.component('chat-form', require('./components/ChatForm.vue'));
-Vue.component('chat-admin', require('./components/ChatMessages_Admin.vue'));
-Vue.component('chat-fadmin', require('./components/ChatForm_Admin.vue'));
-Vue.component('user-list', require('./components/UserList.vue'));
 
 const app = new Vue({
     el: '#app',

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAppoinmentsTable extends Migration
+class CreateUserAnswersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,11 @@ class CreateAppoinmentsTable extends Migration
     public function up()
     {
         //
-        Schema::create('appointments', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('user_id');
-            $table->string('counselor_id');
-            $table->datetime('tgl_appointment');
-            $table->string('jenis_problem');
-            $table->text('description');
-            $table->string('status');
+        Schema::create('user_answers', function (Blueprint $table) {
+            // $table->increments('id');
+            $table->integer('user_id');
+            $table->integer('question_id');
+            $table->integer('answer_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -35,6 +32,6 @@ class CreateAppoinmentsTable extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('appointments');
+        Schema::dropIfExists('user_answers');
     }
 }
