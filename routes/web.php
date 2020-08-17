@@ -106,6 +106,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/laprekapbulan', function () {
         return view('backend.warek.laprekapperbulan');
     });
+
+    Route::get('/tambahmahasiswa', function () {
+        return view('backend.konselor.tambahmahasiswa');
+    });
+
     
     Route::resource('notification', 'NotificationController');
 
