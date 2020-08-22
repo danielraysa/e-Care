@@ -110,22 +110,56 @@ Route::group(['middleware' => 'auth'], function () {
         return view('backend.konselor.tambahmahasiswa');
     });
 
+    Route::get('/tambahrekammedis', function () {
+        return view('backend.konselor.tambahrekammedis');
+    });
+
+    Route::get('/tambahrekapbulan', function () {
+        return view('backend.konselor.tambahrekapbulan');
+    });
+
     //Data Master
    
 
     Route::get('/tabelrole', 'RolesController@index');
+
+    Route::get('/tambahrole', function () {
+        return view('backend.datamaster.tambahrole');
+    });
+
+    
+
+
     Route::get('/tabelprodi', 'MajorsController@index');
+
+    Route::get('/tambahprodi', function () {
+        return view('backend.datamaster.tambahprodi');
+    });
+
     Route::get('/tabelmbti', 'MbtiController@index');
+
+    Route::get('/tambahmbti', function () {
+        return view('backend.datamaster.tambahmbti');
+    });
   
 
     Route::get('/tabelpertanyaan', function () {
         return view('backend.datamaster.pertanyaan');
     });
 
+    Route::get('/tambahpertanyaan', function () {
+        return view('backend.datamaster.tambahpertanyaan');
+    });
+
 
     Route::get('/tabelkaryawan', function () {
         return view('backend.datamaster.karyawan');
     });
+
+    Route::get('/tambahkaryawan', function () {
+        return view('backend.datamaster.tambahkaryawan');
+    });
+
 
     
     Route::resource('notification', 'NotificationController');

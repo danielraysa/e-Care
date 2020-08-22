@@ -6,12 +6,34 @@
                 </li>
                 <li class=" navigation-header"><span data-i18n="Professional">Professional</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Professional"></i>
                 </li>
-                <li class=" nav-item"><a href="{{url('tes-chat')}}"><i class="la la-comments"></i><span class="menu-title" data-i18n="Chat">Chat</span></a>
-                </li>
-                @if(Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
+
+             
+                @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 1)
                 <li class=" nav-item"><a href="{{url('/jadwalkonselor')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Tabel Appointment</span></a>
                 </li>
                 @endif
+
+
+                @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+                <li class=" nav-item"><a href="{{url('tes-chat')}}"><i class="la la-comments"></i><span class="menu-title" data-i18n="Chat">Chat</span></a>
+                </li>
+                @endif
+
+                 @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+                <li class="nav-item"><a href="#"><i class="la la-stethoscope"></i><span class="menu-title" data-i18n="Doctors">Konselor</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ Request::is('counselor') ? 'active' : '' }}"><a class="menu-item" href="{{url('counselor')}}"><i></i><span>Tabel Konselor</span></a>
+                        </li>
+                    
+                        <!-- <li class=""><a class="menu-item" href="{{url('profilkonselor')}}"><i></i><span>Profil Konselor</span></a>
+                        </li> -->
+                    </ul>
+                </li>
+                @endif
+
+
+                
+
                 @if(Auth::user()->role_id == 2)
                 <li class=" nav-item"><a href="{{url('/buatappointment')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Buat Appointment</span></a> 
                 </li>
@@ -33,17 +55,7 @@
                     </ul>
                 </li>
                 @endif
-                @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
-                <li class="nav-item"><a href="#"><i class="la la-stethoscope"></i><span class="menu-title" data-i18n="Doctors">Konselor</span></a>
-                    <ul class="menu-content">
-                        <li class="{{ Request::is('counselor') ? 'active' : '' }}"><a class="menu-item" href="{{url('counselor')}}"><i></i><span>Tabel Konselor</span></a>
-                        </li>
-                    
-                        <!-- <li class=""><a class="menu-item" href="{{url('profilkonselor')}}"><i></i><span>Profil Konselor</span></a>
-                        </li> -->
-                    </ul>
-                </li>
-                @endif
+
                 @if(Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
                 <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Mahasiswa</span></a>
                     <ul class="menu-content">
@@ -84,29 +96,28 @@
 
 
                 @endif
-                @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 1)
+                @if(Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
                 <li class=" nav-item"><a href="{{url('/rekammedis')}}"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Appointment">Laporan Rekam Medis</span></a>
                 </li>
+                @endif
 
+                @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 1)
                 <li class=" nav-item"><a href="{{url('/rekap')}}"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Appointment">Laporan Rekap Perbulan</span></a>
                 </li>
-                </li>
                 @endif
+            
+               
                 @if(Auth::user()->role_id == 1)
                 <li><a class="menu-item" href="{{url('user')}}"><i class="la la-link"></i><span>Link User</span></a>
                 </li>   
                 @endif
         
-                <li class=" navigation-header"><span data-i18n="Apps">Apps</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Apps"></i>
+                <!-- <li class=" navigation-header"><span data-i18n="Apps">Apps</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Apps"></i>
                 </li>
                 <li class=" nav-item"><a href="{{url('email')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="Inbox">Inbox</span></a>
-                </li>
+                </li> -->
 
-                <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Forum</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href=""><i></i><span>Forum Diskusi</span></a>
-                        </li>
-                    </ul>
+                <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Forum Diskusi</span></a>
                 </li>
                
               

@@ -30,7 +30,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <button type="button" class="btn btn-success" style="margin-left:825px;"><a href="">Tambah data</a></button>
+                                    <button type="button" class="btn btn-success" style="margin-left:825px;"><a href="{{url('tambahrekammedis')}}">Tambah data</a></button>
                                 </div>
                                 
                                 <div>
@@ -46,16 +46,18 @@
 
                                             <thead>
                                                 <tr>
-                                                    <th>NIK</th>
-                                                    <th>Nama Konselor</th>
+                                                    <th>No</th>
+                                                    <th>NIM</th>
+                                                    <th>Nama </th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                               
                                                 <tr>
-                                                    <td>a</td>
-                                                    <td>a</td>
+                                                    <td>1</td>
+                                                    <td>16410100115</td>
+                                                    <td>Gusti Adistriani</td>
                                                     <td><a href="{{url('profilkonselor')}}"><i class="ft-edit text-success"></i></a>
                                                         <a href=""><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>

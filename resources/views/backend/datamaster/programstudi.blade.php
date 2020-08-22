@@ -33,7 +33,7 @@
                                 
                                 </div>
                                 <div class="card-header">
-                                    <button type="button" class="btn btn-success" style="margin-left:820px;"><a href="">Tambah Program Studi</a></button>
+                                    <button type="button" class="btn btn-success" style="margin-left:820px;"><a href="{{('tambahprodi')}}">Tambah Program Studi</a></button>
                                 </div>
                                 {{-- <div class="card-body collapse show"> --}}
                                     <div class="card-body card-dashboard">

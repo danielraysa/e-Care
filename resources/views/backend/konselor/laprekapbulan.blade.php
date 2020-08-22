@@ -30,7 +30,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <button type="button" class="btn btn-success" style="margin-left:825px;"><a href="">Tambah data</a></button>
+                                    <button type="button" class="btn btn-success" style="margin-left:825px;"><a href="{{('tambahrekapbulan')}}">Tambah data</a></button>
                                 </div>
                                 
                                 <div>
@@ -48,8 +48,6 @@
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Tanggal</th>
-                                                    <th>NIM</th>
-                                                    <th>Nama</th>
                                                     <th>Uraian</th>
                                                     <th>Jenis Layanan</th>
                                                     <th>Jenis Bimbingan</th>
@@ -61,8 +59,6 @@
                                             <tbody>
                                               
                                                 <tr>
-                                                    <td>a</td>
-                                                    <td>a</td>
                                                     <td>a</td>
                                                     <td>a</td>
                                                     <td>a</td>
