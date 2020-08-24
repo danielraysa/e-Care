@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Question;
 
 class QuestionController extends Controller
 {
@@ -14,6 +15,8 @@ class QuestionController extends Controller
     public function index()
     {
         //
+        $pertanyaan = Question::all();
+        return view('admin.pertanyaan', compact('pertanyaan'));
     }
 
     /**
@@ -35,6 +38,10 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         //
+        $pertanyaan = Question::create([
+            'description' => $request->pertanyaan
+        ]);
+        return redirect()->action('QuestionController@index')->with('status', 'Data pertanyaan berhasil ditambahkan');
     }
 
     /**

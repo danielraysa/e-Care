@@ -166,15 +166,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('/user', 'UserController');
     Route::resource('/chat', 'ChatController');
-    /* Route::post('/chat/send', 'ChatController@sendMessage');
-    Route::post('/chat/{user}/send', 'ChatController@sendMessagePrivate');
-    Route::get('/get-users', 'ChatController@getUsers');
     
-    Route::get('/chats', 'ChatsController@index');
-    Route::get('messages', 'ChatController@fetchMessages');
-    Route::post('messages', 'ChatController@sendMessage');
-    Route::get('messages/{user}', 'ChatController@privateMessages');
-    Route::post('messages/{user}', 'ChatController@sendPrivateMessage'); */
+    Route::get('/kuis', 'AppointmentController@kirimemail');
+    Route::resource('pertanyaan', 'QuestionController');
     
     Route::get('/tes-chat', 'MessageController@listchat');
     Route::get('/tes-chat/{id}', 'MessageController@listmessage');

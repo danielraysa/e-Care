@@ -7,6 +7,8 @@ use App\Appointment;
 use App\User;
 use App\Counselor;
 use App\Mahasiswa;
+use App\Notification;
+use App\Events\SendNotification;
 use Auth;
 use DB;
 class AppointmentController extends Controller
@@ -60,6 +62,11 @@ class AppointmentController extends Controller
             'status' => 'M',
             // 'created_at' => date('Y-m-d H:i:s')
         ]);
+        $notif = Notification::create([
+            'user_id' => $request->counselor,
+            'message' => 'Ada permintaan appointment baru',
+        ]);
+        $event = broadcast(new SendNotification($notif));
         return redirect()->action('AppointmentController@index')->with('status', 'Data appointment berhasil ditambahkan');
     }
 
@@ -115,6 +122,28 @@ class AppointmentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function kirimemail()
+    {
+        //
+        $to = "daniel@dinamika.ac.id";
+        $subject = "My subject";
+        $txt = '<div style="margin: auto; max-width: 500px; background-color: #f5f5f5; padding: 2rem; border-radius: 0.5rem;">
+        <img style="display: flex; margin: auto;" src="https://gate.dinamika.ac.id/staff/images/icon/logo-blue.png" alt="UNIVERSITAS DINAMIKA" /> <br>
+        <p>Pengajuan sidang tugas akhir Anda <b>telah diterima</b> oleh PPTA. Detail tugas akhir Anda sebagai berikut :</p>
+        <span>NIM :$znim </span> <br>
+        <span>Nama : namamhse </span> <br>
+        <span>Judul : judul </span> <br>
+        <span>Pembimbing 1 : dobing1 </span> <br>
+        <span>Pembimbing 2 : dobing2 </span> <br>
+        <span>Penguji : douji </span> <br>
+        <br>
+        <p style="color: #949494">* Email ini dikirim otomatis oleh program. No reply.</p>
+        </div>';
+        $headers = "From: anel.raysa@gmail.com";
+
+        mail($to,$subject,$txt,$headers);
     }
 
     public function index_konselor()
