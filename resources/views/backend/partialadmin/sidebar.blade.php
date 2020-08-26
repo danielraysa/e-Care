@@ -108,14 +108,14 @@
             
                
                 @if(Auth::user()->role_id == 1)
-                <li><a class="menu-item" href="{{url('user')}}"><i class="la la-link"></i><span>Link User</span></a>
-                </li>   
+                <li><a class="menu-item" href="{{url('user')}}"><i class="la la-link"></i><span>Link User</span></a></li> 
+                <li><a class="menu-item" href="{{url('pertanyaan')}}"><i class="la la-question"></i><span>Pertanyaan</span></a></li> 
                 @endif
         
-                <!-- <li class=" navigation-header"><span data-i18n="Apps">Apps</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Apps"></i>
+                {{--  <li class=" navigation-header"><span data-i18n="Apps">Apps</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Apps"></i>
                 </li>
                 <li class=" nav-item"><a href="{{url('email')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="Inbox">Inbox</span></a>
-                </li> -->
+                </li> --}}
 
                 <li class=" nav-item"><a href="{{('forum')}}"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Forum Diskusi</span></a>
                 </li>
