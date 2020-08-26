@@ -3,27 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use DB;
+use App\Role;
 
-class MbtiController extends Controller
+class KaryawanController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    
     public function index()
     {
-        $mbti= DB::table('mbti')->get();
-        return view('backend.datamaster.mbti', ['mbti' => $mbti]);
+        $employee = DB::table('employees')-> get();
+        return view(' backend.datamaster.karyawan',['employees' => $employee]);
+       
     }
 
-    public function dropdownindex()
+    public function roleindex()
     {
-        $mbtii= DB::table('mbti')->get();
-        return view('backend.mhs.testmbti', ['mbtii' => $mbti]);
+        // $Roles = DB::table('roles')->get();
+        // $roles = Role::all();
+        // return view('backend.datamaster.tambahkaryawan',['roles' => $Roles]);
+        
     }
 
     /**

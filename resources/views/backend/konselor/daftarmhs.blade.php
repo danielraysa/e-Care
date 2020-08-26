@@ -55,7 +55,7 @@
                                                 <tr>
                                                     <td>{{ $mhs->nim }}</td>
                                                     <td>{{ $mhs->nama }}</td>
-                                                    <td><a href="{{url('profilmhs')}}"><i class="ft-edit text-success"></i></a>
+                                                    <td><a href="{{url('tambahmahasiswa')}}"><i class="ft-edit text-success"></i></a>
                                                         <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>
                                                 </tr>

@@ -59,7 +59,7 @@
                                                     <td>12</td>
                                                     <td>Kamu mengalami kesulitan untuk tidur/insomnia?</td>
                                                     <th>Ya</th>
-                                                    <td><a href="{{url('profilmhs')}}"><i class="ft-edit text-success"></i></a>
+                                                    <td><a href="{{('tambahpertanyaan')}}"><i class="ft-edit text-success"></i></a>
                                                         <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>
                                                 </tr>

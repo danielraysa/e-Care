@@ -33,7 +33,7 @@
                                 
                                 </div>
                                 <div class="card-header">
-                                    <button type="button" class="btn btn-success" style="margin-left:820px;"><a href="">Tambah MBTI</a></button>
+                                    <button type="button" class="btn btn-success" style="margin-left:820px;"><a href="{{('tambahmbti')}}">Tambah MBTI</a></button>
                                 </div>
                                 {{-- <div class="card-body collapse show"> --}}
                                     <div class="card-body card-dashboard">
@@ -56,7 +56,7 @@
                                                 <tr>
                                                     <td>{{ $mbt->id}}</td>
                                                     <td>{{ $mbt->mbti_name}}</td>
-                                                    <td><a href="{{url('profilmhs')}}"><i class="ft-edit text-success"></i></a>
+                                                    <td><a href="{{url('tambahmbti')}}"><i class="ft-edit text-success"></i></a>
                                                         <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>
                                                 </tr>

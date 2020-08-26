@@ -9,7 +9,7 @@
 
              
                 @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 1)
-                <li class=" nav-item"><a href="{{url('/jadwalkonselor')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Tabel Appointment</span></a>
+                <li class=" nav-item"><a href="{{url('/jadwalkonselor')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Tabel Konseling</span></a>
                 </li>
                 @endif
 
@@ -19,7 +19,7 @@
                 </li>
                 @endif
 
-                 @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+                 @if(Auth::user()->role_id == 2)
                 <li class="nav-item"><a href="#"><i class="la la-stethoscope"></i><span class="menu-title" data-i18n="Doctors">Konselor</span></a>
                     <ul class="menu-content">
                         <li class="{{ Request::is('counselor') ? 'active' : '' }}"><a class="menu-item" href="{{url('counselor')}}"><i></i><span>Tabel Konselor</span></a>
@@ -57,13 +57,13 @@
                 @endif
 
                 @if(Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
-                <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Mahasiswa</span></a>
+                <!-- <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Mahasiswa</span></a>
                     <ul class="menu-content">
                         <li><a class="menu-item" href="{{url('daftarmhs')}}"><i></i><span>Tabel Mahasiswa</span></a>
                         </li>
                       
                     </ul>
-                </li>
+                </li> -->
                 <!-- <li class=" nav-item"><a href="#"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Report">Laporan</span></a>
                     <ul class="menu-content">
                         <li><a class="menu-item" href="{{url('rekammedis')}}"><i></i><span>Rekam Medis</span></a>
@@ -117,7 +117,7 @@
                 <li class=" nav-item"><a href="{{url('email')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="Inbox">Inbox</span></a>
                 </li> -->
 
-                <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Forum Diskusi</span></a>
+                <li class=" nav-item"><a href="{{('forum')}}"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Forum Diskusi</span></a>
                 </li>
                
               

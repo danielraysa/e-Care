@@ -61,7 +61,12 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Jabatan</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="umur" class="form-control" id="umur">
+                                                    <select name="role" class="form-control" id="service" required>
+                                                        @foreach( $roles as $role )
+                                                        <option value="{{ $role->id}}">{{$role->role_name}}</option>
+                                                        @endforeach
+                                                      
+                                                     </select>
                                                     </div>
                                                 </div>
 

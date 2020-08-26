@@ -20,11 +20,7 @@
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
-                
-=======
                
->>>>>>> origin/master
             </div>
             <div class="content-body">
                 <!-- List Of All Patients -->

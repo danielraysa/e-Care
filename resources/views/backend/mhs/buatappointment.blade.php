@@ -42,13 +42,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="firstname">NIM <span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control" placeholder="NIM" id="nim" value="{{ $user->user_role->data_mhs->nim }}" required>
+                                            <input type="number" class="form-control" placeholder="NIM" id="nim" value="" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="lastname">Nama Lengkap <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" placeholder="Nama Lengkap" id="namalengkap" value="{{ Auth::user()->name }}" required>
+                                            <input type="text" class="form-control" placeholder="Nama Lengkap" id="namalengkap" value="" required>
                                         </div>
                                     </div>
                                 </div>
@@ -71,20 +71,20 @@
                                     <div class="col-lg-3 col-md-6">
                                         <div class="form-group">
                                             <label for="dob">Tanggal lahir <span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" id="tgl" name="tgl" value="{{ date('Y-m-d', strtotime($user->user_role->data_mhs->tgl_lahir)) }}" required>
+                                            <input type="date" class="form-control" id="tgl" name="tgl" value="" >
                                         </div>
                                     </div>
 
                                     <div class="col-lg-3 col-md-6">
                                         <div class="form-group">
                                             <label for="dob">Wali Dosen <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="walidosen" name="walidosen" value="{{ $user->user_role->data_mhs->dosen_wali->nama }}" required>
+                                            <input type="text" class="form-control" id="walidosen" name="walidosen" value="">
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-6">
                                         <div class="form-group">
                                             <label for="dob">No. Handphone Wali Dosen <span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control" id="walidosen" name="walidosen" value="{{ $user->user_role->data_mhs->dosen_wali->telp }}" required>
+                                            <input type="number" class="form-control" id="walidosen" name="walidosen" value="">
                                         </div>
                                     </div>
                                 </div> --}}
@@ -92,13 +92,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="email">Email <span class="text-danger">*</span></label>
-                                            <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email" value="{{ $user->user_role->data_mhs->nim.'@dinamika.ac.id' }}" required>
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email" value="">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="phone">No. Handphone</label>
-                                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Masukkan No Hp" value="{{ $user->user_role->data_mhs->telp }}" required>
+                                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Masukkan No Hp" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -127,9 +127,9 @@
                                         <div class="form-group">
                                             <label for="date">Konselor <span class="text-danger">*</span></label>
                                             <select name="counselor" class="form-control" id="service" required>
-                                                @foreach ($counselor as $cons)
-                                                <option value="{{ $cons->user_id }}">{{ $cons->data_user->name }}</option>
-                                                @endforeach
+                                               
+                                                <option value=""></option>
+                                              
                                             </select>
                                         </div>
                                     </div> 

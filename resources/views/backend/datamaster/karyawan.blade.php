@@ -45,7 +45,6 @@
 
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
                                                     <th>NIK</th>
                                                     <th>Nama Lengkap</th>
                                                     <th>Jabatan</th>
@@ -60,22 +59,23 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                            @foreach ( $employees as $employee )
                                               
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>332</td>
-                                                    <td>Fitriyah</td>
-                                                    <td>Konselor</td>
+                                                    <td>{{$employee->nik}}</td>
+                                                    <td>{{$employee->namalengkap}}</td>
+                                                    <td>{{$employee->jabatan}}</td>
                                                     <!-- <td>Keputih</td>
                                                     <td>08364737232</td>
                                                     <td>fitriyah@dinamika.ac.id</td>
                                                     <td>S1 Psikologi</td>
                                                     <td>Hang Tuah</td>
                                                     <td>4324234</td> -->
-                                                    <td><a href="{{url('profilmhs')}}"><i class="ft-edit text-success"></i></a>
+                                                    <td><a href="{{('tambahkaryawan')}}"><i class="ft-edit text-success"></i></a>
                                                         <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>
                                                 </tr>
+                                            @endforeach
                                        
                                             </tbody>
                                         </table>
