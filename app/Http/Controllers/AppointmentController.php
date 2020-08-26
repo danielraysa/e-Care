@@ -21,15 +21,17 @@ class AppointmentController extends Controller
     public function index()
     {
         //
-        // $user = Auth::user();
+        $user = Auth::user();
+        $nim = $user->email;
         $counselor = Counselor::with('data_user')->get();
-        $user = User::with('user_role.data_mhs.dosen_wali')->find(Auth::id());
+        $mhs = Mahasiswa::find($nim);
+        // $user = User::with('user_role.data_mhs.dosen_wali')->find(Auth::id());
         /* $user = DB::table('users')
             ->join('v_mhs', 'users.email', '=', 'v_mhs.nim')
             ->join('v_karyawan', 'v_mhs.dosen_wl', '=', 'v_karyawan.nik')
             ->get()->first(); */
         // dd($user);
-        return view('backend.mhs.buatappointment', compact('user','counselor'));
+        return view('backend.mhs.buatappointment', compact('mhs','counselor'));
     }
 
     /**
@@ -106,11 +108,12 @@ class AppointmentController extends Controller
         $pilihan = 'Y';
         else
         $pilihan = 'T';
-        $appointment = Appointment::find($id)->create([
+        $appointment = Appointment::find($id)->update([
             'status' => $pilihan,
         ]);
-        return 1;
+        // return 1;
         // return redirect()->action('AppointmentController@index')->with('status', 'Data appointment berhasil diupdate');
+        return redirect('jadwalkonselor')->with('status', 'Data appointment berhasil diupdate');
     }
 
     /**
@@ -149,7 +152,8 @@ class AppointmentController extends Controller
     public function index_konselor()
     {
         $counselor = Counselor::with('data_user')->get();
-        $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('counselor_id', Auth::id())->get();
+        // $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('counselor_id', Auth::id())->get();
+        $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->get();
         $user = User::with('user_role.data_mhs.dosen_wali')->find(Auth::id());
         /* $user = DB::table('users')
             ->join('v_mhs', 'users.email', '=', 'v_mhs.nim')

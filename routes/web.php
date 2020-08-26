@@ -66,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
     //tabel mahasiswa
     Route::get('/daftarmhs', 'MahasiswaController@index');
 
-    Route::resource('/mahasiswa', 'MahasiswaController'); 
+    Route::resource('/mahasiswa', 'MahasiswaController');
 
     Route::get('/tambahmahasiswa', function () {
         return view('backend.konselor.tambahmahasiswa');
@@ -116,16 +116,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     //appointment    
     Route::get('/buatappointment', 'AppointmentController@index');
-    Route::resource('/appointment', 'AppointmentController');
+    // Route::resource('/appointment', 'AppointmentController');
+    Route::get('/appointment', 'AppointmentController@index');
+    Route::post('/appointment', 'AppointmentController@store');
+    Route::post('/appointment/{id}/update', 'AppointmentController@update');
     //end appointment
     
    
    //test mbti 
-    Route::get('/testmbti', function () {
-        return view('backend.mhs.testmbti');
-    });
-
-    Route::resource('/testmbti', 'MbtiController');
     Route::get('/tabelmbti', 'MbtiController@index');
     //end test mbti
 
@@ -158,7 +156,8 @@ Route::group(['middleware' => 'auth'], function () {
     //end tabel program studi
 
     //tabel mbti
-    Route::get('/tabelmbti', 'MbtiController@index');
+  
+    Route::get('/testmbti', 'MbtiController@dropdownindex');
 
     Route::get('/tambahmbti', function () {
         return view('backend.datamaster.tambahmbti');

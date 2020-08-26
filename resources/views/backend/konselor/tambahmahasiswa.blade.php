@@ -40,63 +40,71 @@
                                         <div class="card-text">
                                            
                                         </div>
-                                        <form class="form form-horizontal">
+                                        @if(isset($mhs))
+                                        <form class="form form-horizontal" action="{{url('mahasiswa/'.$mhs->nim.'/update')}}" method="post">
+                                        @else
+                                        <form class="form form-horizontal" action="{{url('mahasiswa')}}" method="post">
+                                        @endif
                                             <div class="form-body">
                                                 <h4 class="form-section"><i class="ft-user"></i> Detail Mahasiswa</h4>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">NIM</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="number" name="umur" class="form-control" id="umur">
+                                                        <input type="number" name="nim" class="form-control" id="nim" @if(isset($mhs)) value="{{$mhs->nim}}" @endif>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Nama Lengkap</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="umur" class="form-control" id="umur">
+                                                        <input type="text" name="umur" class="form-control" id="nama" @if(isset($mhs)) value="{{$mhs->nama}}" @endif>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Program Studi</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="umur" class="form-control" id="umur">
+                                                        <select name="prodi" class="form-control">
+                                                        <option>S1 Sistem Informasi</option>
+                                                        <option>S1 DKV</option>
+                                                        <option>S1 Sistem Informasi</option>
+                                                        </select>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Alamat</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="umur" class="form-control" id="umur">
+                                                        <input type="text" name="umur" class="form-control" id="umur" @if(isset($mhs)) value="{{$mhs->alamat}}" @endif>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">No. Hp</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="number" name="umur" class="form-control" id="umur">
+                                                        <input type="number" name="umur" class="form-control" id="umur" @if(isset($mhs)) value="{{$mhs->telp}}" @endif>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Email</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="email" name="umur" class="form-control" id="umur">
+                                                        <input type="email" name="umur" class="form-control" id="umur" @if(isset($mhs)) value="{{$mhs->nim.'@dinamika.ac.id'}}" @endif>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Wali Dosen</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="umur" class="form-control" id="umur">
+                                                        <input type="text" name="umur" class="form-control" id="umur" @if(isset($mhs)) value="{{$mhs->dosen_wl}}" @endif>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">No. Hp Wali Dosen</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="umur" class="form-control" id="umur">
+                                                        <input type="text" name="umur" class="form-control" id="umur" @if(isset($mhs)) value="08998111648" @endif>
                                                     </div>
                                                 </div>
 
@@ -104,7 +112,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Password</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="umur" class="form-control" id="umur">
+                                                        <input type="text" name="umur" class="form-control" id="umur" @if(isset($mhs)) value="{{$mhs->pin}}" @endif>
                                                     </div>
                                                 </div>
 

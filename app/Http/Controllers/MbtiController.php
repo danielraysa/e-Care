@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Mbti;
+use App\Mahasiswa;
 
 class MbtiController extends Controller
 {
@@ -16,14 +18,18 @@ class MbtiController extends Controller
     
     public function index()
     {
-        $mbti= DB::table('mbti')->get();
-        return view('backend.datamaster.mbti', ['mbti' => $mbti]);
+        // $mbti= DB::table('mbti')->get();
+        $mbti = Mbti::all();
+        $mahasiswa = Mahasiswa::all();
+        // return view('backend.datamaster.mbti', ['data_mbti' => $mbti, ]);
+        return view('backend.datamaster.mbti', compact('mbti','mahasiswa'));
     }
 
     public function dropdownindex()
     {
-        $mbtii= DB::table('mbti')->get();
-        return view('backend.mhs.testmbti', ['mbtii' => $mbti]);
+        // $mbti= DB::table('mbti')->get();
+        $mbti = Mbti::all();
+        return view('backend.mhs.testmbti', ['mbti' => $mbti]);
     }
 
     /**

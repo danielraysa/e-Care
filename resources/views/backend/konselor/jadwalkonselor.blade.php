@@ -51,12 +51,12 @@
                                                     <th>Tanggal Appointment</th>
                                                     <th>Jenis Layanan</th>
                                                     <th>Keluhan</th>
-                                                    <th>Konselor</th>
+                                                    <th>Status</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($appointment as $item)    
+                                                @foreach ($appointment as $item)
                                                 <tr>
                                                     <td>{{ $item->mahasiswa->user_role->nik_nim }}</td>
                                                     <td>{{ $item->mahasiswa->user_role->data_mhs->nama }}</td>
@@ -64,10 +64,21 @@
                                                     <td>{{ $item->tgl_appointment }}</td>
                                                     <td>Appointment</td>
                                                     <td>{{ $item->jenis_problem }}</td>
-                                                    <td>Inez Kristanti</td>
+                                                    <td>{{ $item->status }}</td>
                                                     <td>
-                                                        <a href="#"><i class="ft-edit text-success"></i></a><br>
-                                                        <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>
+                                                    @if($item->status == 'M')
+                                                    <form action="{{url('appointment/'.$item->id.'/update')}}" method="post">
+                                                        {{ csrf_field() }}
+                                                        {{-- method_field('PUT') --}}
+                                                        <!-- <a href="#"><i class="ft-edit text-success"></i></a><br> -->
+                                                        <!-- <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a> -->
+                                                        <button class="btn btn-success" type="submit" value="Y" name="pilihan"> Approve</button>
+                                                        <button class="btn btn-danger" type="submit" value="T" name="pilihan"> Decline</button>
+                                                    </form>
+                                                    @else
+                                                    <button class="btn btn-success" type="button" disabled> Approve</button>
+                                                    <button class="btn btn-danger" type="button" disabled> Decline</button>
+                                                    @endif
                                                     </td>
                                                 </tr>
                                                 @endforeach

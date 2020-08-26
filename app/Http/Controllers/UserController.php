@@ -50,8 +50,8 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->nama,
             'email' => $request->data_tabel,
-            'password' => bcrypt($request->password),
-            // 'password' => bcrypt('password'),
+            // 'password' => bcrypt($request->password),
+            'password' => bcrypt('password'),
             'role_id' => $request->user_role,
         ]);
         $user_role = UserRole::create([
