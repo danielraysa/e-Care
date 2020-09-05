@@ -63,7 +63,10 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pertanyaan = Question::find($id);
+        //dd($mbti);
+        return response()->json($pertanyaan, 200);
+        // return view('admin.pertanyaan', compact('pertanyaan'));
     }
 
     /**
@@ -75,7 +78,13 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pertanyaan = Question::find($id)->update([
+            'description' => $request->pertanyaan
+        ]);
+        if($pertanyaan)
+        return redirect(route('pertanyaan.index'))->with('status', 'Data pertanyaan berhasil diperbarui');
+        else
+        return redirect(route('pertanyaan.index'))->with('status', 'Error');
     }
 
     /**
@@ -86,6 +95,8 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pertanyaan = Question::find($id);
+        $pertanyaan->delete(); 
+        return redirect('/pertanyaan')->with('status', 'Data Pertanyaan Berhasil dihapus');
     }
 }

@@ -30,10 +30,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                
-                                </div>
-                                <div class="card-header">
-                                    <button type="button" class="btn btn-success" style="margin-left:820px;"><a href="{{('tambahkaryawan')}}">Tambah Karyawan</a></button>
+                                    <button type="button" class="btn btn-success" style="margin-left:920px;"><a href="{{('tambahkaryawan')}}">Tambah</a></button>
                                 </div>
                                 {{-- <div class="card-body collapse show"> --}}
                                     <div class="card-body card-dashboard">

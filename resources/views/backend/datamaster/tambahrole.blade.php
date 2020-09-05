@@ -40,28 +40,29 @@
                                         <div class="card-text">
                                            
                                         </div>
-                                        <form class="form form-horizontal">
+                                        
                                             <div class="form-body">
+                                                @if(isset($roles))
+                                                <form class="form form-horizontal" action=" {{ route('roles.update', $roles) }}" method="post">
+                                                {{ method_field('PUT') }}
+                                                @else
+                                                <form class="form form-horizontal" action="{{ route('roles.store') }}" method="post">
+                                                @endif
+                                                        {{ csrf_field() }} 
                                                 <h4 class="form-section"><i class="ft-user"></i> Detail Role</h4>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput5">Id</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <input type="number" name="umur" class="form-control" id="umur">
-                                                    </div>
-                                                </div>
-
+                                                
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Role</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="umur" class="form-control" id="umur">
+                                                        <input type="hidden" name="id" class="form-control" id="id" @if(isset($roles)) value="{{$roles->id}}" readonly @endif>
+                                                        <input type="text" name="role_name" class="form-control" id="role_name"  @if(isset($roles)) value="{{$roles->role_name}}" @endif>
                                                     </div>
                                                 </div>                                           
 
                                             <div class="form-actions">
-                                                <button type="button" class="btn btn-warning mr-1">
+                                                <a type="button" href="/roles" class="btn btn-warning mr-1">
                                                     <i class="ft-x"></i> Cancel
-                                                </button>
+                                                </a>
                                                 <button type="submit" class="btn btn-primary">
                                                     <i class="la la-check-square-o"></i> Save
                                                 </button>

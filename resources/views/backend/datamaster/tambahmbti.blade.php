@@ -28,52 +28,67 @@
                     </div>
                 </div> --}}
             </div>
+            
             <div class="content-body">
                 <!-- Basic form layout section start -->
                 <section id="horizontal-form-layouts">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card">
-                                
+                            <div class="card">            
                                 <div class="card-content collpase show">
                                     <div class="card-body">
                                         <div class="card-text">
-                                           
+                                        
                                         </div>
-                                        <form class="form form-horizontal">
                                             <div class="form-body">
-                                                <h4 class="form-section"><i class="ft-user"></i> Detail Kepribadian/MBTI</h4>
 
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput5">Id</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <input type="number" name="umur" class="form-control" id="umur">
+                 
+                                                @if(isset($mbti))
+                                                <form class="form form-horizontal" action=" {{ route('mbti.update', $mbti) }}" method="post">
+                                                {{ method_field('PUT') }}
+                                                @else
+                                                <form class="form form-horizontal" action="{{ route('mbti.store') }}" method="post">
+                                                @endif
+                                                    {{ csrf_field() }} 
+
+                                                        <h4 class="form-section"><i class="ft-user"></i> Detail Kepribadian/MBTI</h4>
+
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 label-control" for="projectinput5">Id</label>
+                                                            <div class="col-md-9 mx-auto">
+                                                                <input type="number" name="id" class="form-control" id="id" @if(isset($mbti)) value="{{$mbti->id}}" readonly @endif>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 label-control" for="projectinput5">Jenis Kepribadian</label>
+                                                            <div class="col-md-9 mx-auto">
+                                                                <input type="text" name="mbti_name" class="form-control" id="mbti_name" @if(isset($mbti)) value="{{$mbti->mbti_name}}" @endif>
+                                                            </div>
+                                                        </div>                                           
+
+                                                    <div class="form-actions">
+                                                        
+                                                        <button type="button" class="btn btn-warning mr-1">
+                                                            <i class="ft-x"></i> Cancel
+                                                        </button>
+                                                    @if(isset($mbti))
+                                                        <button type="submit" class="btn btn-primary">
+                                                            <i class="la la-check-square-o"></i> update
+                                                        </button>
+                                                    @else
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="la la-check-square-o"></i> Save
+                                                    </button>
+                                                    @endif
                                                     </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput5">Jenis Kepribadian</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="umur" class="form-control" id="umur">
-                                                    </div>
-                                                </div>                                           
-
-                                            <div class="form-actions">
-                                                <button type="button" class="btn btn-warning mr-1">
-                                                    <i class="ft-x"></i> Cancel
-                                                </button>
-                                                <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> Save
-                                                </button>
+                                                </form> 
                                             </div>
-                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                 </section>
                 <!-- // Basic form layout section end -->
             </div>

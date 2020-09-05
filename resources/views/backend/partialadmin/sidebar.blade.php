@@ -70,7 +70,7 @@
                         </li>
                     </ul>
                 </li> -->
-
+                @if(Auth::user()->role_id == 1)
                 <li class="nav-item"><a href="#"><i class="la la-stethoscope"></i><span class="menu-title" data-i18n="Doctors">Data Master</span></a>
                     <ul class="menu-content">
                         <li class=""><a class="menu-item" href="{{url('tabelkaryawan')}}"><i></i><span>Tabel Karyawan</span></a>
@@ -83,7 +83,7 @@
                         </li>
                         <li class=""><a class="menu-item" href="{{url('tabelmbti')}}"><i></i><span>Tabel Hasil MBTI</span></a>
                         </li>
-                        <li class=""><a class="menu-item" href="{{url('tabelpertanyaan')}}"><i></i><span>Tabel Pertanyaan Kecemasan</span></a>
+                        <li class=""><a class="menu-item" href="{{url('pertanyaan')}}"><i></i><span>Tabel Pertanyaan Kecemasan</span></a>
                         </li>
 
                     
@@ -91,6 +91,7 @@
                         </li> -->
                     </ul>
                 </li>
+                @endif
 
 
                 @endif
@@ -107,7 +108,7 @@
                
                 @if(Auth::user()->role_id == 1)
                 <li><a class="menu-item" href="{{url('user')}}"><i class="la la-link"></i><span>Link User</span></a></li> 
-                <li><a class="menu-item" href="{{url('pertanyaan')}}"><i class="la la-question"></i><span>Pertanyaan</span></a></li> 
+                <!-- <li><a class="menu-item" href="{{url('pertanyaan')}}"><i class="la la-question"></i><span>Pertanyaan</span></a></li>  -->
                 @endif
         
                 {{--  <li class=" navigation-header"><span data-i18n="Apps">Apps</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Apps"></i>

@@ -125,12 +125,24 @@ Route::group(['middleware' => 'auth'], function () {
    
    //test mbti 
     Route::get('/tabelmbti', 'MbtiController@index');
+    Route::post('/tambahmbti', 'MbtiController@store');
+    Route::get('/formmbti', 'MbtiController@create');
+    Route::resource('/mbti', 'MbtiController');
+    Route::get('/mbti/{id}/destroy', 'MbtiController@destroy')->name('mbti.delete');
+    // Route::get('/mbti/edit/{id}','MbtiController@edit');
+    // Route::patch('/mbti/update/{id}','MbtiController@update');
+    // nggak usah pake ini, udah jadi satu sama resource
+    // Route::resource('pertanyaan', 'QuestionController');
     //end test mbti
 
     //test tingkat kecemasan
     Route::get('/testtingkat', function () {
         return view('backend.mhs.testtingkatmasalah');
     });
+
+    Route::get('/pertanyaan/{id}/destroy', 'QuestionController@destroy')->name('pertanyaan.delete');
+    Route::resource('/pertanyaan', 'QuestionController');
+
     //end tingkat kecemasan
     
 
@@ -138,15 +150,18 @@ Route::group(['middleware' => 'auth'], function () {
 
     //tabel role
     Route::get('/tabelrole', 'RolesController@index');
-
     Route::get('/tambahrole', function () {
         return view('backend.datamaster.tambahrole');
     });
+    Route::resource('/roles', 'RolesController');
+    Route::get('/formrole', 'RolesController@create');
+    Route::get('/roles/{id}/destroy', 'RolesController@destroy')->name('roles.delete');
     //end tabel role
 
     
     //tabel program studi
     Route::get('/tabelprodi', 'MajorsController@index');
+    Route::get('/formprodi', 'MajorsController@create');
     ///INI ROUTENYA
     // Route::get('/tambahkaryawan', 'KaryawanController@roleindex'); 
 
@@ -155,13 +170,9 @@ Route::group(['middleware' => 'auth'], function () {
     });
     //end tabel program studi
 
-    //tabel mbti
-  
-    Route::get('/testmbti', 'MbtiController@dropdownindex');
 
-    Route::get('/tambahmbti', function () {
-        return view('backend.datamaster.tambahmbti');
-    });
+    //tabel mbti
+      Route::get('/testmbti', 'MbtiController@dropdownindex');
     //end tabel mbti
 
   

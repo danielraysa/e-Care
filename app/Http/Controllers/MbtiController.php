@@ -20,9 +20,9 @@ class MbtiController extends Controller
     {
         // $mbti= DB::table('mbti')->get();
         $mbti = Mbti::all();
-        $mahasiswa = Mahasiswa::all();
+        // $mahasiswa = Mahasiswa::all();
         // return view('backend.datamaster.mbti', ['data_mbti' => $mbti, ]);
-        return view('backend.datamaster.mbti', compact('mbti','mahasiswa'));
+        return view('backend.datamaster.mbti', compact('mbti'));
     }
 
     public function dropdownindex()
@@ -39,7 +39,7 @@ class MbtiController extends Controller
      */
     public function create()
     {
-        //
+       return view('backend.datamaster.tambahmbti');
     }
 
     /**
@@ -50,8 +50,17 @@ class MbtiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+        DB::table('mbti') -> insert([
+            'id' => $request ->id,
+            'mbti_name' => $request ->mbti_name,
+        ]);
+
+        return redirect()->action('MbtiController@index')->with('status', 'Data MBTI berhasil ditambahkan');
+
+        
     }
+
 
     /**
      * Display the specified resource.
@@ -72,8 +81,11 @@ class MbtiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mbti = Mbti::find($id);
+        //dd($mbti);
+        return view('backend.datamaster.tambahmbti', compact('mbti'));
     }
+            
 
     /**
      * Update the specified resource in storage.
@@ -84,7 +96,20 @@ class MbtiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->all()); 
+        // update data mbti
+        /* DB::table('mbti')->where('id', $id)->update([
+            'mbti_name' => $request-> mbti_name,
+        ]); */
+        $upd = Mbti::find($id)->update([
+            'mbti_name' => $request->mbti_name
+        ]);
+        if($upd)
+        return redirect(route('mbti.index'))->with('status', 'Data MBTI berhasil diperbarui');
+        else
+        return redirect(route('mbti.index'))->with('status', 'Error');
+    // alihkan halaman edit ke halaman books
+    //return view('backend.datamaster.mbti')->with('update', 'Data MBTI berhasil ditambahkan');
     }
 
     /**
@@ -95,6 +120,12 @@ class MbtiController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $mbti = Mbti::find($id);
+        $mbti->delete();
+        // $mbti->softDeletes();
+        return redirect('/tabelmbti')->with('status', 'Data MBTI Berhasil dihapus');
+     
+        
     }
 }

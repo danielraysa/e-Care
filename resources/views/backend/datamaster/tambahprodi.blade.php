@@ -45,16 +45,16 @@
                                                 <h4 class="form-section"><i class="ft-user"></i> Detail Program Studi</h4>
 
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput5">Id</label>
+                                                    <label class="col-md-3 label-control" for="projectinput5">Kode Prodi</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="number" name="umur" class="form-control" id="umur">
+                                                        <input type="number" name="kode_prodi" class="form-control" id="kode_prodi">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Program Studi</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="umur" class="form-control" id="umur">
+                                                        <input type="text" name="nama_prodi" class="form-control" id="nama_prodi">
                                                     </div>
                                                 </div>                                           
 

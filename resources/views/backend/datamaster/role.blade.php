@@ -23,6 +23,12 @@
                 
             </div>
             <div class="content-body">
+                @if (session('status'))
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {{ session('status') }}
+                </div>
+            @endif
                 <!-- List Of All Patients -->
 
                 <section id="patients-list">
@@ -30,10 +36,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                
-                                </div>
-                                <div class="card-header">
-                                    <button type="button" class="btn btn-success" style="margin-left:820px;"><a href="{{('tambahrole')}}">Tambah Role</a></button>
+                                    <a type="button" class="btn btn-success" style="margin-left:900px;" href="{{('tambahrole')}}">Tambah</a>
                                 </div>
                                 {{-- <div class="card-body collapse show"> --}}
                                     <div class="card-body card-dashboard">
@@ -52,10 +55,10 @@
                                             <tbody>
                                             @foreach( $roles as $role )
                                                 <tr>
-                                                    <td>{{ $role->id}}</td>
+                                                    <td>{{$role->id}}</td>
                                                     <td>{{$role->role_name}}</td>
-                                                    <td><a href="{{('tambahrole')}}"><i class="ft-edit text-success"></i></a>
-                                                        <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>
+                                                    <td><a href="{{url('roles/'.$role->id.'/edit')}}"><i class="ft-edit text-success"></i></a>
+                                                        <a href="{{ url('roles/'.$role->id.'/destroy') }}" onclick="return confirm('Anda yakin ingin menghapus data ini?');" ><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach

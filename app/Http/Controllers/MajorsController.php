@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Major;
 
 class MajorsController extends Controller
 {
@@ -14,7 +15,8 @@ class MajorsController extends Controller
      */
     public function index()
     {
-        $Majors = DB::table('majors')-> get();
+        //$Majors = DB::table('majors')-> get();
+        $Majors = Major::all();
         return view(' backend.datamaster.programstudi',['majors' => $Majors]);
        
     }
@@ -26,7 +28,7 @@ class MajorsController extends Controller
      */
     public function create()
     {
-        //
+        return view ('backend.datamaster.tambahprodi');
     }
 
     /**
@@ -38,6 +40,11 @@ class MajorsController extends Controller
     public function store(Request $request)
     {
         //
+        $major = Major::create([
+            'kode_prodi' => $request->kode_prodi,
+            'major_name' => $request->nama_prodi,
+        ]);
+        return redirect(url('/majors'));
     }
 
     /**

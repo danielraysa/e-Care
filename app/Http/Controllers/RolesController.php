@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Role;
 
 class RolesController extends Controller
 {
@@ -16,7 +16,8 @@ class RolesController extends Controller
     public function index()
     {
      
-        $Roles = DB::table('roles') -> get();
+        // $Roles = DB::table('roles') -> get();
+        $Roles = Role::all();
         return view('backend.datamaster.role',['roles' => $Roles]);
 
     }
@@ -28,7 +29,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.datamaster.tambahrole');
     }
 
     /**
@@ -39,7 +40,14 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /* DB::table('roles') -> insert([
+            'id' => $request ->id,
+            'role_name' => $request ->role_name,
+        ]); */
+        $role = Role::create([
+            'role_name'=> $request -> role_name
+        ]);
+        return redirect()->action('RolesController@index')->with('status', 'Data Role berhasil ditambahkan');
     }
 
     /**
@@ -61,7 +69,9 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $roles = Role::find($id);
+        //dd($mbti);
+        return view('backend.datamaster.tambahrole', compact('roles'));
     }
 
     /**
@@ -73,7 +83,13 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $roles = Role::find($id)->update([
+            'role_name' => $request->role_name
+        ]);
+        if($roles)
+        return redirect(route('roles.index'))->with('status', 'Data Role berhasil diperbarui');
+        else
+        return redirect(route('roles.index'))->with('status', 'Error');
     }
 
     /**
@@ -84,6 +100,10 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::find($id);
+        $role->delete(); 
+        return redirect('/roles')->with('status', 'Data Role Berhasil dihapus');
+     
+        
     }
 }

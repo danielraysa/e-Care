@@ -23,20 +23,25 @@
                 
             </div>
             <div class="content-body">
+                
+                @if (session('status'))
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        {{ session('status') }}
+                    </div>
+                @endif
                 <!-- List Of All Patients -->
 
                 <section id="patients-list">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
+                              
                                 <div class="card-header">
-                                
-                                </div>
-                                <div class="card-header">
-                                    <button type="button" class="btn btn-success" style="margin-left:820px;"><a href="{{('tambahmbti')}}">Tambah MBTI</a></button>
+                                    <button type="button" class="btn btn-success pull-right" style="margin-left:900px;"><a href="{{url('/formmbti')}}">Tambah</a></button>
                                 </div>
                                 {{-- <div class="card-body collapse show"> --}}
-                                    <div class="card-body card-dashboard">
+                                    <div class="card-body card-dashboard">  
                                     
                                     {{-- </div> --}}
                                     
@@ -56,8 +61,9 @@
                                                 <tr>
                                                     <td>{{ $mbt->id}}</td>
                                                     <td>{{ $mbt->mbti_name}}</td>
-                                                    <td><a href="{{url('tambahmbti')}}"><i class="ft-edit text-success"></i></a>
-                                                        <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>
+                                                    <td><a href="{{url('mbti/'.$mbt->id.'/edit')}}"><i class="ft-edit text-success"></i></a>
+                                                        <a href="{{ url('mbti/'.$mbt->id.'/destroy') }}" onclick="return confirm('Anda yakin ingin menghapus data ini?');" ><i class="ft-trash-2 ml-1 text-warning"></i></a>
+                                                       
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -73,6 +79,5 @@
         </div>
     </div>
     <!-- END: Content-->
-
 
 @endsection
