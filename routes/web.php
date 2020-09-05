@@ -162,6 +162,9 @@ Route::group(['middleware' => 'auth'], function () {
     //tabel program studi
     Route::get('/tabelprodi', 'MajorsController@index');
     Route::get('/formprodi', 'MajorsController@create');
+    Route::resource('/prodi', 'MajorsController');
+    Route::post('/addprodi', 'MajorsController@store')->name('majors.add');
+    Route::get('/major/{id}/destroy', 'MajorsController@destroy')->name('major.delete');
     ///INI ROUTENYA
     // Route::get('/tambahkaryawan', 'KaryawanController@roleindex'); 
 

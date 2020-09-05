@@ -40,21 +40,32 @@
                                         <div class="card-text">
                                            
                                         </div>
-                                        <form class="form form-horizontal">
-                                            <div class="form-body">
+                                    
+                                    <div class="form-body">
+
+                                        @if(isset($major))
+                                        <form class="form form-horizontal" action=" {{ route('prodi.update', $major) }}" method="post">
+                                        {{ method_field('PUT') }}
+                                        @else
+                                        <form class="form form-horizontal" action="{{ route('prodi.store') }}" method="post">
+                                        @endif
+                                         {{ csrf_field() }} 
+                                           
+    
                                                 <h4 class="form-section"><i class="ft-user"></i> Detail Program Studi</h4>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Kode Prodi</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="number" name="kode_prodi" class="form-control" id="kode_prodi">
+                                                        <input type="number" name="kode_prodi" class="form-control" id="kode_prodi" @if(isset($major)) value="{{$major->kode_prodi}}" @endif>
+                                                   
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Program Studi</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="nama_prodi" class="form-control" id="nama_prodi">
+                                                        <input type="text" name="major_name" class="form-control" id="major_name" @if(isset($major)) value="{{$major->major_name}}" @endif>
                                                     </div>
                                                 </div>                                           
 
@@ -68,6 +79,7 @@
                                             </div>
                                         </form>
                                     </div>
+                                </div> 
                                 </div>
                             </div>
                         </div>

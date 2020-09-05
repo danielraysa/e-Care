@@ -23,7 +23,12 @@
                 
             </div>
             <div class="content-body">
-                <!-- List Of All Patients -->
+                @if (session('status'))
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {{ session('status') }}
+                </div>
+            @endif
 
                 <section id="patients-list">
                     <div class="row">
@@ -51,8 +56,8 @@
                                                 <tr>
                                                     <td>{{$major->kode_prodi }}</td>
                                                     <td>{{$major->major_name}}</td>
-                                                    <td><a href="{{('tambahprodi')}}"><i class="ft-edit text-success"></i></a>
-                                                        <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>
+                                                    <td><a href="{{url('prodi/'.$major->id.'/edit')}}"><i class="ft-edit text-success"></i></a>
+                                                        <a href="{{url('major/'.$major->id.'/destroy')}}"><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

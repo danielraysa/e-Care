@@ -39,12 +39,19 @@ class MajorsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // //
+        // $Majors = Major::create([
+        //     'kode_prodi'=> $request -> kode_prodi,
+        //     'major_name'=> $request -> major_name,
+
+        // ]);
+
         $major = Major::create([
-            'kode_prodi' => $request->kode_prodi,
-            'major_name' => $request->nama_prodi,
+            'kode_prodi'=> $request -> kode_prodi,
+            'major_name' => $request -> major_name
         ]);
-        return redirect(url('/majors'));
+    
+        return redirect()->action('MajorsController@index')->with('status', 'Data Program Studi berhasil ditambahkan');
     }
 
     /**
@@ -66,7 +73,9 @@ class MajorsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $major = Major::find($id);
+        //dd($mbti);
+        return view('backend.datamaster.tambahprodi', compact('major'));
     }
 
     /**
@@ -78,7 +87,14 @@ class MajorsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $major = Major::find($id)->update([
+            'kode_prodi' => $request->kode_prodi,
+            'major_name' => $request->major_name
+        ]);
+        if($major)
+        return redirect(route('prodi.index'))->with('status', 'Data Program Studi berhasil diperbarui');
+        else
+        return redirect(route('prodi.index'))->with('status', 'Error');
     }
 
     /**
@@ -89,6 +105,8 @@ class MajorsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $major = Major::find($id);
+        $major->delete(); 
+        return redirect('/prodi')->with('status', 'Data Program Studi Berhasil dihapus');
     }
 }
