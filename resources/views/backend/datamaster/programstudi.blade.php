@@ -49,7 +49,7 @@
                                             <tbody>
                                               @foreach ( $majors as $major )
                                                 <tr>
-                                                    <td>{{$major->kode_prodi}}</td>
+                                                    <td>{{$major->kode_prodi }}</td>
                                                     <td>{{$major->major_name}}</td>
                                                     <td><a href="{{('tambahprodi')}}"><i class="ft-edit text-success"></i></a>
                                                         <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>
