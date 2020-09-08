@@ -46,13 +46,13 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput1">Kode</label>
                                                     <div class="col-md-9 mx-auto">
-                                                         <input type="text" name="kode" class="form-control required" id="kode" name="kode" />   
+                                                         <input type="text" name="kode" class="form-control required" id="kode" name="kode" @if(isset($appointment)) value="{{ $appointment->id }}" @endif/>   
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput2">Tanggal</label>
                                                     <div class="col-md-9 mx-auto">
-                                                         <input type="date" name="tanggal" class="form-control" id="tanggal">
+                                                         <input type="date" name="tanggal" class="form-control" id="tanggal" @if(isset($appointment)) value="{{ $appointment->tgl_appointment  }}" @endif>
                                                     </div>
                                                 </div>
 
@@ -69,14 +69,14 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Nama</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="nama" class="form-control" id="nama">
+                                                        <input type="text" name="nama" class="form-control" id="nama" @if(isset($appointment)) value="{{ $appointment->mahasiswa->user_role->data_mhs->nama }}" @endif>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">NIM</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="number" name="nim" class="form-control" id="nim">
+                                                        <input type="number" name="nim" class="form-control" id="nim" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->nik_nim }}" @endif >
                                                     </div>
                                                 </div>
 
@@ -91,21 +91,21 @@
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput5">Umur</label>
+                                                    <label class="col-md-3 label-control" for="projectinput5">Tanggal Lahir</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="number" name="umur" class="form-control" id="umur">
+                                                        <input type="text" name="umur" class="form-control" id="tgl_lahir" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->data_mhs->tgl_lahir }}" @endif>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">No Hp</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="number" name="nohp" class="form-control" id="nohp">
+                                                        <input type="number" name="nohp" class="form-control" id="nohp" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->data_mhs->telp }}" @endif>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput6">Jenis Kelamin</label>
+                                                    <label class="col-md-3 label-control" for="projectinput6">Program Studi</label>
                                                     <div class="col-md-9 mx-auto">
                                                          <select id="state" name="jkel" class="form-control">
                                                                         <option value="pr">S1 Sistem Informasi</option>
@@ -156,14 +156,14 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Spesifikasi</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="spesifikasi" placeholder="" ></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Deskripsi Masalah</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="deskripsi" placeholder="">@if(isset($appointment)) {{$appointment->description }} @endif</textarea>
                                                     </div>
                                                 </div>
                                             </div>

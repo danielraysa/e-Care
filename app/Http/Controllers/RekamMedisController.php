@@ -24,9 +24,11 @@ class RekamMedisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->find($id);
+        // dd($appointment);
+        return view('backend.konselor.tambahrekammedis', compact('appointment'));
     }
 
     /**

@@ -74,7 +74,8 @@
                                                     <td>S1 Sistem Informasi</td>
                                                     <td>{{ $item->tgl_appointment }}</td>
                                                     <td>{{ $item->jenis_problem }}</td>
-                                                    <td><a href="{{url('profilkonselor')}}"><i class="ft-edit text-success"></i></a>
+                                                    <td>{{ $item->description }}</td>
+                                                    <td><a href="{{ url('tambahrekammedis/'.$item->id) }}"><i class="ft-edit text-success"></i></a>
                                                         <a href=""><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>
                                                 </tr>

@@ -66,6 +66,7 @@
                                                     <td>{{ $item->tgl_appointment }}</td>
                                                     <td>Appointment</td>
                                                     <td>{{ $item->jenis_problem }}</td>
+                                                    <td>{{ $item->description }}</td>
                                                     <td>{{ $item->status }}</td>
                                                     <td>
                                                     @if($item->status == 'M')

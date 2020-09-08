@@ -99,4 +99,39 @@ class QuestionController extends Controller
         $pertanyaan->delete(); 
         return redirect('/pertanyaan')->with('status', 'Data Pertanyaan Berhasil Dihapus');
     }
+
+    public function test_tingkat()
+    {
+        $pertanyaan = Question::all();
+        return vieW('backend.mhs.testtingkatmasalah', compact('pertanyaan'));
+    }
+
+    public function test_tingkat_hasil(Request $request)
+    {
+        // dd($request->all());
+        $id_pert = $request->id_pertanyaan;
+        $jml_yes = 0;
+        // $jml_no = 0;
+        foreach($id_pert as $ids){
+            $kode = 'pertanyaan_'.$ids;
+            $jawaban = $request->$kode;
+            if($jawaban == 'yes'){
+                $jml_yes += 1;
+            }
+            /* else{
+                $jml_no += 1;
+            } */
+        }
+        if($jml_yes <= 6){
+            $nilai = 'rendah';
+        }else if($jml_yes > 6 && $jml_yes <= 12){
+            $nilai = 'sedang';
+        }else{
+            $nilai = 'berat';
+        }
+        // $pertanyaan = Question::all();
+        return response()->json(compact('nilai','jml_yes'), 200);
+        // return vieW('backend.mhs.testtingkatmasalah', compact('pertanyaan','nilai','jml_yes'));
+    }
+
 }
