@@ -45,6 +45,7 @@
                                         <table class="table table-striped table-bordered patients-list">
                                             <thead>
                                                 <tr>
+                                                    <th>No</th>
                                                     <th>NIM</th>
                                                     <th>Nama</th>
                                                     <th>Program Studi</th>
@@ -58,6 +59,7 @@
                                             <tbody>
                                                 @foreach ($appointment as $item)
                                                 <tr>
+                                                    <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->mahasiswa->user_role->nik_nim }}</td>
                                                     <td>{{ $item->mahasiswa->user_role->data_mhs->nama }}</td>
                                                     <td>S1 Sistem Informasi</td>
@@ -76,8 +78,8 @@
                                                         <button class="btn btn-danger" type="submit" value="T" name="pilihan"> Decline</button>
                                                     </form>
                                                     @else
-                                                    <button class="btn btn-success" type="button" disabled> Approve</button>
-                                                    <button class="btn btn-danger" type="button" disabled> Decline</button>
+                                                        <button class="btn btn-success" type="button" disabled> Approve</button>
+                                                        <button class="btn btn-danger" type="button" disabled> Decline</button>
                                                     @endif
                                                     </td>
                                                 </tr>

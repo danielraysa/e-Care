@@ -19,7 +19,7 @@
                 </li>
                 @endif
 
-                 <!-- @if(Auth::user()->role_id == 2)
+                 <!-- @if(Auth::user()->role_id == 1)
                 <li class="nav-item"><a href="#"><i class="la la-stethoscope"></i><span class="menu-title" data-i18n="Doctors">Konselor</span></a>
                     <ul class="menu-content">
                         <li class="{{ Request::is('counselor') ? 'active' : '' }}"><a class="menu-item" href="{{url('counselor')}}"><i></i><span>Tabel Konselor</span></a>

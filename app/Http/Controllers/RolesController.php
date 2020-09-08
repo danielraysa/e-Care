@@ -47,7 +47,7 @@ class RolesController extends Controller
         $role = Role::create([
             'role_name'=> $request -> role_name
         ]);
-        return redirect()->action('RolesController@index')->with('status', 'Data Role berhasil ditambahkan');
+        return redirect()->action('RolesController@index')->with('status', 'Data Role Berhasil Ditambahkan');
     }
 
     /**
@@ -87,7 +87,7 @@ class RolesController extends Controller
             'role_name' => $request->role_name
         ]);
         if($roles)
-        return redirect(route('roles.index'))->with('status', 'Data Role berhasil diperbarui');
+        return redirect(route('roles.index'))->with('status', 'Data Role Berhasil Diperbarui');
         else
         return redirect(route('roles.index'))->with('status', 'Error');
     }
@@ -102,7 +102,7 @@ class RolesController extends Controller
     {
         $role = Role::find($id);
         $role->delete(); 
-        return redirect('/roles')->with('status', 'Data Role Berhasil dihapus');
+        return redirect('/roles')->with('status', 'Data Role Berhasil Dihapus');
      
         
     }

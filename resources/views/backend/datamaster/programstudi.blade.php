@@ -46,6 +46,7 @@
                                         <table class="table table-striped table-bordered patients-list datatable">
                                             <thead>
                                                 <tr>
+                                                    <th>No</th>
                                                     <th>Kode Prodi</th>
                                                     <th>Program Studi</th>
                                                     <th>Aksi</th>
@@ -54,6 +55,7 @@
                                             <tbody>
                                               @foreach ( $majors as $major )
                                                 <tr>
+                                                    <td>{{ $loop->iteration }}</td>
                                                     <td>{{$major->kode_prodi }}</td>
                                                     <td>{{$major->major_name}}</td>
                                                     <td><a href="{{url('prodi/'.$major->id.'/edit')}}"><i class="ft-edit text-success"></i></a>

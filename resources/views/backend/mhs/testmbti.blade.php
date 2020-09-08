@@ -4,6 +4,13 @@
 <div class="content-overlay"></div>
         <div class="content-wrapper">
             <div class="content-body">
+
+            @if (session('status'))
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {{ session('status') }}
+                </div>
+            @endif
                 <!-- Basic form layout section start -->
                 <section id="basic-form-layouts">
                     <div class="row match-height">
@@ -21,10 +28,11 @@
                                         </ul>
                                     </div>
                                 </div>
+                             
                                 
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-
+                                    
                                         <div class="card-text">
                                             <p>Kecemasan yang dialami seseorang memiliki tingkatan tersendiri, yaitu ringan, sedang, dan berat. Terkadang kecemasan meningkat lebih parah dikarenakan tidak adanya penanganan dengan segera. Sehingga penting untuk mengetahui tingkat kecemasan yang dialami seseorang agar dapat segera diatasi. Berikut ini pertanyaan untuk mengetahui tingkat kecemasan yang kamu alami: 
                                             <a href="https://www.16personalities.com/id/tes-kepribadian" target="_blank"> Klik disini</a>
@@ -32,7 +40,8 @@
                                         </div>
                                          <!-- ISI KONTEN DISINI  -->
 
-                                         <form class="form">
+                                         <form class="form" action="{{ route('mbti.simpantest') }}" method="POST">
+                                            {{ csrf_field() }}
                                             <div class="form-body">
                                                 <h4 class="form-section"><i class="ft-user"></i> Hasil Test</h4>
                                                 <div class="row">
@@ -42,9 +51,7 @@
                                                                 <select id="mbti" name="testmbti" class="form-control">
                                                                     @foreach($mbti as $mbt)
                                                                     <option value="{{$mbt->id}}">{{$mbt->mbti_name}}</option>
-                                                                  
                                                                     @endforeach
-                         
                                                                 </select>
                                                             </div>
                                                         </div>

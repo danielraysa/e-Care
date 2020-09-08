@@ -11,6 +11,7 @@ use App\Notification;
 use App\Events\SendNotification;
 use Auth;
 use DB;
+use Mail;
 class AppointmentController extends Controller
 {
     /**
@@ -69,7 +70,7 @@ class AppointmentController extends Controller
             'message' => 'Ada permintaan appointment baru',
         ]);
         $event = broadcast(new SendNotification($notif));
-        return redirect()->action('AppointmentController@index')->with('status', 'Data appointment berhasil ditambahkan');
+        return redirect()->action('AppointmentController@index')->with('status', 'Data Appointment Berhasil Dibuat, tunggu notifikasi via email');
     }
 
     /**
@@ -104,14 +105,26 @@ class AppointmentController extends Controller
     public function update(Request $request, $id)
     {
         //
-        if($request->pilihan == 'Y')
-        $pilihan = 'Y';
-        else
-        $pilihan = 'T';
+        if($request->pilihan == 'Y'){
+            $pilihan = 'Y';
+            $isi_notifikasi = 'Appointment diterima';
+        }
+        else{
+            $pilihan = 'T';
+            $isi_notifikasi = 'Appointment ditolak';
+        }
         $appointment = Appointment::find($id)->update([
             'status' => $pilihan,
         ]);
-        // return 1;
+        $data_app = Appointment::find($id);
+        $tgl = $data_app->tgl_appointment;
+        Mail::send('isi-email', compact('isi_notifikasi', 'tgl'), function ($message)
+        {
+            $message->subject('tes email');
+            $message->from('anelzraysa@mail.com', 'E-Care');
+            // $message->to($email_mhs);
+            $message->to('adistriani@gmail.com');
+        });
         // return redirect()->action('AppointmentController@index')->with('status', 'Data appointment berhasil diupdate');
         return redirect('jadwalkonselor')->with('status', 'Data appointment berhasil diupdate');
     }
@@ -161,6 +174,7 @@ class AppointmentController extends Controller
             ->get()->first(); */
         // dd($appointment);
         return view('backend.konselor.jadwalkonselor', compact('appointment'));
+        $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('status', 'Y')->get();
     }
 
 }

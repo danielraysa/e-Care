@@ -51,7 +51,7 @@
                                             <thead>
                                          
                                                 <tr>
-                                                    <th>Id</th>
+                                                    <th>No</th>
                                                     <th>Jenis Kepribadian/MBTI</th>
                                                     <th>Aksi</th>
                                                 </tr>
@@ -59,7 +59,7 @@
                                             <tbody>
                                             @foreach ( $mbti as $mbt )
                                                 <tr>
-                                                    <td>{{ $mbt->id}}</td>
+                                                    <td>{{ $loop->iteration}}</td>
                                                     <td>{{ $mbt->mbti_name}}</td>
                                                     <td><a href="{{url('mbti/'.$mbt->id.'/edit')}}"><i class="ft-edit text-success"></i></a>
                                                         <a href="{{ url('mbti/'.$mbt->id.'/destroy') }}" onclick="return confirm('Anda yakin ingin menghapus data ini?');" ><i class="ft-trash-2 ml-1 text-warning"></i></a>

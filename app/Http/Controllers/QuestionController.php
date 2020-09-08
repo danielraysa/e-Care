@@ -41,7 +41,7 @@ class QuestionController extends Controller
         $pertanyaan = Question::create([
             'description' => $request->pertanyaan
         ]);
-        return redirect()->action('QuestionController@index')->with('status', 'Data pertanyaan berhasil ditambahkan');
+        return redirect()->action('QuestionController@index')->with('status', 'Data Pertanyaan Berhasil Ditambahkan');
     }
 
     /**
@@ -82,7 +82,7 @@ class QuestionController extends Controller
             'description' => $request->pertanyaan
         ]);
         if($pertanyaan)
-        return redirect(route('pertanyaan.index'))->with('status', 'Data pertanyaan berhasil diperbarui');
+        return redirect(route('pertanyaan.index'))->with('status', 'Data Pertanyaan Berhasil Diperbarui');
         else
         return redirect(route('pertanyaan.index'))->with('status', 'Error');
     }
@@ -97,6 +97,6 @@ class QuestionController extends Controller
     {
         $pertanyaan = Question::find($id);
         $pertanyaan->delete(); 
-        return redirect('/pertanyaan')->with('status', 'Data Pertanyaan Berhasil dihapus');
+        return redirect('/pertanyaan')->with('status', 'Data Pertanyaan Berhasil Dihapus');
     }
 }

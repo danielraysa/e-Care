@@ -48,21 +48,37 @@
                                                 <tr>
                                                     <th>No</th>
                                                     <th>NIM</th>
-                                                    <th>Nama </th>
+                                                    <th>Nama</th>
+                                                    <th>Program Studi</th>
+                                                    <th>Tanggal Appointment</th>
+                                                    <th>Jenis Layanan</th>
+                                                    <th>Keluhan</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                               
-                                                <tr>
+                                                {{-- <tr>
                                                     <td>1</td>
                                                     <td>16410100115</td>
                                                     <td>Gusti Adistriani</td>
                                                     <td><a href="{{url('profilkonselor')}}"><i class="ft-edit text-success"></i></a>
                                                         <a href=""><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>
+                                                </tr> --}}
+                                              @foreach ($appointment as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->mahasiswa->user_role->nik_nim }}</td>
+                                                    <td>{{ $item->mahasiswa->user_role->data_mhs->nama }}</td>
+                                                    <td>S1 Sistem Informasi</td>
+                                                    <td>{{ $item->tgl_appointment }}</td>
+                                                    <td>{{ $item->jenis_problem }}</td>
+                                                    <td><a href="{{url('profilkonselor')}}"><i class="ft-edit text-success"></i></a>
+                                                        <a href=""><i class="ft-trash-2 ml-1 text-warning"></i></a>
+                                                    </td>
                                                 </tr>
-                                              
+                                              @endforeach
                                             </tbody>
                                         </table>
                                     </div>

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Mbti;
+use App\MhsMbti;
 use App\Mahasiswa;
+use Auth;
 
 class MbtiController extends Controller
 {
@@ -56,7 +58,7 @@ class MbtiController extends Controller
             'mbti_name' => $request ->mbti_name,
         ]);
 
-        return redirect()->action('MbtiController@index')->with('status', 'Data MBTI berhasil ditambahkan');
+        return redirect()->action('MbtiController@index')->with('status', 'Data MBTI Berhasil Ditambahkan');
 
         
     }
@@ -105,7 +107,7 @@ class MbtiController extends Controller
             'mbti_name' => $request->mbti_name
         ]);
         if($upd)
-        return redirect(route('mbti.index'))->with('status', 'Data MBTI berhasil diperbarui');
+        return redirect(route('mbti.index'))->with('status', 'Data MBTI Berhasil Diperbarui');
         else
         return redirect(route('mbti.index'))->with('status', 'Error');
     // alihkan halaman edit ke halaman books
@@ -124,8 +126,22 @@ class MbtiController extends Controller
         $mbti = Mbti::find($id);
         $mbti->delete();
         // $mbti->softDeletes();
-        return redirect('/tabelmbti')->with('status', 'Data MBTI Berhasil dihapus');
+        return redirect('/tabelmbti')->with('status', 'Data MBTI Berhasil Dihapus');
      
         
     }
+
+    public function hasilmbti(Request $request){
+        //$nim = Auth::user()->id;
+        $nim = Auth::user()->email;
+        $pil_mbti = $request->testmbti;
+        // dd($nim);
+        $mhs_mbti = MhsMbti::create([
+            'nim' => $nim,
+            'id_mbti' => $pil_mbti,
+        ]);
+        //dd($mhs_mbti);
+        return redirect(url('testmbti'))->with('status', 'Data Telah Disimpan');
+    }
+
 }

@@ -47,7 +47,7 @@
                                         <table class="table table-striped table-bordered patients-list datatable">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
+                                                    <th>No</th>
                                                     <th>Role</th>
                                                     <th>Aksi</th>
                                                 </tr>
@@ -55,7 +55,7 @@
                                             <tbody>
                                             @foreach( $roles as $role )
                                                 <tr>
-                                                    <td>{{$role->id}}</td>
+                                                    <td>{{$loop->iteration}}</td>
                                                     <td>{{$role->role_name}}</td>
                                                     <td><a href="{{url('roles/'.$role->id.'/edit')}}"><i class="ft-edit text-success"></i></a>
                                                         <a href="{{ url('roles/'.$role->id.'/destroy') }}" onclick="return confirm('Anda yakin ingin menghapus data ini?');" ><i class="ft-trash-2 ml-1 text-warning"></i></a>

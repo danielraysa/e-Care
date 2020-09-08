@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Mbti extends Model
 {
-    
+    use SoftDeletes;
     //
     protected $table      = 'mbti';
     protected $guarded    = [];
-    protected $dates      = ['deluse SoftDeletes;eted_at'];
+    protected $dates      = ['deleted_at'];
     // protected $primaryKey = 'nim';
     // public $timestamps = false;
     

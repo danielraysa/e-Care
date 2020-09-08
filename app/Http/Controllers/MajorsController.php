@@ -51,7 +51,7 @@ class MajorsController extends Controller
             'major_name' => $request -> major_name
         ]);
     
-        return redirect()->action('MajorsController@index')->with('status', 'Data Program Studi berhasil ditambahkan');
+        return redirect()->action('MajorsController@index')->with('status', 'Data Program Studi Berhasil Ditambahkan');
     }
 
     /**
@@ -92,7 +92,7 @@ class MajorsController extends Controller
             'major_name' => $request->major_name
         ]);
         if($major)
-        return redirect(route('prodi.index'))->with('status', 'Data Program Studi berhasil diperbarui');
+        return redirect(route('prodi.index'))->with('status', 'Data Program Studi Berhasil Diperbarui');
         else
         return redirect(route('prodi.index'))->with('status', 'Error');
     }
@@ -107,6 +107,6 @@ class MajorsController extends Controller
     {
         $major = Major::find($id);
         $major->delete(); 
-        return redirect('/prodi')->with('status', 'Data Program Studi Berhasil dihapus');
+        return redirect('/prodi')->with('status', 'Data Program Studi Berhasil Dihapus');
     }
 }

@@ -91,9 +91,10 @@ Route::group(['middleware' => 'auth'], function () {
     
 
     //laporan rekam medis
-    Route::get('/rekammedis', function () {
-        return view('backend.konselor.laprekammedis');
-    });
+    Route::resource('rekammedis', 'RekamMedisController');
+    // Route::get('/rekammedis', function () {
+    //     return view('backend.konselor.laprekammedis');
+    // });
 
     Route::get('/tambahrekammedis', function () {
         return view('backend.konselor.tambahrekammedis');
@@ -117,9 +118,9 @@ Route::group(['middleware' => 'auth'], function () {
     //appointment    
     Route::get('/buatappointment', 'AppointmentController@index');
     // Route::resource('/appointment', 'AppointmentController');
-    Route::get('/appointment', 'AppointmentController@index');
-    Route::post('/appointment', 'AppointmentController@store');
-    Route::post('/appointment/{id}/update', 'AppointmentController@update');
+    Route::get('/appointment', 'AppointmentController@index')->name('appointment.index');
+    Route::post('/appointment', 'AppointmentController@store')->name('appointment.store');
+    Route::post('/appointment/{id}/update', 'AppointmentController@update')->name('appointment.update');
     //end appointment
     
    
@@ -175,7 +176,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //tabel mbti
-      Route::get('/testmbti', 'MbtiController@dropdownindex');
+    Route::get('/testmbti', 'MbtiController@dropdownindex');
+    Route::post('/testmbti', 'MbtiController@hasilmbti')->name('mbti.simpantest');
     //end tabel mbti
 
   
