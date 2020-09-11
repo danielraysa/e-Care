@@ -17,7 +17,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-form-center">Tes Tingkat Kecemasan</h4>
+                                    <h4 class="card-title" id="basic-layout-form-center">Tes Kepribadian MBTI</h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
@@ -34,10 +34,18 @@
                                     <div class="card-body">
                                     
                                         <div class="card-text">
-                                            <p>Kecemasan yang dialami seseorang memiliki tingkatan tersendiri, yaitu ringan, sedang, dan berat. Terkadang kecemasan meningkat lebih parah dikarenakan tidak adanya penanganan dengan segera. Sehingga penting untuk mengetahui tingkat kecemasan yang dialami seseorang agar dapat segera diatasi. Berikut ini pertanyaan untuk mengetahui tingkat kecemasan yang kamu alami: 
+                                            <p> Setiap orang memiliki kepribadian yang berbeda-beda. Kepribadian ini dapat membantu mengetahui dan mengenal diri sendiri secara lebih dalam, termasuk kelebihan dan kelemahan diri sendiri. Untuk mengetahui hal tersebut, terdapat test MBTI yang dapat menjawab apa kepribadian yang kamu miliki, test ini memiliki 16 tipe kepribadian seseorang. Jika kamu ingin mengetahui bagamana kepribadianmu, silakan lakukan test MBTI di link yang telah disediakan: 
                                             <a href="https://www.16personalities.com/id/tes-kepribadian" target="_blank"> Klik disini</a>
                                             </p>
+
                                         </div>
+
+                                        <div>
+                                           <p>Jika kamu telah melakukan test MBTI dan sudah mengetahui hasil test kepribadiannmu, silahkan untuk kembali ke halaman ini dan mengisi jawaban dari hasil test tersebut.</p>
+                                            
+                                        </div>
+
+                                    
                                          <!-- ISI KONTEN DISINI  -->
 
                                          <form class="form" action="{{ route('mbti.simpantest') }}" method="POST">
@@ -59,8 +67,8 @@
                                             </div>
                                             <button type="submit" class="btn btn-success">Simpan</button>
                                         </form>
-
                                     </div>
+                                 
                                 </div>
                             </div>
                         </div>
