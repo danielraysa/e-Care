@@ -51,6 +51,7 @@
                                                     <th>Program Studi</th>
                                                     <th>Tanggal Appointment</th>
                                                     <th>Jenis Layanan</th>
+                                                    <th>Jenis Problem</th>
                                                     <th>Keluhan</th>
                                                     <th>Status</th>
                                                     <th>Aksi</th>
@@ -64,7 +65,7 @@
                                                     <td>{{ $item->mahasiswa->user_role->data_mhs->nama }}</td>
                                                     <td>S1 Sistem Informasi</td>
                                                     <td>{{ $item->tgl_appointment }}</td>
-                                                    <td>Appointment</td>
+                                                    <td>{{ $item->jenis_layanan }}</td>
                                                     <td>{{ $item->jenis_problem }}</td>
                                                     <td>{{ $item->description }}</td>
                                                     <td>{{ $item->status }}</td>

@@ -124,12 +124,21 @@
             </div>
             <div class="col-lg-4 col-md-8">
                 <div class="form-group">
+                    <label for="service">Jenis Layanan<span class="text-danger">*</span></label>
+                    <select name="jenis_layanan" class="form-control" id="service" required>
+                        <option value="chatting">Chatting</option>
+                        <option value="konseling">Konseling Langsung</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-8">
+                <div class="form-group">
                     <label for="date">Tanggal Appointment <span class="text-danger">*</span></label>
-                    <input type="datetime-local" class="form-control" id="date" name="tgl_appointment" required>
+                    <input type="datetime-local" class="form-control" id="date" name="tgl_appointment" value="{{ date('Y-m-d') }}T{{ date('H:i') }}" required>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-8">
+            {{-- <div class="col-lg-4 col-md-8">
                 <div class="form-group">
                     <label for="date">Konselor <span class="text-danger">*</span></label>
                     <select name="counselor" class="form-control" id="service" required>
@@ -138,7 +147,7 @@
                         @endforeach
                     </select>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <div class="row">

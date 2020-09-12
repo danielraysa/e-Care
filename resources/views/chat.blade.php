@@ -100,8 +100,8 @@
                         </ul>
                         <h6 class="px-2 pt-2 pb-25 mb-0">CONTACTS<i class="ft-plus float-right cursor-pointer"></i></h6> --}}
                         <ul class="chat-sidebar-list">
-                            @foreach ($mahasiswa as $mhs)
-                            <li class="user-chat" data-id="{{ $mhs->id }}">
+                            @foreach ($users as $usr)
+                            <li class="user-chat" data-id="{{ $usr->id }}">
                                 <div class="d-flex align-items-center">
                                     {{-- <div class="avatar m-0 mr-50"><img class="w-100 h-100" style="object-fit: cover;" src="{{ $mhs->foto_mhs() }}" height="36" width="36" alt="sidebar user image"> --}}
                                     <div class="avatar m-0 mr-50"><img class="w-100 h-100" style="object-fit: cover;" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}" height="36" width="36" alt="sidebar user image">
@@ -109,7 +109,7 @@
                                     </div>
                                     <div class="chat-sidebar-name">
                                         {{-- <h6 class="mb-0">{{ $mhs->nama }}</h6><span class="text-muted">{{ $mhs->nim }}</span> --}}
-                                        <h6 class="mb-0">{{ $mhs->name }}</h6><span class="text-muted">{{ $mhs->email }}</span>
+                                        <h6 class="mb-0">{{ $usr->name }}</h6><span class="text-muted">{{ $usr->email }}</span>
                                     </div>
                                 </div>
                             </li>

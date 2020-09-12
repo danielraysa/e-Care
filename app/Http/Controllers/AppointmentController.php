@@ -12,6 +12,7 @@ use App\Events\SendNotification;
 use Auth;
 use DB;
 use Mail;
+
 class AppointmentController extends Controller
 {
     /**
@@ -26,13 +27,14 @@ class AppointmentController extends Controller
         $nim = $user->email;
         $counselor = Counselor::with('data_user')->get();
         $mhs = Mahasiswa::find($nim);
+        $notification = Notification::where('user_id', $user->id)->get();
         // $user = User::with('user_role.data_mhs.dosen_wali')->find(Auth::id());
         /* $user = DB::table('users')
             ->join('v_mhs', 'users.email', '=', 'v_mhs.nim')
             ->join('v_karyawan', 'v_mhs.dosen_wl', '=', 'v_karyawan.nik')
             ->get()->first(); */
         // dd($user);
-        return view('backend.mhs.buatappointment', compact('mhs','counselor'));
+        return view('backend.mhs.buatappointment', compact('mhs','counselor','notification'));
     }
 
     /**
@@ -58,18 +60,28 @@ class AppointmentController extends Controller
         $user = Auth::user();
         $appointment = Appointment::create([
             'user_id' => $user->id,
-            'counselor_id' => $request->counselor,
+            // 'counselor_id' => $request->counselor,
+            'counselor_id' => 1, // admin
             'tgl_appointment' => $request->tgl_appointment,
             'jenis_problem' => $request->jenis_masalah,
+            'jenis_layanan' => $request->jenis_layanan,
             'description' => $request->description,
             'status' => 'M',
             // 'created_at' => date('Y-m-d H:i:s')
         ]);
-        $notif = Notification::create([
+        /* $notif = Notification::create([
             'user_id' => $request->counselor,
+            'message' => 'Ada permintaan appointment baru',
+        ]); */
+        // buat admin
+        $notif = Notification::create([
+            'user_id' => 1,
             'message' => 'Ada permintaan appointment baru',
         ]);
         $event = broadcast(new SendNotification($notif));
+        if($request->jenis_layanan == 'chatting')
+        return redirect(route('chat'));
+        else
         return redirect()->action('AppointmentController@index')->with('status', 'Data Appointment Berhasil Dibuat, tunggu notifikasi via email');
     }
 
@@ -140,41 +152,20 @@ class AppointmentController extends Controller
         //
     }
 
-    public function kirimemail()
-    {
-        //
-        $to = "daniel@dinamika.ac.id";
-        $subject = "My subject";
-        $txt = '<div style="margin: auto; max-width: 500px; background-color: #f5f5f5; padding: 2rem; border-radius: 0.5rem;">
-        <img style="display: flex; margin: auto;" src="https://gate.dinamika.ac.id/staff/images/icon/logo-blue.png" alt="UNIVERSITAS DINAMIKA" /> <br>
-        <p>Pengajuan sidang tugas akhir Anda <b>telah diterima</b> oleh PPTA. Detail tugas akhir Anda sebagai berikut :</p>
-        <span>NIM :$znim </span> <br>
-        <span>Nama : namamhse </span> <br>
-        <span>Judul : judul </span> <br>
-        <span>Pembimbing 1 : dobing1 </span> <br>
-        <span>Pembimbing 2 : dobing2 </span> <br>
-        <span>Penguji : douji </span> <br>
-        <br>
-        <p style="color: #949494">* Email ini dikirim otomatis oleh program. No reply.</p>
-        </div>';
-        $headers = "From: anel.raysa@gmail.com";
-
-        mail($to,$subject,$txt,$headers);
-    }
-
     public function index_konselor()
     {
         $counselor = Counselor::with('data_user')->get();
         // $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('counselor_id', Auth::id())->get();
         $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->get();
         $user = User::with('user_role.data_mhs.dosen_wali')->find(Auth::id());
+        $notification = Notification::where('user_id', Auth::id())->get();
         /* $user = DB::table('users')
             ->join('v_mhs', 'users.email', '=', 'v_mhs.nim')
             ->join('v_karyawan', 'v_mhs.dosen_wl', '=', 'v_karyawan.nik')
             ->get()->first(); */
         // dd($appointment);
-        return view('backend.konselor.jadwalkonselor', compact('appointment'));
-        $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('status', 'Y')->get();
+        return view('backend.konselor.jadwalkonselor', compact('appointment','notification'));
+        // $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('status', 'Y')->get();
     }
 
 }

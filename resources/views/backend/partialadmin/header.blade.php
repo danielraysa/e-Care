@@ -31,6 +31,20 @@
                                 <span class="notification-tag badge badge-danger float-right m-0" id="notification-label">5 New</span>
                             </li>
                             <li class="scrollable-container media-list w-100" id="notif-list">
+                                @if(isset($notification))
+                                @foreach($notification as $notif)
+                                    <a href="javascript:void(0)">
+                                        <div class="media">
+                                            <div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan mr-0"></i></div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">{{ $notif->message }}</h6>
+                                                {{-- <p class="notification-text font-small-3 text-muted">Lorem ipsum dolor sit amet, consectetuer elit.</p><small> --}}
+                                                    <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">{{ $notif->created_at }}</time></small>
+                                            </div>
+                                        </div>
+                                    </a>
+                                @endforeach
+                                @endif
                                 {{-- <a href="javascript:void(0)">
                                     <div class="media">
                                         <div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan mr-0"></i></div>
@@ -82,7 +96,7 @@
                             <li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center" href="javascript:void(0)">Read all notifications</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-mail"></i></a>
+                    {{-- <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-mail"></i></a>
                         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                             <li class="dropdown-menu-header">
                                 <h6 class="dropdown-header m-0"><span class="grey darken-2">Messages</span></h6><span class="notification-tag badge badge-warning float-right m-0">4 New</span>
@@ -126,7 +140,7 @@
                                 </a></li>
                             <li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center" href="javascript:void(0)">Read all messages</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li class="dropdown dropdown-user nav-item">
                         <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1 user-name text-bold-700">{{ Auth::user()->name }}</span><span class="avatar avatar-online"><img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-19.png') }}" alt="avatar"><i></i></span></a>
                         <div class="dropdown-menu dropdown-menu-right">

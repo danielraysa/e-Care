@@ -47,23 +47,46 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        $user = User::create([
-            'name' => $request->nama,
-            'email' => $request->data_tabel,
-            // 'password' => bcrypt($request->password),
-            'password' => bcrypt('password'),
-            'role_id' => $request->user_role,
-        ]);
-        $user_role = UserRole::create([
-            'user_id' => $user->id,
-            'nik_nim' => $request->data_tabel,
-            'role_id' => $request->user_role,
-        ]);
-        if($request->user_role == 4){
-            $counselor = Counselor::create([
-                'user_id' => $user->id,
+        // dd($request->all());
+        $check = User::where('email',$request->data_tabel)->get()->first();
+        if($check->count() != 0){
+            dd('update');
+            $check->update([
+                'password' => bcrypt($request->password),
+                // 'password' => bcrypt('password'),
+                'role_id' => $request->user_role,
             ]);
+            $user_role = UserRole::where('user_id', $check->id)->get()->first()->update([
+                // 'user_id' => $user->id,
+                'nik_nim' => $request->data_tabel,
+                'role_id' => $request->user_role,
+            ]);
+            /* if($request->user_role == 4){
+                $counselor = Counselor::create([
+                    'user_id' => $user->id,
+                ]);
+            } */
+        }else{
+            dd('create new');
+            $user = User::create([
+                'name' => $request->nama,
+                'email' => $request->data_tabel,
+                // 'password' => bcrypt($request->password),
+                'password' => bcrypt('password'),
+                'role_id' => $request->user_role,
+            ]);
+            $user_role = UserRole::create([
+                'user_id' => $user->id,
+                'nik_nim' => $request->data_tabel,
+                'role_id' => $request->user_role,
+            ]);
+            if($request->user_role == 4){
+                $counselor = Counselor::create([
+                    'user_id' => $user->id,
+                ]);
+            }
         }
+        
         return redirect()->action('UserController@index')->with('status', 'Data user berhasil ditambahkan');
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Message;
 use App\Mahasiswa;
+use App\Appointment;
 use App\Events\MessageSent;
 use Illuminate\Http\Request;
 use App\Events\PrivateMessageSent;
@@ -82,10 +83,19 @@ class MessageController extends Controller
 
     public function listchat()
     {
-        // $mahasiswa = Mahasiswa::all()->random(10);
-        $mahasiswa = User::all()->except(auth()->id());
-        return view('chat', compact('mahasiswa'));
-        // return view('tes-chat', compact('mahasiswa','messages','user_receiver'));
+        if(Auth::id() == 1){
+            $users = User::all()->except(auth()->id());
+        }else{
+            $users = User::whereIn('role_id',[1])->get();
+            $appointment = Appointment::where('user_id',Auth::id())->orderBy('created_at')->get()->last();
+            if(!$appointment || $appointment->jenis_layanan != 'chatting'){
+                $user = Auth::user();
+                $nim = $user->email;
+                $mhs = Mahasiswa::find($nim);
+                return view('backend.mhs.buatappointment', compact('mhs'));
+            }
+        }
+        return view('chat', compact('users'));
     }
 
     public function listmessage($id)

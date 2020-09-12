@@ -60,14 +60,15 @@
                                         <div class="form-group">
                                             <label for="gender">Data Tabel:</label>
                                             <select name="data_tabel" id="data_tabel" class="form-control select2">
+                                                <option selected disabled>Pilih nama</option>
                                             @foreach ($mahasiswa as $mhs)
                                                 {{-- @if($mhs->role_mhs != "") --}}
-                                                <option value="{{ $mhs->NIM }}">{{ $mhs->NAMA }}</option>
+                                                <option value="{{ $mhs->NIM }}">{{ $mhs->NAMA }} ({{ $mhs->nim }})</option>
                                                 {{-- @endif --}}
                                             @endforeach
                                             @foreach ($karyawan as $kary)
                                                 {{-- @if($kary->role_kary != "") --}}
-                                                <option value="{{ $kary->NIK }}">{{ $kary->NAMA }}</option>
+                                                <option value="{{ $kary->NIK }}">{{ $kary->NAMA }} ({{ $kary->nik }})</option>
                                                 {{-- @endif --}}
                                             @endforeach
                                             </select>
@@ -86,7 +87,7 @@
                                     <div class="col-lg-3 col-md-6">
                                         <div class="form-group">
                                             <label for="password">Password <span class="text-danger">*</span></label>
-                                            <input type="password" class="form-control" placeholder="Password" id="password" required>
+                                            <input type="password" name="password" class="form-control" placeholder="Password" id="password" required>
                                         </div>
                                     </div>
                                 </div>
@@ -95,6 +96,29 @@
                                     <button type="submit" class="btn btn-outline-success mr-1">Kirim</button> <button type="submit" class="btn btn-outline-danger">Batal</button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">Data User</h2>
+                            <table class="table table-bordered table-striped datatable">
+                                <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Nama</th>
+                                    <th>Username</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($user as $usr)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $usr->name }}</td>
+                                    <td>{{ $usr->email }}</td>
+                                </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </section>
