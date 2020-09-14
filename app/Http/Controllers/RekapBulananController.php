@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Appointment;
+use App\RekamMedis;
 
 class RekapBulananController extends Controller
 {
@@ -13,7 +15,10 @@ class RekapBulananController extends Controller
      */
     public function index()
     {
-        //
+        // $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('status', 'Y')->get();
+        $rekam = RekamMedis::with('data_appointment')->get();
+        // dd($rekam);
+        return view('backend.konselor.laprekapbulan', compact('rekam'));
     }
 
     /**

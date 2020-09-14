@@ -14,11 +14,11 @@ class Question extends Model
 
     public function jawaban()
     {
-        $this->hasMany('App\Answer', 'question_id', 'id');
+        return $this->hasMany('App\Answer', 'question_id', 'id');
     }
 
     public function kunci_jawaban()
     {
-        $this->hasOne('App\Answer', 'id', 'answer_id');
+        return $this->hasOne('App\Answer', 'id', 'answer_id');
     }
 }

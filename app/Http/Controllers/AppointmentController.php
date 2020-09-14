@@ -167,7 +167,7 @@ class AppointmentController extends Controller
     {
         $counselor = Counselor::with('data_user')->get();
         // $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('counselor_id', Auth::id())->get();
-        $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->get();
+        $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->whereNull('status')->get();
         $user = User::with('user_role.data_mhs.dosen_wali')->find(Auth::id());
         $notification = Notification::where('user_id', Auth::id())->get();
         /* $user = DB::table('users')

@@ -57,19 +57,21 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach ($rekam as $item)
                                               
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>10/09/2020</td>
-                                                    <td>Saya kebingungan untuk menentukan masalah karir saya</td>
-                                                    <td>Appointment</td>
-                                                    <td>Masalah Karir</td>
-                                                    <td>Mahasiswa ini akhirnya menentukan apa yang akan menjadi karirnya</td>
-                                                    <td>Mahasiswa ini harus mengupgrade dirinya untuk karirnya sendiri</td>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->tgl }}</td>
+                                                    <td>{{ $item->data_appointment->description }}</td>
+                                                    <td>{{ $item->data_appointment->jenis_layanan }}</td>
+                                                    <td>{{ $item->data_appointment->jenis_problem }}</td>
+                                                    <td>{{ $item->prospek }}</td>
+                                                    <td>$item->tindak_lanjut</td>
                                                     <td><a href=""><i class="ft-edit text-success"></i></a>
                                                         <a href=""><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>
                                                 </tr>
+                                                @endforeach
                                               
                                             </tbody>
                                         </table>

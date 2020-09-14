@@ -52,6 +52,7 @@
                                                     <th>Program Studi</th>
                                                     <th>Tanggal Appointment</th>
                                                     <th>Jenis Layanan</th>
+                                                    <th>Jenis Bimbingan</th>
                                                     <th>Keluhan</th>
                                                     <th>Actions</th>
                                                 </tr>
@@ -73,6 +74,7 @@
                                                     <td>{{ $item->mahasiswa->user_role->data_mhs->nama }}</td>
                                                     <td>S1 Sistem Informasi</td>
                                                     <td>{{ $item->tgl_appointment }}</td>
+                                                    <td>{{ $item->jenis_layanan }}</td>
                                                     <td>{{ $item->jenis_problem }}</td>
                                                     <td>{{ $item->description }}</td>
                                                     <td><a href="{{ url('tambahrekammedis/'.$item->id) }}"><i class="ft-edit text-success"></i></a>

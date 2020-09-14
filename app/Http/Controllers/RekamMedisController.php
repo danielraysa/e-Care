@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Appointment;
-
+use App\RekamMedis;
 
 class RekamMedisController extends Controller
 {
@@ -28,7 +28,7 @@ class RekamMedisController extends Controller
     {
         $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->find($id);
         // dd($appointment);
-        return view('backend.konselor.tambahrekammedis', compact('appointment'));
+        return view('backend.konselor.tambahrekammedis', compact('appointment','id'));
     }
 
     /**
@@ -37,9 +37,45 @@ class RekamMedisController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         //
+        // dd($request->all());
+        $rekam = RekamMedis::create([
+            'appointment_id' => $id,
+            'tgl' => $request->tanggal,
+            'pertemuan' => $request->pertemuanke,
+            'umum' => $request->umum,
+            'belajar' => $request->belajar,
+            'spesifikasi' => $request->spesifikasi,
+            'deskripsi' => $request->deskripsi,
+            'rasa_aman' => $request->rasaaman,
+            'kompetensi' => $request->kompetensi,
+            'aspirasi' => $request->aspirasi,
+            'semangat' => $request->semangat,
+            'kesempatan' => $request->kesempatan,
+            'ram_pembinaan' => $request->rampembinaan,
+            'ram_teknik' => $request->ramteknik,
+            'kom_pembinaan' => $request->kompembinaan,
+            'kom_teknik' => $request->komteknik,
+            'asp_pembinaan' => $request->asppembinaan,
+            'asp_teknik' => $request->aspteknik,
+            'sem_pembinaan' => $request->sempembinaan,
+            'sem_teknik' => $request->semteknik,
+            'kes_pembinaan' => $request->kespembinaan,
+            'kes_teknik' => $request->kesteknik,
+            'giz_pembinaan' => $request->gizpembinaan,
+            'pend_pembinaan' => $request->pendpembinaan,
+            'pso_pembinaan' => $request->psopembinaan,
+            'bud_pembinaan' => $request->budpembinaan,
+            'koin_pembinaan' => $request->koinpembinaan,
+            'p1' => $request->p1,
+            'p2' => $request->p2,
+            'p3' => $request->p3,
+            'prospek' => $request->prospek,
+        ]);
+
+        return redirect()->route('rekam-medis')->with('status', 'Berhasil menambahkan data rekam medis');
     }
 
     /**

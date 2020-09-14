@@ -98,18 +98,19 @@ Route::group(['middleware' => 'auth'], function () {
 
    
     Route::get('tambahrekammedis/{id}', 'RekamMedisController@create');
-
-    Route::get('addrekammedis', 'RekamMedisController@index');
+    Route::post('tambahrekammedis/{id}', 'RekamMedisController@store')->name('simpan-rekam');
+    Route::get('addrekammedis', 'RekamMedisController@index')->name('rekam-medis');
     //end rekam medis
 
     //laporan rekap perbulan
-    Route::get('/rekap', function () {
-        return view('backend.konselor.laprekapbulan');
-    });
+    Route::resource('rekapbulanan', 'RekapBulananController');
+    // Route::get('/rekap', function () {
+    //     return view('backend.konselor.laprekapbulan');
+    // });
 
-    Route::get('/laprekapbulan', function () {
-        return view('backend.warek.laprekapperbulan');
-    });
+    // Route::get('/laprekapbulan', function () {
+    //     return view('backend.warek.laprekapperbulan');
+    // });
 
     Route::get('/tambahrekapbulan', function () {
         return view('backend.konselor.tambahrekapbulan');

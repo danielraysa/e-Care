@@ -40,7 +40,8 @@
                                         <div class="card-text">
                                            
                                         </div>
-                                        <form class="form form-horizontal">
+                                        <form action="{{ route('simpan-rekam', $id) }}" method="POST" class="form form-horizontal">
+                                            {{ csrf_field() }}
                                             <div class="form-body">
                                                 <h4 class="form-section"><i class="ft-user"></i> Detail Konseling</h4>
                                                 <div class="form-group row">
@@ -93,7 +94,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Tanggal Lahir</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="umur" class="form-control" id="tgl_lahir" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->data_mhs->tgl_lahir }}" @endif>
+                                                        <input type="text" name="tgl_lahir" class="form-control" id="tgl_lahir" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->data_mhs->tgl_lahir }}" @endif>
                                                     </div>
                                                 </div>
 
@@ -107,7 +108,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput6">Program Studi</label>
                                                     <div class="col-md-9 mx-auto">
-                                                         <select id="state" name="jkel" class="form-control">
+                                                         <select id="state" name="prodi" class="form-control">
                                                                         <option value="pr">S1 Sistem Informasi</option>
                                                                         <option value="lk">S1 Teknik Informatika</option>
                                                                     </select>
@@ -121,10 +122,10 @@
                                                     <div class="col-md-9 mx-auto">
                                                         <select id="projectinput7" name="umum" class="form-control">
                                                             <option value="0" selected="" disabled="">Umum</option>
-                                                            <option value="">JDK</option>
-                                                            <option value="">DPI</option>
-                                                            <option value="">HSO</option>
-                                                            <option value="">EDK</option>
+                                                            <option value="JDK">JDK</option>
+                                                            <option value="DPI">DPI</option>
+                                                            <option value="HSO">HSO</option>
+                                                            <option value="EDK">EDK</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -132,13 +133,13 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput7">Belajar</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <select id="projectinput7" name="umum" class="form-control">
+                                                        <select id="projectinput7" name="belajar" class="form-control">
                                                             <option value="0" selected="" disabled="">Belajar</option>
-                                                            <option value="">P</option>
-                                                            <option value="">T</option>
-                                                            <option value="">S</option>
-                                                            <option value="">D</option>
-                                                            <option value="">L</option>
+                                                            <option value="P">P</option>
+                                                            <option value="T">T</option>
+                                                            <option value="S">S</option>
+                                                            <option value="D">D</option>
+                                                            <option value="L">L</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -172,20 +173,20 @@
                                             <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Rasa Aman</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="rasaaman" placeholder=""></textarea>
                                                     </div>
                                             </div>
 
                                             <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput7">Kompetensi</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <select id="projectinput7" name="umum" class="form-control">
+                                                        <select id="projectinput7" name="kompetensi" class="form-control">
                                                             <option value="0" selected="" disabled="">Kompetensi</option>
-                                                            <option value="">W</option>
-                                                            <option value="">P</option>
-                                                            <option value="">K</option>
-                                                            <option value="">N</option>
-                                                            <option value="">S</option>
+                                                            <option value="W">W</option>
+                                                            <option value="P">P</option>
+                                                            <option value="K">K</option>
+                                                            <option value="N">N</option>
+                                                            <option value="S">S</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -193,21 +194,21 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Aspirasi</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="aspirasi" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Semangat</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="semangat" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Kesempatan</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="kesempatan" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
@@ -217,70 +218,70 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Ram. Pembinaan</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="rampembinaan" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Ram. Teknik</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="nohp" class="form-control" id="nohp">
+                                                        <input type="text" name="ramteknik" class="form-control" id="ramteknik">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Kom. Pembinaan</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="kompembinaan" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Kom. Teknik</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="nohp" class="form-control" id="nohp">
+                                                        <input type="text" name="komteknik" class="form-control" id="komteknik">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Asp. Pembinaan</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="asppembinaan" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Asp. Teknik</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="nohp" class="form-control" id="nohp">
+                                                        <input type="text" name="aspteknik" class="form-control" id="aspteknik">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Sem. Pembinaan</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="sempembinaan" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Sem. Teknik</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="nohp" class="form-control" id="nohp">
+                                                        <input type="text" name="semteknik" class="form-control" id="semteknik">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Kes. Pembinaan</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="kespembinaan" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Kes. Teknik</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="nohp" class="form-control" id="nohp">
+                                                        <input type="text" name="kesteknik" class="form-control" id="kesteknik">
                                                     </div>
                                                 </div>
 
@@ -290,7 +291,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Giz. Pembinaan</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="gizpembinaan" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
@@ -298,7 +299,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Pend. Pembinaan</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="pendpembinaan" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
@@ -306,7 +307,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">PSO. Pembinaan</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="psopembinaan" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
@@ -314,7 +315,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Bud. Pembinaan</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="budpembinaan" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
@@ -322,7 +323,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Koin. Pembinaan</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="koinpembinaan" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
@@ -333,21 +334,21 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">P1</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="p1" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">P2</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="p2" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">P3</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="p3" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
@@ -356,7 +357,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Prospek</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder=""></textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="prospek" placeholder=""></textarea>
                                                     </div>
                                                 </div>
 
