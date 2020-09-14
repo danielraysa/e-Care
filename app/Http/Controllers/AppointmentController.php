@@ -9,6 +9,8 @@ use App\Counselor;
 use App\Mahasiswa;
 use App\Notification;
 use App\Events\SendNotification;
+use App\Events\ToastNotification;
+use App\Mail\NotifEmail;
 use Auth;
 use DB;
 use Mail;
@@ -130,13 +132,22 @@ class AppointmentController extends Controller
         ]);
         $data_app = Appointment::find($id);
         $tgl = $data_app->tgl_appointment;
-        Mail::send('isi-email', compact('isi_notifikasi', 'tgl'), function ($message)
-        {
-            $message->subject('tes email');
-            $message->from('anelzraysa@mail.com', 'E-Care');
-            // $message->to($email_mhs);
-            $message->to('adistriani@gmail.com');
-        });
+        $notif = Notification::create([
+            'user_id' => $data_app->user_id,
+            'message' => 'Permintaan appointment/chat telah diterima',
+        ]);
+        $event = broadcast(new SendNotification($notif));
+        if($data_app->jenis_layanan == 'konseling'){
+            $when = now()->addMinutes(2);
+            // Mail::to('adistriani@gmail.com')->later($when, new MailableClass);
+            Mail::send('isi-email', compact('isi_notifikasi', 'tgl'), function ($message)
+            {
+                $message->subject('tes email');
+                $message->from('anelzraysa@mail.com', 'E-Care');
+                // $message->to($email_mhs);
+                $message->to('adistriani@gmail.com');
+            }); 
+        }
         // return redirect()->action('AppointmentController@index')->with('status', 'Data appointment berhasil diupdate');
         return redirect('jadwalkonselor')->with('status', 'Data appointment berhasil diupdate');
     }

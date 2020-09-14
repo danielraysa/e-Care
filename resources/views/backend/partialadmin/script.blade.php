@@ -40,6 +40,7 @@
     });
     var channel = pusher.subscribe('chat-channel.{{ Auth::id() }}');
     var notif_channel = pusher.subscribe('notif-channel.{{ Auth::id() }}');
+    var toast_channel = pusher.subscribe('toast-channel.{{ Auth::id() }}');
     $('.select2').select2();
     $('.datatable').dataTable();
     notif_channel.bind('notif-event', function(data) {

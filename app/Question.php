@@ -10,7 +10,7 @@ class Question extends Model
     use SoftDeletes;
  
     protected $guarded = [];
-    protected $dates      = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
 
     public function jawaban()
     {
