@@ -17,7 +17,7 @@
                                 <li class="breadcrumb-item active">Rekam Medis Mahasiswa
                                 </li>
                             </ol>
-                        </div>
+                        </div>  
                     </div>
                 </div>
                 
