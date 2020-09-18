@@ -121,11 +121,11 @@ class AppointmentController extends Controller
         //
         if($request->pilihan == 'Y'){
             $pilihan = 'Y';
-            $isi_notifikasi = 'Appointment diterima';
+            $isi_notifikasi = 'Permintaan appointment kamu diterima';
         }
         else{
             $pilihan = 'T';
-            $isi_notifikasi = 'Appointment ditolak';
+            $isi_notifikasi = 'Permintaan appointment kamu ditolak, silahkan buat appointment dengan tanggal yang berbeda';
         }
         $appointment = Appointment::find($id)->update([
             'status' => $pilihan,
