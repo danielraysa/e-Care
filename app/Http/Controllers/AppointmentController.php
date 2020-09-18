@@ -167,14 +167,10 @@ class AppointmentController extends Controller
     {
         $counselor = Counselor::with('data_user')->get();
         // $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('counselor_id', Auth::id())->get();
-        $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->whereNull('status')->get();
+        // $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->whereNull('status')->get();
+        $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->get();
         $user = User::with('user_role.data_mhs.dosen_wali')->find(Auth::id());
         $notification = Notification::where('user_id', Auth::id())->get();
-        /* $user = DB::table('users')
-            ->join('v_mhs', 'users.email', '=', 'v_mhs.nim')
-            ->join('v_karyawan', 'v_mhs.dosen_wl', '=', 'v_karyawan.nik')
-            ->get()->first(); */
-        // dd($appointment);
         return view('backend.konselor.jadwalkonselor', compact('appointment','notification'));
         // $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('status', 'Y')->get();
     }
