@@ -142,7 +142,7 @@ class AppointmentController extends Controller
             // Mail::to('adistriani@gmail.com')->later($when, new MailableClass);
             Mail::send('isi-email', compact('isi_notifikasi', 'tgl'), function ($message)
             {
-                $message->subject('tes email');
+                $message->subject('Notifikasi E-Care');
                 $message->from('anelzraysa@mail.com', 'E-Care');
                 // $message->to($email_mhs);
                 $message->to('adistriani@gmail.com');
