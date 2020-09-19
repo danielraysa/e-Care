@@ -12,17 +12,19 @@
                 {{ $user_receiver->name }}
             </h6>
         </div>
+        @if(Auth::user()->role_id == 1)
         <div class="chat-header-icons">
             
             <span class="dropdown">
                 <i class="ft-more-vertical font-medium-4 ml-25 cursor-pointer dropdown-toggle nav-hide-arrow cursor-pointer" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                 </i>
                 <span class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item make-appointment" data-id="{{ $user_receiver->id }}" href="JavaScript:void(0);"><i class="ft-tag mr-25"></i> Kirim Appointment</a>
-                    <a class="dropdown-item end-chat" data-id="{{ $user_receiver->id }}" href="JavaScript:void(0);"><i class="ft-check mr-25"></i> Selesai</a>
+                    <a class="dropdown-item make-appointment" data-id="{{ $user_receiver->id }}" href="gate.dinamika.ac.id"><i class="ft-tag mr-25"></i> Kirim Appointment</a>
+                    <a class="dropdown-item" id="end-chat" data-url="{{ route('appointment.end-chat', $user_receiver->id) }}" href="JavaScript:void(0);"><i class="ft-check mr-25"></i> Selesai</a>
                 </span>
             </span>
         </div>
+        @endif
     </header>
 </div>
 {{-- @include('chat-card') --}}
@@ -60,19 +62,39 @@
                 </div>
             @endforeach
             @endif
+                </div>
             </div>
         </div>
-    </div>
-    <div class="card-footer chat-footer px-2 py-1 pb-0">
-        <form class="d-flex align-items-center" onsubmit="chatMessagesSend();" action="javascript:void(0);">
-            {{-- <i class="ft-user cursor-pointer"></i> --}}
-            {{-- <i class="ft-paperclip ml-1 cursor-pointer"></i> --}}
-            <i class="far fa-laugh cursor-pointer emoji"></i>
-            <input type="text" id="chatInput" data-emojiable="true" class="form-control chat-message-send mx-1" placeholder="Type your message here...">
-            <input type="hidden" id="receiver_id" value="{{ $user_receiver->id }}"/>
-            <button type="submit" id="sendChat" class="btn btn-primary glow send d-lg-flex"><i class="ft-play"></i>
-                <span class="d-none d-lg-block mx-50">Send</span></button>
-        </form>
+        <div class="card-footer chat-footer px-2 py-1 pb-0">
+            <form class="d-flex align-items-center" onsubmit="chatMessagesSend();" action="javascript:void(0);">
+                {{-- <i class="ft-user cursor-pointer"></i> --}}
+                {{-- <i class="ft-paperclip ml-1 cursor-pointer"></i> --}}
+                <i class="far fa-laugh cursor-pointer emoji"></i>
+                <input type="text" id="chatInput" data-emojiable="true" class="form-control chat-message-send mx-1" placeholder="Type your message here...">
+                <input type="hidden" id="receiver_id" value="{{ $user_receiver->id }}"/>
+                <button type="submit" id="sendChat" class="btn btn-primary glow send d-lg-flex"><i class="ft-play"></i>
+                    <span class="d-none d-lg-block mx-50">Send</span></button>
+            </form>
+        </div>
     </div>
 </div>
+
+<script>
+    $('#end-chat').click(function(){
+        var link = $(this).attr('data-url');
+        $.ajax({
+            url: link,
+            type: 'POST',
+            success: function(result){
+                console.log(result);
+                // alert(result);
+                window.location.href = "{{ route('chat') }}";
+            },
+            error: function(jqXHR, ajaxOptions, thrownError){
+                console.log(thrownError);
+                alert(thrownError);
+            }
+        });
+    });
+</script>
 @endif

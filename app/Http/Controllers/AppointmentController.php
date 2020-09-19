@@ -184,4 +184,18 @@ class AppointmentController extends Controller
         // $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('status', 'Y')->get();
     }
 
+    public function update_chat(Request $request, $id)
+    {
+        $appointment = Appointment::where('user_id', $id)->get()->last()->update([
+            'status' => 'S',
+        ]);
+        $notif = Notification::create([
+            'user_id' => $id,
+            'message' => 'Konseling via chat Anda telah dianggap selesai. Terimakasih sudah berkonsultasi',
+        ]);
+        $event = broadcast(new SendNotification($notif));
+
+        return response()->json(['status' => 'success'], 200);
+    }
+
 }

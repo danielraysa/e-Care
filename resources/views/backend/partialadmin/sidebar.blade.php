@@ -29,9 +29,6 @@
                 </li>
                 @endif -->
 
-
-                
-
                 @if(Auth::user()->role_id == 2)
                 {{-- <li class=" nav-item"><a href="{{url('/buatappointment')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Buat Appointment</span></a> 
                 </li> --}}

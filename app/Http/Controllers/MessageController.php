@@ -87,8 +87,9 @@ class MessageController extends Controller
             $users = User::all()->except(auth()->id());
         }else{
             $users = User::whereIn('role_id',[1])->get();
-            $appointment = Appointment::where('user_id',Auth::id())->orderBy('created_at')->get()->last();
-            if(!$appointment || $appointment->jenis_layanan != 'chatting'){
+            // $appointment = Appointment::where('user_id',Auth::id())->orderBy('created_at')->get()->last();
+            $appointment = Appointment::where('user_id',Auth::id())->get()->last();
+            if(!$appointment || $appointment->jenis_layanan != 'chatting' || $appointment->status == 'S'){
                 $user = Auth::user();
                 $nim = $user->email;
                 $mhs = Mahasiswa::find($nim);
