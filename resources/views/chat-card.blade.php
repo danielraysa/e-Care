@@ -12,20 +12,17 @@
                 {{ $user_receiver->name }}
             </h6>
         </div>
-        {{-- <div class="chat-header-icons">
-            <span class="chat-icon-favorite">
-                <i class="ft-star font-medium-5 cursor-pointer"></i>
-            </span>
+        <div class="chat-header-icons">
+            
             <span class="dropdown">
                 <i class="ft-more-vertical font-medium-4 ml-25 cursor-pointer dropdown-toggle nav-hide-arrow cursor-pointer" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                 </i>
                 <span class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="JavaScript:void(0);"><i class="ft-tag mr-25"></i> Pin to top</a>
-                    <a class="dropdown-item" href="JavaScript:void(0);"><i class="ft-trash-2 mr-25"></i> Delete chat</a>
-                    <a class="dropdown-item" href="JavaScript:void(0);"><i class="ft-x-circle mr-25"></i> Block</a>
+                    <a class="dropdown-item make-appointment" data-id="{{ $user_receiver->id }}" href="JavaScript:void(0);"><i class="ft-tag mr-25"></i> Kirim Appointment</a>
+                    <a class="dropdown-item end-chat" data-id="{{ $user_receiver->id }}" href="JavaScript:void(0);"><i class="ft-check mr-25"></i> Selesai</a>
                 </span>
             </span>
-        </div> --}}
+        </div>
     </header>
 </div>
 {{-- @include('chat-card') --}}

@@ -297,8 +297,10 @@
                             <table border="0" cellpadding="0" cellspacing="0">								
                                 <tr>
                                     <td>
-                                        Ini notifnya<br>
-                                        {{ $isi_notifikasi }} {{ $tgl }}
+                                        Pemberitahuan, <br>
+										@if(isset($nama)) {{ $nama }} @endif {{ $isi_notifikasi }} @if(isset($tgl)) {{ $tgl }} @endif Oleh Ibu Fitriyah, S.Pd., M.Pd., Kons.
+										
+										Terima kasih <br>
                                     </td>
                                 </tr>
                             </table>

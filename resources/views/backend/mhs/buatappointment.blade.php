@@ -6,15 +6,15 @@
     <div class="content-wrapper">
         <div class="content-header row">
             <div class="content-header-left col-md-6 col-12 mb-2">
-                <h3 class="content-header-title">Buat Appointment/Chatting</h3>
+                <h3 class="content-header-title">Form Pendaftaran Konseling Online</h3>
                 <div class="row breadcrumbs-top">
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="#">Appointment/Chatting</a>
+                            <li class="breadcrumb-item"><a href="#">Chatting</a>
                             </li>
-                            <li class="breadcrumb-item active">Buat Appointment/Chatting
+                            <li class="breadcrumb-item active">Daftar Konseling Online
                             </li>
                         </ol>
                     </div>
@@ -33,7 +33,7 @@
             <section id="book-appointment">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Buat Appointment/Chatting</h2>
+                        <h2 class="card-title">Daftar Konseling Online</h2>
                     </div>
                     <div class="card-body">
                         <form method="post" action="{{ route('appointment.store') }}">
@@ -127,7 +127,7 @@
                     <label for="service">Jenis Layanan<span class="text-danger">*</span></label>
                     <select name="jenis_layanan" class="form-control" id="service" required>
                         <option value="chatting">Chatting</option>
-                        <option value="konseling">Konseling Langsung</option>
+                        {{-- <option value="konseling">Konseling Langsung</option> --}}
                     </select>
                 </div>
             </div>

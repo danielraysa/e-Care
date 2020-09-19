@@ -33,8 +33,8 @@
                 
 
                 @if(Auth::user()->role_id == 2)
-                <li class=" nav-item"><a href="{{url('/buatappointment')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Buat Appointment</span></a> 
-                </li>
+                {{-- <li class=" nav-item"><a href="{{url('/buatappointment')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Buat Appointment</span></a> 
+                </li> --}}
                 <!-- <li class=" nav-item"><a href="#"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Appointment</span></a>
                     <ul class="menu-content">
                         <li><a class="menu-item {{ Request::is('appointment') ? 'active' : '' }}" href="{{url('appointment')}}"><i></i><span>Buat Appointment</span></a>
@@ -116,9 +116,11 @@
                 <li class=" nav-item"><a href="{{url('email')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="Inbox">Inbox</span></a>
                 </li> --}}
 
+                @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 4)
+
                 <li class=" nav-item"><a href="{{('forum')}}"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Forum Diskusi</span></a>
                 </li>
-               
+               @endif
               
             </ul>
         </div>

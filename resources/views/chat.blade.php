@@ -7,53 +7,6 @@
     <div class="app-content content">
         <div class="sidebar-left">
             <div class="sidebar">
-                <!-- app chat user profile left sidebar start -->
-                <div class="chat-user-profile">
-                    <header class="chat-user-profile-header text-center border-bottom">
-                        <span class="chat-profile-close">
-                            <i class="ft-x"></i>
-                        </span>
-                        <div class="my-2">
-                            <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-11.png') }}" class="round mb-1" alt="user_avatar" height="100" width="100">
-                            <h5 class="mb-0">John Doe</h5>
-                            <span>Designer</span>
-                        </div>
-                    </header>
-                    <div class="chat-user-profile-content">
-                        <div class="chat-user-profile-scroll">
-                            <h6 class="text-uppercase mb-1">ABOUT</h6>
-                            <p class="mb-2">It is a long established fact that a reader will be distracted by the readable content .</p>
-                            <h6>PERSONAL INFORAMTION</h6>
-                            <ul class="list-unstyled mb-2">
-                                <li class="mb-25">email@gmail.com</li>
-                                <li>+1(789) 950 -7654</li>
-                            </ul>
-                            <h6 class="text-uppercase mb-1">CHANNELS</h6>
-                            <ul class="list-unstyled mb-2">
-                                <li><a href="javascript:void(0);"># Devlopers</a></li>
-                                <li><a href="javascript:void(0);"># Designers</a></li>
-                            </ul>
-                            <h6 class="text-uppercase mb-1">SETTINGS</h6>
-                            <ul class="list-unstyled">
-                                <li class="mb-50 "><a href="javascript:void(0);" class="d-flex align-items-center"><i class="ft-tag mr-50"></i>
-                                        Add
-                                        Tag</a></li>
-                                <li class="mb-50 "><a href="javascript:void(0);" class="d-flex align-items-center"><i class="ft-star mr-50"></i>
-                                        Important Contact</a>
-                                </li>
-                                <li class="mb-50 "><a href="javascript:void(0);" class="d-flex align-items-center"><i class="ft-image mr-50"></i>
-                                        Shared
-                                        Documents</a></li>
-                                <li class="mb-50 "><a href="javascript:void(0);" class="d-flex align-items-center"><i class="ft-trash-2 mr-50"></i>
-                                        Deleted
-                                        Documents</a></li>
-                                <li><a href="javascript:void(0);" class="d-flex align-items-center"><i class="ft-x-circle mr-50"></i> Blocked
-                                        Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- app chat user profile left sidebar ends -->
                 <!-- app chat sidebar start -->
                 <div class="chat-sidebar card">
                     <span class="chat-sidebar-close">

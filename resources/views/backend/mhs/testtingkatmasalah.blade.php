@@ -18,6 +18,7 @@
                 console.log(hasil);
                 // alert(hasil.nilai);
                 $('#hasil_test').text(hasil.nilai);
+                $('#keterangan').text(hasil.keterangan);
             }
         });
     });
@@ -102,11 +103,9 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <h5><i class="la la-arrow-right"></i> Hasil Test Tingkat Kecemasan</h5>
-                                                        <p id="hasil_test"></p>
-                                                      
+                                                        <h5><i class="la la-arrow-right"></i> Hasil Test Tingkat Kecemasan:  <b><span id="hasil_test"></b></span></h5>
                                                         <div class="alert alert-success" role="alert">
-                                                            <span class="text-bold-600">Well done!</span> You successfully read this important alert message.
+                                                            <p id="keterangan"></p>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">

@@ -57,7 +57,7 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // waktu mengajukan permintaan
         // dd($request->all());
         $user = Auth::user();
         $appointment = Appointment::create([
@@ -80,7 +80,16 @@ class AppointmentController extends Controller
             'user_id' => 1,
             'message' => 'Ada permintaan appointment baru',
         ]);
+        $isi_notifikasi = "........";
+        $nama = Auth::user()->name;
         $event = broadcast(new SendNotification($notif));
+        Mail::send('isi-email', compact('isi_notifikasi', 'nama'), function ($message)
+        {
+            $message->subject('Notifikasi E-Care');
+            $message->from('anelzraysa@mail.com', 'E-Care');
+            // $message->to($email_mhs);
+            $message->to('adistriani@gmail.com');
+        }); 
         if($request->jenis_layanan == 'chatting')
         return redirect(route('chat'));
         else
@@ -118,10 +127,10 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // waktu approve/tolak permintaan
         if($request->pilihan == 'Y'){
             $pilihan = 'Y';
-            $isi_notifikasi = 'Permintaan appointment kamu diterima';
+            $isi_notifikasi = 'Permintaan appointment kamu diterima. Silahkan datang ke ruangan konseling pada tanggal ';
         }
         else{
             $pilihan = 'T';
@@ -137,8 +146,8 @@ class AppointmentController extends Controller
             'message' => 'Permintaan appointment/chat telah diterima',
         ]);
         $event = broadcast(new SendNotification($notif));
-        if($data_app->jenis_layanan == 'konseling'){
-            $when = now()->addMinutes(2);
+        // if($data_app->jenis_layanan == 'konseling'){
+            //$when = now()->addMinutes(2);
             // Mail::to('adistriani@gmail.com')->later($when, new MailableClass);
             Mail::send('isi-email', compact('isi_notifikasi', 'tgl'), function ($message)
             {
@@ -147,7 +156,7 @@ class AppointmentController extends Controller
                 // $message->to($email_mhs);
                 $message->to('adistriani@gmail.com');
             }); 
-        }
+        // }
         // return redirect()->action('AppointmentController@index')->with('status', 'Data appointment berhasil diupdate');
         return redirect('jadwalkonselor')->with('status', 'Data appointment berhasil diupdate');
     }
