@@ -135,26 +135,10 @@
     
     // var channel = pusher.subscribe('test_channel');
     // channel.bind('my_event', function(data) {
-    channel.bind('chat-event', function(data) {
+    channel.bind('chat-event', function(response) {
         // Add the new message to the container
         // var url_image = "{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}";
-        if(data.user_id != my_id){
-            var class_left = 'chat-left';
-        }else{
-            var class_left = '';
-        }
-        $('.chat-content').append(
-        '<div class="chat '+ class_left +'">'+
-            '<div class="chat-body">'+
-                '<div class="chat-message">'+
-                    '<p>'+ data.message + '</p>'+
-                    '<span class="chat-time">'+ data.time +'</span>'+
-                '</div>'+
-            '</div>'+
-        '</div>');
-        console.log(data);
-        // Scroll to the bottom of the container when a new message becomes available
-        $(".chat-container").scrollTop($(".chat-container")[0].scrollHeight);
+        chatPushContainer(response);
     });
     
     function chatPushContainer(data){
@@ -176,7 +160,8 @@
         '</div>');
         console.log(data);
         // Scroll to the bottom of the container when a new message becomes available
-        $(".chat-container").scrollTop($(".chat-container")[0].scrollHeight);
+        // $(".chat-container").scrollTop($(".chat-container")[0].scrollHeight);
+        $(".chat-container").scrollTop($(".chat-container > .chat-content").height());
     }
 
     // AJAX request
@@ -241,7 +226,8 @@
             datatype: "html"
         }).done(function(data){
             $(".chat-area").empty().html(data);
-            $(".chat-container").scrollTop($(".chat-container")[0].scrollHeight);
+            // $(".chat-container").scrollTop($(".chat-container")[0].scrollHeight);
+            $(".chat-container").scrollTop($(".chat-container > .chat-content").height());
             // $('#receiver_id').val(id_user);
         }).fail(function(jqXHR, ajaxOptions, thrownError){
             alert('No response from server');

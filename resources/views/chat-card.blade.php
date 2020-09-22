@@ -14,12 +14,11 @@
         </div>
         @if(Auth::user()->role_id == 1)
         <div class="chat-header-icons">
-            
             <span class="dropdown">
                 <i class="ft-more-vertical font-medium-4 ml-25 cursor-pointer dropdown-toggle nav-hide-arrow cursor-pointer" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                 </i>
                 <span class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item make-appointment" data-id="{{ $user_receiver->id }}" href="gate.dinamika.ac.id"><i class="ft-tag mr-25"></i> Kirim Appointment</a>
+                    <a class="dropdown-item make-appointment" id="send-link" data-id="{{ $user_receiver->id }}" href="#" data-url="gate.dinamika.ac.id"><i class="ft-tag mr-25"></i> Kirim Appointment</a>
                     <a class="dropdown-item" id="end-chat" data-url="{{ route('appointment.end-chat', $user_receiver->id) }}" href="JavaScript:void(0);"><i class="ft-check mr-25"></i> Selesai</a>
                 </span>
             </span>
@@ -66,7 +65,7 @@
             </div>
         </div>
         <div class="card-footer chat-footer px-2 py-1 pb-0">
-            <form class="d-flex align-items-center" onsubmit="chatMessagesSend();" action="javascript:void(0);">
+            <form class="d-flex align-items-center" action="javascript:void(0);">
                 {{-- <i class="ft-user cursor-pointer"></i> --}}
                 {{-- <i class="ft-paperclip ml-1 cursor-pointer"></i> --}}
                 <i class="far fa-laugh cursor-pointer emoji"></i>
@@ -80,6 +79,7 @@
 </div>
 
 <script>
+    var chat_user_user = new PerfectScrollbar(".chat-container");
     $('#end-chat').click(function(){
         var link = $(this).attr('data-url');
         $.ajax({
@@ -95,6 +95,11 @@
                 alert(thrownError);
             }
         });
+    });
+    $('#send-link').click(function(){
+        var link = $(this).attr('data-url');
+        $('#chatInput').val(link);
+        $('#sendChat').click();
     });
 </script>
 @endif
