@@ -1,4 +1,7 @@
 @extends('backend.partialadmin.layout')
+@push('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/pages/user-feed.min.css') }}">
+@endpush
 @section('content')
    <!-- BEGIN: Content-->
     <div class="app-content content">
@@ -6,7 +9,7 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title mb-0">Social Feed</h3>
+                    <h3 class="content-header-title mb-0">Forum Diskusi</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
@@ -20,51 +23,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-header-right text-md-right col-md-6 col-12">
-                    <div class="btn-group">
-                        <button class="btn btn-round btn-info mb-1" type="button"><i class="icon-cog3"></i> Settings</button>
-                    </div>
-                </div>
+                
             </div>
             <div class="content-body">
                 <!-- User Feed -->
                 <section id="user-feed">
 
-                    <!-- Left Side Content -->
-                 
-                    </div>
-                    <!-- Profile Intro -->
                     <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-12">
-                            <div class="card shadow-none">
-                                <div class="card-body">
-                                    <h5 class="card-title">Profile Intro</h5>
-                                    <hr>
-                                    <div class="about-me mt-2">
-                                        <h5 class="card-title mb-1">About Me</h5>
-                                        <p class="font-small-3">Hi, I’m Elaine Dreyfuss, I’m 26 & I work as a Digital Designer.</p>
-                                    </div>
-                                    <div class="favourite-show mt-2">
-                                        <h5 class="card-title mb-1">Favourite TV Shows</h5>
-                                        <p class="font-small-3">Breaking Good, RedDevil, People of Interest, The Running Dead, Found,
-                                            American Guy.</p>
-                                    </div>
-                                    <div class="favourite-band mt-2">
-                                        <h5 class="card-title mb-1">Favourite Music Bands</h5>
-                                        <p class="font-small-3">Arctic Monkeys, Bloc Party, People of Interest, The Running Dead,
-                                            Found, American Guy.</p>
-                                    </div>
-                                    <div class="favourite-food mt-2">
-                                        <h5 class="card-title mb-1">Favourite Food</h5>
-                                        <p class="font-small-3">Pizza, burger, Guacamole, Tomato Salsa, Enchiladas, Guilt-Free Chilli</p>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                         
-                        </div>
-                        <!-- Feed Section -->
-                        <div class="col-lg-9 col-md-8 col-sm-12">
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
                             <!-- Write Post -->
                             <div class="card shadow-none">
                                 <div class="catd-body">
@@ -82,9 +49,11 @@
                                             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"></div>
                                         </div>
                                     </div>
+                                    <form action="{{ route('forum-group.store') }}" method="POST">
+                                    {{ csrf_field() }}
                                     <div class="write-post">
                                         <div class="form-group">
-                                            <textarea placeholder="Share what you are thinking here..." class="form-control border-0" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                            <textarea placeholder="Share what you are thinking here..." class="form-control border-0" id="exampleFormControlTextarea1" name="deskripsi_forum" rows="5"></textarea>
                                         </div>
                                         <hr class="m-0">
                                         <div class="row px-1">
@@ -92,22 +61,85 @@
                                                 <i class="ft-image ml-1 mr-2 mr-sm-0 h3"></i> 
                                             </div>
                                             <div class="col-6 pt-1">
-                                                <button type="button" class="btn btn-primary btn-min-width btn-glow mr-1 mb-1 pull-right">Post
-                                                    Status</button>
+                                                <button type="submit" class="btn btn-primary btn-min-width btn-glow mr-1 mb-1 pull-right">Post</button>
                                             </div>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
 
-                            <!-- User Post 1 -->
+                            @foreach ($forum as $item)
                             <div class="card shadow-none">
                                 <div class="catd-body">
                                     <div class="row p-2">
                                         <div class="col-sm-6">
                                             <div class="row">
                                                 <div class="col-lg-4 col-3">
-                                                    <img src="../../../app-assets/images/portrait/small/avatar-s-8.png" alt="" class="img-fluid rounded-circle width-50">
+                                                    <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-8.png') }}" alt="" class="img-fluid rounded-circle width-50">
+                                                </div>
+                                                @php
+                                                // $nama_post = substr($item->post_user->name, 0, 1) . preg_replace('/[^@]/', '*', substr($item->post_user->name, 1));
+                                                @endphp
+                                                <div class="col-lg-8 col-7 p-0">
+                                                    <h5 class="m-0">{{ $item->post_user->sensor_nama() }}</h5>
+                                                    <p>{{ $item->created_at }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <i class="ft-more-vertical pull-right"></i>
+                                        </div>
+                                    </div>
+                                    <div class="write-post">
+                                        <div class="col-sm-12 px-2">
+                                            <p>{{ $item->deskripsi_forum }}</p>
+                                        </div>
+                                        <hr class="m-0">
+                                        <div class="row p-1">
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-4 pr-0">
+                                                        {{-- <span><i class="ft-heart h4 align-middle danger"></i> 120</span> --}}
+                                                    </div>
+                                                    <div class="col-8 pl-0">
+                                                        <ul class="list-unstyled users-list m-0">
+                                                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="John Doe" class="avatar avatar-sm pull-up">
+                                                                <img class="media-object rounded-circle" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-19.png') }}" alt="Avatar">
+                                                            </li>
+                                                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Katherine Nichols" class="avatar avatar-sm pull-up">
+                                                                <img class="media-object rounded-circle" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-18.png') }}" alt="Avatar">
+                                                            </li>
+                                                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Joseph Weaver" class="avatar avatar-sm pull-up">
+                                                                <img class="media-object rounded-circle" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-17.png') }}" alt="Avatar">
+                                                            </li>
+                                                            <li class="avatar avatar-sm">
+                                                                <span class="badge badge-info">+4 more</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="pull-right">
+                                                    <a href="{{ route('forum-group.show', $item) }}"<span class="pr-1"><i class="ft-message-square h4 align-middle"></i> {{ $item->komentar_forum->count() }}</span></a>
+                                                    <span class="pr-1"><i class="ft-corner-up-right h4 align-middle"></i> 23</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+
+                            <!-- User Post 1 -->
+                            {{-- <div class="card shadow-none">
+                                <div class="catd-body">
+                                    <div class="row p-2">
+                                        <div class="col-sm-6">
+                                            <div class="row">
+                                                <div class="col-lg-4 col-3">
+                                                    <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-8.png') }}" alt="" class="img-fluid rounded-circle width-50">
                                                 </div>
                                                 <div class="col-lg-8 col-7 p-0">
                                                     <h5 class="m-0">Elaine Dreyfuss</h5>
@@ -134,13 +166,13 @@
                                                     <div class="col-8 pl-0">
                                                         <ul class="list-unstyled users-list m-0">
                                                             <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="John Doe" class="avatar avatar-sm pull-up">
-                                                                <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-19.png" alt="Avatar">
+                                                                <img class="media-object rounded-circle" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-19.png') }}" alt="Avatar">
                                                             </li>
                                                             <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Katherine Nichols" class="avatar avatar-sm pull-up">
-                                                                <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-18.png" alt="Avatar">
+                                                                <img class="media-object rounded-circle" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-18.png') }}" alt="Avatar">
                                                             </li>
                                                             <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Joseph Weaver" class="avatar avatar-sm pull-up">
-                                                                <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-17.png" alt="Avatar">
+                                                                <img class="media-object rounded-circle" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-17.png') }}" alt="Avatar">
                                                             </li>
                                                             <li class="avatar avatar-sm">
                                                                 <span class="badge badge-info">+4 more</span>
@@ -158,15 +190,15 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- User Post 2 -->
-                            <div class="card shadow-none">
+                            {{-- <div class="card shadow-none">
                                 <div class="catd-body">
                                     <div class="row p-2">
                                         <div class="col-6">
                                             <div class="row">
                                                 <div class="col-lg-4 col-3">
-                                                    <img src="../../../app-assets/images/portrait/small/avatar-s-9.png" alt="" class="img-fluid rounded-circle width-50">
+                                                    <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-9.png') }}" alt="" class="img-fluid rounded-circle width-50">
                                                 </div>
                                                 <div class="col-lg-8 col-7 p-0">
                                                     <h5 class="m-0">Elaine Dreyfuss</h5>
@@ -193,13 +225,13 @@
                                                     <div class="col-sm-8 col-7 pl-0">
                                                         <ul class="list-unstyled users-list m-0">
                                                             <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="John Doe" class="avatar avatar-sm pull-up">
-                                                                <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-19.png" alt="Avatar">
+                                                                <img class="media-object rounded-circle" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-19.png') }}" alt="Avatar">
                                                             </li>
                                                             <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Katherine Nichols" class="avatar avatar-sm pull-up">
-                                                                <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-18.png" alt="Avatar">
+                                                                <img class="media-object rounded-circle" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-18.png') }}" alt="Avatar">
                                                             </li>
                                                             <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Joseph Weaver" class="avatar avatar-sm pull-up">
-                                                                <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-17.png" alt="Avatar">
+                                                                <img class="media-object rounded-circle" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-17.png') }}" alt="Avatar">
                                                             </li>
                                                             <li class="avatar avatar-sm">
                                                                 <span class="badge badge-info">+4 more</span>
@@ -217,15 +249,15 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- User Post 3 -->
-                            <div class="card shadow-none">
+                            {{-- <div class="card shadow-none">
                                 <div class="catd-body">
                                     <div class="row p-2">
                                         <div class="col-6">
                                             <div class="row">
                                                 <div class="col-lg-4 col-3">
-                                                    <img src="../../../app-assets/images/portrait/small/avatar-s-8.png" alt="" class="img-fluid rounded-circle width-50">
+                                                    <img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-8.png') }}" alt="" class="img-fluid rounded-circle width-50">
                                                 </div>
                                                 <div class="col-lg-8 col-7 p-0">
                                                     <h5 class="m-0">Elaine Dreyfuss</h5>
@@ -239,7 +271,7 @@
                                     </div>
                                     <div class="write-post">
                                         <div class="col-sm-12 px-2 pb-2">
-                                            <img src="../../../app-assets/images/gallery/party-flyer.jpg" alt="" class="img-fluid">
+                                            <img src="{{ asset('assets/backend/app-assets/images/gallery/party-flyer.jpg') }}" alt="" class="img-fluid">
                                         </div>
                                         <hr class="m-0">
                                         <div class="row p-1">
@@ -251,13 +283,13 @@
                                                     <div class="col-lg-8 col-7 pl-0">
                                                         <ul class="list-unstyled users-list m-0">
                                                             <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="John Doe" class="avatar avatar-sm pull-up">
-                                                                <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-19.png" alt="Avatar">
+                                                                <img class="media-object rounded-circle" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-19.png') }}" alt="Avatar">
                                                             </li>
                                                             <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Katherine Nichols" class="avatar avatar-sm pull-up">
-                                                                <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-18.png" alt="Avatar">
+                                                                <img class="media-object rounded-circle" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-18.png') }}" alt="Avatar">
                                                             </li>
                                                             <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Joseph Weaver" class="avatar avatar-sm pull-up">
-                                                                <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-17.png" alt="Avatar">
+                                                                <img class="media-object rounded-circle" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-17.png') }}" alt="Avatar">
                                                             </li>
                                                             <li class="avatar avatar-sm">
                                                                 <span class="badge badge-info">+4 more</span>
@@ -275,7 +307,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                        
                     </div>

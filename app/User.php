@@ -37,5 +37,10 @@ class User extends Authenticatable
         return $this->hasOne(UserRole::class, 'user_id');
         // return $this->belongsTo(UserRole::class, 'id', 'user_id');
     }
+
+    public function sensor_nama()
+    {
+        return substr($this->name, 0, 1) . preg_replace('/[^@]/', '*', substr($this->name, 1));
+    }
     
 }

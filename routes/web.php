@@ -209,10 +209,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //forum
-    Route::get('/forum', function () {
-        return view('backend.fitur.forum');
-    });
-
+    Route::resource('forum-group', 'ForumController');
+    Route::post('/forum-group/{id}/komentar', 'ForumController@post_komentar')->name('forum-group.komentar');
     //endforum
 
     
