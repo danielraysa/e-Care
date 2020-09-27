@@ -80,7 +80,7 @@ class AppointmentController extends Controller
             'user_id' => 1,
             'message' => 'Ada permintaan appointment baru',
         ]);
-        $isi_notifikasi = "........";
+        $isi_notifikasi = " melakukan permintaan chat untuk konseling online. Silakan buka aplikasi www.e-care.com untuk memberikan approval.";
         $nama = Auth::user()->name;
         $event = broadcast(new SendNotification($notif));
         Mail::send('isi-email', compact('isi_notifikasi', 'nama'), function ($message)
@@ -130,7 +130,7 @@ class AppointmentController extends Controller
         // waktu approve/tolak permintaan
         if($request->pilihan == 'Y'){
             $pilihan = 'Y';
-            $isi_notifikasi = 'Permintaan appointment kamu diterima. Silahkan datang ke ruangan konseling pada tanggal ';
+            $isi_notifikasi = 'Permintaan appointment kamu diterima. Silahkan aplikasi E-Care untuk melakukan konseling online dengan Konselor  ';
         }
         else{
             $pilihan = 'T';

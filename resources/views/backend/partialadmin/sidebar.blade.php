@@ -113,7 +113,7 @@
                 <li class=" nav-item"><a href="{{url('email')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="Inbox">Inbox</span></a>
                 </li> --}}
 
-                @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 4)
+                @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
 
                 <li class=" nav-item"><a href="{{ url('forum-group')}}"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Forum Diskusi</span></a>
                 </li>

@@ -107,6 +107,7 @@
                                     <th>No.</th>
                                     <th>Nama</th>
                                     <th>Username</th>
+                                    <th>Role Name</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -115,6 +116,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $usr->name }}</td>
                                     <td>{{ $usr->email }}</td>
+                                    <td>{{ $usr->role_id }}</td>
                                 </tr>
                                 @endforeach
                                 </tbody>

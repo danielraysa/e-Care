@@ -298,7 +298,9 @@
                                 <tr>
                                     <td>
                                         Pemberitahuan, <br>
-										@if(isset($nama)) {{ $nama }} @endif {{ $isi_notifikasi }} @if(isset($tgl)) {{ $tgl }} @endif Oleh Ibu Fitriyah, S.Pd., M.Pd., Kons.
+										Mahasiswa bernama @if(isset($nama)) {{ $nama }} @endif {{ $isi_notifikasi }} @if(isset($tgl)) {{ $tgl }} @endif melakukan permintaan chat untuk konseling online. 
+										Silakan buka aplikasi www.e-care.com untuk memberikan approval.<br>
+										
 										
 										Terima kasih <br>
                                     </td>
@@ -316,7 +318,7 @@
                         <tr>
                             <td class="content-block">
                                 <span class="apple-link">Hormat Kami,</span><br>
-								<b>Library Online Services</b>								
+								<b>E-Care - Konseling Online Universitas Dinamika</b>								
                             </td>
                         </tr>
                     </table>
