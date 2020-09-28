@@ -10,9 +10,9 @@
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{url('profilmhs')}}">Laporan</a>
+                                <li class="breadcrumb-item"><a href="#">Laporan</a>
                                 </li>
                                 <li class="breadcrumb-item active">Rekap Perbulan
                                 </li>

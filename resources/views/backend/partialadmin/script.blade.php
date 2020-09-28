@@ -1,3 +1,6 @@
+<script src="{{ asset('js/jquery.js') }}"></script>
+{{-- <script src="{{ asset('js/bootstrap.js') }}"></script> --}}
+<script src="{{ asset('js/util.js') }}"></script>
 <!-- BEGIN: Vendor JS-->
 <script src="{{ asset('assets/backend/app-assets/vendors/js/vendors.min.js') }}"></script>
 <!-- BEGIN Vendor JS-->
@@ -24,7 +27,6 @@
 <script src="{{asset('js/bootstrap.dataTables.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"></script>
 {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
-{{-- <script src="{{ asset('js/bootstrap.js') }}"></script> --}}
 <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
 <script>
     var my_id = {{ Auth::id() }};
@@ -40,7 +42,7 @@
     });
     var channel = pusher.subscribe('chat-channel.{{ Auth::id() }}');
     var notif_channel = pusher.subscribe('notif-channel.{{ Auth::id() }}');
-    var toast_channel = pusher.subscribe('toast-channel.{{ Auth::id() }}');
+    // var toast_channel = pusher.subscribe('toast-channel.{{ Auth::id() }}');
     $('.select2').select2();
     $('.datatable').dataTable();
     notif_channel.bind('notif-event', function(data) {
@@ -49,18 +51,36 @@
             '<div class="media">'+
                 '<div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan mr-0"></i></div>'+
                 '<div class="media-body">'+
-                    '<h6 class="media-heading">You have new order!</h6>'+
+                    '<h6 class="media-heading">Notifikasi</h6>'+
                     '<p class="notification-text font-small-3 text-muted">'+ data.message +'</p><small>'+
                         '<time class="media-meta text-muted" datetime="'+ data.time +'">'+ data.time +'</time></small>'+
                 '</div>'+
             '</div>'+
         '</a>');
+        $('#toast_notif').append(
+        '<div class="toast fade" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">'+
+            '<div class="toast-header">'+
+                '<strong class="mr-auto">E-Care</strong>'+
+                '<small class="text-muted">just now</small>'+
+                '<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">'+
+                '<span aria-hidden="true">&times;</span>'+
+                '</button>'+
+            '</div>'+
+            '<div class="toast-body">'+
+                data.message +
+            '</div>'+
+        '</div>');
         notif_count += 1;
         $('#notification-count').text(notif_count);
         $('#notification-count').show();
+        $('.toast').toast('show');
         console.log(data);
     });
 
+    $('#notification-dropdown').click(function(){
+        notif_count = 0;
+        $('#notification-count').hide();
+    });
     $('#notification-dropdown').click(function(){
         notif_count = 0;
         $('#notification-count').hide();

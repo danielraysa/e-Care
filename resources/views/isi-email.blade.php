@@ -297,12 +297,16 @@
                             <table border="0" cellpadding="0" cellspacing="0">								
                                 <tr>
                                     <td>
+										@if(isset($notif_appointment))
                                         Pemberitahuan, <br>
-										Mahasiswa bernama @if(isset($nama)) {{ $nama }} @endif {{ $isi_notifikasi }} @if(isset($tgl)) {{ $tgl }} @endif melakukan permintaan chat untuk konseling online. 
-										Silakan buka aplikasi www.e-care.com untuk memberikan approval.<br>
-										
+										Mahasiswa bernama @if(isset($nama)) {{ $nama }} @endif pada tanggal @if(isset($tgl)) {{ $tgl }} @endif {{ $isi_notifikasi }}<br>
 										
 										Terima kasih <br>
+										@endif
+										
+										@if(isset($notif_approve))
+                                        	{{ $isi_notif }}
+										@endif
                                     </td>
                                 </tr>
                             </table>

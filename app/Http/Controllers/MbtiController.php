@@ -59,8 +59,6 @@ class MbtiController extends Controller
         ]);
 
         return redirect()->action('MbtiController@index')->with('status', 'Data MBTI Berhasil Ditambahkan');
-
-        
     }
 
 
@@ -127,8 +125,6 @@ class MbtiController extends Controller
         $mbti->delete();
         // $mbti->softDeletes();
         return redirect('/tabelmbti')->with('status', 'Data MBTI Berhasil Dihapus');
-     
-        
     }
 
     public function hasilmbti(Request $request){

@@ -39,8 +39,6 @@ class MessageController extends Controller
 
     public function sendMessage(Request $request)
     {
-
-
         if(request()->has('file')){
             $filename = request('file')->store('chat');
             $message=Message::create([
@@ -50,12 +48,8 @@ class MessageController extends Controller
             ]);
         }else{
             $message = auth()->user()->messages()->create(['message' => $request->message]);
-
         }
-
-
         broadcast(new MessageSent(auth()->user(),$message->load('user')))->toOthers();
-        
         return response(['status'=>'Message sent successfully','message'=>$message]);
 
     }
@@ -83,10 +77,11 @@ class MessageController extends Controller
 
     public function listchat()
     {
-        if(Auth::id() == 1){
+        if(Auth::id() == 1 || Auth::user()->role_id == 4){ // admin dan konselor
             $users = User::all()->except(auth()->id());
         }else{
-            $users = User::whereIn('role_id',[1])->get();
+            // $users = User::whereIn('role_id',[1])->get();
+            $users = User::where('id',14)->get();
             // $appointment = Appointment::where('user_id',Auth::id())->orderBy('created_at')->get()->last();
             $appointment = Appointment::where('user_id',Auth::id())->get()->last();
             if(!$appointment || $appointment->jenis_layanan != 'chatting' || $appointment->status == 'S'){

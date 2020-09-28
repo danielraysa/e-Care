@@ -24,7 +24,21 @@
 
    <div class="sidenav-overlay"></div>
    <div class="drag-target"></div>
-
+   <!-- Toast -->
+   <div id="toast_notif" style="position: fixed; top: 5rem; right: 0.5rem; z-index: 2; width: 300px">
+      {{-- <div class="toast fade" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+         <div class="toast-header">
+            <strong class="mr-auto">Bootstrap</strong>
+            <small class="text-muted">just now</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="toast-body">
+            See? Just like this.
+         </div>
+      </div> --}}
+   </div>
    <!-- BEGIN: Footer-->
    @include('backend.partialadmin.footer')
    <!-- END: Footer-->

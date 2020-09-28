@@ -10,9 +10,9 @@
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{url('profilmhs')}}">Laporan</a>
+                                <li class="breadcrumb-item"><a href="#">Laporan</a>
                                 </li>
                                 <li class="breadcrumb-item active">Rekam Medis Mahasiswa
                                 </li>
@@ -30,17 +30,10 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <button type="button" class="btn btn-success" style="margin-left:825px;"><a href="{{url('tambahrekammedis')}}">Tambah data</a></button>
+                                    <a class="btn btn-success float-right" href="{{url('tambahrekammedis')}}">Tambah data</a>
                                 </div>
+                                <div class="card-body card-dashboard">
                                 
-                                <div>
-                               
-                                </div>
-                                {{-- <div class="card-body collapse show"> --}}
-                                    <div class="card-body card-dashboard">
-                                    
-                                    {{-- </div> --}}
-                                    
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered patients-list datatable">
 
@@ -58,7 +51,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                              
+                                            
                                                 {{-- <tr>
                                                     <td>1</td>
                                                     <td>16410100115</td>
@@ -67,7 +60,7 @@
                                                         <a href=""><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>
                                                 </tr> --}}
-                                              @foreach ($appointment as $item)
+                                            @foreach ($appointment as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->mahasiswa->user_role->nik_nim }}</td>
@@ -81,7 +74,7 @@
                                                         <a href=""><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>
                                                 </tr>
-                                              @endforeach
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>

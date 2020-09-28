@@ -39,8 +39,6 @@
                                     </div>
                                 </div>
                                 <div class="card-body collapse show">
-                                    <div class="card-body card-dashboard">
-                                    </div>
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered patients-list">
                                             <thead>

@@ -8,13 +8,13 @@
                 </li>
 
              
-                @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 1)
+                @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 1 || Auth::user()->role_id == 4)
                 <li class=" nav-item"><a href="{{url('/jadwalkonselor')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Tabel Konseling</span></a>
                 </li>
                 @endif
 
 
-                @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+                @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2 || Auth::user()->role_id == 4)
                 <li class=" nav-item"><a href="{{url('tes-chat')}}"><i class="la la-comments"></i><span class="menu-title" data-i18n="Chat">Chat</span></a>
                 </li>
                 @endif
@@ -82,8 +82,6 @@
                         </li>
                         <li class=""><a class="menu-item" href="{{url('pertanyaan')}}"><i></i><span>Tabel Pertanyaan Kecemasan</span></a>
                         </li>
-
-                    
                         <!-- <li class=""><a class="menu-item" href="{{url('profilkonselor')}}"><i></i><span>Profil Konselor</span></a>
                         </li> -->
                     </ul>
@@ -97,7 +95,7 @@
                 </li>
                 @endif
 
-                @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 1)
+                @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 1 || Auth::user()->role_id == 4)
                 <li class=" nav-item"><a href="{{url('/rekapbulanan')}}"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Appointment">Laporan Rekap Perbulan</span></a>
                 </li>
                 @endif

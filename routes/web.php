@@ -141,9 +141,9 @@ Route::group(['middleware' => 'auth'], function () {
     //end test mbti
 
     //test tingkat kecemasan
-    Route::get('/testtingkat', 'QuestionController@test_tingkat');
+    Route::get('/testtingkat', 'TestController@index');
    
-    Route::post('/testtingkat', 'QuestionController@test_tingkat_hasil');
+    Route::post('/testtingkat', 'TestController@store');
 
     Route::get('/pertanyaan/{id}/destroy', 'QuestionController@destroy')->name('pertanyaan.delete');
     Route::resource('/pertanyaan', 'QuestionController');
