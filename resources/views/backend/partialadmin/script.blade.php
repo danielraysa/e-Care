@@ -49,14 +49,14 @@
     $('.select2').select2();
     $('.datatable').dataTable();
     notif_channel.bind('notif-event', function(data) {
-        $('#notif-list').append(
+        $('#notif-list').prepend(
         '<a href="#">'+
             '<div class="media">'+
                 '<div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan mr-0"></i></div>'+
                 '<div class="media-body">'+
                     '<h6 class="media-heading">Notifikasi</h6>'+
                     '<p class="notification-text font-small-3 text-muted">'+ data.message +'</p><small>'+
-                        '<time class="media-meta text-muted" datetime="'+ data.time +'">'+ data.time +'</time></small>'+
+                        '<time class="media-meta text-muted" datetime="'+ data.time.date +'">'+ data.time.date +'</time></small>'+
                 '</div>'+
             '</div>'+
         '</a>');
