@@ -83,7 +83,8 @@ class AppointmentController extends Controller
         $isi_notifikasi = " melakukan permintaan chat untuk konseling online. Silakan buka aplikasi www.e-care.com untuk memberikan approval.";
         $nama = Auth::user()->name;
         $event = broadcast(new SendNotification($notif));
-        Mail::send('isi-email', compact('isi_notifikasi', 'nama'), function ($message)
+        $notif_appointment = true;
+        Mail::send('isi-email', compact('isi_notifikasi', 'nama', 'notif_appointment'), function ($message)
         {
             $message->subject('Notifikasi E-Care');
             $message->from('anelzraysa@mail.com', 'E-Care');
@@ -130,7 +131,7 @@ class AppointmentController extends Controller
         // waktu approve/tolak permintaan
         if($request->pilihan == 'Y'){
             $pilihan = 'Y';
-            $isi_notifikasi = 'Permintaan appointment kamu diterima. Silahkan aplikasi E-Care untuk melakukan konseling online dengan Konselor  ';
+            $isi_notifikasi = 'Permintaan appointment kamu diterima. Silahkan buka aplikasi E-Care untuk melakukan konseling online dengan Konselor  ';
         }
         else{
             $pilihan = 'T';
@@ -146,10 +147,11 @@ class AppointmentController extends Controller
             'message' => 'Permintaan appointment/chat telah diterima',
         ]);
         $event = broadcast(new SendNotification($notif));
+        $notif_approve = true;
         // if($data_app->jenis_layanan == 'konseling'){
             //$when = now()->addMinutes(2);
             // Mail::to('adistriani@gmail.com')->later($when, new MailableClass);
-            Mail::send('isi-email', compact('isi_notifikasi', 'tgl'), function ($message)
+            Mail::send('isi-email', compact('isi_notifikasi', 'tgl','notif_approve'), function ($message)
             {
                 $message->subject('Notifikasi E-Care');
                 $message->from('anelzraysa@mail.com', 'E-Care');

@@ -305,7 +305,7 @@
 										@endif
 										
 										@if(isset($notif_approve))
-                                        	{{ $isi_notif }}
+                                        	{{ $isi_notifikasi }}
 										@endif
                                     </td>
                                 </tr>
