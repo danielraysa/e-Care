@@ -158,7 +158,6 @@
                 '</div>'+
             '</div>'+
         '</div>');
-        console.log(data);
         // Scroll to the bottom of the container when a new message becomes available
         // $(".chat-container").scrollTop($(".chat-container")[0].scrollHeight);
         $(".chat-container").scrollTop($(".chat-container > .chat-content").height());
@@ -172,11 +171,11 @@
             dataType: "json",
             data: ajax_data,
             success: function(response, textStatus, jqXHR) {
-                console.log(jqXHR.responseText);
+                console.log(response);
                 chatPushContainer(response);
             },
-            error: function(msg) {
-                // alert(msg);
+            error: function(response, textStatus, jqXHR) {
+                // alert(response);
             }
         });
     }
@@ -205,7 +204,7 @@
                 message: chat_content
             }
             // Send the message to the server
-            ajaxCall('tes-chat', chat_message);
+            ajaxCall("{{ route('send-chat') }}", chat_message);
             // Clear the message input field
             $('#chatInput').val('');
         }

@@ -12,6 +12,7 @@ use App\Events\PrivateMessageSent;
 use Pusher;
 use Auth;
 use App\Events\ChatEvent;
+use App\Events\OnlineUser;
 
 class MessageController extends Controller
 {
@@ -91,6 +92,7 @@ class MessageController extends Controller
                 return view('backend.mhs.buatappointment', compact('mhs'));
             }
         }
+        $event = broadcast(new OnlineUser(Auth::user()));
         return view('chat', compact('users'));
     }
 
@@ -125,26 +127,16 @@ class MessageController extends Controller
 
         // Check the receive message
         if(isset($request->message) && !empty($request->message)) {
-            /* $data = new Message;
-            $data->message = $request->message;
-            $data->user_id = $user->id;
-            $data->user_name = $user->name;
-            $data->time = date('H:i'); */
             $data['message'] = $request->message;
             $data['user_id'] = $user->id;
-            $data['receiver_id'] = $request->receiver;
+            $data['receiver_id'] = (int)$request->receiver;
             $data['time'] = date('H:i');
             $message = Message::create([
                 'user_id' => $user->id,
                 'receiver_id' => $request->receiver,
                 'message' => $request->message,
             ]);
-            // Return the received message
-            /* if($pusher->trigger('test_channel', 'my_event', $data)) {              
-                echo 'success';        
-            } else {
-                echo 'error';  
-            } */
+            
             $event = broadcast(new ChatEvent($data));
             if($event){
                 return $data;

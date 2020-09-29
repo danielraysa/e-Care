@@ -40,9 +40,12 @@
     var pusher = new Pusher('8284629e5aa4b95ea203', {
         cluster: 'ap1'
     });
-    var channel = pusher.subscribe('chat-channel.{{ Auth::id() }}');
-    var notif_channel = pusher.subscribe('notif-channel.{{ Auth::id() }}');
-    // var toast_channel = pusher.subscribe('toast-channel.{{ Auth::id() }}');
+    var channel = pusher.subscribe('chat-channel.'+my_id);
+    var notif_channel = pusher.subscribe('notif-channel.'+my_id);
+    var presence_channel = pusher.subscribe('presence.channel');
+    presence_channel.bind('presence-user', function(data){
+        alert(data);
+    });
     $('.select2').select2();
     $('.datatable').dataTable();
     notif_channel.bind('notif-event', function(data) {
@@ -85,4 +88,18 @@
         notif_count = 0;
         $('#notification-count').hide();
     });
+    $('.close').click(function(){
+        $(this).parent().parent().remove();
+    });
+    /* window.onbeforeunload = function (event) {
+        var message = 'Important: Please click on \'Save\' button to leave this page.';
+        if (typeof event == 'undefined') {
+            event = window.event;
+        }
+        if (event) {
+            event.returnValue = message;
+        }
+        return message;
+    }; */
+
 </script>
