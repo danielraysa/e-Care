@@ -61,8 +61,8 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->mahasiswa->user_role->nik_nim }}</td>
                                                     <td>{{ $item->mahasiswa->user_role->data_mhs->nama }}</td>
-                                                    <td>S1 Sistem Informasi</td>
-                                                    <td>{{ $item->tgl_appointment }}</td>
+                                                    <td>{{ $item->mahasiswa->user_role->data_mhs->prodi() }}</td>
+                                                    <td>{{ Helper::tanggal_indo($item->tgl_appointment) }}</td>
                                                     <td>{{ $item->jenis_layanan }}</td>
                                                     <td>{{ $item->jenis_problem }}</td>
                                                     <td>{{ $item->description }}</td>
@@ -78,7 +78,7 @@
                                                         <button class="btn btn-danger" type="submit" value="T" name="pilihan"> Decline</button>
                                                     </form>
                                                     @else
-                                                        <button class="btn btn-success" type="button" disabled> Approve</button>
+                                                        <button class="btn btn-success text-white" type="button" disabled> Approve</button>
                                                         <button class="btn btn-danger" type="button" disabled> Decline</button>
                                                     @endif
                                                     </td>

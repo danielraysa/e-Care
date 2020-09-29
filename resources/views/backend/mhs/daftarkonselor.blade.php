@@ -32,15 +32,7 @@
                                 <div class="card-header">
                                     <button type="button" class="btn btn-success" style="margin-left:850px;"><a href="{{url('counselor/create')}}">Tambah Konselor</a></button>
                                 </div>
-                                
-                                <div>
-                               
-                                </div>
-                                {{-- <div class="card-body collapse show"> --}}
                                     <div class="card-body card-dashboard">
-                                    
-                                    {{-- </div> --}}
-                                    
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered patients-list datatable">
 

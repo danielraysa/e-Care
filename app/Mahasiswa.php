@@ -39,4 +39,46 @@ class Mahasiswa extends Model
     {
         return $this->hasOne(Karyawan::class, 'NIK', 'DOSEN_WL');
     }
+
+    public function prodi()
+    {
+        switch (substr($this->nim, 2, 5)) {
+            case '43010':
+                $nama_prodi = 'S1 Manajemen';
+                break;
+            case '43020':
+                $nama_prodi = 'S1 Akuntansi';
+                break;
+            case '42020':
+                $nama_prodi = 'S1 Desain Produk';
+                break;
+            case '39010':
+                $nama_prodi = 'D3 Sistem Informasi';
+                break;
+            case '39015':
+                $nama_prodi = 'D3 Administrasi Perkantoran';
+                break;
+            case '41010':
+                $nama_prodi = 'S1 Sistem Informasi';
+                break;
+            case '41020':
+                $nama_prodi = 'S1 Teknik Komputer';
+                break;
+            case '42010':
+                $nama_prodi = 'S1 Desain Komunikasi Visual';
+                break;
+            case '41011':
+                $nama_prodi = 'S1 Sistem Informasi';
+                break;
+            case '51016':
+                $nama_prodi = 'D4 Produksi Film dan Televisi';
+                break;
+            default:
+                $nama_prodi = '-';
+                # code...
+                break;
+        }
+        return $nama_prodi;
+        
+    }
 }

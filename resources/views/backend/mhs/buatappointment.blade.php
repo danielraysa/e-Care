@@ -126,7 +126,7 @@
                 <div class="form-group">
                     <label for="service">Jenis Layanan<span class="text-danger">*</span></label>
                     <select name="jenis_layanan" class="form-control" id="service" required>
-                        <option value="chatting">Chatting</option>
+                        <option value="chatting" selected>Chatting</option>
                         {{-- <option value="konseling">Konseling Langsung</option> --}}
                     </select>
                 </div>

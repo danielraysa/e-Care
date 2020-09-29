@@ -33,13 +33,7 @@
                                     <button type="button" class="btn btn-success" style="margin-left:825px;"><a href="{{('tambahrekapbulan')}}">Tambah data</a></button>
                                 </div>
                                 
-                                <div>
-                               
-                                </div>
-                                {{-- <div class="card-body collapse show"> --}}
                                     <div class="card-body card-dashboard">
-                                    
-                                    {{-- </div> --}}
                                     
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered patients-list datatable">
@@ -58,17 +52,17 @@
                                             </thead>
                                             <tbody>
                                                 @foreach ($rekam as $item)
-                                              
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->tgl }}</td>
+                                                    <td>{{ Helper::tanggal_indo($item->tgl) }}</td>
                                                     <td>{{ $item->data_appointment->description }}</td>
                                                     <td>{{ $item->data_appointment->jenis_layanan }}</td>
                                                     <td>{{ $item->data_appointment->jenis_problem }}</td>
                                                     <td>{{ $item->prospek }}</td>
                                                     <td>$item->tindak_lanjut</td>
-                                                    <td><a href=""><i class="ft-edit text-success"></i></a>
-                                                        <a href=""><i class="ft-trash-2 ml-1 text-warning"></i></a>
+                                                    <td>
+                                                        <a href="#"><i class="ft-edit text-success"></i></a>
+                                                        <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
