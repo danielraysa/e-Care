@@ -12,7 +12,7 @@
                 {{ $user_receiver->name }}
             </h6>
         </div>
-        @if(Auth::user()->role_id == 1)
+        @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 4)
         <div class="chat-header-icons">
             <span class="dropdown">
                 <i class="ft-more-vertical font-medium-4 ml-25 cursor-pointer dropdown-toggle nav-hide-arrow cursor-pointer" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
