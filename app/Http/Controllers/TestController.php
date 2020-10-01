@@ -56,7 +56,7 @@ class TestController extends Controller
                 $jml_no += 1;
             } */
         }
-        $cari = TestScrore::where('user_id', $user->id)->get()->first();
+        $cari = TestScore::where('user_id', $user->id)->get()->first();
         if($cari){
             $simpan = TestScore::where('user_id', $user->id)->update([
                 'skor' => $jml_yes
