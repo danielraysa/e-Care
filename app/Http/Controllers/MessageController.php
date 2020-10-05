@@ -85,14 +85,17 @@ class MessageController extends Controller
             $users = User::where('id',14)->get();
             // $appointment = Appointment::where('user_id',Auth::id())->orderBy('created_at')->get()->last();
             $appointment = Appointment::where('user_id',Auth::id())->get()->last();
-            if(!$appointment || $appointment->jenis_layanan != 'chatting' || $appointment->status == 'S'){
+            if(!$appointment || $appointment->jenis_layanan != 'chatting' || in_array($appointment->status, ['M','S'])){
                 $user = Auth::user();
                 $nim = $user->email;
-                $mhs = Mahasiswa::find($nim);
-                return view('backend.mhs.buatappointment', compact('mhs'));
+                $data['mhs'] = Mahasiswa::find($nim);
+                if($appointment){
+                    $data['appointment'] = $appointment;
+                }
+                return view('backend.mhs.buatappointment', $data);
             }
         }
-        $event = broadcast(new OnlineUser(Auth::user()));
+        // $event = broadcast(new OnlineUser(Auth::user()));
         return view('chat', compact('users'));
     }
 

@@ -106,6 +106,8 @@ class AppointmentController extends Controller
     public function show($id)
     {
         //
+        $appointment = Appointment::find($id);
+        return response()->json($appointment, 200);
     }
 
     /**
@@ -178,8 +180,9 @@ class AppointmentController extends Controller
     {
         $counselor = Counselor::with('data_user')->get();
         // $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('counselor_id', Auth::id())->get();
-        $appointment = Appointment::where('status', 'M')->with('mahasiswa.user_role.data_mhs')->orderBy('tgl_appointment','desc')->get();
-        $appointment_acc = Appointment::where('status', 'Y')->with('mahasiswa.user_role.data_mhs')->orderBy('tgl_appointment','desc')->get();
+        $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->orderBy('created_at','desc')->get();
+        // $appointment = Appointment::where('status', 'M')->with('mahasiswa.user_role.data_mhs')->orderBy('created_at','desc')->get();
+        $appointment_acc = Appointment::where('status', 'Y')->with('mahasiswa.user_role.data_mhs')->orderBy('created_at','desc')->get();
         $user = User::with('user_role.data_mhs.dosen_wali')->find(Auth::id());
         return view('backend.konselor.jadwalkonselor', compact('appointment','appointment_acc'));
     }

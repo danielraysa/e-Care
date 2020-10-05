@@ -105,6 +105,6 @@ class ForumController extends Controller
             'user_id' => Auth::user()->id,
             'komentar' => $request->komentar
         ]);
-        return redirect()->route('forum-group.index')->with('status','Postingan berhasil dibuat');
+        return redirect()->back()->with('status','Komentar berhasil dibuat');
     }
 }

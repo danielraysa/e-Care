@@ -123,6 +123,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::resource('/appointment', 'AppointmentController');
     Route::get('/appointment', 'AppointmentController@index')->name('appointment.index');
     Route::post('/appointment', 'AppointmentController@store')->name('appointment.store');
+    Route::get('/appointment/{id}', 'AppointmentController@show')->name('appointment.show');
     Route::post('/appointment/{id}/update', 'AppointmentController@update')->name('appointment.update');
     Route::post('/appointment/{id}/end-chat', 'AppointmentController@update_chat')->name('appointment.end-chat');
     //end appointment

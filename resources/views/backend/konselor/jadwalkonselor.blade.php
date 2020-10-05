@@ -1,4 +1,20 @@
 @extends('backend.partialadmin.layout')
+@push('js')
+    <script>
+        $('.datatable').on('click', '.btnDetail', function(){
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: "{{ url('appointment') }}/"+id,
+                type: "get",
+                success: function(result){
+                    console.log(result);
+                    $('#jenis_problem').append(result.jenis_problem);
+                    $('#deskripsi').text(result.description);
+                }
+            })
+        });
+    </script>
+@endpush
 @section('content')
 
    <!-- BEGIN: Content-->
@@ -39,17 +55,14 @@
                                 </div>
                                 <div class="card-body collapse show">
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-bordered patients-list">
+                                        <table class="table table-striped table-bordered patients-list datatable">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>NIM</th>
-                                                    <th>Nama</th>
-                                                    <th>Program Studi</th>
-                                                    <th>Tanggal Appointment</th>
+                                                    <th>NIM/Nama</th>
+                                                    <th>Tanggal Daftar</th>
                                                     <th>Jenis Layanan</th>
                                                     <th>Jenis Problem</th>
-                                                    <th>Keluhan</th>
                                                     <th>Status</th>
                                                     <th>Aksi</th>
                                                 </tr>
@@ -58,14 +71,23 @@
                                                 @foreach ($appointment as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->mahasiswa->user_role->nik_nim }}</td>
-                                                    <td>{{ $item->mahasiswa->user_role->data_mhs->nama }}</td>
-                                                    <td>{{ $item->mahasiswa->user_role->data_mhs->prodi() }}</td>
-                                                    <td>{{ Helper::tanggal_indo($item->tgl_appointment) }}</td>
+                                                    <td>{{ $item->mahasiswa->user_role->data_mhs->nama }}
+                                                    ({{ $item->mahasiswa->user_role->nik_nim }})</td>
+                                                    {{-- <td>{{ Helper::tanggal_indo($item->tgl_appointment) }}</td> --}}
+                                                    <td>{{ Helper::datetime_indo($item->created_at) }}</td>
                                                     <td>{{ $item->jenis_layanan }}</td>
                                                     <td>{{ $item->jenis_problem }}</td>
-                                                    <td>{{ $item->description }}</td>
-                                                    <td>{{ $item->status }}</td>
+                                                    <td>
+                                                        @if($item->status == 'M')
+                                                        Menunggu
+                                                        @elseif($item->status == 'Y')
+                                                        Diterima
+                                                        @elseif($item->status == 'T')
+                                                        Ditolak
+                                                        @else
+                                                        Selesai
+                                                        @endif
+                                                    </td>
                                                     <td>
                                                     @if($item->status == 'M')
                                                     <form action="{{url('appointment/'.$item->id.'/update')}}" method="post">
@@ -80,6 +102,7 @@
                                                         <button class="btn btn-success text-white" type="button" disabled> Approve</button>
                                                         <button class="btn btn-danger" type="button" disabled> Decline</button>
                                                     @endif
+                                                        <button type="button" class="btn btn-primary btnDetail" data-toggle="modal" data-target="#modalDetail" data-id="{{ $item->id }}"> Detail</button>
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -119,7 +142,7 @@
                                                     <th>NIM</th>
                                                     <th>Nama</th>
                                                     <th>Program Studi</th>
-                                                    <th>Tanggal Appointment</th>
+                                                    <th>Tanggal Daftar</th>
                                                     <th>Jenis Problem</th>
                                                     <th>Keluhan</th>
                                                     <th>Status</th>
@@ -132,7 +155,7 @@
                                                     <td>{{ $item->mahasiswa->user_role->nik_nim }}</td>
                                                     <td>{{ $item->mahasiswa->user_role->data_mhs->nama }}</td>
                                                     <td>{{ $item->mahasiswa->user_role->data_mhs->prodi() }}</td>
-                                                    <td>{{ Helper::tanggal_indo($item->tgl_appointment) }}</td>
+                                                    <td>{{ Helper::datetime_indo($item->created_at) }}</td>
                                                     <td>{{ $item->jenis_problem }}</td>
                                                     <td>{{ $item->description }}</td>
                                                     <td>{{ $item->status }}</td>
@@ -151,5 +174,21 @@
         </div>
     </div>
     <!-- END: Content-->
-
+    <div class="modal fade" id="modalDetail">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Detail
+                </div>
+                <div class="modal-body">
+                    <p id="jenis_problem"><b>Jenis Problem:</b> </p>
+                    <p><b>Deskripsi: </b></p>
+                    <p id="deskripsi"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

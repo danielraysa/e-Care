@@ -15,7 +15,7 @@ class RekamMedisController extends Controller
      */
     public function index()
     {
-        $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('status', 'Y')->get();
+        $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('status', 'S')->orderBy('created_at', 'desc')->get();
         return view('backend.konselor.laprekammedis', compact('appointment'));
     }
 

@@ -76,7 +76,11 @@
                                         <div class="row px-3">
                                             <div class="col-lg-12">
                                                 @foreach ($forum->komentar_forum as $item)
+                                                    @if($item->komentar_user->role_id == 4)
+                                                    <p><b>{{ $item->komentar_user->name }}</b>: {{ $item->komentar }}</p>
+                                                    @else
                                                     <p><b>{{ $item->komentar_user->sensor_nama() }}</b>: {{ $item->komentar }}</p>
+                                                    @endif
                                                 @endforeach
                                             </div>
                                         </div>
