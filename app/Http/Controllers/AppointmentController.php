@@ -178,12 +178,10 @@ class AppointmentController extends Controller
     {
         $counselor = Counselor::with('data_user')->get();
         // $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('counselor_id', Auth::id())->get();
-        // $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->whereNull('status')->get();
-        $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->orderBy('tgl_appointment','desc')->get();
+        $appointment = Appointment::where('status', 'M')->with('mahasiswa.user_role.data_mhs')->orderBy('tgl_appointment','desc')->get();
+        $appointment_acc = Appointment::where('status', 'Y')->with('mahasiswa.user_role.data_mhs')->orderBy('tgl_appointment','desc')->get();
         $user = User::with('user_role.data_mhs.dosen_wali')->find(Auth::id());
-        $notification = Notification::where('user_id', Auth::id())->get();
-        return view('backend.konselor.jadwalkonselor', compact('appointment','notification'));
-        // $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('status', 'Y')->get();
+        return view('backend.konselor.jadwalkonselor', compact('appointment','appointment_acc'));
     }
 
     public function update_chat(Request $request, $id)

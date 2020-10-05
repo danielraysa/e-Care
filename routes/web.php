@@ -219,8 +219,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('/user', 'UserController');
     // Route::resource('/chat', 'ChatController');
-    
-    Route::get('/kuis', 'AppointmentController@kirimemail');
+
     Route::resource('pertanyaan', 'QuestionController');
     
     Route::get('/tes-chat', 'MessageController@listchat')->name('chat');
