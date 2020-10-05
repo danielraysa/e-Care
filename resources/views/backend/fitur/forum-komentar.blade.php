@@ -31,7 +31,6 @@
 
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12">
-
                             <div class="card shadow-none">
                                 <div class="catd-body">
                                     <div class="row p-2">
