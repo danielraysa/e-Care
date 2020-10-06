@@ -21,4 +21,9 @@ class Appointment extends Model
         // return $this->hasOne(User::class, 'id', 'counselor_id');
         return $this->belongsTo(User::class, 'counselor_id', 'id');
     }
+
+    public function catatan_medis()
+    {
+        return $this->hasOne(RekamMedis::class, 'appointment_id', 'id');
+    }
 }

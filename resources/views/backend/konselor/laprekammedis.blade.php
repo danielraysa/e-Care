@@ -58,7 +58,11 @@
                                                     <td>{{ $item->jenis_problem }}</td>
                                                     <td>{{ $item->description }}</td>
                                                     <td>
+                                                        @if($item->catatan_medis != null)
+                                                        <a href="{{ route('rekammedis.show', $item->id) }}" class="btn btn-primary"><i class="ft-eye"></i></a>
+                                                        @else
                                                         <a href="{{ route('tambah-rekam', $item->id) }}" class="btn btn-success"><i class="ft-edit"></i></a>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach

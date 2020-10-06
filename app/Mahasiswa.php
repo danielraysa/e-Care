@@ -40,6 +40,23 @@ class Mahasiswa extends Model
         return $this->hasOne(Karyawan::class, 'NIK', 'DOSEN_WL');
     }
 
+    public function jenis_kel()
+    {
+        switch ($this->sex) {
+            case 1:
+                $jenis_kel = 'Laki-laki';
+                break;
+            case 2:
+                $jenis_kel = 'Perempuan';
+                break;
+            default:
+                $jenis_kel = '-';
+                # code...
+                break;
+        }
+        return $jenis_kel;
+    }
+
     public function prodi()
     {
         switch (substr($this->nim, 2, 5)) {

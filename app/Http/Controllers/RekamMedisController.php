@@ -15,7 +15,7 @@ class RekamMedisController extends Controller
      */
     public function index()
     {
-        $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('status', 'S')->orderBy('created_at', 'desc')->get();
+        $appointment = Appointment::with('mahasiswa.user_role.data_mhs', 'catatan_medis')->where('status', 'S')->orderBy('created_at', 'desc')->get();
         return view('backend.konselor.laprekammedis', compact('appointment'));
     }
 
@@ -72,6 +72,7 @@ class RekamMedisController extends Controller
             'p1' => $request->p1,
             'p2' => $request->p2,
             'p3' => $request->p3,
+            'penyelesaian' => $request->penyelesaian,
             'prospek' => $request->prospek,
         ]);
 
@@ -87,6 +88,8 @@ class RekamMedisController extends Controller
     public function show($id)
     {
         //
+        $appointment = Appointment::with('mahasiswa.user_role.data_mhs', 'catatan_medis')->find($id);
+        return view('backend.konselor.tambahrekammedis', compact('appointment','id'));
     }
 
     /**

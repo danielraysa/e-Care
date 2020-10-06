@@ -135,8 +135,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     //test tingkat kecemasan
     Route::get('/testtingkat', 'TestController@index');
-   
     Route::post('/testtingkat', 'TestController@store');
+    // Route::resource('/testtingkat', 'TestController');
 
     Route::get('/pertanyaan/{id}/destroy', 'QuestionController@destroy')->name('pertanyaan.delete');
     Route::resource('/pertanyaan', 'QuestionController');

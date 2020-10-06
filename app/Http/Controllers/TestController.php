@@ -18,8 +18,14 @@ class TestController extends Controller
     public function index()
     {
         //
-        $pertanyaan = Question::all();
-        return view('backend.mhs.testtingkatmasalah', compact('pertanyaan'));
+        if(Auth::user()->role_id == 4){
+            $test_scores = TestScore::with('user_test')->get();
+            // dd($test_scores);
+            return view('backend.konselor.hasiltest', compact('test_scores'));
+        }else{
+            $pertanyaan = Question::all();
+            return view('backend.mhs.testtingkatmasalah', compact('pertanyaan'));
+        }
     }
 
     /**
