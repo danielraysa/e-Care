@@ -34,4 +34,9 @@
 <link rel="stylesheet" type="text/css" href="{{asset('css/select2.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('css/dataTables.css')}}">
 {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"> --}}
+<style>
+    #scroll-top {
+        bottom: 50px;
+    }
+</style>
 <!-- END: Page CSS-->

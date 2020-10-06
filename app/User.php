@@ -42,5 +42,10 @@ class User extends Authenticatable
     {
         return substr($this->name, 0, 1) . preg_replace('/[^@]/', '*', substr($this->name, 1));
     }
+
+    public function last_appointment()
+    {
+        return $this->hasOne(Appointment::class, 'user_id');
+    }
     
 }

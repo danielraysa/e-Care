@@ -29,12 +29,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <button type="button" class="btn btn-success" style="margin-left:825px;"><a href="{{('tambahrekapbulan')}}">Tambah data</a></button>
-                                </div>
-                                
-                                    <div class="card-body card-dashboard">
-                                    
+                                <div class="card-body card-dashboard">
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered patients-list datatable">
 
@@ -47,7 +42,6 @@
                                                     <th>Jenis Bimbingan</th>
                                                     <th>Penyelesaian</th>
                                                     <th>Tindak Lanjut</th>
-                                                    <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -60,10 +54,6 @@
                                                     <td>{{ $item->data_appointment->jenis_problem }}</td>
                                                     <td>{{ $item->prospek }}</td>
                                                     <td>$item->tindak_lanjut</td>
-                                                    <td>
-                                                        <a href="#"><i class="ft-edit text-success"></i></a>
-                                                        <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a>
-                                                    </td>
                                                 </tr>
                                                 @endforeach
                                               

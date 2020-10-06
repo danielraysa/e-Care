@@ -75,7 +75,7 @@ class RekamMedisController extends Controller
             'prospek' => $request->prospek,
         ]);
 
-        return redirect()->route('rekam-medis')->with('status', 'Berhasil menambahkan data rekam medis');
+        return redirect()->route('rekammedis.index')->with('status', 'Berhasil menambahkan data rekam medis');
     }
 
     /**

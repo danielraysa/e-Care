@@ -47,7 +47,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput1">Kode</label>
                                                     <div class="col-md-9 mx-auto">
-                                                         <input type="text" name="kode" class="form-control required" id="kode" name="kode" @if(isset($appointment)) value="{{ $appointment->id }}" @endif/>   
+                                                         <input type="text" name="kode" class="form-control required" id="kode" name="kode" @if(isset($appointment)) value="{{ $appointment->id }}" readonly @endif/>   
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">

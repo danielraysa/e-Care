@@ -29,9 +29,9 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
+                                {{-- <div class="card-header">
                                     <a class="btn btn-success float-right" href="{{url('tambahrekammedis')}}">Tambah data</a>
-                                </div>
+                                </div> --}}
                                 <div class="card-body card-dashboard">
                                 
                                     <div class="table-responsive">
@@ -40,38 +40,25 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>NIM</th>
-                                                    <th>Nama</th>
+                                                    <th>Nama/NIM</th>
                                                     <th>Program Studi</th>
                                                     <th>Tanggal Appointment</th>
-                                                    <th>Jenis Layanan</th>
                                                     <th>Jenis Bimbingan</th>
                                                     <th>Keluhan</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            
-                                                {{-- <tr>
-                                                    <td>1</td>
-                                                    <td>16410100115</td>
-                                                    <td>Gusti Adistriani</td>
-                                                    <td><a href="{{url('profilkonselor')}}"><i class="ft-edit text-success"></i></a>
-                                                        <a href=""><i class="ft-trash-2 ml-1 text-warning"></i></a>
-                                                    </td>
-                                                </tr> --}}
                                             @foreach ($appointment as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->mahasiswa->user_role->nik_nim }}</td>
-                                                    <td>{{ $item->mahasiswa->user_role->data_mhs->nama }}</td>
+                                                    <td>{{ $item->mahasiswa->user_role->data_mhs->nama }} ({{ $item->mahasiswa->user_role->nik_nim }})</td>
                                                     <td>{{ $item->mahasiswa->user_role->data_mhs->prodi() }}</td>
                                                     <td>{{ Helper::tanggal_indo($item->tgl_appointment) }}</td>
-                                                    <td>{{ $item->jenis_layanan }}</td>
                                                     <td>{{ $item->jenis_problem }}</td>
                                                     <td>{{ $item->description }}</td>
-                                                    <td><a href="{{ url('tambahrekammedis/'.$item->id) }}"><i class="ft-edit text-success"></i></a>
-                                                        <a href=""><i class="ft-trash-2 ml-1 text-warning"></i></a>
+                                                    <td>
+                                                        <a href="{{ route('tambah-rekam', $item->id) }}" class="btn btn-success"><i class="ft-edit"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach

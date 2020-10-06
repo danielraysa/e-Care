@@ -79,20 +79,17 @@ class MessageController extends Controller
     public function listchat()
     {
         if(Auth::id() == 1 || Auth::user()->role_id == 4){ // admin dan konselor
-            $users = User::all()->except(auth()->id());
+            $users = User::with(['last_appointment' => function($query){
+                $query->where('status', 'Y')->orderBy('created_at', 'desc');
+            }])->whereNotBetween('id', [1, 3, 4, 14, 15])->get();
+            // dd($users);
         }else{
             // $users = User::whereIn('role_id',[1])->get();
-            $users = User::where('id',14)->get();
+            $users = User::where('id', 14)->get();
             // $appointment = Appointment::where('user_id',Auth::id())->orderBy('created_at')->get()->last();
-            $appointment = Appointment::where('user_id',Auth::id())->get()->last();
-            if(!$appointment || $appointment->jenis_layanan != 'chatting' || in_array($appointment->status, ['M','S'])){
-                $user = Auth::user();
-                $nim = $user->email;
-                $data['mhs'] = Mahasiswa::find($nim);
-                if($appointment){
-                    $data['appointment'] = $appointment;
-                }
-                return view('backend.mhs.buatappointment', $data);
+            $appointment = Appointment::where('user_id', Auth::id())->get()->last();
+            if(!$appointment || $appointment->jenis_layanan != 'chatting' || $appointment->status != 'Y'){
+                return redirect(url('buatappointment'));
             }
         }
         // $event = broadcast(new OnlineUser(Auth::user()));
@@ -101,14 +98,17 @@ class MessageController extends Controller
 
     public function listmessage($id)
     {
-        $messages = Message::with('user')
+        $data['messages'] = Message::with('user')
         ->where(['user_id'=> auth()->id(), 'receiver_id'=> $id])
         ->orWhere(function($query) use($id){
             $query->where(['user_id' => $id, 'receiver_id' => auth()->id()]);
         })->get();
-        $user_receiver = User::find($id);
+        $data['user_receiver'] = User::find($id);
+        if(Auth::user()->role_id == 4){
+            $data['last_appointment'] = Appointment::where('user_id', $id)->get()->last();
+        }
         // dd($messages);
-        return view('chat-card', compact('user_receiver','messages'));
+        return view('chat-card', $data);
     }
 
     public function teschat(Request $request)

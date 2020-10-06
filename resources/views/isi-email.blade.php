@@ -299,7 +299,7 @@
                                     <td>
 										@if(isset($notif_appointment))
                                         Pemberitahuan, <br>
-										Mahasiswa bernama @if(isset($nama)) {{ $nama }} @endif pada tanggal @if(isset($tgl)) {{ $tgl }} @endif {{ $isi_notifikasi }}<br>
+										Mahasiswa bernama <b>{{ $nama }}</b> pada tanggal {{ Helper::datetime_indo($appointment->created_at) }} melakukan permintaan chat untuk konseling online. Silakan buka aplikasi www.e-care.com untuk memberikan approval.<br>
 										
 										Terima kasih <br>
 										@endif

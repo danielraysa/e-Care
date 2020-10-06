@@ -1,4 +1,12 @@
 @extends('backend.partialadmin.layout')
+@push('js')
+    <script>
+    $('form').submit(function(){
+        $('#btnSubmit').attr('disabled', true);
+        $('#btnReset').attr('disabled', true);
+    });
+    </script>
+@endpush
 @section('content')
 <!-- BEGIN: Content-->
 <div class="app-content content">
@@ -164,9 +172,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer ml-auto">
-                                <button type="submit" class="btn btn-outline-success mr-1" @if(isset($appointment) && $appointment->status == 'M') disabled @endif>Kirim</button>
-                                <button type="reset" class="btn btn-outline-danger">Batal</button>
+                            <div class="card-footer ml-auto @if(isset($appointment) && $appointment->status == 'M') d-none @endif">
+                                <button type="submit" id="btnSubmit" class="btn btn-outline-success mr-1">Kirim</button>
+                                <button type="reset" id="btnReset" class="btn btn-outline-danger">Batal</button>
                             </div>
                             </form>
                         </div>

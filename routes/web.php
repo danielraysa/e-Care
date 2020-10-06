@@ -73,7 +73,6 @@ Route::group(['middleware' => 'auth'], function () {
     });
     //end tabel mahasiswa
 
-
     //tabel konselor
     Route::get('/jadwalkonselor', 'AppointmentController@index_konselor'); 
         
@@ -89,17 +88,11 @@ Route::group(['middleware' => 'auth'], function () {
     });
     //end tabel konselor
     
-
     //laporan rekam medis
     Route::resource('rekammedis', 'RekamMedisController');
-    // Route::get('/rekammedis', function () {
-    //     return view('backend.konselor.laprekammedis');
-    // });
-
    
-    Route::get('tambahrekammedis/{id}', 'RekamMedisController@create');
+    Route::get('tambahrekammedis/{id}', 'RekamMedisController@create')->name('tambah-rekam');
     Route::post('tambahrekammedis/{id}', 'RekamMedisController@store')->name('simpan-rekam');
-    Route::get('addrekammedis', 'RekamMedisController@index')->name('rekam-medis');
     //end rekam medis
 
     //laporan rekap perbulan
@@ -137,8 +130,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/mbti/{id}/destroy', 'MbtiController@destroy')->name('mbti.delete');
     // Route::get('/mbti/edit/{id}','MbtiController@edit');
     // Route::patch('/mbti/update/{id}','MbtiController@update');
-    // nggak usah pake ini, udah jadi satu sama resource
-    // Route::resource('pertanyaan', 'QuestionController');
+
     //end test mbti
 
     //test tingkat kecemasan
@@ -151,7 +143,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     //end tingkat kecemasan
     
-
     //Data Master
 
     //tabel role
@@ -163,7 +154,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/formrole', 'RolesController@create');
     Route::get('/roles/{id}/destroy', 'RolesController@destroy')->name('roles.delete');
     //end tabel role
-
     
     //tabel program studi
     Route::get('/tabelprodi', 'MajorsController@index');
@@ -179,12 +169,10 @@ Route::group(['middleware' => 'auth'], function () {
     });
     //end tabel program studi
 
-
     //tabel mbti
     Route::get('/testmbti', 'MbtiController@dropdownindex');
     Route::post('/testmbti', 'MbtiController@hasilmbti')->name('mbti.simpantest');
     //end tabel mbti
-
   
     //tabel pertanyaan
     Route::get('/tabelpertanyaan', function () {
@@ -195,7 +183,6 @@ Route::group(['middleware' => 'auth'], function () {
         return view('backend.datamaster.tambahpertanyaan');
     });
     //end tabel pertanyaan
-
 
     //tabel karyawan
     Route::get('/tabelkaryawan', function () {
@@ -208,12 +195,10 @@ Route::group(['middleware' => 'auth'], function () {
     });
     //endtabel karyawan
 
-
     //forum
     Route::resource('forum-group', 'ForumController');
     Route::post('/forum-group/{id}/komentar', 'ForumController@post_komentar')->name('forum-group.komentar');
     //endforum
-
     
     //chat
     Route::resource('notification', 'NotificationController');

@@ -91,7 +91,7 @@
 
                 @endif
                 @if(Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
-                <li class=" nav-item"><a href="{{url('/rekammedis')}}"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Appointment">Laporan Rekam Medis</span></a>
+                <li class=" nav-item"><a href="{{url('/rekammedis')}}"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Appointment">Rekam Medis</span></a>
                 </li>
                 @endif
 

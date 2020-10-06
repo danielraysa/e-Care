@@ -27,16 +27,17 @@ class AppointmentController extends Controller
         //
         $user = Auth::user();
         $nim = $user->email;
-        $counselor = Counselor::with('data_user')->get();
-        $mhs = Mahasiswa::find($nim);
-        $notification = Notification::where('user_id', $user->id)->get();
+        $data['counselor'] = Counselor::with('data_user')->get();
+        $appointment = Appointment::where('user_id', $user->id)->get()->last();
+        if($appointment && $appointment->status == 'Y'){
+            return redirect()->route('chat');
+        }
         // $user = User::with('user_role.data_mhs.dosen_wali')->find(Auth::id());
-        /* $user = DB::table('users')
-            ->join('v_mhs', 'users.email', '=', 'v_mhs.nim')
-            ->join('v_karyawan', 'v_mhs.dosen_wl', '=', 'v_karyawan.nik')
-            ->get()->first(); */
-        // dd($user);
-        return view('backend.mhs.buatappointment', compact('mhs','counselor','notification'));
+        $data['mhs'] = Mahasiswa::find($nim);
+        if($appointment){
+            $data['appointment'] = $appointment;
+        }
+        return view('backend.mhs.buatappointment', $data);
     }
 
     /**
@@ -63,7 +64,7 @@ class AppointmentController extends Controller
         $appointment = Appointment::create([
             'user_id' => $user->id,
             // 'counselor_id' => $request->counselor,
-            'counselor_id' => 1, // admin
+            'counselor_id' => 14, // konselor
             'tgl_appointment' => $request->tgl_appointment,
             'jenis_problem' => $request->jenis_masalah,
             'jenis_layanan' => $request->jenis_layanan,
@@ -71,20 +72,17 @@ class AppointmentController extends Controller
             'status' => 'M',
             // 'created_at' => date('Y-m-d H:i:s')
         ]);
-        /* $notif = Notification::create([
-            'user_id' => $request->counselor,
-            'message' => 'Ada permintaan appointment baru',
-        ]); */
-        // buat admin
+        // buat notif
         $notif = Notification::create([
+            // 'user_id' => $request->counselor,
             'user_id' => 14,
             'message' => 'Ada permintaan/appointment baru',
         ]);
-        $isi_notifikasi = " melakukan permintaan chat untuk konseling online. Silakan buka aplikasi www.e-care.com untuk memberikan approval.";
+        
         $nama = Auth::user()->name;
         $event = broadcast(new SendNotification($notif));
         $notif_appointment = true;
-        Mail::send('isi-email', compact('isi_notifikasi', 'nama', 'notif_appointment'), function ($message)
+        Mail::send('isi-email', compact('nama', 'appointment', 'notif_appointment'), function ($message)
         {
             $message->subject('Notifikasi E-Care');
             $message->from('anelzraysa@mail.com', 'E-Care');
@@ -133,27 +131,26 @@ class AppointmentController extends Controller
         // waktu approve/tolak permintaan
         if($request->pilihan == 'Y'){
             $pilihan = 'Y';
-            $isi_notifikasi = 'Permintaan appointment kamu diterima. Silahkan buka aplikasi E-Care untuk melakukan konseling online dengan Konselor  ';
+            $isi_notifikasi = 'Permintaan appointment kamu diterima. Silahkan buka aplikasi E-Care untuk melakukan konseling online dengan Konselor';
         }
         else{
             $pilihan = 'T';
             $isi_notifikasi = 'Permintaan appointment kamu ditolak, silahkan buat appointment dengan tanggal yang berbeda';
         }
-        $appointment = Appointment::find($id)->update([
+        $upd_status = Appointment::find($id)->update([
             'status' => $pilihan,
         ]);
-        $data_app = Appointment::find($id);
-        $tgl = $data_app->tgl_appointment;
+        $appointment = Appointment::find($id);
         $notif = Notification::create([
-            'user_id' => $data_app->user_id,
-            'message' => 'Permintaan appointment/chat telah diterima',
+            'user_id' => $appointment->user_id,
+            'message' => $isi_notifikasi,
         ]);
         $event = broadcast(new SendNotification($notif));
         $notif_approve = true;
         // if($data_app->jenis_layanan == 'konseling'){
             //$when = now()->addMinutes(2);
             // Mail::to('adistriani@gmail.com')->later($when, new MailableClass);
-            Mail::send('isi-email', compact('isi_notifikasi', 'tgl','notif_approve'), function ($message)
+            Mail::send('isi-email', compact('isi_notifikasi','notif_approve'), function ($message)
             {
                 $message->subject('Notifikasi E-Care');
                 $message->from('anelzraysa@mail.com', 'E-Care');
