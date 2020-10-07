@@ -9,7 +9,6 @@ use App\Counselor;
 use App\Mahasiswa;
 use App\Notification;
 use App\Events\SendNotification;
-use App\Events\ToastNotification;
 use App\Mail\NotifEmail;
 use Auth;
 use DB;

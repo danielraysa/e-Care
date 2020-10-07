@@ -65,14 +65,6 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput3">Pertemuan Ke</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <input type="number" name="pertemuanke" class="form-control required" id="pertemuanke" name="pertemuanke" @if($appointment->catatan_medis != null) value="{{ $appointment->catatan_medis->pertemuan }}" @endif />
-                                                    </div>
-                                                </div>
-
-
                                                 <h4 class="form-section"><i class="ft-clipboard"></i> Identitas Pribadi </h4>
 
                                                 <div class="form-group row">
@@ -106,7 +98,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">No Hp</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="number" name="nohp" class="form-control" id="nohp" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->data_mhs->telp }}" @endif>
+                                                        <input type="number" name="nohp" class="form-control" id="nohp" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->data_mhs->hp }}" @endif>
                                                     </div>
                                                 </div>
 
@@ -120,241 +112,14 @@
                                                 <h4 class="form-section"><i class="ft-clipboard"></i> Masalah Klien </h4>
 
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput7">Umum</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <select id="umum" name="umum" class="form-control">
-                                                            <option value="0" selected="" disabled="">Umum</option>
-                                                            <option value="JDK">JDK</option>
-                                                            <option value="DPI">DPI</option>
-                                                            <option value="HSO">HSO</option>
-                                                            <option value="EDK">EDK</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput7">Belajar</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <select id="belajar" name="belajar" class="form-control">
-                                                            <option value="0" selected="" disabled="">Belajar</option>
-                                                            <option value="P">P</option>
-                                                            <option value="T">T</option>
-                                                            <option value="S">S</option>
-                                                            <option value="D">D</option>
-                                                            <option value="L">L</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-<!-- 
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control">Select File</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <label id="projectinput8" class="file center-block">
-                                                            <input type="file" id="file">
-                                                            <span class="file-custom"></span>
-                                                        </label>
-                                                    </div>
-                                                </div> -->
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">Spesifikasi</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="spesifikasi" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->spesifikasi }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Deskripsi Masalah</label>
                                                     <div class="col-md-9 mx-auto">
                                                         <textarea id="projectinput9" rows="5" class="form-control" name="deskripsi" placeholder="">@if(isset($appointment)) {{$appointment->description }} @endif</textarea>
                                                     </div>
                                                 </div>
-                                            </div>
-
-                                            <h4 class="form-section"><i class="ft-clipboard"></i> Gejala MASIDU </h4>
-                                            <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">Rasa Aman</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="rasaaman" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->rasa_aman }}@endif</textarea>
-                                                    </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput7">Kompetensi</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <select id="projectinput7" name="kompetensi" class="form-control">
-                                                            <option value="0" selected="" disabled="">Kompetensi</option>
-                                                            <option value="W">W</option>
-                                                            <option value="P">P</option>
-                                                            <option value="K">K</option>
-                                                            <option value="N">N</option>
-                                                            <option value="S">S</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">Aspirasi</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="aspirasi" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->aspirasi }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">Semangat</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="semangat" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->semangat }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">Kesempatan</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="kesempatan" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->kesempatan }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-                                        <h4 class="form-section"><i class="ft-clipboard"></i> Pembinaan </h4>
-                                        <h6><i class="step-icon font-medium-3"></i> --- Langsung</h6>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">Ram. Pembinaan</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="rampembinaan" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->ram_pembinaan }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput5">Ram. Teknik</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="ramteknik" class="form-control" id="ramteknik" @if($appointment->catatan_medis != null) value="{{ $appointment->catatan_medis->ram_teknik }}" @endif />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">Kom. Pembinaan</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="kompembinaan" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->kom_pembinaan }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput5">Kom. Teknik</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="komteknik" class="form-control" id="komteknik" @if($appointment->catatan_medis != null) value="{{ $appointment->catatan_medis->kom_teknik }}" @endif />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">Asp. Pembinaan</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="asppembinaan" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->asp_pembinaan }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput5">Asp. Teknik</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="aspteknik" class="form-control" id="aspteknik" @if($appointment->catatan_medis != null) value="{{ $appointment->catatan_medis->asp_teknik }}" @endif/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">Sem. Pembinaan</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="sempembinaan" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->sem_pembinaan }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput5">Sem. Teknik</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="semteknik" class="form-control" id="semteknik" @if($appointment->catatan_medis != null) value="{{ $appointment->catatan_medis->sem_teknik }}" @endif />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">Kes. Pembinaan</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="kespembinaan" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->kes_pembinaan }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput5">Kes. Teknik</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="kesteknik" class="form-control" id="kesteknik" @if($appointment->catatan_medis != null) value="{{ $appointment->catatan_medis->kes_teknik }}" @endif />
-                                                    </div>
-                                                </div>
-
-                                                <h6><i class="step-icon font-medium-3"></i> --- Tidak Langsung</h6>
-
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">Giz. Pembinaan</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="gizpembinaan" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->giz_pembinaan }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">Pend. Pembinaan</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="pendpembinaan" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->pend_pembinaan }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">PSO. Pembinaan</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="psopembinaan" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->pso_pembinaan }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">Bud. Pembinaan</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="budpembinaan" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->bud_pembinaan }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">Koin. Pembinaan</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="koinpembinaan" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->koin_pembinaan }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-                                                <h4 class="form-section"><i class="ft-clipboard"></i> Penilaian/Prospek</h4>
-                                                <h6><i class="step-icon font-medium-3"></i> --- Penilaian: P3</h6>
-
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">P1</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="p1" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->p1 }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">P2</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="p2" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->p2 }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput9">P3</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="p3" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->p3 }}@endif</textarea>
-                                                    </div>
-                                                </div>
-
-                                                <h6><i class="step-icon font-medium-3"></i> --- Prospek</h6>
+                                            
+                                                <h4 class="form-section"><i class="ft-clipboard"></i> Pneyelsaian & Tindak Lanjut</h4>
+                                                
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Penyelesaian</label>
                                                     <div class="col-md-9 mx-auto">
@@ -378,6 +143,7 @@
                                                     </button>
                                                 </div>
                                                 @endif
+                                            </div>
                                         </form>
                                     </div>
                                 </div>

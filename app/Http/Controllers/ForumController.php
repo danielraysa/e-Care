@@ -7,6 +7,8 @@ use App\Mahasiswa;
 use App\User;
 use App\Forum;
 use App\ForumComment;
+use App\Notification;
+use App\Events\SendNotification;
 use Auth;
 
 class ForumController extends Controller
@@ -19,7 +21,7 @@ class ForumController extends Controller
     public function index()
     {
         //
-        $forum = Forum::with('post_user','komentar_forum')->get();
+        $forum = Forum::with('post_user','komentar_forum')->orderBy('created_at', 'desc')->get();
         // dd($forum);
         return view('backend.fitur.forum', compact('forum'));
     }
@@ -47,6 +49,12 @@ class ForumController extends Controller
             'user_id' => Auth::user()->id,
             'deskripsi_forum' => $request->deskripsi_forum
         ]);
+        $user = User::find(Auth::user()->id);
+        $notif = Notification::create([
+            'user_id' => 14, //
+            'message' => $user->name.' telah membuat forum/post baru',
+        ]);
+        $event = broadcast(new SendNotification($notif));
         return redirect()->route('forum-group.index')->with('status','Postingan berhasil dibuat');
     }
 
@@ -72,6 +80,11 @@ class ForumController extends Controller
     public function edit($id)
     {
         //
+        $forum = Forum::with('post_user','komentar_forum.komentar_user')->find($id);
+        if($forum->user_id != Auth::user()->id){
+            return redirect()->route('forum-group.index')->with('status', 'Tidak bisa edit post milik orang lain');
+        }
+        return view('backend.fitur.forum-edit', compact('forum'));
     }
 
     /**
@@ -84,6 +97,10 @@ class ForumController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $update = Forum::where('id', $id)->update([
+            'deskripsi_forum' => $request->deskripsi
+        ]);
+        return redirect()->route('forum-group.show', $id)->with('status', 'Berhasil memperbarui forum');
     }
 
     /**
@@ -95,6 +112,9 @@ class ForumController extends Controller
     public function destroy($id)
     {
         //
+        $hapus_komen = ForumComment::where('forum_id', $id)->delete();
+        $hapus_forum = Forum::where('id', $id)->delete();
+        return redirect()->back()->with('status','Forum berhasil dihapus');
     }
 
     public function post_komentar($id, Request $request)
@@ -105,6 +125,49 @@ class ForumController extends Controller
             'user_id' => Auth::user()->id,
             'komentar' => $request->komentar
         ]);
+        // $forum = Forum::with('post_user')->where('id', $id)->get()->first();
+        $forum = Forum::with('post_user')->find($id);
+        $user = User::find(Auth::user()->id);
+        // notif untuk konselor
+        if(Auth::user()->role_id != 4 || Auth::user()->id != 14){
+            $notif_konselor = Notification::create([
+                'user_id' => 14, //
+                'message' => $user->name.' memberi komentar pada forum/post yang dibuat oleh '.$forum->post_user->name,
+            ]);
+            $event = broadcast(new SendNotification($notif_konselor));
+        }
+        // notif untuk user
+        $notif_user = Notification::create([
+            'user_id' => $forum->user_id, //
+            'message' => $user->name.' memberi komentar pada forum/post yang dibuat oleh kamu',
+        ]);
+        $event_user = broadcast(new SendNotification($notif_user));
         return redirect()->back()->with('status','Komentar berhasil dibuat');
+    }
+
+    public function update_komentar($id, Request $request)
+    {
+        //
+        $update = ForumComment::where('id', $id)->update([
+            'komentar' => $request->komentar
+        ]);
+        $komentar = ForumComment::find($id);
+        $forum = Forum::with('post_user')->find($komentar->forum_id);
+        $user = User::find(Auth::user()->id);
+        // notif untuk konselor
+        if(Auth::user()->role_id != 4 || Auth::user()->id != 14){
+            $notif_konselor = Notification::create([
+                'user_id' => 14, //
+                'message' => $user->name.' memperbarui komentar pada forum/post yang dibuat oleh '.$forum->post_user->name,
+            ]);
+            $event = broadcast(new SendNotification($notif_konselor));
+        }
+        // notif untuk user
+        $notif_user = Notification::create([
+            'user_id' => $forum->user_id, //
+            'message' => $user->name.' memperbarui komentar pada forum/post yang dibuat oleh kamu',
+        ]);
+        $event_user = broadcast(new SendNotification($notif_user));
+        return redirect()->back()->with('status','Komentar berhasil diperbarui');
     }
 }

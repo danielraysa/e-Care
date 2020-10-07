@@ -31,7 +31,6 @@
                                 <div class="card-body card-dashboard">
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered patients-list datatable">
-
                                             <thead>
                                                 <tr>
                                                     <th>No</th>

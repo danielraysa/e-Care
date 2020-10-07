@@ -88,7 +88,21 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <i class="ft-more-vertical pull-right"></i>
+                                            <div class="dropdown">
+                                                <i class="ft-more-vertical pull-right" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    @if($item->user_id == Auth::user()->id)
+                                                    <a class="dropdown-item" href="{{ route('forum-group.edit', $item->id) }}"><i class="ft-edit"></i> Edit</a>
+                                                    @endif
+                                                    @if($item->user_id == Auth::user()->id || Auth::user()->role_id == 4)
+                                                    <form action="{{ route('forum-group.destroy', $item->id) }}" method="POST">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <button class="dropdown-item" type="submit"><i class="ft-trash"></i> Hapus</button>
+                                                    </form>
+                                                    @endif
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="write-post">
@@ -103,7 +117,7 @@
                                                         {{-- <span><i class="ft-heart h4 align-middle danger"></i> 120</span> --}}
                                                     </div>
                                                     <div class="col-8 pl-0">
-                                                        <ul class="list-unstyled users-list m-0">
+                                                        {{-- <ul class="list-unstyled users-list m-0">
                                                             <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="John Doe" class="avatar avatar-sm pull-up">
                                                                 <img class="media-object rounded-circle" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-19.png') }}" alt="Avatar">
                                                             </li>
@@ -116,7 +130,7 @@
                                                             <li class="avatar avatar-sm">
                                                                 <span class="badge badge-info">+4 more</span>
                                                             </li>
-                                                        </ul>
+                                                        </ul> --}}
                                                     </div>
                                                 </div>
                                             </div>

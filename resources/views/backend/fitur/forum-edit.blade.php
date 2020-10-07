@@ -32,6 +32,9 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="card shadow-none">
+                            <form action="{{ route('forum-group.update', $forum->id) }}" method="POST">
+                            {{ csrf_field() }}
+                            {{ method_field('PUT') }}
                                 <div class="catd-body">
                                     <div class="row p-2">
                                         <div class="col-sm-6">
@@ -48,36 +51,17 @@
                                         <div class="col-sm-6">
                                             <div class="dropdown">
                                                 <i class="ft-more-vertical pull-right" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    @if($forum->user_id == Auth::user()->id)
-                                                    <a class="dropdown-item" href="{{ route('forum-group.edit', $forum->id) }}"><i class="ft-edit"></i> Edit</a>
-                                                    @endif
-                                                    @if($forum->user_id == Auth::user()->id || Auth::user()->role_id == 4)
-                                                    <form action="{{ route('forum-group.destroy', $forum->id) }}" method="POST">
-                                                        {{ csrf_field() }}
-                                                        {{ method_field('DELETE') }}
-                                                        <button class="dropdown-item" type="submit"><i class="ft-trash"></i> Hapus</button>
-                                                    </form>
-                                                    @endif
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="write-post">
                                         <div class="col-sm-12 px-2">
-                                            <p>{{ $forum->deskripsi_forum }}</p>
+                                            <textarea class="form-control border-0" name="deskripsi" autofocus>{{ $forum->deskripsi_forum }}</textarea>
                                         </div>
                                         <hr class="m-0">
                                         <div class="row p-1">
                                             <div class="col-6">
-                                                <div class="row">
-                                                    <div class="col-4 pr-0">
-                                                        {{-- <span><i class="ft-heart h4 align-middle danger"></i> 120</span> --}}
-                                                    </div>
-                                                    <div class="col-8 pl-0">
-                                                        
-                                                    </div>
-                                                </div>
+                                                <button type="submit" class="btn btn-primary ml-lg-2">Simpan</button>
                                             </div>
                                             <div class="col-6">
                                                 <div class="pull-right">
@@ -97,17 +81,7 @@
                                                 @endforeach
                                             </div>
                                         </div>
-                                        <form action="{{ route('forum-group.komentar', $forum) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        <div class="row px-3 pb-2">
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                    <textarea name="komentar" rows="4" class="form-control"></textarea>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary float-right">Post Komentar</button>
-                                            </div>
-                                        </div>
-                                        </form>
+                                        
                                     </div>
                                 </div>
                             </div>
