@@ -134,9 +134,9 @@ Route::group(['middleware' => 'auth'], function () {
     //end test mbti
 
     //test tingkat kecemasan
-    Route::get('/testtingkat', 'TestController@index');
-    Route::post('/testtingkat', 'TestController@store');
-    // Route::resource('/testtingkat', 'TestController');
+    // Route::get('/testtingkat', 'TestController@index');
+    // Route::post('/testtingkat', 'TestController@store');
+    Route::resource('/testtingkat', 'TestController');
 
     Route::get('/pertanyaan/{id}/destroy', 'QuestionController@destroy')->name('pertanyaan.delete');
     Route::resource('/pertanyaan', 'QuestionController');
@@ -170,8 +170,9 @@ Route::group(['middleware' => 'auth'], function () {
     //end tabel program studi
 
     //tabel mbti
-    Route::get('/testmbti', 'MbtiController@dropdownindex');
-    Route::post('/testmbti', 'MbtiController@hasilmbti')->name('mbti.simpantest');
+    // Route::get('/testmbti', 'TestMbtiController@dropdownindex');
+    // Route::post('/testmbti', 'MbtiController@hasilmbti')->name('mbti.simpantest');
+    Route::resource('/testmbti', 'TestMbtiController');
     //end tabel mbti
   
     //tabel pertanyaan

@@ -57,14 +57,14 @@
                                     <div class="form-group">
                                         <label for="firstname">NIM <span class="text-danger">*</span></label>
                                         <input type="number" class="form-control" placeholder="NIM" id="nim"
-                                            value="{{ $mhs->nim }}" required>
+                                            value="{{ $mhs->nim }}" required readonly />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Nama Lengkap <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" placeholder="Nama Lengkap"
-                                            id="namalengkap" value="{{ $mhs->nama }}" required>
+                                            id="namalengkap" value="{{ $mhs->nama }}" required readonly />
                                     </div>
                                 </div>
                             </div>
@@ -111,14 +111,14 @@
                                     <div class="form-group">
                                         <label for="email">Email <span class="text-danger">*</span></label>
                                         <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email"
-                                            value="{{ $mhs->nim.'@dinamika.ac.id' }}" required>
+                                            value="{{ $mhs->nim.'@dinamika.ac.id' }}" required readonly />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="phone">No. Handphone</label>
                                         <input type="text" class="form-control" id="phone" name="phone" placeholder="Masukkan No Hp"
-                                            value="{{ $mhs->telp }}" required>
+                                            value="{{ $mhs->telp }}" required readonly />
                                     </div>
                                 </div>
                             </div>

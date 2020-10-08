@@ -1,6 +1,9 @@
 @extends('backend.partialadmin.layout')
 @push('js')
 <script>
+    $('.btn-reload').click(function(){
+        window.reload();
+    });
     $('.form').submit(function(e){
         e.preventDefault();
         $.ajax({
@@ -109,8 +112,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-outline-primary">Save changes</button>
+                                                        <button type="button" class="btn grey btn-outline-secondary btn-reload" data-dismiss="modal">Close</button>
+                                                        {{-- <button type="button" class="btn btn-outline-primary">Save changes</button> --}}
                                                     </div>
                                                 </div>
                                             </div>

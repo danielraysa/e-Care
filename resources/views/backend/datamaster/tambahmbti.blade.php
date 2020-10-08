@@ -52,14 +52,14 @@
                                                     {{ csrf_field() }} 
 
                                                         <h4 class="form-section"><i class="ft-user"></i> Detail Kepribadian/MBTI</h4>
-
+                                                        @if(isset($mbti))
                                                         <div class="form-group row">
                                                             <label class="col-md-3 label-control" for="projectinput5">Id</label>
                                                             <div class="col-md-9 mx-auto">
-                                                                <input type="number" name="id" class="form-control" id="id" @if(isset($mbti)) value="{{$mbti->id}}" readonly @endif>
+                                                                <input type="number" name="id" class="form-control" id="id"  value="{{$mbti->id}}" readonly />
                                                             </div>
                                                         </div>
-
+                                                        @endif
                                                         <div class="form-group row">
                                                             <label class="col-md-3 label-control" for="projectinput5">Jenis Kepribadian</label>
                                                             <div class="col-md-9 mx-auto">

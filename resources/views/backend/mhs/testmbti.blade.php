@@ -48,7 +48,7 @@
                                     
                                          <!-- ISI KONTEN DISINI  -->
 
-                                         <form class="form" action="{{ route('mbti.simpantest') }}" method="POST">
+                                         <form class="form" action="{{ route('testmbti.store') }}" method="POST">
                                             {{ csrf_field() }}
                                             <div class="form-body">
                                                 <h4 class="form-section"><i class="ft-user"></i> Hasil Test</h4>

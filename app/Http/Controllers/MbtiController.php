@@ -52,10 +52,10 @@ class MbtiController extends Controller
      */
     public function store(Request $request)
     {
-       
-        DB::table('mbti') -> insert([
-            'id' => $request ->id,
-            'mbti_name' => $request ->mbti_name,
+        $tambah = Mbti::create([
+        // DB::table('mbti') -> insert([
+            // 'id' => $request->id,
+            'mbti_name' => $request->mbti_name,
         ]);
 
         return redirect()->action('MbtiController@index')->with('status', 'Data MBTI Berhasil Ditambahkan');
@@ -96,11 +96,7 @@ class MbtiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all()); 
-        // update data mbti
-        /* DB::table('mbti')->where('id', $id)->update([
-            'mbti_name' => $request-> mbti_name,
-        ]); */
+        
         $upd = Mbti::find($id)->update([
             'mbti_name' => $request->mbti_name
         ]);

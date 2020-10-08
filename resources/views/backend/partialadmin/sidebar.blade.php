@@ -78,7 +78,7 @@
                         </li>
                         <li class=""><a class="menu-item" href="{{url('tabelprodi')}}"><i></i><span>Tabel Program Studi</span></a>
                         </li>
-                        <li class=""><a class="menu-item" href="{{url('tabelmbti')}}"><i></i><span>Tabel Hasil MBTI</span></a>
+                        <li class=""><a class="menu-item" href="{{url('tabelmbti')}}"><i></i><span>Tabel MBTI</span></a>
                         </li>
                         <li class=""><a class="menu-item" href="{{url('pertanyaan')}}"><i></i><span>Tabel Pertanyaan Kecemasan</span></a>
                         </li>
@@ -91,7 +91,15 @@
 
                 @endif
                 @if(Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
-                <li class=" nav-item"><a href="{{url('/testtingkat')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Hasil Test</span></a>
+                {{-- <li class=" nav-item"><a href="{{url('/testtingkat')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Hasil Test</span></a>
+                </li> --}}
+                <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Hasil Test</span></a>
+                    <ul class="menu-content">
+                        <li><a class="menu-item" href="{{route('testmbti.index')}}"><i></i><span>Kepribadian/MBTI</span></a>
+                        </li>
+                        <li><a class="menu-item" href="{{route('testtingkat.index')}}"><i></i><span>Tingkat Masalah</span></a>
+                        </li>
+                    </ul>
                 </li>
                 <li class=" nav-item"><a href="{{url('/rekammedis')}}"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Appointment">Rekam Medis</span></a>
                 </li>
