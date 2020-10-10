@@ -7,6 +7,41 @@
                 <li class=" navigation-header"><span data-i18n="Professional">Professional</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Professional"></i>
                 </li>
 
+                @if(Auth::user()->role_id == 2)
+                {{-- <li class=" nav-item"><a href="{{url('/buatappointment')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Buat Appointment</span></a> 
+                </li> --}}
+                <!-- <li class=" nav-item"><a href="#"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Appointment</span></a>
+                    <ul class="menu-content">
+                        <li><a class="menu-item {{ Request::is('appointment') ? 'active' : '' }}" href="{{url('appointment')}}"><i></i><span>Buat Appointment</span></a>
+                        </li>
+                        <li><a class="menu-item {{ Request::is('jadwalkonselor') ? 'active' : '' }}" href="{{url('jadwalkonselor')}}"><i></i><span>Tabel Form Pendaftaran</span></a>
+                        </li>
+                       
+                    </ul>
+                </li> -->
+                <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Test</span></a>
+                    <ul class="menu-content">
+                        <li><a class="menu-item" href="{{url('testmbti')}}"><i></i><span>Kepribadian/MBTI</span></a>
+                        </li>
+                        <li><a class="menu-item" href="{{url('testtingkat')}}"><i></i><span>Tingkat Masalah</span></a>
+                        </li>
+                    </ul>
+                </li>
+                @endif
+
+                @if(Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
+                {{-- <li class=" nav-item"><a href="{{url('/testtingkat')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Hasil Test</span></a>
+                </li> --}}
+                <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Hasil Test Mahasiswa</span></a>
+                    <ul class="menu-content">
+                        <li><a class="menu-item" href="{{route('testmbti.index')}}"><i></i><span>Kepribadian/MBTI</span></a>
+                        </li>
+                        <li><a class="menu-item" href="{{route('testtingkat.index')}}"><i></i><span>Tingkat Masalah</span></a>
+                        </li>
+                    </ul>
+                </li>
+                @endif
+
              
                 @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 1 || Auth::user()->role_id == 4)
                 <li class=" nav-item"><a href="{{url('/jadwalkonselor')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Tabel Konseling</span></a>
@@ -29,27 +64,7 @@
                 </li>
                 @endif -->
 
-                @if(Auth::user()->role_id == 2)
-                {{-- <li class=" nav-item"><a href="{{url('/buatappointment')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Buat Appointment</span></a> 
-                </li> --}}
-                <!-- <li class=" nav-item"><a href="#"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Appointment</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item {{ Request::is('appointment') ? 'active' : '' }}" href="{{url('appointment')}}"><i></i><span>Buat Appointment</span></a>
-                        </li>
-                        <li><a class="menu-item {{ Request::is('jadwalkonselor') ? 'active' : '' }}" href="{{url('jadwalkonselor')}}"><i></i><span>Tabel Form Pendaftaran</span></a>
-                        </li>
-                       
-                    </ul>
-                </li> -->
-                <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Test</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="{{url('testmbti')}}"><i></i><span>Kepribadian/MBTI</span></a>
-                        </li>
-                        <li><a class="menu-item" href="{{url('testtingkat')}}"><i></i><span>Tingkat Masalah</span></a>
-                        </li>
-                    </ul>
-                </li>
-                @endif
+
 
                 @if(Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
                 <!-- <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Mahasiswa</span></a>
@@ -91,16 +106,7 @@
 
                 @endif
                 @if(Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
-                {{-- <li class=" nav-item"><a href="{{url('/testtingkat')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Hasil Test</span></a>
-                </li> --}}
-                <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Hasil Test</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="{{route('testmbti.index')}}"><i></i><span>Kepribadian/MBTI</span></a>
-                        </li>
-                        <li><a class="menu-item" href="{{route('testtingkat.index')}}"><i></i><span>Tingkat Masalah</span></a>
-                        </li>
-                    </ul>
-                </li>
+               
                 <li class=" nav-item"><a href="{{url('/rekammedis')}}"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Appointment">Rekam Medis</span></a>
                 </li>
                 @endif

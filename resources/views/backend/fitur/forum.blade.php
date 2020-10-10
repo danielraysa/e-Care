@@ -58,7 +58,7 @@
                                         <hr class="m-0">
                                         <div class="row px-1">
                                             <div class="col-6 pt-2">
-                                                <i class="ft-image ml-1 mr-2 mr-sm-0 h3"></i> 
+                                                <i class=""></i> 
                                             </div>
                                             <div class="col-6 pt-1">
                                                 <button type="submit" class="btn btn-primary btn-min-width btn-glow mr-1 mb-1 pull-right">Post</button>
@@ -137,7 +137,7 @@
                                             <div class="col-6">
                                                 <div class="pull-right">
                                                     <a href="{{ route('forum-group.show', $item) }}"<span class="pr-1"><i class="ft-message-square h4 align-middle"></i> {{ $item->komentar_forum->count() }}</span></a>
-                                                    <span class="pr-1"><i class="ft-corner-up-right h4 align-middle"></i> 23</span>
+                                                   
                                                 </div>
                                             </div>
                                         </div>
@@ -198,7 +198,7 @@
                                             <div class="col-6">
                                                 <div class="pull-right">
                                                     <span class="pr-1"><i class="ft-message-square h4 align-middle"></i> 44</span>
-                                                    <span class="pr-1"><i class="ft-corner-up-right h4 align-middle"></i> 23</span>
+                                                
                                                 </div>
                                             </div>
                                         </div>
@@ -257,7 +257,7 @@
                                             <div class="col-6">
                                                 <div class="pull-right">
                                                     <span class="pr-1"><i class="ft-message-square h4 align-middle"></i> 44</span>
-                                                    <span class="pr-1"><i class="ft-corner-up-right h4 align-middle"></i> 23</span>
+                                                   
                                                 </div>
                                             </div>
                                         </div>
@@ -315,7 +315,7 @@
                                             <div class="col-6">
                                                 <div class="pull-right">
                                                     <span class="pr-1"><i class="ft-message-square h4 align-middle"></i> 44</span>
-                                                    <span class="pr-1"><i class="ft-corner-up-right h4 align-middle"></i> 23</span>
+                                                    
                                                 </div>
                                             </div>
                                         </div>

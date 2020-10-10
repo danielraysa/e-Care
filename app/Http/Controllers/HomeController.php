@@ -30,8 +30,8 @@ class HomeController extends Controller
         $konseling = Appointment::where('status', 'S')->get();
         $rekam = RekamMedis::all();
         $user = Auth::user();
-        if($user->role_id == 1){
-            return view('backend.konselor.dashboard', compact('permintaan', 'konseling', 'rekam'));
+        if($user->role_id == 2){
+            return view('backend.mhs.dashboard', compact('permintaan', 'konseling', 'rekam'));
         }else{
             return view('backend.konselor.dashboard', compact('permintaan', 'konseling', 'rekam'));
         }

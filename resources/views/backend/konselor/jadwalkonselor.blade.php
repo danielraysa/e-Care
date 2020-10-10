@@ -23,15 +23,15 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">Tabel Form Pendaftaran</h3>
+                    <h3 class="content-header-title">Tabel Permintaan Konseling </h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="#">Appointment</a>
+                                <li class="breadcrumb-item"><a href="#">Tabel Konseling</a>
                                 </li>
-                                <li class="breadcrumb-item active">Tabel Form Pendaftaran
+                                <li class="breadcrumb-item active">Tabel Permintaan Konseling
                                 </li>
                             </ol>
                         </div>

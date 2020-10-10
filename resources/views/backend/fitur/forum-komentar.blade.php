@@ -82,7 +82,7 @@
                                             <div class="col-6">
                                                 <div class="pull-right">
                                                     <span class="pr-1"><i class="ft-message-square h4 align-middle"></i> {{ $forum->komentar_forum->count() }}</span>
-                                                    <span class="pr-1"><i class="ft-corner-up-right h4 align-middle"></i> 23</span>
+                                                  
                                                 </div>
                                             </div>
                                         </div>

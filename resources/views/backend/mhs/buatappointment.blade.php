@@ -47,9 +47,49 @@
             <section id="book-appointment">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Daftar Konseling Online</h2>
+                        <h2 class="card-title">@if(isset($appointment) && $appointment->status == 'M') List Antrian Konseling @else Daftar Konseling Online @endif</h2>
                     </div>
                     <div class="card-body">
+                        @if(isset($appointment) && $appointment->status == 'M')
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered patients-list datatable">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>NIM/Nama</th>
+                                        <th>Tanggal Daftar</th>
+                                        <th>Jenis Layanan</th>
+                                        <th>Jenis Problem</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($data_appointment as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->mahasiswa->user_role->data_mhs->nama }}
+                                        ({{ $item->mahasiswa->user_role->nik_nim }})</td>
+                                        {{-- <td>{{ Helper::tanggal_indo($item->tgl_appointment) }}</td> --}}
+                                        <td>{{ Helper::datetime_indo($item->created_at) }}</td>
+                                        <td>{{ $item->jenis_layanan }}</td>
+                                        <td>{{ $item->jenis_problem }}</td>
+                                        <td>
+                                            @if($item->status == 'M')
+                                            Menunggu
+                                            @elseif($item->status == 'Y')
+                                            Diterima
+                                            @elseif($item->status == 'T')
+                                            Ditolak
+                                            @else
+                                            Selesai
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        @else
                         <form method="post" action="{{ route('appointment.store') }}">
                             {{ csrf_field() }}
                             <div class="row">
@@ -147,8 +187,8 @@
                                 </div>
                                 <div class="col-lg-4 col-md-8">
                                     <div class="form-group">
-                                        <label for="date">Tanggal Appointment <span class="text-danger">*</span></label>
-                                        <input type="datetime-local" class="form-control" id="date" name="tgl_appointment" value="{{ date('Y-m-d') }}T{{ date('H:i') }}" required>
+                                        <label for="date">Tanggal Konseling  <span class="text-danger">*</span></label>
+                                        <input type="datetime-local" class="form-control" id="date" name="tgl_appointment" value="{{ date('Y-m-d') }}T{{ date('H:i') }}" required readonly>
                                     </div>
                                 </div>
 
@@ -176,9 +216,10 @@
                                 <button type="submit" id="btnSubmit" class="btn btn-outline-success mr-1">Kirim</button>
                                 <button type="reset" id="btnReset" class="btn btn-outline-danger">Batal</button>
                             </div>
-                            </form>
-                        </div>
+                        </form>
+                        @endif
                     </div>
+                </div>
             </section>
         </div>
     </div>

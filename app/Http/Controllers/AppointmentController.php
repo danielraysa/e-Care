@@ -27,6 +27,7 @@ class AppointmentController extends Controller
         $user = Auth::user();
         $nim = $user->email;
         $data['counselor'] = Counselor::with('data_user')->get();
+        $data['data_appointment'] = Appointment::where('status', 'M')->with('mahasiswa.user_role.data_mhs')->orderBy('created_at','desc')->get();
         $appointment = Appointment::where('user_id', $user->id)->get()->last();
         if($appointment && $appointment->status == 'Y'){
             return redirect()->route('chat');
