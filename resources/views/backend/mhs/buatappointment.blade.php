@@ -14,9 +14,12 @@
     <div class="content-wrapper">
         <div class="content-header row">
             <div class="content-header-left col-md-6 col-12 mb-2">
-                <h3 class="content-header-title">Form Pendaftaran Konseling Online</h3>
+                <h3 class="content-header-title">Form Pendaftaran Konseling Online</h3><br>
                 <div class="row breadcrumbs-top">
-                    <div class="breadcrumb-wrapper col-12">
+                    
+                    <div class="breadcrumb-wrapper col-md-12">
+                        <h5><u>Sebelum kamu melakukan chatting, <br>kamu harus mengisi form pendaftaran konseling terlebih dahulu! </u></h5>
+                    {{--                       
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a>
                             </li>
@@ -24,7 +27,7 @@
                             </li>
                             <li class="breadcrumb-item active">Daftar Konseling Online
                             </li>
-                        </ol>
+                        </ol> --}}
                     </div>
                 </div>
             </div>

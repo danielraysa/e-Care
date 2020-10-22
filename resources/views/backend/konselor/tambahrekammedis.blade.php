@@ -114,7 +114,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Deskripsi Masalah</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="deskripsi" placeholder="">@if(isset($appointment)) {{$appointment->description }} @endif</textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="deskripsi" placeholder="Deskripsikan masalah yang dimiliki mahasiswa">@if(isset($appointment)) {{$appointment->description }} @endif</textarea>
                                                     </div>
                                                 </div>
                                             
@@ -123,13 +123,13 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Penyelesaian</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="penyelesaian" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->penyelesaian }}@endif</textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="penyelesaian" placeholder="Deskripsikan penyelesaian masalah yang dihadapi mahasiswa">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->penyelesaian }}@endif</textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Prospek/Tindak Lanjut</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="prospek" placeholder="">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->prospek }}@endif</textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="prospek" placeholder="Deskripsikan tindak lanjut apa yang harus dilakukan kepada mahasiswa mahasiswa">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->prospek }}@endif</textarea>
                                                     </div>
                                                 </div>
 
