@@ -47,4 +47,22 @@ class Helper
         $split_baru = explode('-', $split[0]);
         return $split_baru[2] . ' ' . $bulan[ (int)$split_baru[1] ] . ' ' . $split_baru[0]." ".$split[1];
     }
+
+    public static function bulan_indo($bulan)
+    {
+        $nama_bulan = array (1 =>   'Januari',
+                    'Februari',
+                    'Maret',
+                    'April',
+                    'Mei',
+                    'Juni',
+                    'Juli',
+                    'Agustus',
+                    'September',
+                    'Oktober',
+                    'November',
+                    'Desember'
+                );
+        return $nama_bulan[ (int)$bulan ];
+    }
 }

@@ -1,6 +1,94 @@
 @extends('backend.partialadmin.layout')
-@section('content')
-    
+@push('js')
+<script>
+    //Get the context of the Chart canvas element we want to select
+    var ctx = $("#chart-dashboard");
+    // Chart Options
+    var chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            xAxes: [{
+                display: true,
+                gridLines: {
+                    color: "#f3f3f3",
+                    drawTicks: false,
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Bulan'
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                },
+                display: true,
+                gridLines: {
+                    color: "#f3f3f3",
+                    drawTicks: false,
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Jumlah'
+                }
+            }]
+        },
+        title: {
+            display: false,
+            text: 'Chart.js Combo Bar Line Chart'
+        }
+    };
+
+    $.ajax({
+        url: "{{ route('get-chart') }}",
+        type: "GET",
+        success: function(result){
+            // alert(result);
+            var data_label = [];
+            var data_jml = [];
+            console.log(result);
+            for(i in result){
+                data_label.push(result[i].bulan);
+                data_jml.push(result[i].jumlah_data);
+            }
+            // Chart Data
+            var chartData = {
+                labels: data_label,
+                datasets: [
+                {
+                    type: 'bar',
+                    label: "Appointment",
+                    data: data_jml,
+                    backgroundColor: "#00A5A8",
+                    borderColor: "transparent",
+                    borderWidth: 2
+                }
+                /* , {
+                    type: 'bar',
+                    label: "My Third dataset - No bezier",
+                    data: [45, 25, 16, 36, 67, 18, 76],
+                    backgroundColor: "#F25E75",
+                    borderColor: "transparent",
+                    borderWidth: 2
+                } */
+                ]
+            };
+
+            var config = {
+                type: 'bar',
+                // Chart Options
+                options : chartOptions,
+                data : chartData
+            };
+            // Create the chart
+            var lineChart = new Chart(ctx, config);
+        }
+    });
+
+</script>
+@endpush
+@section('content')    
 <div class="app-content content">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
@@ -69,20 +157,20 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Appointment</h4>
+                            <h4 class="card-title">Grafik</h4>
                             <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
                                     <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
                                     <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
                                     <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                    <li><a data-action="close"><i class="ft-x"></i></a></li>
+                                    {{-- <li><a data-action="close"><i class="ft-x"></i></a></li> --}}
                                 </ul>
                             </div>
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body chartjs">
-                                <canvas id="combo-bar-line" height="400"></canvas>
+                                <canvas id="chart-dashboard" height="400"></canvas>
                             </div>
                         </div>
                     </div>

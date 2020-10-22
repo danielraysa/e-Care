@@ -39,13 +39,13 @@ Route::get('/kuis', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/get-chart', 'HomeController@chart_data')->name('get-chart');
 // Tampilan Admin / Back end
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dbkonselor', function () {
         return view('backend.konselor.dashboard');
-    }); 
+    });
     
     //chat
     Route::get('/chat1', function () {
@@ -122,7 +122,7 @@ Route::group(['middleware' => 'auth'], function () {
     //end appointment
     
    
-   //test mbti 
+    //test mbti 
     Route::get('/tabelmbti', 'MbtiController@index');
     Route::post('/tambahmbti', 'MbtiController@store');
     Route::get('/formmbti', 'MbtiController@create');
