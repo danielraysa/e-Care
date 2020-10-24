@@ -96,6 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
     //end rekam medis
 
     //laporan rekap perbulan
+    Route::post('get-list-waktu', 'RekapBulananController@list_waktu')->name('get-list-waktu');
     Route::resource('rekapbulanan', 'RekapBulananController');
     // Route::get('/rekap', function () {
     //     return view('backend.konselor.laprekapbulan');
@@ -212,6 +213,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/tes-chat', 'MessageController@listchat')->name('chat');
     Route::get('/tes-chat/{id}', 'MessageController@listmessage')->name('chat-history');
     Route::post('/tes-chat', 'MessageController@teschat')->name('send-chat');
+    Route::get('/histori-chat', 'MessageController@histori_chat')->name('histori-chat');
 
     //endchat
 });

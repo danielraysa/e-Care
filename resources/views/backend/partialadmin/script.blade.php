@@ -65,7 +65,7 @@
             '<div class="toast-header">'+
                 '<strong class="mr-auto">E-Care</strong>'+
                 '<small class="text-muted">just now</small>'+
-                '<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">'+
+                '<button type="button" class="ml-2 mb-1 close-notif" data-dismiss="toast" aria-label="Close">'+
                 '<span aria-hidden="true">&times;</span>'+
                 '</button>'+
             '</div>'+
@@ -88,7 +88,7 @@
         notif_count = 0;
         $('#notification-count').hide();
     });
-    $('.close').click(function(){
+    $('.close-notif').click(function(){
         $(this).parent().parent().remove();
     });
     /* window.onbeforeunload = function (event) {

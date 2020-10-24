@@ -13,6 +13,15 @@
                 }
             })
         });
+
+        $('.datatable').on('click', '.btnTolak', function(){
+            var url = $(this).attr('data-url');
+            var value = $(this).attr('data-value');
+            $('#formTolak').attr('action', url);
+            $('#id_appointment').val(value);
+        });
+
+
     </script>
 @endpush
 @section('content')
@@ -86,7 +95,7 @@
                                                         Ditolak
                                                         @else
                                                         Selesai
-                                                        @endif
+                                                        @endif 
                                                     </td>
                                                     <td>
                                                     @if($item->status == 'M')
@@ -96,8 +105,9 @@
                                                         <!-- <a href="#"><i class="ft-edit text-success"></i></a><br> -->
                                                         <!-- <a href="#"><i class="ft-trash-2 ml-1 text-warning"></i></a> -->
                                                         <button class="btn btn-success" type="submit" value="Y" name="pilihan"> Approve</button>
-                                                        <button class="btn btn-danger" type="submit" value="T" name="pilihan"> Decline</button>
+                                                       
                                                     </form>
+                                                    <button class="btn btn-danger btnTolak" type="button" data-toggle="modal" data-target="#modalTolak" data-url="{{url('appointment/'.$item->id.'/update')}}" data-value="T"> Decline</button>
                                                     @else
                                                         <button class="btn btn-success text-white" type="button" disabled> Approve</button>
                                                         <button class="btn btn-danger" type="button" disabled> Decline</button>
@@ -188,6 +198,27 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalTolak">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="formTolak" action="" method="POST">
+                {{ csrf_field() }}
+                <div class="modal-header">
+                   Alasan ditolak
+                </div>
+                <div class="modal-body">
+                   <textarea class="form-control" name="deskripsitolak" placeholder="Tulis alasan penolakan"></textarea>
+                   <input type="hidden" name="pilihan" id="id_appointment"> 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-success">Kirim</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>

@@ -66,6 +66,7 @@
                 </div>
             </div>
         </div>
+        @if(request()->is('tes-chat'))
         <div class="card-footer chat-footer px-2 py-1 pb-0">
             <form class="d-flex align-items-center" action="javascript:void(0);">
                 {{-- <i class="ft-user cursor-pointer"></i> --}}
@@ -77,6 +78,7 @@
                     <span class="d-none d-lg-block mx-50">Send</span></button>
             </form>
         </div>
+        @endif
     </div>
 </div>
 

@@ -135,7 +135,8 @@ class AppointmentController extends Controller
         }
         else{
             $pilihan = 'T';
-            $isi_notifikasi = 'Permintaan appointment kamu ditolak, silahkan buat appointment dengan tanggal yang berbeda';
+            $keterangan = $request->deskripsitolak;
+            $isi_notifikasi = 'Permintaan appointment kamu ditolak, karena: '.$keterangan.'. Silahkan melakukan permintaan chat diwaktu yang berbeda';
         }
         $upd_status = Appointment::find($id)->update([
             'status' => $pilihan,

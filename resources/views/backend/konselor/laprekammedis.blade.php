@@ -54,7 +54,7 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->mahasiswa->user_role->data_mhs->nama }} ({{ $item->mahasiswa->user_role->nik_nim }})</td>
                                                     <td>{{ $item->mahasiswa->user_role->data_mhs->prodi() }}</td>
-                                                    <td>{{ Helper::tanggal_indo($item->tgl_appointment) }}</td>
+                                                    <td>{{ Helper::datetime_indo($item->created_at) }}</td>
                                                     <td>{{ $item->jenis_problem }}</td>
                                                     <td>{{ $item->description }}</td>
                                                     <td>

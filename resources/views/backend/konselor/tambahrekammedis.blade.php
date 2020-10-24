@@ -61,7 +61,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput2">Tanggal</label>
                                                     <div class="col-md-9 mx-auto">
-                                                         <input type="date" name="tanggal" class="form-control" id="tanggal" @if(isset($appointment)) value="{{ $appointment->tgl_appointment  }}" @endif>
+                                                         <input type="date" name="tanggal" class="form-control" id="tanggal" @if(isset($appointment)) value="{{ $appointment->tgl_appointment  }}" readonly @endif>
                                                     </div>
                                                 </div>
 
@@ -70,42 +70,42 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Nama</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="nama" class="form-control" id="nama" @if(isset($appointment)) value="{{ $appointment->mahasiswa->user_role->data_mhs->nama }}" @endif>
+                                                        <input type="text" name="nama" class="form-control" id="nama" @if(isset($appointment)) value="{{ $appointment->mahasiswa->user_role->data_mhs->nama }}" readonly @endif>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">NIM</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="number" name="nim" class="form-control" id="nim" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->nik_nim }}" @endif />
+                                                        <input type="number" name="nim" class="form-control" id="nim" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->nik_nim }}" readonly @endif />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput6">Jenis Kelamin</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="sex" class="form-control" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->data_mhs->jenis_kel() }}" @endif >
+                                                        <input type="text" name="sex" class="form-control" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->data_mhs->jenis_kel() }}" readonly @endif >
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">Tanggal Lahir</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="tgl_lahir" class="form-control" id="tgl_lahir" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->data_mhs->tgl_lahir }}" @endif>
+                                                        <input type="text" name="tgl_lahir" class="form-control" id="tgl_lahir" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->data_mhs->tgl_lahir }}" readonly @endif>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">No Hp</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="number" name="nohp" class="form-control" id="nohp" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->data_mhs->hp }}" @endif>
+                                                        <input type="number" name="nohp" class="form-control" id="nohp" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->data_mhs->hp }}" readonly @endif>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput6">Program Studi</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="prodi" class="form-control" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->data_mhs->prodi() }}" @endif >
+                                                        <input type="text" name="prodi" class="form-control" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->data_mhs->prodi() }}" readonly @endif >
                                                     </div>
                                                 </div>
 
@@ -114,7 +114,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Deskripsi Masalah</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <textarea id="projectinput9" rows="5" class="form-control" name="deskripsi" placeholder="Deskripsikan masalah yang dimiliki mahasiswa">@if(isset($appointment)) {{$appointment->description }} @endif</textarea>
+                                                        <textarea id="projectinput9" rows="5" class="form-control" name="deskripsi" placeholder="Deskripsikan masalah yang dimiliki mahasiswa" readonly>@if(isset($appointment)) {{$appointment->description }} @endif</textarea>
                                                     </div>
                                                 </div>
                                             

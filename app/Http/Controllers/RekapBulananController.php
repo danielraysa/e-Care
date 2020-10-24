@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Appointment;
 use App\RekamMedis;
+use App\Major;
 
 class RekapBulananController extends Controller
 {
@@ -13,12 +14,45 @@ class RekapBulananController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $appointment = Appointment::with('mahasiswa.user_role.data_mhs')->where('status', 'Y')->get();
-        $rekam = RekamMedis::with('data_appointment')->orderBy('tgl', 'desc')->get();
-        // dd($rekam);
-        return view('backend.konselor.laprekapbulan', compact('rekam'));
+        $rekam = RekamMedis::with('data_appointment.mahasiswa')->orderBy('tgl', 'desc')->get();
+        if($request->prodi){
+            $rekam = RekamMedis::with(['data_appointment.mahasiswa' => function ($query) use ($request) {
+                $query->whereRaw("SUBSTR(email, 3, 5) = '".$request->prodi."'");
+            }])->orderBy('tgl', 'desc')->get();
+            dd($rekam);
+        }
+        $prodi = Major::all();
+        return view('backend.konselor.laprekapbulan', compact('rekam', 'prodi'));
+    }
+
+    public function list_waktu(Request $request)
+    {
+        switch ($request->waktu) {
+            case 'bulan':
+                $data = Appointment::selectRaw("CONCAT(year(tgl_appointment), '/', month(tgl_appointment)) year, CONCAT(monthname(tgl_appointment), ' ', year(tgl_appointment)) text")
+                ->groupBy('year', 'text')
+                ->orderBy('year', 'desc')
+                ->get();
+                break;
+            case 'semester':
+                $data = Appointment::selectRaw('year(tgl_appointment) year, month(tgl_appointment) month, count(*) data')
+                ->groupBy('year', 'month')
+                ->orderBy('year', 'desc')
+                ->get();
+                break;
+            case 'tahun':
+                $data = Appointment::selectRaw('year(tgl_appointment) year, year(tgl_appointment) text')
+                ->groupBy('year','text')
+                ->orderBy('year', 'desc')
+                ->get();
+                break;
+            default:
+                $data = "";
+                break;
+        }
+        return response()->json($data, 200);
     }
 
     /**

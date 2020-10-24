@@ -52,6 +52,10 @@
                 @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2 || Auth::user()->role_id == 4)
                 <li class=" nav-item"><a href="{{ route('chat') }}"><i class="la la-comments"></i><span class="menu-title" data-i18n="Chat">Chat</span></a>
                 </li>
+                @if(Auth::user()->role_id == 2)
+                <li class=" nav-item"><a href="{{ route('histori-chat') }}"><i class="la la-comments"></i><span class="menu-title" data-i18n="Chat">Histori Chat</span></a>
+                </li>
+                @endif
                 @endif
 
                  <!-- @if(Auth::user()->role_id == 1)
