@@ -7,6 +7,7 @@ use Auth;
 use App\Appointment;
 use App\RekamMedis;
 use App\Helper\Helper;
+use DB;
 
 class HomeController extends Controller
 {
@@ -58,15 +59,23 @@ class HomeController extends Controller
         if($request->filter_tahun){
             $tahun = $request->filter_tahun;
         }
-        $data_chart = Appointment::selectRaw('MONTH(created_at) bulan, COUNT(*) jumlah_data')
+        $chart_bulan = Appointment::selectRaw('MONTH(created_at) bulan, COUNT(*) jumlah_data')
         ->whereRaw('YEAR(created_at) = ?', [$tahun])
         ->groupBy('bulan')
         ->orderBy('bulan')
         ->get();
-        for($i = 0; $i < $data_chart->count(); $i++){
-            $data_chart[$i]->bulan = Helper::bulan_indo($data_chart[$i]->bulan);
+        // $chart_prodi = DB::table('majors')
+        // ->join('users', 'majors.kode_prodi', '=', 'concat(users.email,3,5)')
+        // ->join('appointments', 'users.id', '=', 'appointments.user_id')
+        // ->selectRaw("majors.major_name prodi, count(appointments.id) jumlah")
+        // ->get();
+        $chart_prodi = DB::select("SELECT m.major_name prodi, count(a.id) jumlah FROM majors m JOIN users u ON m.kode_prodi = substr(u.email, 3, 5) JOIN appointments a ON u.id = a.user_id GROUP BY m.major_name");
+        // dd($chart_prodi);
+        // $chart_prodi = DB::select(DB::raw("SELECT m.major_name prodi, count(a.id) jumlah FROM majors m JOIN users u ON m.kode_prodi = substr(u.email, 3, 5) JOIN appointments a ON u.id = a.user_id group by m.kode_prodi"));
+        for($i = 0; $i < $chart_bulan->count(); $i++){
+            $chart_bulan[$i]->bulan = Helper::bulan_indo($chart_bulan[$i]->bulan);
         }
         // dd($data_chart);
-        return response()->json($data_chart, 200);
+        return response()->json(compact('chart_bulan','chart_prodi'), 200);
     }
 }

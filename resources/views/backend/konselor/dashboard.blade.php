@@ -1,8 +1,17 @@
 @extends('backend.partialadmin.layout')
 @push('js')
 <script>
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
     //Get the context of the Chart canvas element we want to select
-    var ctx = $("#chart-dashboard");
+    var ctx = $("#chart-bulan");
+    var ctx2 = $("#chart-prodi");
     // Chart Options
     var chartOptions = {
         responsive: true,
@@ -33,10 +42,6 @@
                     labelString: 'Jumlah'
                 }
             }]
-        },
-        title: {
-            display: false,
-            text: 'Chart.js Combo Bar Line Chart'
         }
     };
 
@@ -47,11 +52,21 @@
             // alert(result);
             var data_label = [];
             var data_jml = [];
-            console.log(result);
-            for(i in result){
-                data_label.push(result[i].bulan);
-                data_jml.push(result[i].jumlah_data);
+            var data_label_pie = [];
+            var data_jml_pie = [];
+            var warna = [];
+            console.log(result.chart_bulan);
+            for(stats of result.chart_bulan){
+                data_label.push(stats.bulan);
+                data_jml.push(stats.jumlah_data);
             }
+            console.log(result.chart_prodi);
+            for(stats of result.chart_prodi){
+                data_label_pie.push(stats.prodi);
+                data_jml_pie.push(stats.jumlah);
+                warna.push(getRandomColor());
+            }
+            console.log(data_label_pie);
             // Chart Data
             var chartData = {
                 labels: data_label,
@@ -75,6 +90,17 @@
                 ]
             };
 
+            var chartDataPie = {
+                data: {
+                    labels: data_label_pie,
+                    datasets: [{
+                        label: 'Jumlah Mahasiswa',
+                        data: data_jml_pie,
+                        backgroundColor: warna
+                    }]
+                },
+            };
+
             var config = {
                 type: 'bar',
                 // Chart Options
@@ -83,6 +109,22 @@
             };
             // Create the chart
             var lineChart = new Chart(ctx, config);
+            // var lineChart2 = new Chart(ctx2, config2);
+            var pieGraph = new Chart(ctx2, {
+                type: 'pie',
+                data: {
+                    labels: data_label_pie,
+                    datasets: [{
+                        label: 'Jumlah Mahasiswa',
+                        data: data_jml_pie,
+                        backgroundColor: warna
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
+            });
         }
     });
 
@@ -170,7 +212,12 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body chartjs">
-                                <canvas id="chart-dashboard" height="400"></canvas>
+                                <canvas id="chart-bulan" height="400"></canvas>
+                            </div>
+                        </div>
+                        <div class="card-content collapse show">
+                            <div class="card-body">
+                                <canvas id="chart-prodi" height="400"></canvas>
                             </div>
                         </div>
                     </div>

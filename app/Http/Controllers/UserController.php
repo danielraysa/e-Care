@@ -49,8 +49,8 @@ class UserController extends Controller
         //
         // dd($request->all());
         $check = User::where('email',$request->data_tabel)->get()->first();
-        if($check->count() != 0){
-            dd('update');
+        if($check){
+            // dd('update');
             $check->update([
                 'password' => bcrypt($request->password),
                 // 'password' => bcrypt('password'),
@@ -67,12 +67,12 @@ class UserController extends Controller
                 ]);
             } */
         }else{
-            dd('create new');
+            // dd('create new');
             $user = User::create([
                 'name' => $request->nama,
                 'email' => $request->data_tabel,
-                // 'password' => bcrypt($request->password),
-                'password' => bcrypt('password'),
+                'password' => bcrypt($request->password),
+                // 'password' => bcrypt('password'),
                 'role_id' => $request->user_role,
             ]);
             $user_role = UserRole::create([
