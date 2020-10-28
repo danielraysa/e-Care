@@ -17,13 +17,27 @@ class RekapBulananController extends Controller
     public function index(Request $request)
     {
         $rekam = RekamMedis::with('data_appointment.mahasiswa')->orderBy('tgl', 'desc')->get();
-        if($request->prodi){
+        $prodi = Major::all();
+        if($request->prodi != ''){
             $rekam = RekamMedis::with(['data_appointment.mahasiswa' => function ($query) use ($request) {
                 $query->whereRaw("SUBSTR(email, 3, 5) = '".$request->prodi."'");
             }])->orderBy('tgl', 'desc')->get();
-            dd($rekam);
+            if($request->jenis != ''){
+                if($request->jenis == 'bulan'){
+                    $waktu = explode('-', $request->waktu);
+                    $rekam = RekamMedis::with('data_appointment.mahasiswa')->whereHas('data_appointment.mahasiswa', function ($query) use ($request) {
+                        $query->whereRaw("SUBSTR(email, 3, 5) = '".$request->prodi."'");
+                    })->whereRaw("YEAR(tgl) = ? AND MONTH(tgl) = ?", [$waktu[0], $waktu[1]])->orderBy('tgl', 'desc')->get();
+                }
+                if($request->jenis == 'tahun'){
+                    $waktu = $request->waktu;
+                    $rekam = RekamMedis::with('data_appointment.mahasiswa')->whereHas('data_appointment.mahasiswa', function ($query) use ($request) {
+                        $query->whereRaw("SUBSTR(email, 3, 5) = '".$request->prodi."'");
+                    })->whereRaw("YEAR(tgl) = ?", [$waktu,])->orderBy('tgl', 'desc')->get();
+                }
+            }
+            // dd($rekam);
         }
-        $prodi = Major::all();
         return view('backend.konselor.laprekapbulan', compact('rekam', 'prodi'));
     }
 
@@ -31,7 +45,7 @@ class RekapBulananController extends Controller
     {
         switch ($request->waktu) {
             case 'bulan':
-                $data = Appointment::selectRaw("CONCAT(year(tgl_appointment), '/', month(tgl_appointment)) year, CONCAT(monthname(tgl_appointment), ' ', year(tgl_appointment)) text")
+                $data = Appointment::selectRaw("CONCAT(year(tgl_appointment), '-', month(tgl_appointment)) year, CONCAT(monthname(tgl_appointment), ' ', year(tgl_appointment)) text")
                 ->groupBy('year', 'text')
                 ->orderBy('year', 'desc')
                 ->get();

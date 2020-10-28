@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Appointment;
 use App\RekamMedis;
+use App\Major;
 
 class RekamMedisController extends Controller
 {
@@ -13,10 +14,30 @@ class RekamMedisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $appointment = Appointment::with('mahasiswa.user_role.data_mhs', 'catatan_medis')->where('status', 'S')->orderBy('created_at', 'desc')->get();
-        return view('backend.konselor.laprekammedis', compact('appointment'));
+        $prodi = Major::all();
+        if($request->prodi != ''){
+            $appointment = Appointment::with('mahasiswa')->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->whereRaw("SUBSTR(email, 3, 5) = '".$request->prodi."'");
+            })->orderBy('created_at', 'desc')->get();
+            if($request->jenis != ''){
+                if($request->jenis == 'bulan'){
+                    $waktu = explode('-', $request->waktu);
+                    $appointment = Appointment::with('mahasiswa')->whereHas('mahasiswa', function ($query) use ($request) {
+                        $query->whereRaw("SUBSTR(email, 3, 5) = '".$request->prodi."'");
+                    })->whereRaw("YEAR(created_at) = ? AND MONTH(created_at) = ?", [$waktu[0], $waktu[1]])->orderBy('created_at', 'desc')->get();
+                }
+                if($request->jenis == 'tahun'){
+                    $waktu = $request->waktu;
+                    $appointment = Appointment::with('mahasiswa')->whereHas('mahasiswa', function ($query) use ($request) {
+                        $query->whereRaw("SUBSTR(email, 3, 5) = '".$request->prodi."'");
+                    })->whereRaw("YEAR(created_at) = ?", [$waktu,])->orderBy('created_at', 'desc')->get();
+                }
+            }
+        }
+        return view('backend.konselor.laprekammedis', compact('appointment','prodi'));
     }
 
     /**

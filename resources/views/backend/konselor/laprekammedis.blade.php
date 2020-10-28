@@ -1,4 +1,28 @@
 @extends('backend.partialadmin.layout')
+@push('js')
+<script>
+    $('#filter_tanggal').change(function(){
+        var value = $(this).val();
+        if(value != ""){
+            $.ajax({
+                url: "{{ route('get-list-waktu') }}",
+                type: "POST",
+                data: {waktu: value},
+                success: function(result){
+                    console.log(result);
+                    $('#filter_tanggal_isi').empty().append('<option selected="selected" value="">Pilih opsi</option>');
+                    $.each(result, function (i, item) {
+                        $('#filter_tanggal_isi').append($('<option>', { 
+                            value: item.year,
+                            text : item.text 
+                        }));
+                    });
+                }
+            })
+        }
+    });
+</script>
+@endpush
 @section('content')
     <!-- BEGIN: Content-->
     <div class="app-content content">
@@ -24,14 +48,40 @@
             </div>
             <div class="content-body">
                 <!-- List Of All Patients -->
-
                 <section id="patients-list">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                {{-- <div class="card-header">
-                                    <a class="btn btn-success float-right" href="{{url('tambahrekammedis')}}">Tambah data</a>
-                                </div> --}}
+                                <div class="card-header">
+                                    <form action="{{ route('rekammedis.index') }}" method="GET">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <select class="form-control" name="prodi">
+                                                    <option value="">Pilih prodi</option>
+                                                    @foreach ($prodi as $prod)
+                                                    <option value="{{ $prod->kode_prodi }}">{{ $prod->major_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-3">
+                                                <select class="form-control" name="jenis" id="filter_tanggal">
+                                                    <option value="">Pilih jenis waktu</option>
+                                                    <option value="bulan">Bulan</option>
+                                                    {{-- <option value="semester">Semester</option> --}}
+                                                    <option value="tahun">Tahun</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-3">
+                                                <select class="form-control" name="waktu" id="filter_tanggal_isi">
+                                                    <option value="">Pilih opsi</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-2">
+                                                <button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Filter</button>
+                                            </div>
+                                        </div>
+                                        </form>
+                                </div>
                                 <div class="card-body card-dashboard">
                                 
                                     <div class="table-responsive">
