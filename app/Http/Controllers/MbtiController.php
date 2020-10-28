@@ -56,6 +56,7 @@ class MbtiController extends Controller
         // DB::table('mbti') -> insert([
             // 'id' => $request->id,
             'mbti_name' => $request->mbti_name,
+            'deskripsi_mbti' => $request->deskripsi_mbti,
         ]);
 
         return redirect()->action('MbtiController@index')->with('status', 'Data MBTI Berhasil Ditambahkan');
@@ -98,7 +99,8 @@ class MbtiController extends Controller
     {
         
         $upd = Mbti::find($id)->update([
-            'mbti_name' => $request->mbti_name
+            'mbti_name' => $request->mbti_name,
+            'deskripsi_mbti' => $request->deskripsi_mbti,
         ]);
         if($upd)
         return redirect(route('mbti.index'))->with('status', 'Data MBTI Berhasil Diperbarui');
