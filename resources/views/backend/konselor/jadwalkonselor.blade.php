@@ -8,7 +8,7 @@
                 type: "get",
                 success: function(result){
                     console.log(result);
-                    $('#jenis_problem').append(result.jenis_problem);
+                    $('#jenis_problem').text(result.jenis_problem);
                     $('#deskripsi').text(result.description);
                 }
             })
@@ -191,7 +191,7 @@
                     Detail
                 </div>
                 <div class="modal-body">
-                    <p id="jenis_problem"><b>Jenis Problem:</b> </p>
+                    <p><b>Jenis Problem:</b> <span id="jenis_problem"></span></p>
                     <p><b>Deskripsi: </b></p>
                     <p id="deskripsi"></p>
                 </div>

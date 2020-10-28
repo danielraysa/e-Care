@@ -89,7 +89,7 @@
                                                     </a>
                                                 @if(isset($mbti))
                                                     <button type="submit" class="btn btn-primary">
-                                                        <i class="la la-check-square-o"></i> update
+                                                        <i class="la la-check-square-o"></i> Update
                                                     </button>
                                                 @else
                                                 <button type="submit" class="btn btn-primary">
