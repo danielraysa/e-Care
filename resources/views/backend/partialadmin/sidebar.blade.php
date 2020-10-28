@@ -2,15 +2,15 @@
     <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow " data-scroll-to-active="true">
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="active"><a href="{{ url('home') }}"><i class="la la-home"></i><span class="menu-title" data-i18n="Dashboard Hospital">Dashboard</span></a>
+                <li class="nav-item {{ Request::is('home') ? 'active' : '' }}"><a href="{{ url('home') }}"><i class="la la-home"></i><span class="menu-title" data-i18n="Dashboard Hospital">Dashboard</span></a>
                 </li>
                 <li class=" navigation-header"><span data-i18n="Professional">Professional</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Professional"></i>
                 </li>
 
                 @if(Auth::user()->role_id == 2)
-                {{-- <li class=" nav-item"><a href="{{url('/buatappointment')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Buat Appointment</span></a> 
+                {{-- <li class="nav-item"><a href="{{url('/buatappointment')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Buat Appointment</span></a> 
                 </li> --}}
-                <!-- <li class=" nav-item"><a href="#"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Appointment</span></a>
+                <!-- <li class="nav-item"><a href="#"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Appointment</span></a>
                     <ul class="menu-content">
                         <li><a class="menu-item {{ Request::is('appointment') ? 'active' : '' }}" href="{{url('appointment')}}"><i></i><span>Buat Appointment</span></a>
                         </li>
@@ -19,41 +19,41 @@
                        
                     </ul>
                 </li> -->
-                <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Test</span></a>
+                <li class="nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Test</span></a>
                     <ul class="menu-content">
-                        <li><a class="menu-item" href="{{url('testmbti')}}"><i></i><span>Kepribadian/MBTI</span></a>
+                        <li><a class="menu-item {{ Request::is('testmbti') ? 'active' : '' }}" href="{{url('testmbti')}}"><i></i><span>Kepribadian/MBTI</span></a>
                         </li>
-                        <li><a class="menu-item" href="{{url('testtingkat')}}"><i></i><span>Tingkat Masalah</span></a>
+                        <li><a class="menu-item {{ Request::is('testtingkat') ? 'active' : '' }}" href="{{url('testtingkat')}}"><i></i><span>Tingkat Masalah</span></a>
                         </li>
                     </ul>
                 </li>
                 @endif
 
                 @if(Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
-                {{-- <li class=" nav-item"><a href="{{url('/testtingkat')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Hasil Test</span></a>
+                {{-- <li class="nav-item"><a href="{{url('/testtingkat')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Hasil Test</span></a>
                 </li> --}}
-                <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Hasil Test Mahasiswa</span></a>
+                <li class="nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Hasil Test Mahasiswa</span></a>
                     <ul class="menu-content">
-                        <li><a class="menu-item" href="{{route('testmbti.index')}}"><i></i><span>Kepribadian/MBTI</span></a>
+                        <li><a class="menu-item {{ Request::is('testmbti') ? 'active' : '' }}" href="{{route('testmbti.index')}}"><i></i><span>Kepribadian/MBTI</span></a>
                         </li>
-                        <li><a class="menu-item" href="{{route('testtingkat.index')}}"><i></i><span>Tingkat Masalah</span></a>
+                        <li><a class="menu-item {{ Request::is('testtingkat') ? 'active' : '' }}" href="{{route('testtingkat.index')}}"><i></i><span>Tingkat Masalah</span></a>
                         </li>
                     </ul>
                 </li>
                 @endif
 
              
-                @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 1 || Auth::user()->role_id == 4)
-                <li class=" nav-item"><a href="{{url('/jadwalkonselor')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Tabel Konseling</span></a>
+                @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 4)
+                <li class="nav-item {{ Request::is('jadwalkonselor') ? 'active' : '' }}"><a href="{{url('jadwalkonselor')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Tabel Konseling</span></a>
                 </li>
                 @endif
 
 
                 @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2 || Auth::user()->role_id == 4)
-                <li class=" nav-item"><a href="{{ route('chat') }}"><i class="la la-comments"></i><span class="menu-title" data-i18n="Chat">Chat</span></a>
+                <li class="nav-item"><a href="{{ route('chat') }}"><i class="la la-comments"></i><span class="menu-title" data-i18n="Chat">Chat</span></a>
                 </li>
                 @if(Auth::user()->role_id == 2)
-                <li class=" nav-item"><a href="{{ route('histori-chat') }}"><i class="la la-comments"></i><span class="menu-title" data-i18n="Chat">Histori Chat</span></a>
+                <li class="nav-item {{ Request::is('histori-chat') ? 'active' : '' }}"><a href="{{ route('histori-chat') }}"><i class="la la-comments"></i><span class="menu-title" data-i18n="Chat">Histori Chat</span></a>
                 </li>
                 @endif
                 @endif
@@ -71,14 +71,14 @@
 
 
                 @if(Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
-                <!-- <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Mahasiswa</span></a>
+                <!-- <li class="nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Mahasiswa</span></a>
                     <ul class="menu-content">
                         <li><a class="menu-item" href="{{url('daftarmhs')}}"><i></i><span>Tabel Mahasiswa</span></a>
                         </li>
                       
                     </ul>
                 </li> -->
-                <!-- <li class=" nav-item"><a href="#"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Report">Laporan</span></a>
+                <!-- <li class="nav-item"><a href="#"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Report">Laporan</span></a>
                     <ul class="menu-content">
                         <li><a class="menu-item" href="{{url('rekammedis')}}"><i></i><span>Rekam Medis</span></a>
                         </li>
@@ -111,28 +111,29 @@
                 @endif
                 @if(Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
                
-                <li class=" nav-item"><a href="{{url('/rekammedis')}}"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Appointment">Rekam Medis</span></a>
+                <li class="nav-item {{ Request::is('rekammedis') ? 'active' : '' }}"><a href="{{url('rekammedis')}}"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Appointment">Rekam Medis</span></a>
                 </li>
                 @endif
 
-                @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 1 || Auth::user()->role_id == 4)
-                <li class=" nav-item"><a href="{{url('/rekapbulanan')}}"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Appointment">Laporan Rekap Perbulan</span></a>
+                {{-- @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 1 || Auth::user()->role_id == 4) --}}
+                @if(Auth::user()->role_id == 3)
+                <li class="nav-item {{ Request::is('rekapbulanan') ? 'active' : '' }}"><a href="{{url('rekapbulanan')}}"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Appointment">Laporan Rekap Perbulan</span></a>
                 </li>
                 @endif
             
                
                 @if(Auth::user()->role_id == 1)
-                <li><a class="menu-item" href="{{url('user')}}"><i class="la la-link"></i><span>Link User</span></a></li> 
+                <li><a class="menu-item {{ Request::is('user') ? 'active' : '' }}" href="{{url('user')}}"><i class="la la-link"></i><span>Link User</span></a></li> 
                 <!-- <li><a class="menu-item" href="{{url('pertanyaan')}}"><i class="la la-question"></i><span>Pertanyaan</span></a></li>  -->
                 @endif
         
                 {{--  <li class=" navigation-header"><span data-i18n="Apps">Apps</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Apps"></i>
                 </li>
-                <li class=" nav-item"><a href="{{url('email')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="Inbox">Inbox</span></a>
+                <li class="nav-item"><a href="{{url('email')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="Inbox">Inbox</span></a>
                 </li> --}}
 
                 @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
-                <li class=" nav-item"><a href="{{ url('forum-group')}}"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Forum Diskusi</span></a>
+                <li class="nav-item {{ Request::is('forum-group') ? 'active' : '' }}"><a href="{{ url('forum-group')}}"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Forum Diskusi</span></a>
                 </li>
                @endif
               

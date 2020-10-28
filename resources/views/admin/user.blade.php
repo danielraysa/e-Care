@@ -135,7 +135,8 @@
         var nim = $(this).find(":selected").val();
         var nama = $(this).find(":selected").text();
         // alert(nama);
-        $('#namalengkap').val(nama);
+        var nama_only = nama.replace(' ('+nim+')','');
+        $('#namalengkap').val(nama_only);
         $('#nim').val(nim);
     });
 </script>
