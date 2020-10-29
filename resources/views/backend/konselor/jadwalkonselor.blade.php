@@ -67,13 +67,14 @@
                                         <table class="table table-striped table-bordered patients-list datatable">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>NIM/Nama</th>
-                                                    <th>Tanggal Daftar</th>
-                                                    <th>Jenis Layanan</th>
-                                                    <th>Jenis Problem</th>
-                                                    <th>Status</th>
-                                                    <th>Aksi</th>
+                                                    <th style="width:5%">No</th>
+                                                    <th style="width:15%">NIM/Nama</th>
+                                                    <th style="width:15%">Tanggal Daftar</th>
+                                                    {{-- <th style="width:15%">Jenis Layanan</th> --}}
+                                                    <th style="width:15%">Dosen Wali</th>
+                                                    <th style="width:20%">Jenis Problem</th>
+                                                    <th style="width:10%">Status</th>
+                                                    <th style="width:20%">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -84,7 +85,8 @@
                                                     ({{ $item->mahasiswa->user_role->nik_nim }})</td>
                                                     {{-- <td>{{ Helper::tanggal_indo($item->tgl_appointment) }}</td> --}}
                                                     <td>{{ Helper::datetime_indo($item->created_at) }}</td>
-                                                    <td>{{ $item->jenis_layanan }}</td>
+                                                    {{-- <td>{{ $item->jenis_layanan }}</td> --}}
+                                                    <td>{{ $item->mahasiswa->user_role->data_mhs->dosen_wali->nama}}</td>
                                                     <td>{{ $item->jenis_problem }}</td>
                                                     <td>
                                                         @if($item->status == 'M')
