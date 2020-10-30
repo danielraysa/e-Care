@@ -44,9 +44,9 @@
 </head>
 <body>
 
-    <center><img src="{{ asset('logo_dinamika.png') }}" class="w-50" width="300px"/></center>
+    <center><img src="{{ asset('logo_dinamika.png') }}" class="w-50" width="200px"/></center>
     <br/>
-    <center style="font-size: 16px; font-weight: bold">Laporan Konseling</center>
+    <center style="font-size: 24px; font-weight: bold">Laporan Konseling</center>
     {{-- <center style="font-size: 16px; font-weight: bold">Periode {{ Helper::tanggal_indo($start_date) }} - {{ Helper::tanggal_indo($end_date) }}</center> --}}
     <br/>
     <br/>

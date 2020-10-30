@@ -187,14 +187,8 @@ Route::group(['middleware' => 'auth'], function () {
     //end tabel pertanyaan
 
     //tabel karyawan
-    Route::get('/tabelkaryawan', function () {
-        return view('backend.datamaster.karyawan');
-    });
     Route::get('/tabelkaryawan', 'KaryawanController@index');
-
-    Route::get('/tambahkaryawan', function () {
-        return view('backend.datamaster.tambahkaryawan');
-    });
+    Route::get('/tambahkaryawan', 'KaryawanController@create');
     //endtabel karyawan
 
     //forum
@@ -210,9 +204,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('pertanyaan', 'QuestionController');
     
-    Route::get('/tes-chat', 'MessageController@listchat')->name('chat');
-    Route::get('/tes-chat/{id}', 'MessageController@listmessage')->name('chat-history');
-    Route::post('/tes-chat', 'MessageController@teschat')->name('send-chat');
+    Route::get('/chat', 'MessageController@list_chat')->name('chat');
+    Route::get('/chat/{id}', 'MessageController@list_message')->name('chat-history');
+    Route::post('/chat', 'MessageController@send_chat')->name('send-chat');
     Route::get('/histori-chat', 'MessageController@histori_chat')->name('histori-chat');
 
     //endchat

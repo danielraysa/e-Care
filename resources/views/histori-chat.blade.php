@@ -78,10 +78,6 @@
     <!-- END: Content-->
 @endsection
 @push('js')
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/config.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/util.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/jquery.emojiarea.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/emoji-picker.js"></script> --}}
 <script type="text/javascript">
     // Enter a unique channel you wish your users to be subscribed in.
     // var channel = pusher.subscribe('chat-channel');
@@ -132,48 +128,12 @@
             }
         });
     }
-    
-    // Trigger for the Enter key when clicked.
-    $.fn.enterKey = function(fnc) {
-        return this.each(function() {
-            $(this).keypress(function(ev) {
-                var keycode = (ev.keyCode ? ev.keyCode : ev.which);
-                if (keycode == '13') {
-                    fnc.call(this, ev);
-                }
-            });
-        });
-    }
-    
-    // Send the Message
-    $('body').on('click', '#sendChat', function(e) {
-        e.preventDefault();
-        var chat_content = $('#chatInput').val();
-        var receiver_id = $('#receiver_id').val();
-        if (chat_message !== '') {
-            // Define ajax data
-            var chat_message = {
-                receiver: receiver_id,
-                message: chat_content
-            }
-            // Send the message to the server
-            ajaxCall("{{ route('send-chat') }}", chat_message);
-            // Clear the message input field
-            $('#chatInput').val('');
-        }
-    });
-    
-    // Send the message when enter key is clicked
-    $('#chatInput').enterKey(function(e) {
-        e.preventDefault();
-        $('#sendChat').click();
-    });
 
     $('.user-chat').click(function(){
         var id_user = $(this).attr('data-id');
         // alert('user id : '+id_user);
         $.ajax({
-            url: 'tes-chat/'+id_user,
+            url: "{{ route('chat') }}/"+id_user,
             type: 'GET',
             datatype: "html"
         }).done(function(data){
@@ -181,6 +141,7 @@
             // $(".chat-container").scrollTop($(".chat-container")[0].scrollHeight);
             $(".chat-container").scrollTop($(".chat-container > .chat-content").height());
             // $('#receiver_id').val(id_user);
+            $('#footer-chat').addClass('d-none');
         }).fail(function(jqXHR, ajaxOptions, thrownError){
             alert('No response from server');
         });

@@ -76,7 +76,7 @@ class MessageController extends Controller
 
     }
 
-    public function listchat()
+    public function list_chat()
     {
         if(Auth::id() == 1 || Auth::user()->role_id == 4){ // admin dan konselor
             $users = User::with(['last_appointment' => function($query){
@@ -96,7 +96,7 @@ class MessageController extends Controller
         return view('chat', compact('users'));
     }
 
-    public function listmessage($id)
+    public function list_message($id)
     {
         $data['messages'] = Message::with('user')
         ->where(['user_id'=> auth()->id(), 'receiver_id'=> $id])
@@ -111,7 +111,7 @@ class MessageController extends Controller
         return view('chat-card', $data);
     }
 
-    public function teschat(Request $request)
+    public function send_chat(Request $request)
     {
         $user = Auth::user();
         /* $app_id = env('PUSHER_APP_ID'); // App ID

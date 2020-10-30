@@ -15,8 +15,8 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        $employee = DB::table('employees')-> get();
-        return view(' backend.datamaster.karyawan',['employees' => $employee]);
+        $employee = DB::table('employees')->get();
+        return view('backend.datamaster.karyawan', ['employees' => $employee]);
        
     }
 
@@ -36,6 +36,7 @@ class KaryawanController extends Controller
     public function create()
     {
         //
+        return view('backend.datamaster.tambahkaryawan');
     }
 
     /**

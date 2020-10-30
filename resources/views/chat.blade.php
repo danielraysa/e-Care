@@ -125,16 +125,11 @@
     <!-- END: Content-->
 @endsection
 @push('js')
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/config.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/util.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/jquery.emojiarea.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/emoji-picker.js"></script> --}}
+
 <script type="text/javascript">
     // Enter a unique channel you wish your users to be subscribed in.
     // var channel = pusher.subscribe('chat-channel');
-    
-    // var channel = pusher.subscribe('test_channel');
-    // channel.bind('my_event', function(data) {
+
     channel.bind('chat-event', function(response) {
         // Add the new message to the container
         // var url_image = "{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}";
@@ -220,7 +215,7 @@
         var id_user = $(this).attr('data-id');
         // alert('user id : '+id_user);
         $.ajax({
-            url: 'tes-chat/'+id_user,
+            url: "{{ route('chat') }}/"+id_user,
             type: 'GET',
             datatype: "html"
         }).done(function(data){

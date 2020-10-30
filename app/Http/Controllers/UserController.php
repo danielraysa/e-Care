@@ -46,9 +46,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
         // dd($request->all());
-        $check = User::where('email',$request->data_tabel)->get()->first();
+        $check = User::where('email', $request->data_tabel)->get()->first();
         if($check){
             // dd('update');
             $check->update([
