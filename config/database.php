@@ -52,6 +52,9 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+            'modes' => [
+                //'NO_AUTO_CREATE_USER',
+            ],
         ],
 
         'pgsql' => [

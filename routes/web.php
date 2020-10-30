@@ -203,7 +203,7 @@ Route::group(['middleware' => 'auth'], function () {
     //endforum
     
     //chat
-    Route::resource('notification', 'NotificationController');
+    Route::resource('notifikasi', 'NotificationController');
 
     Route::resource('/user', 'UserController');
     // Route::resource('/chat', 'ChatController');

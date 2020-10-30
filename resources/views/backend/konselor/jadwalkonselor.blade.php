@@ -86,7 +86,7 @@
                                                     {{-- <td>{{ Helper::tanggal_indo($item->tgl_appointment) }}</td> --}}
                                                     <td>{{ Helper::datetime_indo($item->created_at) }}</td>
                                                     {{-- <td>{{ $item->jenis_layanan }}</td> --}}
-                                                    <td>{{ $item->mahasiswa->user_role->data_mhs->dosen_wali->nama}}</td>
+                                                    <td>{{ $item->mahasiswa->user_role->data_mhs->dosen_wali->nama }}</td>
                                                     <td>{{ $item->jenis_problem }}</td>
                                                     <td>
                                                         @if($item->status == 'M')

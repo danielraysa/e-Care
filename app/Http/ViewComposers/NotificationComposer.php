@@ -36,7 +36,7 @@ class NotificationComposer
     public function compose(View $view)
     {
         $user = Auth::user();
-        $notif = Notification::where('user_id', $user->id)->orderBy('created_at','desc')->get();
+        $notif = Notification::where('user_id', $user->id)->orderBy('created_at','desc')->take(20)->get();
         $view->with('notification', $notif);
         $view->with('notif_count', $notif->count());
     }

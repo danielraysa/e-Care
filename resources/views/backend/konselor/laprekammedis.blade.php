@@ -1,6 +1,25 @@
 @extends('backend.partialadmin.layout')
 @push('js')
 <script>
+    function getListWaktu(value, value2){
+        $.ajax({
+            url: "{{ route('get-list-waktu') }}",
+            type: "POST",
+            data: {waktu: value},
+            success: function(result){
+                console.log(result);
+                $('#filter_tanggal_isi').empty().append('<option selected="selected" value="">Pilih opsi</option>');
+                $.each(result, function (i, item) {
+                    $('#filter_tanggal_isi').append($('<option>', { 
+                        value: item.year,
+                        text : item.text 
+                    }));
+                });
+                $('#filter_tanggal_isi').val(value2);
+            }
+        })
+    }
+
     $('#filter_tanggal').change(function(){
         var value = $(this).val();
         if(value != ""){
@@ -22,6 +41,14 @@
         }
     });
 </script>
+@if(isset($request))
+<script>
+    var jenis = "{{ $request->jenis }}";
+    var waktu = "{{ $request->waktu }}";
+    $('#filter_tanggal').val(jenis);
+    getListWaktu(jenis, waktu);
+</script>
+@endif
 @endpush
 @section('content')
     <!-- BEGIN: Content-->
@@ -55,11 +82,11 @@
                                 <div class="card-header">
                                     <form action="{{ route('rekammedis.index') }}" method="GET">
                                         <div class="row">
-                                            <div class="col-4">
+                                            <div class="col-3">
                                                 <select class="form-control" name="prodi">
                                                     <option value="">Pilih prodi</option>
                                                     @foreach ($prodi as $prod)
-                                                    <option value="{{ $prod->kode_prodi }}">{{ $prod->major_name }}</option>
+                                                    <option @if(isset($request->prodi) && $request->prodi == $prod->kode_prodi) selected @endif value="{{ $prod->kode_prodi }}">{{ $prod->major_name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -76,7 +103,7 @@
                                                     <option value="">Pilih opsi</option>
                                                 </select>
                                             </div>
-                                            <div class="col-2">
+                                            <div class="col-3">
                                                 <button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Filter</button>
                                             </div>
                                         </div>
@@ -92,6 +119,7 @@
                                                     <th>No</th>
                                                     <th>Nama/NIM</th>
                                                     <th>Program Studi</th>
+                                                    <th>Dosen Wali</th>
                                                     <th>Tanggal Appointment</th>
                                                     <th>Jenis Bimbingan</th>
                                                     <th>Keluhan</th>
@@ -104,6 +132,7 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->mahasiswa->user_role->data_mhs->nama }} ({{ $item->mahasiswa->user_role->nik_nim }})</td>
                                                     <td>{{ $item->mahasiswa->user_role->data_mhs->prodi() }}</td>
+                                                    <td>{{ $item->mahasiswa->user_role->data_mhs->dosen_wali->nama }}</td>
                                                     <td>{{ Helper::datetime_indo($item->created_at) }}</td>
                                                     <td>{{ $item->jenis_problem }}</td>
                                                     <td>{{ $item->description }}</td>

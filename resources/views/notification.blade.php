@@ -9,13 +9,29 @@
         <div class="content-wrapper"> 
             <div class="content-body">
                 <div class="card">
-                    <div class="card-header">
-                        <h3>Notification</h3>
+                    <div class="card-header pb-0">
+                        <h3 class="font-weight-bold">Notifikasi</h3>
                     </div>
                     <div class="card-body">
-                    @foreach ($notification as $notif)
-                        <li>{{ $notif->message }}</li>
-                    @endforeach
+                        <table class="table table-bordered table-stripped">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Isi Notifikasi</th>
+                                    <th>Tanggal/Waktu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($notification as $notif)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $notif->message }}</td>
+                                    <td>{{ Helper::datetime_indo($notif->created_at) }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{$notification->render("pagination::bootstrap-4")}}
                     </div>
                 </div>
             </div>

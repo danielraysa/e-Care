@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Appointment;
 use App\RekamMedis;
 use App\Major;
+use PDF;
 
 class RekapBulananController extends Controller
 {
@@ -38,7 +39,12 @@ class RekapBulananController extends Controller
             }
             // dd($rekam);
         }
-        return view('backend.konselor.laprekapbulan', compact('rekam', 'prodi'));
+        if($request->export == 'true'){
+            $pdf = PDF::loadView('backend.fitur.export', compact('request','rekam', 'prodi'));
+            return $pdf->download('test.pdf');
+        }else{
+            return view('backend.konselor.laprekapbulan', compact('request','rekam', 'prodi'));
+        }
     }
 
     public function list_waktu(Request $request)

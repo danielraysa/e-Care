@@ -37,7 +37,7 @@ class RekamMedisController extends Controller
                 }
             }
         }
-        return view('backend.konselor.laprekammedis', compact('appointment','prodi'));
+        return view('backend.konselor.laprekammedis', compact('request','appointment','prodi'));
     }
 
     /**
