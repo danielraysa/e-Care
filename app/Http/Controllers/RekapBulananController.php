@@ -40,7 +40,7 @@ class RekapBulananController extends Controller
         }
         if($request->export == 'true'){
             // return $this->export_pdf($request);
-            $pdf = PDF::loadView('backend.fitur.export', compact('request','rekam', 'prodi'));
+            $pdf = PDF::loadView('backend.fitur.export-laporan', compact('request','rekam'));
             return $pdf->stream();
         }else{
             return view('backend.konselor.laprekapbulan', compact('request','rekam', 'prodi'));

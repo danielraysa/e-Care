@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Appointment;
 use App\RekamMedis;
 use App\Major;
+use PDF;
 
 class RekamMedisController extends Controller
 {
@@ -37,7 +38,13 @@ class RekamMedisController extends Controller
                 }
             }
         }
-        return view('backend.konselor.laprekammedis', compact('request','appointment','prodi'));
+        if($request->export == 'true'){
+            // return $this->export_pdf($request);
+            $pdf = PDF::loadView('backend.fitur.export', compact('request','appointment'));
+            return $pdf->stream();
+        }else{
+            return view('backend.konselor.laprekammedis', compact('request','appointment','prodi'));
+        }
     }
 
     /**

@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Rekap Medis - {{ config('app.name', 'Laravel') }}</title>
+    <title>Rekap Laporan - {{ config('app.name', 'Laravel') }}</title>
     <!-- Styles -->
     <style type="text/css" media="all">
         /* @page {
@@ -46,29 +46,30 @@
 
     <center><img src="{{ asset('logo_dinamika.png') }}" class="w-50" width="200px"/></center>
     <br/>
-    <center style="font-size: 24px; font-weight: bold">Rekap Rekam Medis</center>
+    <center style="font-size: 24px; font-weight: bold">Laporan Konseling</center>
+    {{-- <center style="font-size: 16px; font-weight: bold">Periode {{ Helper::tanggal_indo($start_date) }} - {{ Helper::tanggal_indo($end_date) }}</center> --}}
     <br/>
     <br/>
     <center>
     <table class="datatable">
         <tr class="text-center bg-warning">
             <th>No</th>
-            <th>Nama/NIM</th>
-            <th>Program Studi</th>
-            <th>Dosen Wali</th>
-            <th>Tanggal Appointment</th>
+            <th>Tanggal</th>
+            <th>Uraian</th>
+            <th>Jenis Layanan</th>
             <th>Jenis Bimbingan</th>
-            <th>Keluhan</th>
+            <th>Penyelesaian</th>
+            <th>Tindak Lanjut</th>
         </tr>
-        @foreach ($appointment as $item)
+        @foreach ($rekam as $item)
         <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $item->mahasiswa->user_role->data_mhs->nama }} ({{ $item->mahasiswa->user_role->nik_nim }})</td>
-            <td>{{ $item->mahasiswa->user_role->data_mhs->prodi() }}</td>
-            <td>{{ $item->mahasiswa->user_role->data_mhs->dosen_wali->nama }}</td>
-            <td>{{ Helper::datetime_indo($item->created_at) }}</td>
-            <td>{{ $item->jenis_problem }}</td>
-            <td>{{ $item->description }}</td>
+            <td>{{ Helper::datetime_indo($item->tgl) }}</td>
+            <td>{{ $item->data_appointment->description }}</td>
+            <td>{{ $item->data_appointment->jenis_layanan }}</td>
+            <td>{{ $item->data_appointment->jenis_problem }}</td>
+            <td>{{ $item->penyelesaian }}</td>
+            <td>{{ $item->prospek }}</td>
         </tr>
         @endforeach
           
