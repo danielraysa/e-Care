@@ -299,7 +299,14 @@
                                     <td>
 										@if(isset($notif_appointment))
                                         Pemberitahuan, <br>
-										Mahasiswa bernama <b>{{ $nama }}</b> pada tanggal {{ Helper::datetime_indo($appointment->created_at) }} melakukan permintaan chat untuk konseling online. Silakan buka aplikasi www.e-care.com untuk memberikan approval.<br>
+										Mahasiswa bernama <b>{{ $nama }}</b> pada tanggal {{ Helper::datetime_indo($appointment->created_at) }} melakukan permintaan chat untuk konseling online. Silakan buka aplikasi <a href="{{ url('/') }}">e-Care</a> untuk memberikan approval.<br>
+										
+										Terima kasih <br>
+										@endif
+
+										@if(isset($notif_dosen))
+                                        Pemberitahuan, <br>
+										Mahasiswa/anak wali Anda bernama <b>{{ $nama }}</b> pada tanggal {{ Helper::datetime_indo($appointment->created_at) }} melakukan permintaan chat untuk konseling online.<br>
 										
 										Terima kasih <br>
 										@endif

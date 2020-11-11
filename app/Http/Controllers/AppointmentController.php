@@ -7,6 +7,7 @@ use App\Appointment;
 use App\User;
 use App\Counselor;
 use App\Mahasiswa;
+use App\Karyawan;
 use App\Notification;
 use App\Events\SendNotification;
 use App\Mail\NotifEmail;
@@ -80,15 +81,27 @@ class AppointmentController extends Controller
         ]);
         
         $nama = Auth::user()->name;
+        $mhs = Mahasiswa::with('dosen_wali')->find(Auth::user()->email);
         $event = broadcast(new SendNotification($notif));
         $notif_appointment = true;
-        Mail::send('isi-email', compact('nama', 'appointment', 'notif_appointment'), function ($message)
+        $email_konselor = 'adistriani@gmail.com';
+        Mail::send('isi-email', compact('nama', 'appointment', 'notif_appointment'), function ($message) use($email_konselor)
         {
             $message->subject('Notifikasi E-Care');
-            $message->from('anelzraysa@mail.com', 'E-Care');
-            // $message->to($email_mhs);
-            $message->to('adistriani@gmail.com');
-        }); 
+            $message->from(env('MAIL_USERNAME'), env('MAIL_NAME'));
+            $message->to($email_konselor);
+        });
+        // email ke dosen wali
+        $notif_dosen = true;
+        $dosen = Karyawan::find($mhs->dosen_wali->nik);
+        // $email_dosen = $dosen->email;
+        $email_dosen = 'adistriani@gmail.com';
+        Mail::send('isi-email', compact('nama', 'appointment', 'notif_appointment'), function ($message) use ($email_dosen)
+        {
+            $message->subject('Notifikasi Mahasiswa Konseling');
+            $message->from(env('MAIL_USERNAME'), env('MAIL_NAME'));
+            $message->to($email_dosen);
+        });
         if($request->jenis_layanan == 'chatting')
         return redirect(route('chat'));
         else
@@ -148,15 +161,15 @@ class AppointmentController extends Controller
         ]);
         $event = broadcast(new SendNotification($notif));
         $notif_approve = true;
+        $email_mhs = 'adistriani@gmail.com';
         // if($data_app->jenis_layanan == 'konseling'){
             //$when = now()->addMinutes(2);
             // Mail::to('adistriani@gmail.com')->later($when, new MailableClass);
-            Mail::send('isi-email', compact('isi_notifikasi','notif_approve'), function ($message)
+            Mail::send('isi-email', compact('isi_notifikasi','notif_approve'), function ($message) use ($email_mhs)
             {
                 $message->subject('Notifikasi E-Care');
-                $message->from('anelzraysa@mail.com', 'E-Care');
-                // $message->to($email_mhs);
-                $message->to('adistriani@gmail.com');
+                $message->from(env('MAIL_USERNAME'), env('MAIL_NAME'));
+                $message->to($email_mhs);
             }); 
         // }
         // return redirect()->action('AppointmentController@index')->with('status', 'Data appointment berhasil diupdate');
