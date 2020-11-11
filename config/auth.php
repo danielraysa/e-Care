@@ -41,6 +41,26 @@ return [
             'provider' => 'users',
         ],
 
+        'mhs_guard' => [
+            'driver' => 'session',
+            'provider' => 'mahasiswa_users',
+        ],
+
+        'admin_guard' => [
+            'driver' => 'session',
+            'provider' => 'karyawan_users',
+        ],
+
+        'konselor_guard' => [
+            'driver' => 'session',
+            'provider' => 'karyawan_users',
+        ],
+
+        'warek_guard' => [
+            'driver' => 'session',
+            'provider' => 'karyawan_users',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -66,6 +86,16 @@ return [
 
     'providers' => [
         'users' => [
+            'driver' => 'eloquent',
+            'model' => App\User::class,
+        ],
+
+        'mahasiswa_users' => [
+            'driver' => 'eloquent',
+            'model' => App\User::class,
+        ],
+
+        'karyawan_users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],

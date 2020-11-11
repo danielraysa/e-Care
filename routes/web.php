@@ -39,10 +39,12 @@ Route::get('/kuis', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/get-chart', 'HomeController@chart_data')->name('get-chart');
 // Tampilan Admin / Back end
 
 Route::group(['middleware' => 'auth'], function () {
+    // Route::group(['middleware' => 'auth:konselor_guard','auth:admin_guard','auth:warek_guard'], function () {
+    Route::get('/get-chart', 'HomeController@chart_data')->name('get-chart');
+    
     Route::get('/dbkonselor', function () {
         return view('backend.konselor.dashboard');
     });
@@ -98,13 +100,6 @@ Route::group(['middleware' => 'auth'], function () {
     //laporan rekap perbulan
     Route::post('get-list-waktu', 'RekapBulananController@list_waktu')->name('get-list-waktu');
     Route::resource('rekapbulanan', 'RekapBulananController');
-    // Route::get('/rekap', function () {
-    //     return view('backend.konselor.laprekapbulan');
-    // });
-
-    // Route::get('/laprekapbulan', function () {
-    //     return view('backend.warek.laprekapperbulan');
-    // });
 
     Route::get('/tambahrekapbulan', function () {
         return view('backend.konselor.tambahrekapbulan');
@@ -112,6 +107,9 @@ Route::group(['middleware' => 'auth'], function () {
    
     //end rekap perbulan
 
+    //daftar konseling tatap muka / offline
+    Route::get('/daftarkonseling', 'AppointmentController@daftar_konseling')->name('daftar-konseling');
+    Route::post('/daftarkonseling', 'AppointmentController@simpan_pendaftaran')->name('simpan-daftar');
     //appointment    
     Route::get('/buatappointment', 'AppointmentController@index');
     // Route::resource('/appointment', 'AppointmentController');
@@ -121,7 +119,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/appointment/{id}/update', 'AppointmentController@update')->name('appointment.update');
     Route::post('/appointment/{id}/end-chat', 'AppointmentController@update_chat')->name('appointment.end-chat');
     //end appointment
-    
    
     //test mbti 
     Route::get('/tabelmbti', 'MbtiController@index');
@@ -129,14 +126,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/formmbti', 'MbtiController@create');
     Route::resource('/mbti', 'MbtiController');
     Route::get('/mbti/{id}/destroy', 'MbtiController@destroy')->name('mbti.delete');
-    // Route::get('/mbti/edit/{id}','MbtiController@edit');
-    // Route::patch('/mbti/update/{id}','MbtiController@update');
-
     //end test mbti
 
     //test tingkat kecemasan
-    // Route::get('/testtingkat', 'TestController@index');
-    // Route::post('/testtingkat', 'TestController@store');
     Route::resource('/testtingkat', 'TestController');
 
     Route::get('/pertanyaan/{id}/destroy', 'QuestionController@destroy')->name('pertanyaan.delete');

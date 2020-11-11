@@ -138,6 +138,7 @@
         </div>
         <div class="content-body">
             <!-- Hospital Info cards -->
+            {{-- <h4>{{dd(Auth::guard('konselor_guard'))}}</h4> --}}
             <div class="row">
                 <div class="col-xl-3 col-lg-4 col-md-4 col-12">
                     <div class="card pull-up">

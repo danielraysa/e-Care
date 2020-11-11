@@ -14,7 +14,7 @@
     <div class="content-wrapper">
         <div class="content-header row">
             <div class="content-header-left col-md-6 col-12">
-                <h3 class="content-header-title">Form Pendaftaran Konseling Online</h3><br>
+                <h3 class="content-header-title">Form Pendaftaran Konseling</h3><br>
                 
             </div>
         </div>
@@ -26,71 +26,21 @@
                 {{ session('status') }}
             </div>
             @endif
-            @if(isset($appointment) && $appointment->status == 'M')
-            <div class="alert alert-primary alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                Anda sudah membuat appointment, tunggu hingga diapprove oleh konselor
-            </div>
-            @else
-            <div class="alert alert-primary alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h5><u>Sebelum kamu melakukan chatting, <br>kamu harus mengisi form pendaftaran konseling terlebih dahulu! </u></h5>
-            </div>
-            @endif
+            
             <!-- Book Appointment -->
             <section id="book-appointment">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">@if(isset($appointment) && $appointment->status == 'M') List Antrian Konseling @else Daftar Konseling Online @endif</h2>
+                        <h2 class="card-title">@if(isset($appointment) && $appointment->status == 'M') List Antrian Konseling @else Daftar Konseling Tatap Muka @endif</h2>
                     </div>
                     <div class="card-body">
-                        @if(isset($appointment) && $appointment->status == 'M')
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered patients-list datatable">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>NIM/Nama</th>
-                                        <th>Tanggal Daftar</th>
-                                        <th>Jenis Layanan</th>
-                                        <th>Jenis Problem</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($data_appointment as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->mahasiswa->user_role->data_mhs->nama }}
-                                        ({{ $item->mahasiswa->user_role->nik_nim }})</td>
-                                        {{-- <td>{{ Helper::tanggal_indo($item->tgl_appointment) }}</td> --}}
-                                        <td>{{ Helper::datetime_indo($item->created_at) }}</td>
-                                        <td>{{ $item->jenis_layanan }}</td>
-                                        <td>{{ $item->jenis_problem }}</td>
-                                        <td>
-                                            @if($item->status == 'M')
-                                            Menunggu
-                                            @elseif($item->status == 'Y')
-                                            Diterima
-                                            @elseif($item->status == 'T')
-                                            Ditolak
-                                            @else
-                                            Selesai
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        @else
-                        <form method="post" action="{{ route('appointment.store') }}">
+                        <form method="post" action="{{ route('simpan-daftar') }}">
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">NIM <span class="text-danger">*</span></label>
-                                        <input type="number" class="form-control" placeholder="NIM" id="nim"
+                                        <input type="number" class="form-control" placeholder="NIM" id="nim" name="nim"
                                             value="{{ $mhs->nim }}" required readonly />
                                     </div>
                                 </div>
@@ -150,9 +100,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="phone">No. Handphone</label>
-                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Masukkan No Hp"
-                                            value="{{ $mhs->hp }}" required readonly />
+                                        <label for="dosen">Dosen Wali</label>
+                                        <input type="text" class="form-control" id="dosen" name="dosen" placeholder="Nama Dosen Wali"
+                                            value="{{ $mhs->dosen_wali->nama }}" required readonly />
                                     </div>
                                 </div>
                             </div>
@@ -160,25 +110,25 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-8">
                                     <div class="form-group">
+                                        <label for="phone">No. Handphone</label>
+                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Masukkan No Hp"
+                                            value="{{ $mhs->hp }}" required readonly />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-8">
+                                    <div class="form-group">
                                         <label for="service">Keluhan<span class="text-danger">*</span></label>
                                         <select name="jenis_masalah" class="form-control" id="service" required>
-                                            <option value="Masalah Pribadi">Masalah Pribadi</option>
-                                            <option value="Masalah Sosial">Masalah Sosial</option>
-                                            <option value="Masalah Karir">Masalah Karir</option>
-                                            <option value="Masalah Keluarga">Masalah Keluarga</option>
+                                            <option value="Pribadi">Masalah Pribadi</option>
+                                            <option value="Sosial">Masalah Sosial</option>
+                                            <option value="Karir">Masalah Karir</option>
+                                            <option value="Keluarga">Masalah Keluarga</option>
                                             <option value="Lain-lain">Dan lain-lain</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-8">
-                                    <div class="form-group">
-                                        <label for="service">Jenis Layanan<span class="text-danger">*</span></label>
-                                        <select name="jenis_layanan" class="form-control" id="service" required>
-                                            <option value="chatting" selected>Chatting</option>
-                                            {{-- <option value="konseling">Konseling Langsung</option> --}}
-                                        </select>
-                                    </div>
-                                </div>
+                                
                                 <div class="col-lg-4 col-md-8">
                                     <div class="form-group">
                                         <label for="date">Tanggal Konseling  <span class="text-danger">*</span></label>
@@ -211,7 +161,7 @@
                                 <button type="reset" id="btnReset" class="btn btn-outline-danger">Batal</button>
                             </div>
                         </form>
-                        @endif
+                        
                     </div>
                 </div>
             </section>

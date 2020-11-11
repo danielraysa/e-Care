@@ -83,7 +83,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">No. Hp</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="number" name="umur" class="form-control" id="umur" @if(isset($mhs)) value="{{$mhs->telp}}" @endif>
+                                                        <input type="number" name="umur" class="form-control" id="umur" @if(isset($mhs)) value="{{$mhs->hp}}" @endif>
                                                     </div>
                                                 </div>
 

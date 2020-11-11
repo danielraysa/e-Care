@@ -199,4 +199,69 @@ class AppointmentController extends Controller
         return response()->json(['status' => 'success'], 200);
     }
 
+    public function daftar_konseling(Request $request)
+    {
+        $user = Auth::user();
+        $nim = $user->email;
+        $data['counselor'] = Counselor::with('data_user')->get();
+        $data['data_appointment'] = Appointment::with('mahasiswa.user_role.data_mhs')->where('user_id', $user->id)->get()->last();
+        /* if($data['data_appointment'] && $data['data_appointment']->status != 'Y'){
+            return redirect()->route('chat');
+        } */
+        // $user = User::with('user_role.data_mhs.dosen_wali')->find(Auth::id());
+        $data['mhs'] = Mahasiswa::find($nim);
+        return view('backend.mhs.daftarkonseling', $data);
+    }
+
+    public function simpan_pendaftaran(Request $request)
+    {
+        $mhs = Mahasiswa::find($request->nim);
+        $cek_mhs = DB::table('db_konseling.mahasiswa')->where('nim', $request->nim)->get()->first();
+        $cek_dosen = DB::table('db_konseling.kar_mf')->where('nik', $mhs->dosen_wali->nik)->get()->first();
+        // dd($cek_dosen);
+        if(!$cek_mhs){
+            $var = DB::table('db_konseling.mahasiswa')->insert([
+                'NIM' => $request->nim,
+                'Nama' => $mhs->nama,
+                'Jenis_Kelamin' => '',
+                'Prodi' => '',
+                'Agama' => '',
+            ]);
+            // dd($var);
+        }
+        if(!$cek_dosen){
+            DB::table('db_konseling.kar_mf')->insert([
+                'Nomor_Induk' => $mhs->dosen_wali->nip,
+                'nik' => $mhs->dosen_wali->nik,
+                'nama' => $mhs->dosen_wali->nama,
+                'pin' => '000000',
+                // 'Nama_Dosen' => '',
+                // 'Jenis_Kelamin' => '',
+                // 'Telepon' => '',
+            ]);
+            DB::table('db_konseling.dosen')->insert([
+                'Nomor_Induk' => $mhs->dosen_wali->nip,
+                'nik' => $mhs->dosen_wali->nik,
+                'Nama_Dosen' => $mhs->dosen_wali->nama,
+                'Jenis_Kelamin' => '',
+                'Telepon' => '',
+            ]);
+        }
+        DB::table('db_konseling.konseli')->insert([
+            'NIM' => $mhs->nim,
+            'Nomor_Induk' => $mhs->dosen_wali->nip,
+            'Jurusan' => substr($mhs->prodi(), 3),
+            'Telepon_MHS' => $mhs->hp,
+            'Golongan_Darah' => $mhs->gol_darah,
+            'Alamat' => $mhs->alamat,
+            'Agama' => $mhs->nama_agama(),
+            'JK_Konseli' => $mhs->sex == 1 ? 'Laki-laki' : 'Perempuan',
+            'Telepon_Dosen' => $mhs->dosen_wali->telp,
+            'Keluhan' => $request->jenis_masalah,
+            'progress' => 0,
+            'TGL_Registrasi' => date("Y/m/d"),
+            'Deskripsi'=>$request->description
+        ]);
+    }
+
 }

@@ -42,14 +42,10 @@
                                 </div>
                                 {{-- <div class="card-body collapse show"> --}}
                                     <div class="card-body card-dashboard">  
-                                    
                                     {{-- </div> --}}
-                                    
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered patients-list datatable">
-
                                             <thead>
-                                         
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Jenis Kepribadian/MBTI</th>
@@ -61,8 +57,15 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration}}</td>
                                                     <td>{{ $mbt->mbti_name}}</td>
-                                                    <td><a href="{{url('mbti/'.$mbt->id.'/edit')}}"><i class="ft-edit text-success"></i></a>
-                                                        <a href="{{ url('mbti/'.$mbt->id.'/destroy') }}" onclick="return confirm('Anda yakin ingin menghapus data ini?');" ><i class="ft-trash-2 ml-1 text-warning"></i></a>
+                                                    <td>
+                                                        <form action="{{ route('mbti.destroy', $mbt->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus data ini?');">
+                                                        {{-- <a href="{{url('mbti/'.$mbt->id.'/edit')}}"><i class="ft-edit text-success"></i></a> --}}
+                                                        <a class="btn btn-sm btn-transparent" href="{{url('mbti/'.$mbt->id.'/edit')}}"><i class="ft-edit text-success"></i></a>
+                                                        {{-- <a href="{{ url('mbti/'.$mbt->id.'/destroy') }}" onclick="return confirm('Anda yakin ingin menghapus data ini?');" ><i class="ft-trash-2 ml-1 text-warning"></i></a> --}}
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <button type="submit" class="btn btn-sm btn-transparent"><i class="ft-trash-2 text-warning"></i></button>
+                                                        </form>
                                                        
                                                     </td>
                                                 </tr>

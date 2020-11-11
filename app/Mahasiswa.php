@@ -98,4 +98,35 @@ class Mahasiswa extends Model
         return $nama_prodi;
         
     }
+
+    public function nama_agama()
+    {
+        switch ($this->agama) {
+            case 1:
+                $nama = 'Islam';
+                break;
+            
+            case 2:
+                $nama = 'Kristen Katolik';
+                break;
+            
+            case 1:
+                $nama = 'Kristen';
+                break;
+            
+            case 1:
+                $nama = 'Hindu';
+                break;
+            
+            case 1:
+                $nama = 'Budha';
+                break;
+            
+            default:
+                $nama = '-';
+                # code...
+                break;
+        }
+        return $nama;
+    }
 }

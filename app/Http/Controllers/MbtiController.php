@@ -16,8 +16,6 @@ class MbtiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    
     public function index()
     {
         // $mbti= DB::table('mbti')->get();
@@ -122,9 +120,8 @@ class MbtiController extends Controller
      */
     public function destroy($id)
     {
-
         $mbti = Mbti::find($id);
-        $mbti->delete();
+        // $mbti->delete();
         // $mbti->softDeletes();
         return redirect('/tabelmbti')->with('status', 'Data MBTI Berhasil Dihapus');
     }
