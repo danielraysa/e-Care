@@ -77,7 +77,7 @@ class AppointmentController extends Controller
         $notif = Notification::create([
             // 'user_id' => $request->counselor,
             'user_id' => 14,
-            'message' => 'Ada permintaan/appointment baru',
+            'message' => 'Ada permintaan/appointment baru dari '.$user->name,
         ]);
         
         $nama = Auth::user()->name;
@@ -96,6 +96,7 @@ class AppointmentController extends Controller
         $dosen = Karyawan::find($mhs->dosen_wali->nik);
         // $email_dosen = $dosen->email;
         $email_dosen = 'adistriani@gmail.com';
+        // $email_dosen = 'daniel@dinamika.ac.id';
         Mail::send('isi-email', compact('nama', 'appointment', 'notif_appointment'), function ($message) use ($email_dosen)
         {
             $message->subject('Notifikasi Mahasiswa Konseling');
@@ -162,15 +163,16 @@ class AppointmentController extends Controller
         $event = broadcast(new SendNotification($notif));
         $notif_approve = true;
         $email_mhs = 'adistriani@gmail.com';
+        // $email_mhs = 'daniel@dinamika.ac.id';
         // if($data_app->jenis_layanan == 'konseling'){
-            //$when = now()->addMinutes(2);
-            // Mail::to('adistriani@gmail.com')->later($when, new MailableClass);
+            // $when = Carbon\Carbon::now()->addMinutes(1);
+            // Mail::to($email_mhs)->later($when, new NotifEmail('Notif', compact('isi_notifikasi','notif_approve')));
             Mail::send('isi-email', compact('isi_notifikasi','notif_approve'), function ($message) use ($email_mhs)
             {
                 $message->subject('Notifikasi E-Care');
                 $message->from(env('MAIL_USERNAME'), env('MAIL_NAME'));
                 $message->to($email_mhs);
-            }); 
+            });
         // }
         // return redirect()->action('AppointmentController@index')->with('status', 'Data appointment berhasil diupdate');
         return redirect('jadwalkonselor')->with('status', 'Data appointment berhasil diupdate');
@@ -275,6 +277,6 @@ class AppointmentController extends Controller
             'TGL_Registrasi' => date("Y/m/d"),
             'Deskripsi'=>$request->description
         ]);
+        return redirect()->route('home')->with('status', 'Berhasil mendaftar konseling tatap muka');
     }
-
 }

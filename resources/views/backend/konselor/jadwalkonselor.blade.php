@@ -21,7 +21,6 @@
             $('#id_appointment').val(value);
         });
 
-
     </script>
 @endpush
 @section('content')
@@ -53,6 +52,12 @@
                 <section id="patients-list">
                     <div class="row">
                         <div class="col-12">
+                            @if(session('status'))
+                            <div class="alert alert-success alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                {{ session('status') }}
+                            </div>
+                            @endif
                             <div class="card">
                                 <div class="card-header">
                                     <h2 class="card-title font-weight-bold">Form Pendaftaran</h2>
