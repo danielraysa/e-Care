@@ -16,7 +16,7 @@ class QuestionController extends Controller
     {
         //
         $pertanyaan = Question::all();
-        return view('admin.pertanyaan', compact('pertanyaan'));
+        return view('backend.datamaster.pertanyaan', compact('pertanyaan'));
     }
 
     /**

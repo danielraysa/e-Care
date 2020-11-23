@@ -112,6 +112,13 @@
                                                 <h4 class="form-section"><i class="ft-clipboard"></i> Masalah Klien </h4>
 
                                                 <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput6">Hasil Tes Tingkat</label>
+                                                    <div class="col-md-9 mx-auto">
+                                                        <input type="text" name="hasil_tingkat" class="form-control" @if(isset($appointment)) value="{{$appointment->catatan_medis->hasil_tingkat }}" readonly @endif >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Deskripsi Masalah</label>
                                                     <div class="col-md-9 mx-auto">
                                                         <textarea id="projectinput9" rows="5" class="form-control" name="deskripsi" placeholder="Deskripsikan masalah yang dimiliki mahasiswa" readonly>@if(isset($appointment)) {{$appointment->description }} @endif</textarea>

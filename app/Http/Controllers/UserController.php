@@ -25,7 +25,7 @@ class UserController extends Controller
         $role = Role::all();
         $userrole = UserRole::all();
         // dd($karyawan);
-        return view('admin.user', compact('user', 'mahasiswa', 'karyawan','role','userrole'));
+        return view('backend.datamaster.user', compact('user', 'mahasiswa', 'karyawan','role','userrole'));
     }
 
     /**
