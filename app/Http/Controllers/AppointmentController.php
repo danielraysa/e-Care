@@ -97,7 +97,8 @@ class AppointmentController extends Controller
         // $email_dosen = $dosen->email;
         $email_dosen = 'adistriani@gmail.com';
         // $email_dosen = 'daniel@dinamika.ac.id';
-        Mail::send('isi-email', compact('nama', 'appointment', 'notif_dosen'), function ($message) use ($email_dosen)
+        $jenis_masalah = $request->jenis_masalah;
+        Mail::send('isi-email', compact('nama', 'appointment', 'notif_dosen', 'jenis_masalah'), function ($message) use ($email_dosen)
         {
             $message->subject('Notifikasi Mahasiswa Konseling');
             $message->from(env('MAIL_USERNAME'), env('MAIL_NAME'));
@@ -217,6 +218,9 @@ class AppointmentController extends Controller
     public function daftar_konseling(Request $request)
     {
         $user = Auth::user();
+        if($user->role_id != 2){
+            abort(405, "Anda bukan mahasiswa");
+        }
         $nim = $user->email;
         $data['counselor'] = Counselor::with('data_user')->get();
         $data['data_appointment'] = Appointment::with('mahasiswa.user_role.data_mhs')->where('user_id', $user->id)->get()->last();
@@ -274,7 +278,7 @@ class AppointmentController extends Controller
             'Telepon_Dosen' => $mhs->dosen_wali->telp,
             'Keluhan' => $request->jenis_masalah,
             'progress' => 0,
-            'TGL_Registrasi' => date("Y/m/d"),
+            'TGL_Registrasi' => $request->tgl_appointment,
             'Deskripsi'=>$request->description
         ]);
         return redirect()->route('home')->with('status', 'Berhasil mendaftar konseling tatap muka');

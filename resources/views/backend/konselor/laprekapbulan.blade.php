@@ -105,7 +105,8 @@
                                         </div>
                                         <div class="col-3">
                                             <button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Filter</button>
-                                            <button type="submit" name="export" value="true" class="btn btn-primary"><i class="fas fa-print"></i> Cetak</button>
+                                            <a href="{{ route('rekapbulanan.index') }}" class="btn btn-danger"><i class="fas fa-trash"></i> Reset</a>
+                                            {{-- <button type="submit" name="export" value="true" class="btn btn-primary"><i class="fas fa-print"></i> Cetak</button> --}}
                                         </div>
                                     </div>
                                     </form>

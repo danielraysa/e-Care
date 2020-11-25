@@ -152,7 +152,7 @@
                                     <div class="form-group">
                                         <label for="phone">No. Handphone</label>
                                         <input type="text" class="form-control" id="phone" name="phone" placeholder="Masukkan No Hp"
-                                            value="{{ $mhs->hp }}" required readonly />
+                                            value="{{ $mhs->hp != '' ? $mhs->hp : $mhs->no_telp }}" required readonly />
                                     </div>
                                 </div>
                             </div>

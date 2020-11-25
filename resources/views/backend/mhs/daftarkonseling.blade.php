@@ -112,7 +112,7 @@
                                     <div class="form-group">
                                         <label for="phone">No. Handphone</label>
                                         <input type="text" class="form-control" id="phone" name="phone" placeholder="Masukkan No Hp"
-                                            value="{{ $mhs->hp }}" required readonly />
+                                        value="{{ $mhs->hp != '' ? $mhs->hp : $mhs->no_telp }}" required readonly />
                                     </div>
                                 </div>
 
@@ -132,7 +132,7 @@
                                 <div class="col-lg-4 col-md-8">
                                     <div class="form-group">
                                         <label for="date">Tanggal Konseling  <span class="text-danger">*</span></label>
-                                        <input type="datetime-local" class="form-control" id="date" name="tgl_appointment" value="{{ date('Y-m-d') }}T{{ date('H:i') }}" required readonly>
+                                        <input type="datetime-local" class="form-control" id="date" name="tgl_appointment" value="{{ date('Y-m-d') }}T{{ date('H:i') }}" required />
                                     </div>
                                 </div>
 

@@ -98,7 +98,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput5">No Hp</label>
                                                     <div class="col-md-9 mx-auto">
-                                                        <input type="number" name="nohp" class="form-control" id="nohp" @if(isset($appointment)) value="{{$appointment->mahasiswa->user_role->data_mhs->hp }}" readonly @endif>
+                                                        <input type="number" name="nohp" class="form-control" id="nohp" @if(isset($appointment)) value="{{ $appointment->mahasiswa->user_role->data_mhs->hp != '' ? $appointment->mahasiswa->user_role->data_mhs->hp : $appointment->mahasiswa->user_role->data_mhs->no_telp }}" readonly @endif>
                                                     </div>
                                                 </div>
 
@@ -112,20 +112,13 @@
                                                 <h4 class="form-section"><i class="ft-clipboard"></i> Masalah Klien </h4>
 
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="projectinput6">Hasil Tes Tingkat</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <input type="text" name="hasil_tingkat" class="form-control" @if(isset($appointment)) value="{{$appointment->catatan_medis->hasil_tingkat }}" readonly @endif >
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Deskripsi Masalah</label>
                                                     <div class="col-md-9 mx-auto">
                                                         <textarea id="projectinput9" rows="5" class="form-control" name="deskripsi" placeholder="Deskripsikan masalah yang dimiliki mahasiswa" readonly>@if(isset($appointment)) {{$appointment->description }} @endif</textarea>
                                                     </div>
                                                 </div>
                                             
-                                                <h4 class="form-section"><i class="ft-clipboard"></i> Pneyelsaian & Tindak Lanjut</h4>
+                                                <h4 class="form-section"><i class="ft-clipboard"></i> Penyelesaian & Tindak Lanjut</h4>
                                                 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="projectinput9">Penyelesaian</label>
@@ -137,6 +130,18 @@
                                                     <label class="col-md-3 label-control" for="projectinput9">Prospek/Tindak Lanjut</label>
                                                     <div class="col-md-9 mx-auto">
                                                         <textarea id="projectinput9" rows="5" class="form-control" name="prospek" placeholder="Deskripsikan tindak lanjut apa yang harus dilakukan kepada mahasiswa mahasiswa">@if($appointment->catatan_medis != null){{ $appointment->catatan_medis->prospek }}@endif</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput6">Hasil Tes Tingkat</label>
+                                                    <div class="col-md-9 mx-auto">
+                                                        {{-- <input type="text" name="hasil_tingkat" class="form-control" @if($appointment->catatan_medis != null) value="{{$appointment->catatan_medis->hasil_tingkat }}" readonly @endif > --}}
+                                                        <select name="hasil_tingkat" class="form-control">
+                                                            <option selected disabled>-- pilih --</option>
+                                                            <option value="rendah">Rendah</option>
+                                                            <option value="sedang">Sedang</option>
+                                                            <option value="berat">Berat</option>
+                                                        </select>
                                                     </div>
                                                 </div>
 

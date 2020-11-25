@@ -90,7 +90,7 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-2">
                                                 <select class="form-control" name="jenis" id="filter_tanggal">
                                                     <option value="">Pilih jenis waktu</option>
                                                     <option value="bulan">Bulan</option>
@@ -103,9 +103,10 @@
                                                     <option value="">Pilih opsi</option>
                                                 </select>
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-4">
                                                 <button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Filter</button>
-                                                {{-- <button type="submit" name="export" value="true" class="btn btn-primary"><i class="fas fa-print"></i> Cetak</button> --}}
+                                                <a href="{{ route('rekammedis.index') }}" class="btn btn-danger"><i class="fas fa-trash"></i> Reset</a>
+                                                <button type="submit" name="export" value="true" class="btn btn-primary"><i class="fas fa-print"></i> Cetak</button>
                                             </div>
                                         </div>
                                         </form>

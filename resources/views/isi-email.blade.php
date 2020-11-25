@@ -306,7 +306,7 @@
 
 										@if(isset($notif_dosen))
                                         Pemberitahuan, <br>
-										Mahasiswa/anak wali Anda bernama <b>{{ $nama }}</b> pada tanggal {{ Helper::datetime_indo($appointment->created_at) }} melakukan permintaan chat untuk konseling online.<br>
+										Mahasiswa/anak wali Anda bernama <b>{{ $nama }}</b> pada tanggal {{ Helper::datetime_indo($appointment->created_at) }} melakukan permintaan chat untuk konseling online terkait {{ $jenis_masalah }}.<br>
 										
 										Terima kasih <br>
 										@endif
