@@ -76,7 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
     //end tabel mahasiswa
 
     //tabel konselor
-    Route::get('/jadwalkonselor', 'AppointmentController@index_konselor'); 
+    Route::get('/jadwalkonselor', 'AppointmentController@index_konselor')->name('tabel-konseling'); 
         
     Route::get('/tambahkonselor', function () {
         return view('backend.konselor.tambahkonselor');
@@ -133,7 +133,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/pertanyaan/{id}/destroy', 'QuestionController@destroy')->name('pertanyaan.delete');
     Route::resource('/pertanyaan', 'QuestionController');
-
     //end tingkat kecemasan
     
     //Data Master
@@ -188,14 +187,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/forum-group/{id}/komentar', 'ForumController@post_komentar')->name('forum-group.komentar');
     //endforum
     
-    //chat
     Route::resource('notifikasi', 'NotificationController');
-
     Route::resource('/user', 'UserController');
-    // Route::resource('/chat', 'ChatController');
-
     Route::resource('pertanyaan', 'QuestionController');
     
+    //chat
     Route::get('/chat', 'MessageController@list_chat')->name('chat');
     Route::get('/chat/{id}', 'MessageController@list_message')->name('chat-history');
     Route::post('/chat', 'MessageController@send_chat')->name('send-chat');

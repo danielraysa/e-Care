@@ -97,7 +97,7 @@ class AppointmentController extends Controller
         // $email_dosen = $dosen->email;
         $email_dosen = 'adistriani@gmail.com';
         // $email_dosen = 'daniel@dinamika.ac.id';
-        Mail::send('isi-email', compact('nama', 'appointment', 'notif_appointment'), function ($message) use ($email_dosen)
+        Mail::send('isi-email', compact('nama', 'appointment', 'notif_dosen'), function ($message) use ($email_dosen)
         {
             $message->subject('Notifikasi Mahasiswa Konseling');
             $message->from(env('MAIL_USERNAME'), env('MAIL_NAME'));
