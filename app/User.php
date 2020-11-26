@@ -34,8 +34,15 @@ class User extends Authenticatable
 
     public function user_role()
     {
+        // baca tabel user_roles
         return $this->hasOne(UserRole::class, 'user_id');
         // return $this->belongsTo(UserRole::class, 'id', 'user_id');
+    }
+
+    public function role_user()
+    {
+        // baca tabel roles
+        return $this->belongsTo(Role::class, 'role_id');
     }
 
     public function sensor_nama()
