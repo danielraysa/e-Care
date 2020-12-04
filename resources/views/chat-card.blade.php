@@ -35,33 +35,33 @@
             <div class="chat-content">
                 <!-- chat message -->
             @if(isset($messages))
-            @foreach ($messages as $msg)
-                @if($loop->first)
+            @for($i = 0; $i < $messages->count(); $i++)
+                @if($i == 0)
                 <div class="row">
                     <div class="col-sm-12">
-                    <div class="badge badge-pill badge-primary">{{ date('d/m/Y', strtotime($msg->created_at)) }}</div>
+                    <div class="badge badge-pill badge-primary">{{ date('d/m/Y', strtotime($messages[$i]->created_at)) }}</div>
                     </div>
                 </div>
-                {{-- @elseif(!$loop->first && date('d/m/Y', strtotime($msg->created_at)))
+                @elseif(date('d/m/Y', strtotime($messages[$i]->created_at)) != date('d/m/Y', strtotime($messages[$i-1]->created_at)))
                 <div class="row">
                     <div class="col-sm-12">
-                    <div class="badge badge-pill badge-primary">{{ date('d/m/Y', strtotime($msg->created_at)) }}</div>
+                    <div class="badge badge-pill badge-primary">{{ date('d/m/Y', strtotime($messages[$i]->created_at)) }}</div>
                     </div>
-                </div> --}}
+                </div>
                 @endif
-                @if($msg->user_id == Auth::id())
+                @if($messages[$i]->user_id == Auth::id())
                 <div class="chat">
                 @else
                 <div class="chat chat-left">
                 @endif
                     <div class="chat-body">
                         <div class="chat-message">
-                            <p>{{ $msg->message }}</p>
-                            <span class="chat-time">{{ date('H:i', strtotime($msg->created_at)) }}</span>
+                            <p>{{ $messages[$i]->message }}</p>
+                            <span class="chat-time">{{ date('H:i', strtotime($messages[$i]->created_at)) }}</span>
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @endfor
             @endif
                 </div>
             </div>

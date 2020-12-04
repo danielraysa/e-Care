@@ -140,7 +140,28 @@
                         </ul>
                     </li> --}}
                     <li class="dropdown dropdown-user nav-item">
-                        <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1 user-name text-bold-700">{{ Auth::user()->name }}</span><span class="avatar avatar-online"><img src="{{ asset('user.png') }}" alt="avatar"><i></i></span></a>
+                        <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown" style="line-height: 16px;">
+                            {{-- <div class="row">
+                                <div class="col-6">
+                                    <span class="mr-1 mb-0 pb-0 user-name text-bold-700">{{ Auth::user()->name }}</span>
+                                    <span class="mr-1 mb-0 pb-0 small">{{ Auth::user()->email }}</span>
+                                </div>
+                                <div class="col-6">
+                                    <span class="avatar avatar-online">
+                                        <img src="{{ asset('user.png') }}" alt="avatar"><i></i>
+                                    </span>
+                                </div>
+                            </div> --}}
+                            <div class="d-flex">
+                                <div class="d-block">
+                                    <div class="mr-1 ml-0 user-name text-bold-700">{{ Auth::user()->name }}</div>
+                                    <div class="mr-1 ml-0 small">{{ $nama_role }}</div>
+                                </div>
+                                <span class="avatar avatar-online">
+                                    <img src="{{ asset('user.png') }}" alt="avatar"><i></i>
+                                </span>
+                            </div>
+                        </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             {{-- <a class="dropdown-item" href="#"><i class="ft-user"></i> Edit Profile</a>
                             <a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a>
