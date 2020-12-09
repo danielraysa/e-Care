@@ -7,7 +7,7 @@
                 <li class="navigation-header"><span data-i18n="Professional">Professional</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Professional"></i>
                 </li>
 
-                @if(in_array(Auth::user()->role_id, [1, 2, 4]))
+                @if(in_array(Auth::user()->role_id, [2, 4]))
                 {{-- <li class="nav-item"><a href="{{url('/buatappointment')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Buat Appointment</span></a> 
                 </li>
                 <li class="nav-item"><a href="#"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Appointment</span></a>
@@ -29,13 +29,13 @@
                 </li>
                 @endif
              
-                @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 4)
+                @if( Auth::user()->role_id == 4)
                 <li class="nav-item {{ Request::is('jadwalkonselor') ? 'active' : '' }}"><a href="{{url('jadwalkonselor')}}"><i class="la la-edit"></i><span class="menu-title" data-i18n="Appointment">Tabel Konseling</span></a>
                 </li>
                 @endif
 
 
-                @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2 || Auth::user()->role_id == 4)
+                @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 4)
                 <li class="nav-item {{ Request::is('chat') ? 'active' : '' }}"><a href="{{ route('chat') }}"><i class="la la-comments"></i><span class="menu-title" data-i18n="Chat">Chat</span></a>
                 </li>
                 @if(Auth::user()->role_id == 2)
@@ -92,7 +92,7 @@
                 @endif
                 {{-- @endif --}}
 
-                @if(Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
+                @if(Auth::user()->role_id == 4 )
                 <li class="nav-item {{ Request::is('rekammedis') ? 'active' : '' }}"><a href="{{url('rekammedis')}}"><i class="la la-bar-chart"></i><span class="menu-title" data-i18n="Appointment">Rekam Medis</span></a>
                 </li>
                 @endif
@@ -114,7 +114,7 @@
                 <li class="nav-item"><a href="{{url('email')}}"><i class="la la-envelope"></i><span class="menu-title" data-i18n="Inbox">Inbox</span></a>
                 </li> --}}
 
-                @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 4 || Auth::user()->role_id == 1)
+                @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 4 )
                 <li class="nav-item {{ Request::is('forum-group') ? 'active' : '' }}"><a href="{{ route('forum-group.index')}}"><i class="la la-users"></i><span class="menu-title" data-i18n="Patients">Forum Diskusi</span></a>
                 </li>
                @endif
