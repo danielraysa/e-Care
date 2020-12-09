@@ -43,7 +43,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
     // Route::group(['middleware' => 'auth:konselor_guard','auth:admin_guard','auth:warek_guard'], function () {
-    Route::get('/get-chart', 'HomeController@chart_data')->name('get-chart');
     
     Route::get('/dbkonselor', function () {
         return view('backend.konselor.dashboard');

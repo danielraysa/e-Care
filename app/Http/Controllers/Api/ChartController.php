@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Auth;
 use App\Appointment;
 use App\RekamMedis;
@@ -12,112 +13,14 @@ use App\Major;
 use App\Helper\Helper;
 use DB;
 
-class HomeController extends Controller
+class ChartController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth')->only('index');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        $permintaan = Appointment::where('status', 'M')->get();
-        $konseling = Appointment::where('status', 'S')->get();
-        $tingkat_berat = TestScore::where('skor', '>', 12)->get();
-        $rekam = RekamMedis::all();
-        $user = Auth::user();
-        $tahun = date('Y');
-        if($request->filter_tahun){
-            $tahun = $request->filter_tahun;
-        }
-        $tahun_appointment = Appointment::selectRaw('YEAR(tgl_appointment) AS tahun')->groupBy('tahun')->orderBy('tahun')->get();
-        // chart untuk konselor
-        $data_chart = Appointment::selectRaw('MONTH(tgl_appointment) bulan, COUNT(*) jumlah_data')
-        ->whereRaw('YEAR(tgl_appointment) = ?', [$tahun])
-        ->groupBy('bulan')
-        ->orderBy('bulan')
-        ->get();
-        // dd($data_chart);
-        $test1 = array();
-        $test2 = array();
-        foreach($data_chart as $chart){
-            $chart->bulan = Helper::bulan_indo($chart->bulan);
-            array_push($test1, $chart->bulan);
-            array_push($test2, $chart->jumlah_data);
-        }
-        $kons_chart = array('label' => $test1, 'data' => $test2);
-
-        $dt_chart = DB::select("SELECT p.kode_prodi prodi, p.major_name nama_prodi, COUNT(*) AS jumlah FROM appointments a JOIN users u ON a.user_id = u.id JOIN majors p ON SUBSTR(u.email, 3, 5) = p.kode_prodi WHERE p.deleted_at IS NULL AND YEAR(tgl_appointment) = '$tahun' GROUP BY p.kode_prodi");
-        $new_prodi = array();
-        $data_prodi = array();
-        foreach($dt_chart as $chart){
-            array_push($new_prodi, $chart->nama_prodi);
-            array_push($data_prodi, $chart->jumlah);
-        }
-        // select MONTHNAME(tgl) bln, (SELECT count(*) from rekam_medis rm where hasil_tingkat = 'rendah' and MONTHNAME(tgl) = bln) as rendah, (SELECT count(*) from rekam_medis rm where hasil_tingkat = 'sedang' and MONTHNAME(tgl) = bln) as sedang,(SELECT count(*) from rekam_medis rm where hasil_tingkat = 'berat' and MONTHNAME(tgl) = bln) as berat from rekam_medis rm2 group by MONTHNAME(tgl); 
-        $prodi_chart = array('label' => $new_prodi, 'data' => $data_prodi);
-        
-        if($user->role_id == 2){ // mahasiswa
-            return view('backend.mhs.dashboard');
-        }else if($user->role_id == 3){ // wakil rektor
-            return view('backend.warek.dashboard', compact('permintaan', 'konseling', 'rekam', 'tahun_appointment', 'tingkat_berat'));
-        }else{
-            return view('backend.konselor.dashboard', compact('permintaan', 'konseling', 'rekam', 'tahun_appointment', 'kons_chart','prodi_chart'));
-        }
-    }
-
-    public function chart_data(Request $request)
+    public function chart_problem(Request $request)
     {
         $tahun = date('Y');
         if($request->filter_tahun){
             $tahun = $request->filter_tahun;
         }
-        $chart_bulan = Appointment::selectRaw('MONTH(created_at) bulan, COUNT(*) jumlah_data')
-        ->whereRaw('YEAR(created_at) = ?', [$tahun])
-        ->groupBy('bulan')
-        ->orderBy('bulan')
-        ->get();
-        
-        $chart_prodi = DB::select("SELECT m.major_name prodi, count(a.id) jumlah FROM majors m JOIN users u ON m.kode_prodi = substr(u.email, 3, 5) JOIN appointments a ON u.id = a.user_id GROUP BY m.major_name");
-        
-        for($i = 0; $i < $chart_bulan->count(); $i++){
-            $chart_bulan[$i]->bulan = Helper::bulan_indo($chart_bulan[$i]->bulan);
-        }
-
-        $dt_chart = DB::select("SELECT p.kode_prodi prodi, p.major_name nama_prodi, COUNT(*) AS jumlah FROM appointments a JOIN users u ON a.user_id = u.id JOIN majors p ON SUBSTR(u.email, 3, 5) = p.kode_prodi WHERE p.deleted_at IS NULL AND YEAR(tgl_appointment) = '$tahun' GROUP BY p.kode_prodi");
-        $new_prodi = array();
-        $data_prodi = array();
-        foreach($dt_chart as $chart){
-            array_push($new_prodi, $chart->nama_prodi);
-            array_push($data_prodi, $chart->jumlah);
-        }
-        
-        $prodi_chart = array('label' => $new_prodi, 'data' => $data_prodi);
-        // dd($data_chart);
-        return response()->json(compact('chart_bulan','chart_prodi'), 200);
-    }
-
-    public function chart_warek(Request $request)
-    {
-        $tahun = date('Y');
-        if($request->filter_tahun){
-            $tahun = $request->filter_tahun;
-        }
-        $bulan = array();
-        for($m = 1; $m <= 12; $m++){
-            array_push($bulan, Helper::bulan_indo($m));
-        }
-        // chart untuk konselor
         $data_chart = Appointment::selectRaw("MONTH(tgl_appointment) bulan, 
 		SUM(CASE WHEN jenis_problem = 'Masalah Pribadi' THEN 1 ELSE 0 END) pribadi,
         SUM(CASE WHEN jenis_problem = 'Masalah Sosial' THEN 1 ELSE 0 END) sosial,
@@ -154,7 +57,16 @@ class HomeController extends Controller
             'labels' => $bulan_masalah, 
             'dataset' => $data_masalah
         ];
-        // dd($kons_chart);
+        return response()->json($masalah_chart);
+    }
+
+    public function chart_prodi(Request $request)
+    {
+        $tahun = date('Y');
+        if($request->filter_tahun){
+            $tahun = $request->filter_tahun;
+        }
+        
         $prodi = Major::all();
         $bln_appointment = Appointment::selectRaw('MONTH(tgl_appointment) AS bulan')->whereRaw('YEAR(tgl_appointment) = ?', [$tahun])->groupBy(DB::raw('MONTH(tgl_appointment)'))->get()->pluck('bulan');
         $warna = ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de', '#ec5858', '#34626c', '#5c6e91'];
@@ -178,6 +90,15 @@ class HomeController extends Controller
             'labels' => $label_bulan,
             'dataset' => $prodi_datachart
         ];
+        return response()->json($prodi_chart);
+    }
+
+    public function chart_tingkat(Request $request)
+    {
+        $tahun = date('Y');
+        if($request->filter_tahun){
+            $tahun = $request->filter_tahun;
+        }
 
         $rekam_tingkat = RekamMedis::selectRaw("MONTH(tgl) bln, 
 		SUM(CASE WHEN hasil_tingkat = 'rendah' THEN 1 ELSE 0 END) rendah,
@@ -204,6 +125,56 @@ class HomeController extends Controller
             'labels' => $bulan_tingkat,
             'dataset' => $data_tingkat
         ];
+
+        return response()->json($tingkat_chart);
+    }
+
+    public function chart_online(Request $request)
+    {
+        $tahun = date('Y');
+        if($request->filter_tahun){
+            $tahun = $request->filter_tahun;
+        }
+        $bulan = array();
+        for($m = 1; $m <= 12; $m++){
+            array_push($bulan, Helper::bulan_indo($m));
+        }
+        $jml_online = collect($bulan)->map(function($item, $key) use($tahun) {
+            $get_data = Appointment::selectRaw('COUNT(*) AS jumlah')->whereRaw('YEAR(tgl_appointment) = ?',[$tahun])->whereRaw('MONTH(tgl_appointment) = ?', [$key+1])->get()->first();
+            return $get_data->jumlah;
+        });
+        $jml_offline = collect($bulan)->map(function($item, $key) use($tahun) {
+            $get_data = DB::table('db_konseling.konseli')->selectRaw('COUNT(*) AS jumlah')->whereRaw('YEAR(tgl_registrasi) = ?',[$tahun])->whereRaw('MONTH(tgl_registrasi) = ?', [$key+1])->get()->first();
+            return $get_data->jumlah;
+        });
+        $online_chart = [
+            'labels' => $bulan,
+            'dataset' => [
+                [
+                    'label' => 'Online',
+                    'data' => $jml_online,
+                    'backgroundColor' => '#f56954'
+                ],
+                [
+                    'label' => 'Offline',
+                    'data' => $jml_offline,
+                    'backgroundColor' => '#00a65a'
+                ],
+            ]
+        ];
+        return response()->json($online_chart);
+    }
+
+    public function chart_warek(Request $request)
+    {
+        $tahun = date('Y');
+        if($request->filter_tahun){
+            $tahun = $request->filter_tahun;
+        }
+        $bulan = array();
+        for($m = 1; $m <= 12; $m++){
+            array_push($bulan, Helper::bulan_indo($m));
+        }
 
         $jml_online = collect($bulan)->map(function($item, $key) use($tahun) {
             $get_data = Appointment::selectRaw('COUNT(*) AS jumlah')->whereRaw('YEAR(tgl_appointment) = ?',[$tahun])->whereRaw('MONTH(tgl_appointment) = ?', [$key+1])->get()->first();

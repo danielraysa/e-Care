@@ -1,21 +1,22 @@
 @extends('backend.partialadmin.layout')
 @push('js')
 <script>
-    function getListWaktu(value, value2){
+    function getListWaktu(value){
         $.ajax({
+            async: false,
             url: "{{ route('get-list-waktu') }}",
             type: "POST",
             data: {waktu: value},
             success: function(result){
                 console.log(result);
-                $('#filter_tanggal_isi').empty().append('<option selected="selected" value="">Pilih opsi</option>');
+                $('#filter_tanggal_isi').empty().append('<option selected value="">Pilih opsi</option>');
                 $.each(result, function (i, item) {
                     $('#filter_tanggal_isi').append($('<option>', { 
-                        value: item.year,
+                        value: item.value,
                         text : item.text 
                     }));
                 });
-                $('#filter_tanggal_isi').val(value2);
+                // $('#filter_tanggal_isi').val(value2);
             }
         })
     }
@@ -23,7 +24,8 @@
     $('#filter_tanggal').change(function(){
         var value = $(this).val();
         if(value != ""){
-            $.ajax({
+            getListWaktu(value);
+            /* $.ajax({
                 url: "{{ route('get-list-waktu') }}",
                 type: "POST",
                 data: {waktu: value},
@@ -32,12 +34,12 @@
                     $('#filter_tanggal_isi').empty().append('<option selected="selected" value="">Pilih opsi</option>');
                     $.each(result, function (i, item) {
                         $('#filter_tanggal_isi').append($('<option>', { 
-                            value: item.year,
+                            value: item.value,
                             text : item.text 
                         }));
                     });
                 }
-            })
+            }) */
         }
     });
 </script>
@@ -46,7 +48,8 @@
     var jenis = "{{ $request->jenis }}";
     var waktu = "{{ $request->waktu }}";
     $('#filter_tanggal').val(jenis);
-    getListWaktu(jenis, waktu);
+    getListWaktu(jenis);
+    $('#filter_tanggal_isi').val(waktu);
 </script>
 @endif
 @endpush
@@ -94,7 +97,7 @@
                                                 <select class="form-control" name="jenis" id="filter_tanggal">
                                                     <option value="">Pilih jenis waktu</option>
                                                     <option value="bulan">Bulan</option>
-                                                    {{-- <option value="semester">Semester</option> --}}
+                                                    <option value="semester">Semester</option>
                                                     <option value="tahun">Tahun</option>
                                                 </select>
                                             </div>

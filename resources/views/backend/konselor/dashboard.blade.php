@@ -1,27 +1,24 @@
 @extends('backend.partialadmin.layout')
 @push('js')
 <script>
-    function getRandomColor() {
-        var letters = '0123456789ABCDEF'.split('');
-        var color = '#';
-        for (var i = 0; i < 6; i++ ) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
+    var bgColor = ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de', '#ec5858', '#34626c', '#5c6e91'];
     //Get the context of the Chart canvas element we want to select
     var ctx = $("#chart-bulan");
-    var ctx2 = $("#chart-prodi");
+    var ctx_prodi = $("#chart-prodi");
+    var ctx_tingkat = $("#chart-tingkat");
+    var ctx_mbti = $("#chart-online");
+    var bulanChart,prodiChart,tingkatChart,onlineChart;
     // Chart Options
-    var chartOptions = {
+    var chartLineOptions = {
+        legend: {
+            display: false,
+        },
         responsive: true,
         maintainAspectRatio: false,
         scales: {
             xAxes: [{
-                display: true,
                 gridLines: {
-                    color: "#f3f3f3",
-                    drawTicks: false,
+                    color: "#ffffff",
                 },
                 scaleLabel: {
                     display: true,
@@ -32,93 +29,91 @@
                 ticks: {
                     beginAtZero: true,
                 },
-                display: true,
                 gridLines: {
-                    color: "#f3f3f3",
-                    drawTicks: false,
+                    color: "#ffffff",
                 },
                 scaleLabel: {
                     display: true,
-                    labelString: 'Jumlah'
+                    labelString: 'Jumlah Appointment'
                 }
             }]
         }
     };
 
+    var chart_prodi = {!! json_encode($prodi_chart) !!};
+    var label_prodi = chart_prodi.label;
+    var data_prodi = chart_prodi.data;
+    var chart_bulan = {!! json_encode($kons_chart) !!};
+
+    // var bulanChart = new Chart(ctx, config);
+    bulanChart = new Chart(ctx, {
+        type: 'bar',
+        options: chartLineOptions,
+        data: {
+            labels: chart_bulan.label,
+            datasets: [{
+                label: 'Jumlah',
+                data: chart_bulan.data,
+                backgroundColor: 'rgba(255, 109, 64, 0.2)',
+				borderColor: 'rgba(255, 109, 64, 1)',
+                borderWidth: 1
+            }]
+        }
+    });
+    prodiChart = new Chart(ctx_prodi, {
+        type: 'pie',
+        // options: chartBarOptions,
+        data: {
+            labels: label_prodi,
+            datasets: [{
+                label: 'Jumlah',
+                data: data_prodi,
+                backgroundColor: bgColor,
+                // borderColor: "transparent",
+                // borderWidth: 2
+            }]
+        }
+    });
     $.ajax({
-        url: "{{ route('get-chart') }}",
+        url:"{{ route('chart-konselor') }}",
         type: "GET",
         success: function(result){
-            // alert(result);
-            var data_label = [];
-            var data_jml = [];
-            var data_label_pie = [];
-            var data_jml_pie = [];
-            var warna = [];
-            console.log(result.chart_bulan);
-            for(stats of result.chart_bulan){
-                data_label.push(stats.bulan);
-                data_jml.push(stats.jumlah_data);
-            }
-            console.log(result.chart_prodi);
-            for(stats of result.chart_prodi){
-                data_label_pie.push(stats.prodi);
-                data_jml_pie.push(stats.jumlah);
-                warna.push(getRandomColor());
-            }
-            console.log(data_label_pie);
-            // Chart Data
-            var chartData = {
-                labels: data_label,
-                datasets: [
-                {
-                    type: 'bar',
-                    label: "Appointment",
-                    data: data_jml,
-                    backgroundColor: "#00A5A8",
-                    borderColor: "transparent",
-                    borderWidth: 2
-                }
-                /* , {
-                    type: 'bar',
-                    label: "My Third dataset - No bezier",
-                    data: [45, 25, 16, 36, 67, 18, 76],
-                    backgroundColor: "#F25E75",
-                    borderColor: "transparent",
-                    borderWidth: 2
-                } */
-                ]
-            };
-
-            var chartDataPie = {
-                data: {
-                    labels: data_label_pie,
-                    datasets: [{
-                        label: 'Jumlah Mahasiswa',
-                        data: data_jml_pie,
-                        backgroundColor: warna
-                    }]
-                },
-            };
-
-            var config = {
+            console.log(result);
+            /* bulanChart = new Chart(ctx, {
                 type: 'bar',
-                // Chart Options
-                options : chartOptions,
-                data : chartData
-            };
-            // Create the chart
-            var lineChart = new Chart(ctx, config);
-            // var lineChart2 = new Chart(ctx2, config2);
-            var pieGraph = new Chart(ctx2, {
-                type: 'pie',
+                options: chartLineOptions,
                 data: {
-                    labels: data_label_pie,
-                    datasets: [{
-                        label: 'Jumlah Mahasiswa',
-                        data: data_jml_pie,
-                        backgroundColor: warna
-                    }]
+                    labels: result.data_masalah.labels,
+                    datasets: result.data_masalah.dataset
+                }
+            });
+            prodiChart = new Chart(ctx_prodi, {
+                type: 'bar',
+                data: {
+                    labels: result.data_prodi.labels,
+                    datasets: result.data_prodi.dataset
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
+            }); */
+            tingkatChart = new Chart(ctx_tingkat, {
+                type: 'bar',
+                data: {
+                    labels: result.data_tingkat.labels,
+                    datasets: result.data_tingkat.dataset
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
+            });
+            onlineChart = new Chart(ctx_mbti, {
+                type: 'bar',
+                data: {
+                    labels: result.data_online.labels,
+                    datasets: result.data_online.dataset
                 },
                 options: {
                     responsive: true,
@@ -127,10 +122,65 @@
             });
         }
     });
-
+    $('#pilih_tahun').change(function(){
+        var value = $(this).val();
+        $.ajax({
+            url:"{{ route('chart-konselor') }}",
+            type: "GET",
+            data: {filter_tahun: value},
+            success: function(result){
+                console.log(result);
+                /* bulanChart.destroy();
+                prodiChart.destroy(); */
+                tingkatChart.destroy();
+                onlineChart.destroy();
+                /* bulanChart = new Chart(ctx, {
+                    type: 'bar',
+                    options: chartLineOptions,
+                    data: {
+                        labels: result.data_masalah.labels,
+                        datasets: result.data_masalah.dataset
+                    }
+                });
+                prodiChart = new Chart(ctx_prodi, {
+                    type: 'bar',
+                    data: {
+                        labels: result.data_prodi.labels,
+                        datasets: result.data_prodi.dataset
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                    }
+                }); */
+                tingkatChart = new Chart(ctx_tingkat, {
+                    type: 'bar',
+                    data: {
+                        labels: result.data_tingkat.labels,
+                        datasets: result.data_tingkat.dataset
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                    }
+                });
+                onlineChart = new Chart(ctx_mbti, {
+                    type: 'bar',
+                    data: {
+                        labels: result.data_online.labels,
+                        datasets: result.data_online.dataset
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                    }
+                });
+            }
+        });
+    });
 </script>
 @endpush
-@section('content')    
+@section('content')
 <div class="app-content content">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
@@ -193,32 +243,48 @@
                 </div>
                 
             </div>
-            <!-- Hospital Info cards Ends -->
 
             <!-- Appointment Bar Line Chart -->
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
                             <h4 class="card-title">Grafik</h4>
-                            <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                            <div class="heading-elements">
-                                <ul class="list-inline mb-0">
-                                    <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                    <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                    <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                    {{-- <li><a data-action="close"><i class="ft-x"></i></a></li> --}}
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-content collapse show">
-                            <div class="card-body chartjs">
-                                <canvas id="chart-bulan" height="400"></canvas>
+                            <select name="pilih_tahun" id="pilih_tahun" style="width: 100px" class="form-control input-sm float-right">
+                                @foreach ($tahun_appointment as $item)
+                                    <option value="{{ $item->tahun }}">{{ $item->tahun }}</option>
+                                @endforeach
+                            </select>
                             </div>
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <canvas id="chart-prodi" height="400"></canvas>
+                                <div class="row">
+                                    <div class="col-lg-8 col-sm-12">
+                                        <p class="font-weight-bold">Appointment per Bulan</p>
+                                        <div class="chartjs">
+                                            <canvas id="chart-bulan" height="300"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-12">
+                                        <canvas id="chart-prodi" height="300"></canvas>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-12">
+                                        <p class="font-weight-bold">Tingkat Masalah</p>
+                                        <div class="chartjs">
+                                            <canvas id="chart-tingkat" height="250"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12">
+                                        <p class="font-weight-bold mb-0">Konseling Online & Offline</p>
+                                        <div class="chartjs">
+                                            <canvas id="chart-online" height="250"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

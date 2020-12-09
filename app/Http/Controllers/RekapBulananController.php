@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Appointment;
 use App\RekamMedis;
 use App\Major;
+use App\Semester;
 use PDF;
+use DB;
 
 class RekapBulananController extends Controller
 {
@@ -51,19 +53,24 @@ class RekapBulananController extends Controller
     {
         switch ($request->waktu) {
             case 'bulan':
-                $data = Appointment::selectRaw("CONCAT(year(tgl_appointment), '-', month(tgl_appointment)) year, CONCAT(monthname(tgl_appointment), ' ', year(tgl_appointment)) text")
+                $data = Appointment::selectRaw("YEAR(tgl_appointment) year, MONTH(tgl_appointment) month, CONCAT(YEAR(tgl_appointment), '-', MONTH(tgl_appointment)) value, CONCAT(MONTHNAME(tgl_appointment), ' ', YEAR(tgl_appointment)) text")
                 ->groupBy('year', 'text')
                 ->orderBy('year', 'desc')
+                ->orderBy('month', 'desc')
                 ->get();
                 break;
             case 'semester':
-                $data = Appointment::selectRaw('year(tgl_appointment) year, month(tgl_appointment) month, count(*) data')
-                ->groupBy('year', 'month')
+                $data = Semester::selectRaw("smt as value, smt as text")->get();
+                /* $bulan_gasal = env('BULAN_GASAL');
+                $bulan_genap = env('BULAN_GENAP'); */
+                /* $data = Appointment::selectRaw("YEAR(tgl_appointment) year, IF(MONTH(tgl_appointment) > $bulan_gasal AND MONTH(tgl_appointment) < ".$bulan_genap.", 1, 2) semester, CONCAT(YEAR(tgl_appointment), '-', IF(MONTH(tgl_appointment) > $bulan_gasal AND MONTH(tgl_appointment) < ".$bulan_genap.", 1, 2)) value, CONCAT(YEAR(tgl_appointment), ' ', IF(MONTH(tgl_appointment) > $bulan_gasal AND MONTH(tgl_appointment) < ".$bulan_genap.", 'Gasal', 'Genap')) text, COUNT(*) data")
+                ->groupBy('year', 'semester')
                 ->orderBy('year', 'desc')
-                ->get();
+                ->orderBy('semester', 'desc')
+                ->get(); */
                 break;
             case 'tahun':
-                $data = Appointment::selectRaw('year(tgl_appointment) year, year(tgl_appointment) text')
+                $data = Appointment::selectRaw('YEAR(tgl_appointment) year, YEAR(tgl_appointment) value, YEAR(tgl_appointment) text')
                 ->groupBy('year','text')
                 ->orderBy('year', 'desc')
                 ->get();

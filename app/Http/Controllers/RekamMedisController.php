@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Appointment;
 use App\RekamMedis;
 use App\Major;
+use App\Semester;
 use PDF;
 
 class RekamMedisController extends Controller
@@ -30,11 +31,32 @@ class RekamMedisController extends Controller
                         $query->whereRaw("SUBSTR(email, 3, 5) = '".$request->prodi."'");
                     })->whereRaw("YEAR(created_at) = ? AND MONTH(created_at) = ?", [$waktu[0], $waktu[1]])->orderBy('created_at', 'desc')->get();
                 }
+                if($request->jenis == 'semester'){
+                    $smt = Semester::where('smt', $request->waktu)->get()->first();
+                    $appointment = Appointment::with('mahasiswa')->whereHas('mahasiswa', function ($query) use ($request) {
+                        $query->whereRaw("SUBSTR(email, 3, 5) = '".$request->prodi."'");
+                    })->whereBetween("created_at", [$smt->tgl_awal, $smt->tgl_akhir])->orderBy('created_at', 'desc')->get();
+                }
                 if($request->jenis == 'tahun'){
                     $waktu = $request->waktu;
                     $appointment = Appointment::with('mahasiswa')->whereHas('mahasiswa', function ($query) use ($request) {
                         $query->whereRaw("SUBSTR(email, 3, 5) = '".$request->prodi."'");
                     })->whereRaw("YEAR(created_at) = ?", [$waktu,])->orderBy('created_at', 'desc')->get();
+                }
+            }
+        }else{
+            if($request->jenis != ''){
+                if($request->jenis == 'bulan'){
+                    $waktu = explode('-', $request->waktu);
+                    $appointment = Appointment::with('mahasiswa')->whereRaw("YEAR(created_at) = ? AND MONTH(created_at) = ?", [$waktu[0], $waktu[1]])->orderBy('created_at', 'desc')->get();
+                }
+                if($request->jenis == 'semester'){
+                    $smt = Semester::where('smt', $request->waktu)->get()->first();
+                    $appointment = Appointment::with('mahasiswa')->whereBetween("created_at", [$smt->tgl_awal, $smt->tgl_akhir])->orderBy('created_at', 'desc')->get();
+                }
+                if($request->jenis == 'tahun'){
+                    $waktu = $request->waktu;
+                    $appointment = Appointment::with('mahasiswa')->whereRaw("YEAR(created_at) = ?", [$waktu,])->orderBy('created_at', 'desc')->get();
                 }
             }
         }

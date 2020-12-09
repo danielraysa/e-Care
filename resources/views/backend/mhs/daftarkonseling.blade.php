@@ -120,7 +120,7 @@
                                     <div class="form-group">
                                         <label for="service">Keluhan<span class="text-danger">*</span></label>
                                         <select name="jenis_masalah" class="form-control" id="service" required>
-                                            <option value="Pribadi">Masalah Pribadi</option>
+                                            <option value="Pribadi" selected>Masalah Pribadi</option>
                                             <option value="Sosial">Masalah Sosial</option>
                                             <option value="Karir">Masalah Karir</option>
                                             <option value="Keluarga">Masalah Keluarga</option>

@@ -47,8 +47,8 @@ class MajorsController extends Controller
         // ]);
 
         $major = Major::create([
-            'kode_prodi'=> $request -> kode_prodi,
-            'major_name' => $request -> major_name
+            'kode_prodi'=> $request->kode_prodi,
+            'major_name' => $request->major_name
         ]);
     
         return redirect()->action('MajorsController@index')->with('status', 'Data Program Studi Berhasil Ditambahkan');

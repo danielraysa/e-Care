@@ -1,6 +1,5 @@
 @extends('backend.partialadmin.layout')
 @section('content')
-    
 
 <div class="app-content content">
     <div class="content-overlay"></div>

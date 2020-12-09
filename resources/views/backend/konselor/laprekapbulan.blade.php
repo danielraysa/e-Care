@@ -11,7 +11,7 @@
                 $('#filter_tanggal_isi').empty().append('<option selected="selected" value="">Pilih opsi</option>');
                 $.each(result, function (i, item) {
                     $('#filter_tanggal_isi').append($('<option>', { 
-                        value: item.year,
+                        value: item.value,
                         text : item.text 
                     }));
                 });
@@ -32,7 +32,7 @@
                     $('#filter_tanggal_isi').empty().append('<option selected="selected" value="">Pilih opsi</option>');
                     $.each(result, function (i, item) {
                         $('#filter_tanggal_isi').append($('<option>', { 
-                            value: item.year,
+                            value: item.value,
                             text : item.text 
                         }));
                     });
@@ -94,7 +94,7 @@
                                             <select class="form-control" name="jenis" id="filter_tanggal">
                                                 <option value="">Pilih jenis waktu</option>
                                                 <option value="bulan">Bulan</option>
-                                                {{-- <option value="semester">Semester</option> --}}
+                                                <option value="semester">Semester</option>
                                                 <option value="tahun">Tahun</option>
                                             </select>
                                         </div>

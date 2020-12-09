@@ -102,44 +102,6 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="row">
-                                    <div class="col-lg-3 col-md-6">
-                                    <div class="form-group">
-                                    <label for="gender">Program Studi:</label>
-                                    <select name="gender" id="gender" class="form-control">
-                                    <option value="gender">S1 Sistem Informasi</option>
-                                    <option value="male">S1 Teknik Komputer</option>
-                                    <option value="female">S1 Desain Produk</option>
-                                    <option value="notsay">S1 Desain Komunikasi Visual</option>
-                                    <option value="notsay">S1 Manajemen</option>
-                                    <option value="notsay">S1 Akuntansi</option>
-                                    <option value="notsay">D4 Produksi Film dan Televisi</option>
-                                    <option value="notsay">D3 Sistem Informasi</option>
-                                    <option value="notsay">D3 Administrasi Perkantoran</option>
-                                    </select></div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6">
-                                    <div class="form-group">
-                                    <label for="dob">Tanggal lahir <span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" id="tgl" name="tgl" value="{{ date('Y-m-d', strtotime($user->user_role->data_mhs->tgl_lahir)) }}" required>
-                            </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="form-group">
-                                        <label for="dob">Wali Dosen <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="walidosen" name="walidosen"
-                                            value="{{ $user->user_role->data_mhs->dosen_wali->nama }}" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="form-group">
-                                        <label for="dob">No. Handphone Wali Dosen <span class="text-danger">*</span></label>
-                                        <input type="number" class="form-control" id="walidosen" name="walidosen"
-                                            value="{{ $user->user_role->data_mhs->dosen_wali->telp }}" required>
-                                    </div>
-                                </div>
-                            </div> --}}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -162,7 +124,7 @@
                                     <div class="form-group">
                                         <label for="service">Keluhan<span class="text-danger">*</span></label>
                                         <select name="jenis_masalah" class="form-control" id="service" required>
-                                            <option value="Masalah Pribadi">Masalah Pribadi</option>
+                                            <option value="Masalah Pribadi"selected>Masalah Pribadi</option>
                                             <option value="Masalah Sosial">Masalah Sosial</option>
                                             <option value="Masalah Karir">Masalah Karir</option>
                                             <option value="Masalah Keluarga">Masalah Keluarga</option>
