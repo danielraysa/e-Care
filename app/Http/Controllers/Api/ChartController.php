@@ -15,7 +15,35 @@ use DB;
 
 class ChartController extends Controller
 {
-    public function chart_problem(Request $request)
+    public function chart_kasus(Request $request)
+    {
+        $tahun = date('Y');
+        if($request->filter_tahun){
+            $tahun = $request->filter_tahun;
+        }
+        $data_chart = Appointment::selectRaw("MONTH(tgl_appointment) bulan, COUNT(*) AS jumlah")
+        ->whereRaw('YEAR(tgl_appointment) = ?', [$tahun])
+        ->groupBy('bulan')
+        ->orderBy('bulan')
+        ->get();
+
+        $bulan_kasus = array();
+        $jml_kasus = array();
+        foreach($data_chart as $chart){
+            array_push($bulan_kasus, Helper::bulan_indo($chart->bulan));
+            array_push($jml_kasus, $chart->jumlah);
+        }
+        $data_kasus = collect([
+            ['label' => 'Jumlah', 'data' => $jml_kasus, 'backgroundColor' => '#f56954'],
+        ]);
+        $kasus_chart = [
+            'labels' => $bulan_kasus, 
+            'dataset' => $data_kasus
+        ];
+        return response()->json($kasus_chart);
+    }
+
+    public function chart_jenis_masalah(Request $request)
     {
         $tahun = date('Y');
         if($request->filter_tahun){
@@ -27,7 +55,7 @@ class ChartController extends Controller
         SUM(CASE WHEN jenis_problem = 'Masalah Karir' THEN 1 ELSE 0 END) karir,
         SUM(CASE WHEN jenis_problem = 'Masalah Keluarga' THEN 1 ELSE 0 END) keluarga,
         SUM(CASE WHEN jenis_problem = 'Lain-lain' THEN 1 ELSE 0 END) lain")
-        ->whereRaw('YEAR(created_at) = ?', [$tahun])
+        ->whereRaw('YEAR(tgl_appointment) = ?', [$tahun])
         ->groupBy('bulan')
         ->orderBy('bulan')
         ->get();
@@ -93,7 +121,7 @@ class ChartController extends Controller
         return response()->json($prodi_chart);
     }
 
-    public function chart_tingkat(Request $request)
+    public function chart_jenis_tingkat(Request $request)
     {
         $tahun = date('Y');
         if($request->filter_tahun){
@@ -129,7 +157,7 @@ class ChartController extends Controller
         return response()->json($tingkat_chart);
     }
 
-    public function chart_online(Request $request)
+    public function chart_online_offline(Request $request)
     {
         $tahun = date('Y');
         if($request->filter_tahun){
@@ -199,12 +227,6 @@ class ChartController extends Controller
                 ],
             ]
         ];
-        $data = [
-            'data_masalah' => $masalah_chart,
-            'data_prodi' => $prodi_chart,
-            'data_tingkat' => $tingkat_chart,
-            'data_online' => $online_chart,
-        ];
-        return response()->json($data);
+        return response()->json($online_chart);
     }
 }

@@ -82,8 +82,8 @@ class HomeController extends Controller
         if($request->filter_tahun){
             $tahun = $request->filter_tahun;
         }
-        $chart_bulan = Appointment::selectRaw('MONTH(created_at) bulan, COUNT(*) jumlah_data')
-        ->whereRaw('YEAR(created_at) = ?', [$tahun])
+        $chart_bulan = Appointment::selectRaw('MONTH(tgl_appointment) bulan, COUNT(*) jumlah_data')
+        ->whereRaw('YEAR(tgl_appointment) = ?', [$tahun])
         ->groupBy('bulan')
         ->orderBy('bulan')
         ->get();
@@ -117,14 +117,34 @@ class HomeController extends Controller
         for($m = 1; $m <= 12; $m++){
             array_push($bulan, Helper::bulan_indo($m));
         }
-        // chart untuk konselor
+
+        $data_chart = Appointment::selectRaw("MONTH(tgl_appointment) bulan, COUNT(*) AS jumlah")
+        ->whereRaw('YEAR(tgl_appointment) = ?', [$tahun])
+        ->groupBy('bulan')
+        ->orderBy('bulan')
+        ->get();
+
+        $bulan_kasus = array();
+        $jml_kasus = array();
+        foreach($data_chart as $chart){
+            array_push($bulan_kasus, Helper::bulan_indo($chart->bulan));
+            array_push($jml_kasus, $chart->jumlah);
+        }
+        $data_kasus = collect([
+            ['label' => 'Jumlah', 'fill' => false, 'data' => $jml_kasus, 'backgroundColor' => '#fbc3ba', 'borderColor' => '#f56954', ],
+        ]);
+        $kasus_chart = [
+            'labels' => $bulan_kasus, 
+            'dataset' => $data_kasus
+        ];
+        
         $data_chart = Appointment::selectRaw("MONTH(tgl_appointment) bulan, 
 		SUM(CASE WHEN jenis_problem = 'Masalah Pribadi' THEN 1 ELSE 0 END) pribadi,
         SUM(CASE WHEN jenis_problem = 'Masalah Sosial' THEN 1 ELSE 0 END) sosial,
         SUM(CASE WHEN jenis_problem = 'Masalah Karir' THEN 1 ELSE 0 END) karir,
         SUM(CASE WHEN jenis_problem = 'Masalah Keluarga' THEN 1 ELSE 0 END) keluarga,
         SUM(CASE WHEN jenis_problem = 'Lain-lain' THEN 1 ELSE 0 END) lain")
-        ->whereRaw('YEAR(created_at) = ?', [$tahun])
+        ->whereRaw('YEAR(tgl_appointment) = ?', [$tahun])
         ->groupBy('bulan')
         ->orderBy('bulan')
         ->get();
@@ -154,7 +174,7 @@ class HomeController extends Controller
             'labels' => $bulan_masalah, 
             'dataset' => $data_masalah
         ];
-        // dd($kons_chart);
+        
         $prodi = Major::all();
         $bln_appointment = Appointment::selectRaw('MONTH(tgl_appointment) AS bulan')->whereRaw('YEAR(tgl_appointment) = ?', [$tahun])->groupBy(DB::raw('MONTH(tgl_appointment)'))->get()->pluck('bulan');
         $warna = ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de', '#ec5858', '#34626c', '#5c6e91'];
@@ -229,6 +249,7 @@ class HomeController extends Controller
             ]
         ];
         $data = [
+            'data_kasus' => $kasus_chart,
             'data_masalah' => $masalah_chart,
             'data_prodi' => $prodi_chart,
             'data_tingkat' => $tingkat_chart,

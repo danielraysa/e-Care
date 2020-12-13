@@ -4,11 +4,41 @@
     var bgColor = ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de', '#ec5858', '#34626c', '#5c6e91'];
     //Get the context of the Chart canvas element we want to select
     var ctx = $("#chart-bulan");
+    var ctx_kasus = $("#chart-kasus");
     var ctx_prodi = $("#chart-prodi");
     var ctx_tingkat = $("#chart-tingkat");
     var ctx_mbti = $("#chart-online");
-    var bulanChart, prodiChart, tingkatChart, onlineChart;
+    var bulanChart, kasusChart, prodiChart, tingkatChart, onlineChart;
     // Chart Options
+    var chartLineNoLegend = {
+        legend: {
+            display: false,
+        },
+        layout: {
+            padding: {
+                top: -30
+            }
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    display: false,
+                    // drawBorder: false,
+                },
+            }],
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                },
+                gridLines: {
+                    display: false,
+                    // drawBorder: false,
+                },
+            }]
+        }
+    };
     var chartLineOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -76,6 +106,14 @@
         type: "GET",
         success: function(result){
             console.log(result);
+            kasusChart = new Chart(ctx_kasus, {
+                type: 'line',
+                options: chartLineNoLegend,
+                data: {
+                    labels: result.data_kasus.labels,
+                    datasets: result.data_kasus.dataset
+                }
+            });
             bulanChart = new Chart(ctx, {
                 type: 'bar',
                 options: chartLineOptions,
@@ -269,6 +307,14 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body pt-0">
+                                <div class="row mb-2">
+                                    <div class="col-lg-12 col-sm-12">
+                                        <p class="font-weight-bold mb-0">Jumlah Kasus</p>
+                                        <div class="chartjs">
+                                            <canvas id="chart-kasus" height="300"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row mb-2">
                                     <div class="col-lg-6 col-sm-12">
                                         <p class="font-weight-bold">Jenis Masalah</p>
