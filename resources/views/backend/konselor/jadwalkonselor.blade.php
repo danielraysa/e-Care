@@ -198,9 +198,9 @@
                     Detail
                 </div>
                 <div class="modal-body">
-                    <p><b>Jenis Problem:</b> <span id="jenis_problem"></span></p>
+                    <p style="overflow-wrap: break-word"><b>Jenis Problem:</b> <span id="jenis_problem"></span></p>
                     <p><b>Deskripsi: </b></p>
-                    <p id="deskripsi"></p>
+                    <p id="deskripsi" style="overflow-wrap: break-word"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>

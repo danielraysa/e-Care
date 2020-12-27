@@ -107,7 +107,7 @@
         success: function(result){
             console.log(result);
             kasusChart = new Chart(ctx_kasus, {
-                type: 'line',
+                type: 'bar',
                 options: chartLineNoLegend,
                 data: {
                     labels: result.data_kasus.labels,

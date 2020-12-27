@@ -22,5 +22,5 @@ Route::get('chart-prodi', 'Api\ChartController@chart_prodi')->name('chart-prodi'
 Route::get('chart-tingkat', 'Api\ChartController@chart_jenis_tingkat')->name('chart-tingkat');
 Route::get('chart-online', 'Api\ChartController@chart_online_offline')->name('chart-online');
 
-Route::get('chart-konselor', 'HomeController@chart_warek')->name('chart-konselor');
+Route::get('chart-konselor', 'HomeController@chart_konselor')->name('chart-konselor');
 Route::get('chart-warek', 'HomeController@chart_warek')->name('chart-warek');

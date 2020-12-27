@@ -13,6 +13,11 @@
         legend: {
             display: false,
         },
+        layout: {
+            padding: {
+                top: -30
+            }
+        },
         responsive: true,
         maintainAspectRatio: false,
         scales: {
@@ -40,64 +45,35 @@
         }
     };
 
-    var chart_prodi = {!! json_encode($prodi_chart) !!};
-    var label_prodi = chart_prodi.label;
-    var data_prodi = chart_prodi.data;
-    var chart_bulan = {!! json_encode($kons_chart) !!};
-
-    // var bulanChart = new Chart(ctx, config);
-    bulanChart = new Chart(ctx, {
-        type: 'bar',
-        options: chartLineOptions,
-        data: {
-            labels: chart_bulan.label,
-            datasets: [{
-                label: 'Jumlah',
-                data: chart_bulan.data,
-                backgroundColor: 'rgba(255, 109, 64, 0.2)',
-				borderColor: 'rgba(255, 109, 64, 1)',
-                borderWidth: 1
-            }]
-        }
-    });
-    prodiChart = new Chart(ctx_prodi, {
-        type: 'pie',
-        // options: chartBarOptions,
-        data: {
-            labels: label_prodi,
-            datasets: [{
-                label: 'Jumlah',
-                data: data_prodi,
-                backgroundColor: bgColor,
-                // borderColor: "transparent",
-                // borderWidth: 2
-            }]
-        }
-    });
     $.ajax({
         url:"{{ route('chart-konselor') }}",
         type: "GET",
+        data: {pie: true},
         success: function(result){
             console.log(result);
-            /* bulanChart = new Chart(ctx, {
+            bulanChart = new Chart(ctx, {
                 type: 'bar',
                 options: chartLineOptions,
                 data: {
-                    labels: result.data_masalah.labels,
-                    datasets: result.data_masalah.dataset
+                    labels: result.data_kasus.labels,
+                    datasets: result.data_kasus.dataset
                 }
             });
             prodiChart = new Chart(ctx_prodi, {
-                type: 'bar',
+                type: 'pie',
+                // options: chartBarOptions,
                 data: {
-                    labels: result.data_prodi.labels,
-                    datasets: result.data_prodi.dataset
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
+                    labels: result.data_prodi.label,
+                    datasets: [{
+                        label: 'Jumlah',
+                        data: result.data_prodi.data,
+                        backgroundColor: result.data_prodi.backgroundColor,
+                        // borderColor: "transparent",
+                        // borderWidth: 2
+                    }]
                 }
-            }); */
+            });
+            
             tingkatChart = new Chart(ctx_tingkat, {
                 type: 'bar',
                 data: {
@@ -127,32 +103,36 @@
         $.ajax({
             url:"{{ route('chart-konselor') }}",
             type: "GET",
-            data: {filter_tahun: value},
+            data: {filter_tahun: value, pie: true},
             success: function(result){
                 console.log(result);
-                /* bulanChart.destroy();
-                prodiChart.destroy(); */
+                bulanChart.destroy();
+                prodiChart.destroy();
                 tingkatChart.destroy();
                 onlineChart.destroy();
-                /* bulanChart = new Chart(ctx, {
+                bulanChart = new Chart(ctx, {
                     type: 'bar',
                     options: chartLineOptions,
                     data: {
-                        labels: result.data_masalah.labels,
-                        datasets: result.data_masalah.dataset
+                        labels: result.data_kasus.labels,
+                        datasets: result.data_kasus.dataset
                     }
                 });
                 prodiChart = new Chart(ctx_prodi, {
-                    type: 'bar',
+                    type: 'pie',
+                    // options: chartBarOptions,
                     data: {
-                        labels: result.data_prodi.labels,
-                        datasets: result.data_prodi.dataset
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
+                        labels: result.data_prodi.label,
+                        datasets: [{
+                            label: 'Jumlah',
+                            data: result.data_prodi.data,
+                            backgroundColor: result.data_prodi.backgroundColor,
+                            // borderColor: "transparent",
+                            // borderWidth: 2
+                        }]
                     }
-                }); */
+                });
+                
                 tingkatChart = new Chart(ctx_tingkat, {
                     type: 'bar',
                     data: {

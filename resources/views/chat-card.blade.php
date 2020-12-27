@@ -5,12 +5,15 @@
             <div class="chat-sidebar-toggle d-block d-lg-none mr-1"><i class="ft-align-justify font-large-1 cursor-pointer"></i>
             </div>
             <div class="avatar chat-profile-toggle m-0 mr-1">
-                <img id="chat-user-photo"src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}" class="cursor-pointer" alt="avatar" height="36" width="36" />
+                <img id="chat-user-photo"src="{{ $user_receiver->foto_user() }}" class="cursor-pointer" alt="avatar" height="36" width="36" />
                 <span class="avatar-status-busy"></span>
             </div>
-            <h6 class="mb-0" id="chat-name">
-                {{ $user_receiver->name }}
-            </h6>
+            <div class="d-block">
+                <h6 class="m-0" id="chat-name">
+                    {{ $user_receiver->name }}
+                </h6>
+                <small id="online-status" class="{{ $user_receiver->isOnline() ? 'text-success' : '' }}">{{ $user_receiver->isOnline() ? 'Online' : $user_receiver->lastSeenOnline() }}</small>
+            </div>
         </div>
         @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 4)
         <div class="chat-header-icons">
@@ -79,7 +82,7 @@
         </div>
     </div>
 </div>
-
+<script src="{{asset('assets/backend/app-assets/js/scripts/pages/app-chat.js')}}"></script>
 <script>
     var chat_user_user = new PerfectScrollbar(".chat-container");
     $('#end-chat').click(function(){

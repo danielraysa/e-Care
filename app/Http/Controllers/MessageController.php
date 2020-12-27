@@ -6,6 +6,7 @@ use App\User;
 use App\Message;
 use App\Mahasiswa;
 use App\Appointment;
+use App\Notification;
 use App\Events\MessageSent;
 use Illuminate\Http\Request;
 use App\Events\PrivateMessageSent;
@@ -13,6 +14,8 @@ use Pusher;
 use Auth;
 use App\Events\ChatEvent;
 use App\Events\OnlineUser;
+use App\Events\SendNotification;
+use Cache;
 
 class MessageController extends Controller
 {
@@ -78,10 +81,10 @@ class MessageController extends Controller
 
     public function list_chat()
     {
-        if(Auth::id() == 1 || Auth::user()->role_id == 4){ // admin dan konselor
+        if(Auth::user()->role_id == 1 || Auth::user()->role_id == 4){ // admin dan konselor
             $users = User::with(['last_appointment' => function($query){
                 $query->where('status', 'Y')->orderBy('created_at', 'desc');
-            }])->whereNotBetween('id', [1, 3, 4, 14, 15])->get();
+            }])->where('id', '!=', Auth::user()->id)->whereNotBetween('id', [1, 3, 4, 14, 15])->get();
             // dd($users);
         }else{
             // $users = User::whereIn('role_id',[1])->get();
@@ -141,6 +144,15 @@ class MessageController extends Controller
             ]);
             
             $event = broadcast(new ChatEvent($data));
+            $user_receiver = User::find($request->receiver);
+            if($user_receiver->isOnline() || $user_receiver->lastSeenOnline() != 'Offline'){
+                $notif = new Notification;
+                // $notif->id = 1;
+                $notif->user_id = $request->receiver;
+                $notif->message = $request->message;
+                $notif->created_at = date('Y-m-d H:i:s');
+                $chat_notif = broadcast(new SendNotification($notif, $user->name));
+            }
             if($event){
                 return $data;
             }else{

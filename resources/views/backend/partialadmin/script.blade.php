@@ -23,7 +23,7 @@
 <!-- END: Page JS-->
 
 <!-- END: Page JS-->
-<script src="{{asset('assets/backend/app-assets/js/scripts/pages/app-chat.js')}}"></script> 
+<script src="{{asset('assets/backend/app-assets/js/scripts/pages/app-chat.js')}}"></script>
 <script src="{{asset('js/select2.full.js')}}"></script>
 <script src="{{asset('js/jquery.dataTables.js')}}"></script>
 <script src="{{asset('js/bootstrap.dataTables.js')}}"></script>
@@ -44,30 +44,36 @@
     });
     var channel = pusher.subscribe('chat-channel.'+my_id);
     var notif_channel = pusher.subscribe('notif-channel.'+my_id);
-    var presence_channel = pusher.subscribe('presence.channel');
+    /* var presence_channel = pusher.subscribe('presence.channel');
     presence_channel.bind('presence-user', function(data){
         alert(data);
-    });
+    }); */
     $('.select2').select2();
     $('.datatable').dataTable();
     notif_channel.bind('notif-event', function(data) {
-        $('#notif-list').prepend(
-        '<a href="#">'+
-            '<div class="media">'+
-                '<div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan mr-0"></i></div>'+
-                '<div class="media-body">'+
-                    '<h6 class="media-heading">Notifikasi</h6>'+
-                    '<p class="notification-text font-small-3 text-muted">'+ data.message +'</p><small>'+
-                        '<time class="media-meta text-muted" datetime="'+ data.time.date +'">'+ data.time.date +'</time></small>'+
+        if(data.sender == null){
+            data.sender = "{{ env('APP_NAME') }}";
+            $('#notif-list').prepend(
+            '<a href="#">'+
+                '<div class="media">'+
+                    '<div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan mr-0"></i></div>'+
+                    '<div class="media-body">'+
+                        '<h6 class="media-heading">Notifikasi</h6>'+
+                        '<p class="notification-text font-small-3 text-muted">'+ data.message +'</p><small>'+
+                            '<time class="media-meta text-muted" datetime="'+ data.time.date +'">'+ data.time.date +'</time></small>'+
+                    '</div>'+
                 '</div>'+
-            '</div>'+
-        '</a>');
+            '</a>');
+            notif_count += 1;
+            $('#notification-count').text(notif_count);
+            $('#notification-count').show();
+        }
         $('#toast_notif').append(
         '<div class="toast fade" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">'+
             '<div class="toast-header">'+
-                '<strong class="mr-auto">E-Care</strong>'+
+                '<strong class="mr-auto">'+ data.sender +'</strong>'+
                 '<small class="text-muted">just now</small>'+
-                '<button type="button" class="ml-2 mb-1 close-notif" data-dismiss="toast" aria-label="Close">'+
+                '<button type="button" class="ml-2 mb-1 close-notif close" data-dismiss="toast" aria-label="Close">'+
                 '<span aria-hidden="true">&times;</span>'+
                 '</button>'+
             '</div>'+
@@ -75,17 +81,10 @@
                 data.message +
             '</div>'+
         '</div>');
-        notif_count += 1;
-        $('#notification-count').text(notif_count);
-        $('#notification-count').show();
         $('.toast').toast('show');
         console.log(data);
     });
 
-    $('#notification-dropdown').click(function(){
-        notif_count = 0;
-        $('#notification-count').hide();
-    });
     $('#notification-dropdown').click(function(){
         notif_count = 0;
         $('#notification-count').hide();
