@@ -38,5 +38,8 @@
     #scroll-top {
         bottom: 50px;
     }
+    a.dropdown-item:active {
+        background-color: orange;
+    }
 </style>
 <!-- END: Page CSS-->

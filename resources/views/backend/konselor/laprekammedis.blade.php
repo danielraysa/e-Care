@@ -25,22 +25,14 @@
         var value = $(this).val();
         if(value != ""){
             getListWaktu(value);
-            /* $.ajax({
-                url: "{{ route('get-list-waktu') }}",
-                type: "POST",
-                data: {waktu: value},
-                success: function(result){
-                    console.log(result);
-                    $('#filter_tanggal_isi').empty().append('<option selected="selected" value="">Pilih opsi</option>');
-                    $.each(result, function (i, item) {
-                        $('#filter_tanggal_isi').append($('<option>', { 
-                            value: item.value,
-                            text : item.text 
-                        }));
-                    });
-                }
-            }) */
         }
+    });
+
+    $('.datatable').on('click', '.btnDetail', function(){
+        var jenis = $(this).attr('data-problem');
+        var deskripsi = $(this).attr('data-description');
+        $('#jenis_problem').text(jenis);
+        $('#deskripsi').text(deskripsi);
     });
 </script>
 @if(isset($request))
@@ -93,7 +85,7 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="col-2">
+                                            <div class="col-3">
                                                 <select class="form-control" name="jenis" id="filter_tanggal">
                                                     <option value="">Pilih jenis waktu</option>
                                                     <option value="bulan">Bulan</option>
@@ -101,7 +93,7 @@
                                                     <option value="tahun">Tahun</option>
                                                 </select>
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-2">
                                                 <select class="form-control" name="waktu" id="filter_tanggal_isi">
                                                     <option value="">Pilih opsi</option>
                                                 </select>
@@ -115,20 +107,18 @@
                                         </form>
                                 </div>
                                 <div class="card-body card-dashboard">
-                                
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered patients-list datatable">
-
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Nama/NIM</th>
                                                     <th>Program Studi</th>
-                                                    <th>Dosen Wali</th>
+                                                    {{-- <th>Dosen Wali</th> --}}
                                                     <th>Tanggal Appointment</th>
                                                     <th>Jenis Bimbingan</th>
-                                                    <th>Keluhan</th>
-                                                    <th>Actions</th>
+                                                    {{-- <th>Keluhan</th> --}}
+                                                    <th style="width: 15%">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -137,11 +127,12 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->mahasiswa->user_role->data_mhs->nama }} ({{ $item->mahasiswa->user_role->nik_nim }})</td>
                                                     <td>{{ $item->mahasiswa->user_role->data_mhs->prodi() }}</td>
-                                                    <td>{{ $item->mahasiswa->user_role->data_mhs->dosen_wali->nama }}</td>
+                                                    {{-- <td>{{ $item->mahasiswa->user_role->data_mhs->dosen_wali->nama }}</td> --}}
                                                     <td>{{ Helper::datetime_indo($item->created_at) }}</td>
                                                     <td>{{ $item->jenis_problem }}</td>
-                                                    <td>{{ $item->description }}</td>
+                                                    {{-- <td>{{ $item->description }}</td> --}}
                                                     <td>
+                                                        <button class="btn btn-warning btnDetail" data-toggle="modal" data-target="#modalDetail" data-problem="{{ $item->jenis_problem }}" data-description="{{ $item->description }}"><i class="ft-search"></i></button>
                                                         @if($item->catatan_medis != null)
                                                         <a href="{{ route('rekammedis.show', $item->id) }}" class="btn btn-primary"><i class="ft-eye"></i></a>
                                                         @else
@@ -162,6 +153,22 @@
         </div>
     </div>
     <!-- END: Content-->
-
+    <div class="modal fade" id="modalDetail">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title font-weight-bold">Detail</h4>
+                </div>
+                <div class="modal-body">
+                    <p style="overflow-wrap: break-word"><b>Jenis Problem:</b> <span id="jenis_problem"></span></p>
+                    <p><b>Deskripsi: </b></p>
+                    <p id="deskripsi" style="overflow-wrap: break-word"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection

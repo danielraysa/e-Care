@@ -297,8 +297,8 @@
                                 </ul>
                             </div> --}}
                             <select name="pilih_tahun" id="pilih_tahun" style="width: 100px" class="form-control input-sm float-right">
-                                @foreach ($tahun_appointment as $item)
-                                    <option value="{{ $item->tahun }}">{{ $item->tahun }}</option>
+                                @foreach ($tahun_appointment as $tahun)
+                                    <option value="{{ $tahun }}">{{ $tahun }}</option>
                                 @endforeach
                                 {{-- <option value="2020">2020</option> --}}
                                 {{-- <option value="2019">2019</option> --}}

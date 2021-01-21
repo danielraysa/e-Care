@@ -41,7 +41,14 @@ class HomeController extends Controller
         if($request->filter_tahun){
             $tahun = $request->filter_tahun;
         }
-        $tahun_appointment = Appointment::selectRaw('YEAR(tgl_appointment) AS tahun')->groupBy('tahun')->orderBy('tahun')->get();
+        $thn_app = Appointment::selectRaw('YEAR(tgl_appointment) AS tahun')->groupBy('tahun')->orderBy('tahun')->get()->pluck('tahun');
+        // $tahun_appointment = Appointment::selectRaw('YEAR(tgl_appointment) AS tahun')->groupBy('tahun')->orderBy('tahun')->get()->pluck('tahun');
+        
+        if($thn_app->search($tahun) != 1){
+            $thn_app->push($tahun);
+        }
+        $tahun_appointment = $thn_app->reverse();
+        // dd($tahun_appointment);
         // chart untuk konselor
         $data_chart = Appointment::selectRaw('MONTH(tgl_appointment) bulan, COUNT(*) jumlah_data')
         ->whereRaw('YEAR(tgl_appointment) = ?', [$tahun])

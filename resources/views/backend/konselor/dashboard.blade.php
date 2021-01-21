@@ -232,8 +232,8 @@
                             <div class="d-flex justify-content-between">
                             <h4 class="card-title">Grafik</h4>
                             <select name="pilih_tahun" id="pilih_tahun" style="width: 100px" class="form-control input-sm float-right">
-                                @foreach ($tahun_appointment as $item)
-                                    <option value="{{ $item->tahun }}">{{ $item->tahun }}</option>
+                                @foreach ($tahun_appointment as $tahun)
+                                    <option value="{{ $tahun }}">{{ $tahun }}</option>
                                 @endforeach
                             </select>
                             </div>

@@ -4,7 +4,7 @@
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="nav-item {{ Request::is('home') ? 'active' : '' }}"><a href="{{ url('home') }}"><i class="la la-home"></i><span class="menu-title" data-i18n="Dashboard Hospital">Dashboard</span></a>
                 </li>
-                <li class="navigation-header"><span data-i18n="Professional">Professional</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Professional"></i>
+                <li class="navigation-header"><span data-i18n="Professional">Menu</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Professional"></i>
                 </li>
 
                 @if(in_array(Auth::user()->role_id, [2, 4]))
