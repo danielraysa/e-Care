@@ -149,7 +149,7 @@ class AppointmentController extends Controller
         // waktu approve/tolak permintaan
         if($request->pilihan == 'Y'){
             $pilihan = 'Y';
-            $isi_notifikasi = 'Permintaan appointment kamu diterima. Silahkan buka aplikasi E-Care untuk melakukan konseling online dengan Konselor';
+            $isi_notifikasi = 'Permintaan appointment kamu diterima. Silahkan buka dan lakukan login di aplikasi E-Care dengan klik link ini: http://trialscode.ddns.net/e-care/ untuk melakukan konseling online dengan Konselor';
         }
         else{
             $pilihan = 'T';
