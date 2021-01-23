@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Cache;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -26,6 +27,35 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function isOnline()
+    {
+        return Cache::has('user-online-'.$this->id);
+    }
+
+    public function lastSeenOnline()
+    {
+        if(Cache::has('last-user-online-'.$this->id))
+            return 'Terakhir '.Cache::get('last-user-online-'.$this->id);
+        else
+            return 'Offline';
+    }
+
+    public function foto_user()
+    {
+        $nomor = rand(1,26);
+        return asset('assets/backend/app-assets/images/portrait/small/avatar-s-'.$nomor.'.png');
+        /* switch ($this->role_id) {
+            case 1: 
+                return asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png');
+                break;
+            case 2:
+                return "https://sicyca.dinamika.ac.id/static/foto/".$this->email.".jpg";
+            default:
+                return asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png');
+                break;
+        } */
+    }
 
     public function messages()
     {

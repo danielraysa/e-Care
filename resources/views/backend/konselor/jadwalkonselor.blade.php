@@ -67,7 +67,7 @@
                                             Patient</a> -->
                                     </div>
                                 </div>
-                                <div class="card-body collapse show">
+                                <div class="card-body pt-0 collapse show">
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered patients-list datatable">
                                             <thead>
@@ -86,12 +86,13 @@
                                                 @foreach ($appointment as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
+                                                    {{-- {{ dd($item->mahasiswa->user_role->data_mhs) }} --}}
                                                     <td>{{ $item->mahasiswa->user_role->data_mhs->nama }}
                                                     ({{ $item->mahasiswa->user_role->nik_nim }})</td>
                                                     {{-- <td>{{ Helper::tanggal_indo($item->tgl_appointment) }}</td> --}}
                                                     <td>{{ Helper::datetime_indo($item->created_at) }}</td>
                                                     {{-- <td>{{ $item->jenis_layanan }}</td> --}}
-                                                    <td>{{ $item->mahasiswa->user_role->data_mhs->dosen_wali->nama }}</td>
+                                                    <td>{{ $item->mahasiswa->user_role->data_mhs->dosen_wali != null ? $item->mahasiswa->user_role->data_mhs->dosen_wali->nama : "-" }}</td>
                                                     <td>{{ $item->jenis_problem }}</td>
                                                     <td>
                                                         @if($item->status == 'M')
@@ -150,7 +151,7 @@
                                 <div class="card-header">
                                     <h2 class="card-title font-weight-bold">List Antrian</h2>
                                 </div>
-                                <div class="card-body collapse show">
+                                <div class="card-body pt-0 collapse show">
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered patients-list">
                                             <thead>
@@ -161,7 +162,7 @@
                                                     <th>Program Studi</th>
                                                     <th>Tanggal Daftar</th>
                                                     <th>Jenis Problem</th>
-                                                    <th>Keluhan</th>
+                                                    {{-- <th>Keluhan</th> --}}
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
@@ -174,8 +175,8 @@
                                                     <td>{{ $item->mahasiswa->user_role->data_mhs->prodi() }}</td>
                                                     <td>{{ Helper::datetime_indo($item->created_at) }}</td>
                                                     <td>{{ $item->jenis_problem }}</td>
-                                                    <td>{{ $item->description }}</td>
-                                                    <td>{{ $item->status }}</td>
+                                                    {{-- <td>{{ $item->description }}</td> --}}
+                                                    <td>{{ 'Diterima' }}</td>
                                                 </tr>
                                                 @endforeach
                                               
@@ -195,12 +196,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    Detail
+                    <h4 class="modal-title font-weight-bold">Detail</h4>
                 </div>
                 <div class="modal-body">
-                    <p><b>Jenis Problem:</b> <span id="jenis_problem"></span></p>
+                    <p style="overflow-wrap: break-word"><b>Jenis Problem:</b> <span id="jenis_problem"></span></p>
                     <p><b>Deskripsi: </b></p>
-                    <p id="deskripsi"></p>
+                    <p id="deskripsi" style="overflow-wrap: break-word"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>

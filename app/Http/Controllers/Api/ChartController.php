@@ -34,13 +34,13 @@ class ChartController extends Controller
             array_push($jml_kasus, $chart->jumlah);
         }
         $data_kasus = collect([
-            ['label' => 'Jumlah', 'data' => $jml_kasus, 'backgroundColor' => '#f56954'],
+            ['label' => 'Jumlah', 'data' => $jml_kasus, 'backgroundColor' => '#f9ed69', ],
         ]);
         $kasus_chart = [
             'labels' => $bulan_kasus, 
             'dataset' => $data_kasus
         ];
-        return response()->json($kasus_chart);
+        return $kasus_chart;
     }
 
     public function chart_jenis_masalah(Request $request)
@@ -75,17 +75,17 @@ class ChartController extends Controller
             array_push($masalah_lain, $chart->lain);
         }
         $data_masalah = collect([
-            ['label' => 'Masalah Pribadi', 'data' => $masalah_pribadi, 'backgroundColor' => '#f56954'],
-            ['label' => 'Masalah Sosial', 'data' => $masalah_sosial, 'backgroundColor' => '#00a65a'],
-            ['label' => 'Masalah Karir', 'data' => $masalah_karir, 'backgroundColor' => '#f39c12'],
-            ['label' => 'Masalah Keluarga', 'data' => $masalah_keluarga, 'backgroundColor' => '#00c0ef'],
-            ['label' => 'Lain-lain', 'data' => $masalah_lain, 'backgroundColor' => '#3c8dbc'],
+            ['label' => 'Masalah Pribadi', 'data' => $masalah_pribadi, 'backgroundColor' => '#9ad3bc'],
+            ['label' => 'Masalah Sosial', 'data' => $masalah_sosial, 'backgroundColor' => '#53354a'],
+            ['label' => 'Masalah Karir', 'data' => $masalah_karir, 'backgroundColor' => '#2b2e4a'],
+            ['label' => 'Masalah Keluarga', 'data' => $masalah_keluarga, 'backgroundColor' => '#903749'],
+            ['label' => 'Lain-lain', 'data' => $masalah_lain, 'backgroundColor' => '#f3eac2'],
         ]);
         $masalah_chart = [
             'labels' => $bulan_masalah, 
             'dataset' => $data_masalah
         ];
-        return response()->json($masalah_chart);
+        return $masalah_chart;
     }
 
     public function chart_prodi(Request $request)
@@ -96,8 +96,19 @@ class ChartController extends Controller
         }
         
         $prodi = Major::all();
+        $warna = ['#d72323', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de', '#ec5858', '#34626c', '#5c6e91'];
+        if($request->pie){
+            $dt_chart = DB::select("SELECT p.kode_prodi prodi, p.major_name nama_prodi, COUNT(*) AS jumlah FROM appointments a JOIN users u ON a.user_id = u.id JOIN majors p ON SUBSTR(u.email, 3, 5) = p.kode_prodi WHERE p.deleted_at IS NULL AND YEAR(tgl_appointment) = '$tahun' GROUP BY p.kode_prodi");
+            $new_prodi = array();
+            $data_prodi = array();
+            foreach($dt_chart as $chart){
+                array_push($new_prodi, $chart->nama_prodi);
+                array_push($data_prodi, $chart->jumlah);
+            }
+            $prodi_chart = ['label' => $new_prodi, 'data' => $data_prodi, 'backgroundColor' => $warna,];
+            return $prodi_chart;
+        }
         $bln_appointment = Appointment::selectRaw('MONTH(tgl_appointment) AS bulan')->whereRaw('YEAR(tgl_appointment) = ?', [$tahun])->groupBy(DB::raw('MONTH(tgl_appointment)'))->get()->pluck('bulan');
-        $warna = ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de', '#ec5858', '#34626c', '#5c6e91'];
         $prodi_datachart = $prodi->map(function($item, $key) use ($bln_appointment, $tahun, $warna){
             $temp_arr = array();
             foreach($bln_appointment as $bln){
@@ -118,7 +129,7 @@ class ChartController extends Controller
             'labels' => $label_bulan,
             'dataset' => $prodi_datachart
         ];
-        return response()->json($prodi_chart);
+        return $prodi_chart;
     }
 
     public function chart_jenis_tingkat(Request $request)
@@ -145,16 +156,16 @@ class ChartController extends Controller
             array_push($jml_berat, $rekam->berat);
         }
         $data_tingkat = collect([
-            ['label' => 'Rendah', 'data' => $jml_rendah, 'backgroundColor' => '#f56954'],
-            ['label' => 'Sedang', 'data' => $jml_sedang, 'backgroundColor' => '#00a65a'],
-            ['label' => 'Berat', 'data' => $jml_berat, 'backgroundColor' => '#f39c12'],
+            ['label' => 'Rendah', 'data' => $jml_rendah, 'backgroundColor' => '#ffa62b'],
+            ['label' => 'Sedang', 'data' => $jml_sedang, 'backgroundColor' => '#db6400'],
+            ['label' => 'Berat', 'data' => $jml_berat, 'backgroundColor' => '#bb2205'],
         ]);
         $tingkat_chart = [
             'labels' => $bulan_tingkat,
             'dataset' => $data_tingkat
         ];
 
-        return response()->json($tingkat_chart);
+        return $tingkat_chart;
     }
 
     public function chart_online_offline(Request $request)
@@ -190,43 +201,7 @@ class ChartController extends Controller
                 ],
             ]
         ];
-        return response()->json($online_chart);
+        return $online_chart;
     }
 
-    public function chart_warek(Request $request)
-    {
-        $tahun = date('Y');
-        if($request->filter_tahun){
-            $tahun = $request->filter_tahun;
-        }
-        $bulan = array();
-        for($m = 1; $m <= 12; $m++){
-            array_push($bulan, Helper::bulan_indo($m));
-        }
-
-        $jml_online = collect($bulan)->map(function($item, $key) use($tahun) {
-            $get_data = Appointment::selectRaw('COUNT(*) AS jumlah')->whereRaw('YEAR(tgl_appointment) = ?',[$tahun])->whereRaw('MONTH(tgl_appointment) = ?', [$key+1])->get()->first();
-            return $get_data->jumlah;
-        });
-        $jml_offline = collect($bulan)->map(function($item, $key) use($tahun) {
-            $get_data = DB::table('db_konseling.konseli')->selectRaw('COUNT(*) AS jumlah')->whereRaw('YEAR(tgl_registrasi) = ?',[$tahun])->whereRaw('MONTH(tgl_registrasi) = ?', [$key+1])->get()->first();
-            return $get_data->jumlah;
-        });
-        $online_chart = [
-            'labels' => $bulan,
-            'dataset' => [
-                [
-                    'label' => 'Online',
-                    'data' => $jml_online,
-                    'backgroundColor' => '#f56954'
-                ],
-                [
-                    'label' => 'Offline',
-                    'data' => $jml_offline,
-                    'backgroundColor' => '#00a65a'
-                ],
-            ]
-        ];
-        return response()->json($online_chart);
-    }
 }

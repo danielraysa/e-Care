@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
+use Cache;
 use App\Mahasiswa;
 use App\Karyawan;
 use App\UserRole;
@@ -212,14 +213,17 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    /* public function logout(Request $request)
+    public function logout(Request $request)
     {
+        $user = Auth::user();
+        Cache::forget('user-online-'.$user->id);
+        Cache::forget('last-user-online-'.$user->id);
         $this->guard()->logout();
 
         $request->session()->invalidate();
 
         return redirect('/');
-    } */
+    }
 
     /**
      * Get the guard to be used during authentication.

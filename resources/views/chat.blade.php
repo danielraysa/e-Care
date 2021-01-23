@@ -27,8 +27,8 @@
                             </fieldset>
                         </div>
                     </div>
-                    <div class="chat-sidebar-list-wrapper pt-2">
-                        <h6 class="px-2 pb-25 mb-0">CHATS</h6>
+                    <div class="chat-sidebar-list-wrapper">
+                        <h6 class="px-2 pb-25 mt-50 mb-0">CHATS</h6>
                         {{-- <ul class="chat-sidebar-list">
                             <li>
                                 <div class="d-flex align-items-center">
@@ -57,7 +57,7 @@
                             <li class="user-chat" data-id="{{ $usr->id }}">
                                 <div class="d-flex align-items-center">
                                     {{-- <div class="avatar m-0 mr-50"><img class="w-100 h-100" style="object-fit: cover;" src="{{ $mhs->foto_mhs() }}" height="36" width="36" alt="sidebar user image"> --}}
-                                    <div class="avatar m-0 mr-50"><img class="w-100 h-100" style="object-fit: cover;" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}" height="36" width="36" alt="sidebar user image">
+                                    <div class="avatar m-0 mr-50"><img class="w-100 h-100" style="object-fit: cover;" src="{{ $usr->foto_user() }}" height="36" width="36" alt="sidebar user image">
                                         <span class="avatar-status-away"></span>
                                     </div>
                                     <div class="chat-sidebar-name">

@@ -15,19 +15,20 @@ class SendNotification implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $message, $user_id, $time;
+    public $user_id, $message, $time, $sender;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Notification $notif)
+    public function __construct(Notification $notif, $sender = null)
     {
         //
-        $this->id = $notif->id;
+        // $this->id = $notif->id;
         $this->user_id = $notif->user_id;
         $this->message = $notif->message;
         $this->time = $notif->created_at;
+        $this->sender = $sender;
     }
 
     /**

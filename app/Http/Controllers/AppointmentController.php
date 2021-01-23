@@ -26,6 +26,9 @@ class AppointmentController extends Controller
     {
         //
         $user = Auth::user();
+        if($user->role_id != 2){
+            return redirect()->route('home');
+        }
         $nim = $user->email;
         $data['counselor'] = Counselor::with('data_user')->get();
         $data['data_appointment'] = Appointment::where('status', 'M')->with('mahasiswa.user_role.data_mhs')->orderBy('created_at','desc')->get();
