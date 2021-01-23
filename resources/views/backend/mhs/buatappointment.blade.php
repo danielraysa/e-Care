@@ -49,11 +49,9 @@
                             <table class="table table-striped table-bordered patients-list datatable">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>NIM/Nama</th>
+                                        <th>Jumlah Antrian</th>                        
                                         <th>Tanggal Daftar</th>
                                         <th>Jenis Layanan</th>
-                                        <th>Jenis Problem</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -61,12 +59,9 @@
                                     @foreach ($data_appointment as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->mahasiswa->user_role->data_mhs->nama }}
-                                        ({{ $item->mahasiswa->user_role->nik_nim }})</td>
                                         {{-- <td>{{ Helper::tanggal_indo($item->tgl_appointment) }}</td> --}}
                                         <td>{{ Helper::datetime_indo($item->created_at) }}</td>
                                         <td>{{ $item->jenis_layanan }}</td>
-                                        <td>{{ $item->jenis_problem }}</td>
                                         <td>
                                             @if($item->status == 'M')
                                             Menunggu
