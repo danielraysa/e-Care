@@ -90,9 +90,11 @@ class RekamMedisController extends Controller
     public function store(Request $request, $id)
     {
         // dd($request->all());
+        $tgl = date('Y-m-d H:i:s');
         $rekam = RekamMedis::create([
             'appointment_id' => $id,
-            'tgl' => $request->tanggal,
+            'tgl' => $tgl,
+            // 'tgl' => $request->tanggal,
             // 'pertemuan' => $request->pertemuanke,
             // 'umum' => $request->umum,
             // 'belajar' => $request->belajar,

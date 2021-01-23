@@ -116,7 +116,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $usr->name }}</td>
                                     <td>{{ $usr->email }}</td>
-                                    <td>{{ $usr->role_id }}</td>
+                                    <td>{{ $usr->role_user->role_name }}</td>
                                 </tr>
                                 @endforeach
                                 </tbody>

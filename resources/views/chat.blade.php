@@ -1,6 +1,6 @@
 @extends('backend.partialadmin.layout')
 @push('css')
-{{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/css/emoji.css" /> --}}
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.css" />
 @endpush
 @section('content')
     <!-- BEGIN: Content-->
@@ -125,7 +125,7 @@
     <!-- END: Content-->
 @endsection
 @push('js')
-
+<script src="https://cdn.rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.js"></script>
 <script type="text/javascript">
     // Enter a unique channel you wish your users to be subscribed in.
     // var channel = pusher.subscribe('chat-channel');
@@ -192,7 +192,8 @@
         e.preventDefault();
         var chat_content = $('#chatInput').val();
         var receiver_id = $('#receiver_id').val();
-        if (chat_message !== '') {
+        // alert(chat_content);
+        if (chat_message != '') {
             // Define ajax data
             var chat_message = {
                 receiver: receiver_id,
@@ -201,15 +202,18 @@
             // Send the message to the server
             ajaxCall("{{ route('send-chat') }}", chat_message);
             // Clear the message input field
+            $('#chatInput').setText('');
             $('#chatInput').val('');
         }
     });
     
     // Send the message when enter key is clicked
-    $('#chatInput').enterKey(function(e) {
+    /* $('#chatInput').keypress(function(e) {
         e.preventDefault();
-        $('#sendChat').click();
-    });
+        if(e.ctrlKey && e.enterKey){
+            $('#sendChat').click();
+        }
+    }); */
 
     $('.user-chat').click(function(){
         var id_user = $(this).attr('data-id');

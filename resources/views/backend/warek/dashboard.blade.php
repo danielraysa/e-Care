@@ -25,12 +25,14 @@
             xAxes: [{
                 gridLines: {
                     display: false,
+                    precision: 0
                     // drawBorder: false,
                 },
             }],
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
+                    precision: 0
                 },
                 gridLines: {
                     display: false,
@@ -55,6 +57,7 @@
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
+                    precision: 0
                 },
                 /* gridLines: {
                     color: "#ffffff",
@@ -66,6 +69,16 @@
             }]
         }
     };
+
+    var yScaleOptions = {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    precision: 0
+                }
+            }]
+    };
+
     var chartBarOptions = {
         legend: {
             display: false,
@@ -127,6 +140,7 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    scales: yScaleOptions
                 },  
                 data: {
                     labels: result.data_prodi.labels,
@@ -134,7 +148,7 @@
                 }
             });
             tingkatChart = new Chart(ctx_tingkat, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: result.data_tingkat.labels,
                     datasets: result.data_tingkat.dataset
@@ -142,6 +156,7 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    scales: yScaleOptions
                 }
             });
             onlineChart = new Chart(ctx_mbti, {
@@ -153,6 +168,7 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    scales: yScaleOptions
                 }
             });
         }
@@ -187,10 +203,11 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        scales: yScaleOptions
                     }
                 });
                 tingkatChart = new Chart(ctx_tingkat, {
-                    type: 'bar',
+                    type: 'line',
                     data: {
                         labels: result.data_tingkat.labels,
                         datasets: result.data_tingkat.dataset
@@ -198,6 +215,7 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        scales: yScaleOptions
                     }
                 });
                 onlineChart = new Chart(ctx_mbti, {
@@ -209,6 +227,7 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        scales: yScaleOptions
                     }
                 });
             }

@@ -82,9 +82,12 @@ class MessageController extends Controller
     public function list_chat()
     {
         if(Auth::user()->role_id == 1 || Auth::user()->role_id == 4){ // admin dan konselor
+            /* $users = User::with(['last_appointment' => function($query){
+                $query->where('status', 'Y')->orderBy('created_at', 'desc');
+            }])->where('id', '!=', Auth::user()->id)->whereNotBetween('id', [1, 3, 4, 14, 15])->get(); */
             $users = User::with(['last_appointment' => function($query){
                 $query->where('status', 'Y')->orderBy('created_at', 'desc');
-            }])->where('id', '!=', Auth::user()->id)->whereNotBetween('id', [1, 3, 4, 14, 15])->get();
+            }])->where('id', '!=', Auth::user()->id)->whereNotIn('role_id', [1, 3, 4])->get();
             // dd($users);
         }else{
             // $users = User::whereIn('role_id',[1])->get();

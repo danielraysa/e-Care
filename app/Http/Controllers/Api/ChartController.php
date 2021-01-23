@@ -156,9 +156,9 @@ class ChartController extends Controller
             array_push($jml_berat, $rekam->berat);
         }
         $data_tingkat = collect([
-            ['label' => 'Rendah', 'data' => $jml_rendah, 'backgroundColor' => '#ffa62b'],
-            ['label' => 'Sedang', 'data' => $jml_sedang, 'backgroundColor' => '#db6400'],
-            ['label' => 'Berat', 'data' => $jml_berat, 'backgroundColor' => '#bb2205'],
+            ['label' => 'Rendah', 'data' => $jml_rendah, 'backgroundColor' => 'rgba(0, 0, 0, 0)', 'borderColor' => '#ffa62b'],
+            ['label' => 'Sedang', 'data' => $jml_sedang, 'backgroundColor' => 'rgba(0, 0, 0, 0)', 'borderColor' => '#db6400'],
+            ['label' => 'Berat', 'data' => $jml_berat, 'backgroundColor' => 'rgba(0, 0, 0, 0)', 'borderColor' => '#bb2205'],
         ]);
         $tingkat_chart = [
             'labels' => $bulan_tingkat,

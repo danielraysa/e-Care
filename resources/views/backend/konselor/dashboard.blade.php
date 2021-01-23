@@ -33,6 +33,7 @@
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
+                    precision: 0
                 },
                 gridLines: {
                     color: "#ffffff",
@@ -43,6 +44,15 @@
                 }
             }]
         }
+    };
+
+    var yScaleOptions = {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    precision: 0
+                }
+            }]
     };
 
     $.ajax({
@@ -75,7 +85,7 @@
             });
             
             tingkatChart = new Chart(ctx_tingkat, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: result.data_tingkat.labels,
                     datasets: result.data_tingkat.dataset
@@ -83,6 +93,7 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    scales: yScaleOptions
                 }
             });
             onlineChart = new Chart(ctx_mbti, {
@@ -94,6 +105,7 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    scales: yScaleOptions
                 }
             });
         }
@@ -134,7 +146,7 @@
                 });
                 
                 tingkatChart = new Chart(ctx_tingkat, {
-                    type: 'bar',
+                    type: 'line',
                     data: {
                         labels: result.data_tingkat.labels,
                         datasets: result.data_tingkat.dataset
@@ -142,6 +154,7 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        scales: yScaleOptions
                     }
                 });
                 onlineChart = new Chart(ctx_mbti, {
@@ -153,6 +166,7 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        scales: yScaleOptions
                     }
                 });
             }

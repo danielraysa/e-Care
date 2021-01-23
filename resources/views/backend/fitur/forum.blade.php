@@ -88,6 +88,7 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
+                                            @if($item->user_id == Auth::user()->id || Auth::user()->role_id == 4)
                                             <div class="dropdown">
                                                 <i class="ft-more-vertical pull-right" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -103,6 +104,7 @@
                                                     @endif
                                                 </div>
                                             </div>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="write-post">
@@ -136,7 +138,7 @@
                                             </div>
                                             <div class="col-6">
                                                 <div class="pull-right">
-                                                    <a href="{{ route('forum-group.show', $item) }}"<span class="pr-1"><i class="ft-message-square h4 align-middle"></i> {{ $item->komentar_forum->count() }}</span></a>
+                                                    <a href="{{ route('forum-group.show', $item) }}"><span class="pr-1"><i class="ft-message-square h4 align-middle"></i> {{ $item->komentar_forum->count() }}</span></a>
                                                    
                                                 </div>
                                             </div>
