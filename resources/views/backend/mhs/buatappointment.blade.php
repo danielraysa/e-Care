@@ -169,9 +169,54 @@
                             </div>
                         </form>
                         @endif
+                        
                     </div>
+
+                    
+                    
+            
                 </div>
+
+                
             </section>
+
+            <div class="card-header">
+                <div class="table-responsive">
+                    <p>Daftar Antrian Konseling</p> <br>
+                    <table class="table table-striped table-bordered patients-list datatable">
+                        <thead>
+                            <tr>
+                                <th>Jumlah Antrian</th>                        
+                                <th>Tanggal Daftar</th>
+                                <th>Jenis Layanan</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data_appointment as $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                {{-- <td>{{ Helper::tanggal_indo($item->tgl_appointment) }}</td> --}}
+                                <td>{{ Helper::datetime_indo($item->created_at) }}</td>
+                                <td>{{ $item->jenis_layanan }}</td>
+                                <td>
+                                    @if($item->status == 'M')
+                                    Menunggu
+                                    @elseif($item->status == 'Y')
+                                    Diterima
+                                    @elseif($item->status == 'T')
+                                    Ditolak
+                                    @else
+                                    Selesai
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
         </div>
     </div>
 </div>

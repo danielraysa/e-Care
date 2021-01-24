@@ -16,7 +16,7 @@
 <!-- BEGIN: Theme CSS-->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/bootstrap.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/bootstrap-extended.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/colors.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/colors.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/components.min.css') }}">
 <!-- END: Theme CSS-->
 
