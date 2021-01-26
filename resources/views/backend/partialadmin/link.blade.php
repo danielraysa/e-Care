@@ -14,10 +14,10 @@
 <!-- END: Vendor CSS-->
 
 <!-- BEGIN: Theme CSS-->
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/bootstrap.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/bootstrap.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/bootstrap-extended.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/colors.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/components.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/components.css') }}">
 <!-- END: Theme CSS-->
 
 <!-- BEGIN: Page CSS-->
@@ -25,7 +25,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/app-assets/css/core/colors/palette-gradient.min.css') }}">
 <link rel="stylesheet" type="text/css" href=" {{ asset ('assets/backend/app-assets/css/pages/hospital.min.css') }}">
 <!-- END: Page CSS-->
-<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/app-chat.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/app-chat.css')}}">
  
 <!-- BEGIN: Custom CSS-->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/assets/css/style.css') }}">

@@ -79,10 +79,7 @@
                                                 
                                             </div>
 
-                                            <div class="form-actions center">
-                                                <button type="button" class="btn btn-warning mr-1">
-                                                    <i class="ft-x"></i> Batal
-                                                </button>
+                                          
                                                 <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#iconModal">
                                                     <i class="la la-check-square-o"></i> Lihat Hasil
                                                 </button>

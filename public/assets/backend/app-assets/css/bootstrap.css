@@ -3397,12 +3397,12 @@ input[type="button"].btn-block {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #5059e5;
+  color: #f32f2f;
   background-color: #fff;
   border: 1px solid #626e82; }
   .page-link:hover {
     z-index: 2;
-    color: #1e29ca;
+    color: #f32f2f;
     text-decoration: none;
     background-color: #f4f5fa;
     border-color: #626e82; }
@@ -3423,8 +3423,8 @@ input[type="button"].btn-block {
 .page-item.active .page-link {
   z-index: 1;
   color: #fff;
-  background-color: #1e9ff2;
-  border-color: #1e9ff2; }
+  background-color: #f32f2f;
+  border-color: #f32f2f; }
 
 .page-item.disabled .page-link {
   color: #6b6f82;
@@ -7588,7 +7588,7 @@ a.text-secondary:hover, a.text-secondary:focus {
   color: #484b58 !important; }
 
 .text-success {
-  color: #28d094 !important; }
+  color: #f32f2f !important; }
 
 a.text-success:hover, a.text-success:focus {
   color: #1c9066 !important; }
