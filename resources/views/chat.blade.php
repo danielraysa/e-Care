@@ -29,44 +29,20 @@
                     </div>
                     <div class="chat-sidebar-list-wrapper">
                         <h6 class="px-2 pb-25 mt-50 mb-0">CHATS</h6>
-                        {{-- <ul class="chat-sidebar-list">
-                            <li>
-                                <div class="d-flex align-items-center">
-                                    <div class="avatar m-0 mr-50"><img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}" height="36" width="36" alt="sidebar user image">
-                                        <span class="avatar-status-busy"></span>
-                                    </div>
-                                    <div class="chat-sidebar-name">
-                                        <h6 class="mb-0">Elizabeth Elliott</h6><span class="text-muted">Cake pie</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="d-flex align-items-center">
-                                    <div class="avatar m-0 mr-50"><img src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-7.png') }}" height="36" width="36" alt="sidebar user image">
-                                        <span class="avatar-status-online"></span>
-                                    </div>
-                                    <div class="chat-sidebar-name">
-                                        <h6 class="mb-0">Kristopher Candy</h6><span class="text-muted">jelly jelly</span>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <h6 class="px-2 pt-2 pb-25 mb-0">CONTACTS<i class="ft-plus float-right cursor-pointer"></i></h6> --}}
                         <ul class="chat-sidebar-list">
-                            @foreach ($users as $usr)
+                            @include('chat-list')
+                            {{-- @foreach ($users as $usr)
                             <li class="user-chat" data-id="{{ $usr->id }}">
                                 <div class="d-flex align-items-center">
-                                    {{-- <div class="avatar m-0 mr-50"><img class="w-100 h-100" style="object-fit: cover;" src="{{ $mhs->foto_mhs() }}" height="36" width="36" alt="sidebar user image"> --}}
                                     <div class="avatar m-0 mr-50"><img class="w-100 h-100" style="object-fit: cover;" src="{{ $usr->foto_user() }}" height="36" width="36" alt="sidebar user image">
                                         <span class="avatar-status-away"></span>
                                     </div>
                                     <div class="chat-sidebar-name">
-                                        {{-- <h6 class="mb-0">{{ $mhs->nama }}</h6><span class="text-muted">{{ $mhs->nim }}</span> --}}
                                         <h6 class="mb-0">{{ $usr->name }}</h6><span class="text-muted">{{ $usr->email }}</span>
                                     </div>
                                 </div>
                             </li>
-                            @endforeach
+                            @endforeach --}}
                         </ul>
                     </div>
                 </div>
@@ -129,13 +105,33 @@
 <script type="text/javascript">
     // Enter a unique channel you wish your users to be subscribed in.
     // var channel = pusher.subscribe('chat-channel');
-
+    var user_selected = null;
     channel.bind('chat-event', function(response) {
         // Add the new message to the container
         // var url_image = "{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}";
-        chatPushContainer(response);
+        // console.log(response);
+        getChatList(user_selected);
+        if(respose.receiver_id == user_selected){
+            chatPushContainer(response);
+        }
     });
     
+    function getChatList(selectedUser = null){
+        $.ajax({
+            url: "{{ route('chat') }}",
+            type: "get",
+            datatype: "html",
+            data: {id_selected: selectedUser}
+        }).done(function(data){
+            $(".chat-sidebar-list").empty().html(data);
+        }).fail(function(jqXHR, ajaxOptions, thrownError){
+            alert('No response from server');
+            console.log(jqXHR);
+            console.log(ajaxOptions);
+            console.log(thrownError);
+        });
+    }
+
     function chatPushContainer(data){
         // Add the new message to the container
         // var url_image = "{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}";
@@ -176,7 +172,7 @@
     }
     
     // Trigger for the Enter key when clicked.
-    $.fn.enterKey = function(fnc) {
+    /* $.fn.enterKey = function(fnc) {
         return this.each(function() {
             $(this).keypress(function(ev) {
                 var keycode = (ev.keyCode ? ev.keyCode : ev.which);
@@ -185,7 +181,7 @@
                 }
             });
         });
-    }
+    } */
     
     // Send the Message
     $('body').on('click', '#sendChat', function(e) {
@@ -202,7 +198,6 @@
             // Send the message to the server
             ajaxCall("{{ route('send-chat') }}", chat_message);
             // Clear the message input field
-            $('#chatInput').setText('');
             $('#chatInput').val('');
         }
     });
@@ -215,9 +210,10 @@
         }
     }); */
 
-    $('.user-chat').click(function(){
+    $('body').on('click','.user-chat', function(){
         var id_user = $(this).attr('data-id');
         // alert('user id : '+id_user);
+        user_selected = id_user;
         $.ajax({
             url: "{{ route('chat') }}/"+id_user,
             type: 'GET',
