@@ -3,8 +3,8 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Cache;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cache;
 
 class User extends Authenticatable
 {
@@ -82,7 +82,12 @@ class User extends Authenticatable
 
     public function last_appointment()
     {
-        return $this->hasOne(Appointment::class, 'user_id');
+        return $this->hasOne(Appointment::class, 'user_id')->latest();
+    }
+
+    public function last_message()
+    {
+        return $this->hasOne(Message::class, 'user_id')->latest();
     }
     
 }

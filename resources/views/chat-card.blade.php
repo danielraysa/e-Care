@@ -1,6 +1,7 @@
 <style>
     .emojionearea .emojionearea-editor {
         min-height: 3rem;
+        max-height: 3rem;
     }
 </style>
 @if(isset($user_receiver))
@@ -76,10 +77,6 @@
         </div>
         <div id="footer-chat" class="card-footer chat-footer px-2 py-1 pb-0">
             <form class="d-flex align-items-center" action="javascript:void(0);">
-                {{-- <i class="ft-user cursor-pointer"></i> --}}
-                {{-- <i class="ft-paperclip ml-1 cursor-pointer"></i> --}}
-                {{-- <i class="far fa-laugh cursor-pointer emoji"></i> --}}
-                {{-- <input type="text" id="chatInput" data-emojiable="true" class="form-control chat-message-send mx-1" placeholder="Type your message here..."> --}}
                 <textarea type="text" id="chatInput" data-emojiable="true" class="form-control chat-message-send mx-1" placeholder="Type your message here..."></textarea>
                 <input type="hidden" id="receiver_id" value="{{ $user_receiver->id }}"/>
                 <button type="submit" id="sendChat" class="btn btn-primary glow send d-lg-flex"><i class="ft-play"></i>
@@ -93,6 +90,7 @@
     $("#chatInput").emojioneArea({
         pickerPosition: "top",
         tonesStyle: "bullet",
+        autocomplete: false
     });
     var chat_user_user = new PerfectScrollbar(".chat-container");
     $('#end-chat').click(function(){

@@ -79,7 +79,7 @@ class MessageController extends Controller
 
     }
 
-    public function list_chat()
+    public function list_chat(Request $request)
     {
         if(Auth::user()->role_id == 1 || Auth::user()->role_id == 4){ // admin dan konselor
             /* $users = User::with(['last_appointment' => function($query){
@@ -87,16 +87,21 @@ class MessageController extends Controller
             }])->where('id', '!=', Auth::user()->id)->whereNotBetween('id', [1, 3, 4, 14, 15])->get(); */
             $users = User::with(['last_appointment' => function($query){
                 $query->where('status', 'Y')->orderBy('created_at', 'desc');
-            }])->where('id', '!=', Auth::user()->id)->whereNotIn('role_id', [1, 3, 4])->get();
+            }])->where('id', '!=', Auth::user()->id)->whereNotIn('role_id', [1, 3, 4])->get()->sortByDesc('last_appointment.tgl_appointment');
             // dd($users);
         }else{
-            // $users = User::whereIn('role_id',[1])->get();
-            $users = User::where('id', 14)->get();
+            $users = User::where('role_id', 4)->get();
+            // $users = User::where('id', 14)->get();
             // $appointment = Appointment::where('user_id',Auth::id())->orderBy('created_at')->get()->last();
             $appointment = Appointment::where('user_id', Auth::id())->get()->last();
             if(!$appointment || $appointment->jenis_layanan != 'chatting' || $appointment->status != 'Y'){
                 return redirect(url('buatappointment'));
             }
+        }
+        if($request->ajax()){
+            // $users = User::with('last_message')->where('id', '!=', Auth::user()->id)->whereNotIn('role_id', [1, 3, 4])->get()->sortByDesc('last_message.created_at');
+            $selected_user = $request->id_selected;
+            return view('chat-list', compact('users','selected_user'));
         }
         // $event = broadcast(new OnlineUser(Auth::user()));
         return view('chat', compact('users'));
