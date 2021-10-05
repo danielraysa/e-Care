@@ -94,6 +94,7 @@ class RekamMedisController extends Controller
         $rekam = RekamMedis::create([
             'appointment_id' => $id,
             'tgl' => $tgl,
+            'hasil_tingkat' => $request->hasil_tingkat,
             // 'tgl' => $request->tanggal,
             // 'pertemuan' => $request->pertemuanke,
             // 'umum' => $request->umum,

@@ -10,6 +10,7 @@ use App\RekamMedis;
 use App\TestMbti;
 use App\TestScore;
 use App\Major;
+use App\Konseli;
 use App\Helper\Helper;
 use DB;
 
@@ -183,7 +184,8 @@ class ChartController extends Controller
             return $get_data->jumlah;
         });
         $jml_offline = collect($bulan)->map(function($item, $key) use($tahun) {
-            $get_data = DB::table('db_konseling.konseli')->selectRaw('COUNT(*) AS jumlah')->whereRaw('YEAR(tgl_registrasi) = ?',[$tahun])->whereRaw('MONTH(tgl_registrasi) = ?', [$key+1])->get()->first();
+            // $get_data = DB::table('db_konseling.konseli')->selectRaw('COUNT(*) AS jumlah')->whereRaw('YEAR(tgl_registrasi) = ?',[$tahun])->whereRaw('MONTH(tgl_registrasi) = ?', [$key+1])->get()->first();
+            $get_data = Konseli::selectRaw('COUNT(*) AS jumlah')->whereRaw("TO_CHAR(tgl_registrasi, 'YYYY') = ?",[$tahun])->whereRaw("EXTRACT(MONTH FROM tgl_registrasi) = ?", [$key+1])->get()->first();
             return $get_data->jumlah;
         });
         $online_chart = [

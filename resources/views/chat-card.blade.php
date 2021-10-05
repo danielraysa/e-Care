@@ -3,6 +3,13 @@
         min-height: 3rem;
         max-height: 3rem;
     }
+    .avatar img {
+        height: 100%;
+        object-fit: cover;
+    }
+    .chat-message p {
+        white-space: pre-line;
+    }
 </style>
 @if(isset($user_receiver))
 <div class="chat-header">
@@ -87,11 +94,11 @@
 </div>
 <script src="{{asset('assets/backend/app-assets/js/scripts/pages/app-chat.js')}}"></script>
 <script>
-    $("#chatInput").emojioneArea({
+    /* $("#chatInput").emojioneArea({
         pickerPosition: "top",
         tonesStyle: "bullet",
         autocomplete: false
-    });
+    }); */
     var chat_user_user = new PerfectScrollbar(".chat-container");
     $('#end-chat').click(function(){
         var link = $(this).attr('data-url');

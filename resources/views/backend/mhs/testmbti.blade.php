@@ -57,7 +57,7 @@
                                 <div class="card-body">
                                     <div class="card-text">
                                         <p> Setiap orang memiliki kepribadian yang berbeda-beda. Kepribadian ini dapat membantu mengetahui dan mengenal diri sendiri secara lebih dalam, termasuk kelebihan dan kelemahan diri sendiri. Untuk mengetahui hal tersebut, terdapat test MBTI yang dapat menjawab apa kepribadian yang kamu miliki, test ini memiliki 16 tipe kepribadian seseorang. Jika kamu ingin mengetahui bagamana kepribadianmu, silakan lakukan test MBTI di link yang telah disediakan: 
-                                        <a href="https://www.16personalities.com/id/tes-kepribadian" target="_blank"> Klik disini</a>
+                                        <a href="https://www.16personalities.com/id/tes-kepribadian" target="_blank" style="color: red"> Klik disini</a>
                                         </p>
                                     </div>
 

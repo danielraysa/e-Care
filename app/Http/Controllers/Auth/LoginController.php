@@ -70,10 +70,60 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    /* public function login(Request $request)
+    public function login(Request $request)
     {
         $this->validateLogin($request);
-
+        // $request->email as nim/nik
+        $cari = User::where('email', $request->email)->get()->first();
+        if(!$cari){
+            if(strlen($request->email) == 11){
+                $rpass = Mahasiswa::selectRaw('rpass_mhs(nim) as password')->where('nim', $request->email)->first();
+                $user_mhs = Mahasiswa::find($request->email);
+                $new_user = User::create([
+                    'name' => $user_mhs->nama,
+                    'email' => $user_mhs->nim,
+                    // 'password' => bcrypt($request->password),
+                    'password' => bcrypt($rpass->password),
+                    'role_id' => 2,
+                ]);
+                $mhs_role = UserRole::create([
+                    'user_id' => $new_user->id,
+                    'nik_nim' => $user_mhs->nim,
+                    'role_id' => 2,
+                ]);
+            }
+            else if(strlen($request->email) == 6){
+                $user_kar = Karyawan::find($request->email);
+                $rpass = Karyawan::selectRaw('rpass_kar(nik) as rpass')->where('nik', $request->email)->first();
+                /* if($request->email == '199107'){ // Konselor
+                    $new_user = User::create([
+                        'name' => $user_kar->nama,
+                        'email' => $user_kar->nik,
+                        // 'password' => bcrypt($request->password),
+                        'password' => bcrypt($rpass->password),
+                        'role_id' => 4,
+                    ]);
+                    $konselor_role = UserRole::create([
+                        'user_id' => $new_user->id,
+                        'nik_nim' => $user_kar->nik,
+                        'role_id' => 4
+                    ]);
+                }else */
+                if($user_kar->bagian == 15){ // PPTI
+                    $new_user = User::create([
+                        'name' => $user_kar->nama,
+                        'email' => $user_kar->nik,
+                        'password' => bcrypt($request->password),
+                        'role_id' => 1,
+                    ]);
+                    $admin_role = UserRole::create([
+                        'user_id' => $new_user->id,
+                        'nik_nim' => $user_kar->nik,
+                        'role_id' => 1
+                    ]);
+                }
+            }
+        }
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
@@ -93,7 +143,7 @@ class LoginController extends Controller
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
-    } */
+    }
 
     /**
      * Validate the user login request.
@@ -215,13 +265,14 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        $user = Auth::user();
-        Cache::forget('user-online-'.$user->id);
-        Cache::forget('last-user-online-'.$user->id);
-        $this->guard()->logout();
+        if(Auth::check()){
+            $user = Auth::user();
+            Cache::forget('user-online-'.$user->id);
+            Cache::forget('last-user-online-'.$user->id);
+            $this->guard()->logout();
 
-        $request->session()->invalidate();
-
+            $request->session()->invalidate();
+        }
         return redirect('/');
     }
 

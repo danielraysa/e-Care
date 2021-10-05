@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mahasiswa extends Model
 {
     //
-    // protected $connection = 'oracle_temp';
+    protected $connection = 'oracle';
     protected $table      = 'v_mhs';
     protected $primaryKey = 'nim';
     public $timestamps = false;
@@ -16,14 +16,14 @@ class Mahasiswa extends Model
         'dosen_wl' => 'string',
     ];
     // lower case
-    public function __get($key)
+    /* public function __get($key)
     {
         if (is_null($this->getAttribute($key))) {
             return $this->getAttribute(strtoupper($key));
         } else {
             return $this->getAttribute($key);
         }
-    }
+    } */
 
     public function role_mhs()
     {
@@ -37,7 +37,12 @@ class Mahasiswa extends Model
     
     public function dosen_wali()
     {
-        return $this->hasOne(Karyawan::class, 'NIK', 'DOSEN_WL');
+        return $this->hasOne(Karyawan::class, 'nik', 'dosen_wl');
+    }
+
+    public function his_status()
+    {
+        return $this->hasOne(HistoriMhs::class, 'mhs_nim', 'nim');
     }
 
     public function jenis_kel()
@@ -110,15 +115,15 @@ class Mahasiswa extends Model
                 $nama = 'Kristen Katolik';
                 break;
             
-            case 1:
+            case 3:
                 $nama = 'Kristen';
                 break;
             
-            case 1:
+            case 4:
                 $nama = 'Hindu';
                 break;
             
-            case 1:
+            case 5:
                 $nama = 'Budha';
                 break;
             

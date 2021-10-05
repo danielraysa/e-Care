@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Mbti;
-use App\MhsMbti;
+// use App\MhsMbti;
 use App\Mahasiswa;
 use Auth;
 
@@ -126,7 +126,7 @@ class MbtiController extends Controller
         return redirect('/tabelmbti')->with('status', 'Data MBTI Berhasil Dihapus');
     }
 
-    public function hasilmbti(Request $request){
+    /* public function hasilmbti(Request $request){
         //$nim = Auth::user()->id;
         $nim = Auth::user()->email;
         $pil_mbti = $request->testmbti;
@@ -137,6 +137,6 @@ class MbtiController extends Controller
         ]);
         //dd($mhs_mbti);
         return redirect(url('testmbti'))->with('status', 'Data Telah Disimpan');
-    }
+    } */
 
 }

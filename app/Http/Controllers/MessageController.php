@@ -171,7 +171,8 @@ class MessageController extends Controller
 
     public function histori_chat()
     {
-        $users = User::where('id', 14)->get();       
+        $konselor = User::where('role_id', 4)->first();
+        $users = User::where('id', $konselor->id)->get();       
         // $event = broadcast(new OnlineUser(Auth::user()));
         return view('histori-chat', compact('users'));
     }

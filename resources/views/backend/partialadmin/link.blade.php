@@ -41,5 +41,8 @@
     a.dropdown-item:active {
         background-color: orange;
     }
+    html body a {
+        color: black;
+    }
 </style>
 <!-- END: Page CSS-->

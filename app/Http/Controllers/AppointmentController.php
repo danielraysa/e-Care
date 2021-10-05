@@ -65,10 +65,16 @@ class AppointmentController extends Controller
         // waktu mengajukan permintaan
         // dd($request->all());
         $user = Auth::user();
+        $mhs = Mahasiswa::find($user->email);
+        // $dosen = Karyawan::with('data_email')->find($mhs->dosen_wali->nik);
+        $dosen = Karyawan::with('data_email')->find($mhs->dosen_wl);
+        $konselor = User::where('role_id', 4)->first();
+        $data_konselor = Karyawan::with('data_email')->find($konselor->email);
+        // dd($dosen, $data_konselor);
         $appointment = Appointment::create([
             'user_id' => $user->id,
-            // 'counselor_id' => $request->counselor,
-            'counselor_id' => 14, // konselor
+            'counselor_id' => $konselor->id,
+            // 'counselor_id' => 14, // konselor
             'tgl_appointment' => $request->tgl_appointment,
             'jenis_problem' => $request->jenis_masalah,
             'jenis_layanan' => $request->jenis_layanan,
@@ -78,35 +84,45 @@ class AppointmentController extends Controller
         ]);
         // buat notif
         $notif = Notification::create([
-            // 'user_id' => $request->counselor,
-            'user_id' => 14,
+            'user_id' => $konselor->id,
+            // 'user_id' => 14,
             'message' => 'Ada permintaan/appointment baru dari '.$user->name,
         ]);
         
         $nama = Auth::user()->name;
-        $mhs = Mahasiswa::with('dosen_wali')->find(Auth::user()->email);
+        
         $event = broadcast(new SendNotification($notif));
+        
         $notif_appointment = true;
-        $email_konselor = 'adistriani@gmail.com';
-        Mail::send('isi-email', compact('nama', 'appointment', 'notif_appointment'), function ($message) use($email_konselor)
-        {
-            $message->subject('Notifikasi E-Care');
-            $message->from(env('MAIL_USERNAME'), env('MAIL_NAME'));
-            $message->to($email_konselor);
-        });
+        // $email_konselor = 'fitriyah@dinamika.ac.id';
+        $email_konselor = $data_konselor->data_email->email;
+        try {
+            //code...
+            Mail::send('isi-email', compact('nama', 'appointment', 'notif_appointment'), function ($message) use($email_konselor)
+            {
+                $message->subject('Notifikasi E-Care');
+                $message->from(env('MAIL_USERNAME'), env('MAIL_NAME'));
+                $message->to($email_konselor);
+            });
+        } catch (Exception $th) {
+            //throw $th;
+        }
         // email ke dosen wali
         $notif_dosen = true;
-        $dosen = Karyawan::find($mhs->dosen_wali->nik);
-        // $email_dosen = $dosen->email;
-        $email_dosen = 'adistriani@gmail.com';
+        $email_dosen = $dosen->data_email->email;
         // $email_dosen = 'daniel@dinamika.ac.id';
         $jenis_masalah = $request->jenis_masalah;
-        Mail::send('isi-email', compact('nama', 'appointment', 'notif_dosen', 'jenis_masalah'), function ($message) use ($email_dosen)
-        {
-            $message->subject('Notifikasi Mahasiswa Konseling');
-            $message->from(env('MAIL_USERNAME'), env('MAIL_NAME'));
-            $message->to($email_dosen);
-        });
+        try {
+            //code...
+            Mail::send('isi-email', compact('nama', 'appointment', 'notif_dosen', 'jenis_masalah'), function ($message) use ($email_dosen)
+            {
+                $message->subject('Notifikasi Mahasiswa Konseling');
+                $message->from(env('MAIL_USERNAME'), env('MAIL_NAME'));
+                $message->to($email_dosen);
+            });
+        } catch (Exception $th) {
+            //throw $th;
+        }
         if($request->jenis_layanan == 'chatting')
         return redirect(route('chat'));
         else
@@ -149,7 +165,7 @@ class AppointmentController extends Controller
         // waktu approve/tolak permintaan
         if($request->pilihan == 'Y'){
             $pilihan = 'Y';
-            $isi_notifikasi = 'Permintaan appointment kamu diterima. Silahkan buka dan lakukan login di aplikasi E-Care dengan klik link ini: http://trialscode.ddns.net/e-care/ untuk melakukan konseling online dengan Konselor';
+            $isi_notifikasi = "Permintaan appointment kamu diterima. Silahkan buka dan lakukan login di aplikasi E-Care (".url('/').") untuk melakukan konseling online dengan Konselor";
         }
         else{
             $pilihan = 'T';
@@ -166,17 +182,24 @@ class AppointmentController extends Controller
         ]);
         $event = broadcast(new SendNotification($notif));
         $notif_approve = true;
-        $email_mhs = 'adistriani@gmail.com';
+        // $mhs = Mahasiswa::find($appointment->mahasiswa->nim);
+        $mhs = Mahasiswa::find($appointment->mahasiswa->user_role->nik_nim);
         // $email_mhs = 'daniel@dinamika.ac.id';
+        $email_mhs = $mhs->nim.'@dinamika.ac.id';
         // if($data_app->jenis_layanan == 'konseling'){
             // $when = Carbon\Carbon::now()->addMinutes(1);
             // Mail::to($email_mhs)->later($when, new NotifEmail('Notif', compact('isi_notifikasi','notif_approve')));
-            Mail::send('isi-email', compact('isi_notifikasi','notif_approve'), function ($message) use ($email_mhs)
-            {
-                $message->subject('Notifikasi E-Care');
-                $message->from(env('MAIL_USERNAME'), env('MAIL_NAME'));
-                $message->to($email_mhs);
-            });
+            try {
+                //code...
+                Mail::send('isi-email', compact('isi_notifikasi','notif_approve'), function ($message) use ($email_mhs)
+                {
+                    $message->subject('Notifikasi E-Care');
+                    $message->from(env('MAIL_USERNAME'), env('MAIL_NAME'));
+                    $message->to($email_mhs);
+                });
+            } catch (Exception $th) {
+                //throw $th;
+            }
         // }
         // return redirect()->action('AppointmentController@index')->with('status', 'Data appointment berhasil diupdate');
         return redirect('jadwalkonselor')->with('status', 'Data appointment berhasil diupdate');
@@ -231,7 +254,7 @@ class AppointmentController extends Controller
             return redirect()->route('chat');
         } */
         // $user = User::with('user_role.data_mhs.dosen_wali')->find(Auth::id());
-        $data['mhs'] = Mahasiswa::find($nim);
+        $data['mhs'] = Mahasiswa::with('dosen_wali')->find($nim);
         return view('backend.mhs.daftarkonseling', $data);
     }
 

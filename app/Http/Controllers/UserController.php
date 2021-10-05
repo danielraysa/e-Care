@@ -8,7 +8,10 @@ use App\UserRole;
 use App\Mahasiswa;
 use App\Karyawan;
 use App\Counselor;
+use App\HistoriMhs;
 use App\Role;
+use Illuminate\Support\Facades\Cache;
+
 class UserController extends Controller
 {
     /**
@@ -19,13 +22,31 @@ class UserController extends Controller
     public function index()
     {
         //
+        // ini_set("memory_limit","1G");
+        // set_time_limit(90);
+        // $his = HistoriMhs::whereNotIn('sts_mhs', ['O','L'])->where('semester', '202')->get();
+        // dd($his->count());
         $user = User::with('user_role')->get();
-        $mahasiswa = Mahasiswa::with('role_mhs')->get();
-        $karyawan = Karyawan::with('role_kary')->where('status', 'A')->get();
+        /* $mahasiswa = Mahasiswa::with(['his_status' => function ($query) {
+            $query->orderBy('semester', 'desc');
+        },'role_mhs'])->whereHas('his_status', function ($query) {
+            $query->whereNotIn('sts_mhs', ['O','L'])->where('semester', '202');
+        })->get(); */
+        $seconds = 5 * 60;
+        $mahasiswa = Cache::remember('data_users', $seconds, function () {
+            $data_mhs = Mahasiswa::with(['his_status' => function ($query) {
+                $query->orderBy('semester', 'desc');
+            },'role_mhs'])->whereHas('his_status', function ($query) {
+                $query->whereNotIn('sts_mhs', ['O','L'])->where('semester', '202');
+            })->get();
+            return $data_mhs;
+        });
+        // dd($mahasiswa->count());
+        // $karyawan = Karyawan::with('role_kary')->whereRaw("LENGTH(nik) = 6")->where('status', 'A')->get();
         $role = Role::all();
         $userrole = UserRole::all();
-        // dd($karyawan);
-        return view('backend.datamaster.user', compact('user', 'mahasiswa', 'karyawan','role','userrole'));
+        // return view('backend.datamaster.user', compact('user', 'mahasiswa', 'karyawan','role','userrole'));
+        return view('backend.datamaster.user', compact('user', 'mahasiswa','role','userrole'));
     }
 
     /**

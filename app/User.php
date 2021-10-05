@@ -43,18 +43,23 @@ class User extends Authenticatable
 
     public function foto_user()
     {
-        $nomor = rand(1,26);
-        return asset('assets/backend/app-assets/images/portrait/small/avatar-s-'.$nomor.'.png');
-        /* switch ($this->role_id) {
+        // $nomor = rand(1,26);
+        // return "https://sicyca.dinamika.ac.id/static/foto/".$this->email.".jpg";
+        // return asset('assets/backend/app-assets/images/portrait/small/avatar-s-'.$nomor.'.png');
+        switch ($this->role_id) {
             case 1: 
                 return asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png');
                 break;
             case 2:
                 return "https://sicyca.dinamika.ac.id/static/foto/".$this->email.".jpg";
+            case 3:
+                return "https://sicyca.dinamika.ac.id/static/foto/".$this->email.".jpg";
+            case 4:
+                return "https://ui-avatars.com/api/?name=".$this->name;
             default:
                 return asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png');
                 break;
-        } */
+        }
     }
 
     public function messages()

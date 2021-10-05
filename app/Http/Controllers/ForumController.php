@@ -129,9 +129,10 @@ class ForumController extends Controller
         $forum = Forum::with('post_user')->find($id);
         $user = User::find(Auth::user()->id);
         // notif untuk konselor
+        $konselor = User::where('role_id', 4)->first();
         if(Auth::user()->role_id != 4 || Auth::user()->id != 14){
             $notif_konselor = Notification::create([
-                'user_id' => 14, //
+                'user_id' => $konselor->id,
                 'message' => $user->name.' memberi komentar pada forum/post yang dibuat oleh '.$forum->post_user->name,
             ]);
             $event = broadcast(new SendNotification($notif_konselor));
@@ -155,9 +156,10 @@ class ForumController extends Controller
         $forum = Forum::with('post_user')->find($komentar->forum_id);
         $user = User::find(Auth::user()->id);
         // notif untuk konselor
+        $konselor = User::where('role_id', 4)->first();
         if(Auth::user()->role_id != 4 || Auth::user()->id != 14){
             $notif_konselor = Notification::create([
-                'user_id' => 14, //
+                'user_id' => $konselor->id, //
                 'message' => $user->name.' memperbarui komentar pada forum/post yang dibuat oleh '.$forum->post_user->name,
             ]);
             $event = broadcast(new SendNotification($notif_konselor));

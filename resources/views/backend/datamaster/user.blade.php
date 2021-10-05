@@ -61,16 +61,14 @@
                                             <label for="gender">Data Tabel:</label>
                                             <select name="data_tabel" id="data_tabel" class="form-control select2">
                                                 <option selected disabled>Pilih nama</option>
-                                            @foreach ($mahasiswa as $mhs)
-                                                {{-- @if($mhs->role_mhs != "") --}}
-                                                <option value="{{ $mhs->NIM }}">{{ $mhs->NAMA }} ({{ $mhs->nim }})</option>
-                                                {{-- @endif --}}
-                                            @endforeach
-                                            @foreach ($karyawan as $kary)
-                                                {{-- @if($kary->role_kary != "") --}}
-                                                <option value="{{ $kary->NIK }}">{{ $kary->NAMA }} ({{ $kary->nik }})</option>
-                                                {{-- @endif --}}
-                                            @endforeach
+                                                @foreach ($mahasiswa as $mhs)
+                                                    {{-- @if($mhs->role_mhs != "") --}}
+                                                    <option value="{{ $mhs->nim }}">{{ $mhs->nama }} ({{ $mhs->nim }})</option>
+                                                    {{-- @endif --}}
+                                                @endforeach
+                                                {{-- @foreach ($karyawan as $kary)
+                                                    <option value="{{ $kary->nik }}">{{ $kary->nama }} ({{ $kary->nik }})</option>
+                                                @endforeach --}}
                                             </select>
                                         </div>
                                     </div>
@@ -78,8 +76,8 @@
                                         <div class="form-group">
                                             <label for="dob">User Role <span class="text-danger">*</span></label>
                                             <select name="user_role" id="user_role" class="form-control">
-                                                @foreach ($role as $rl)
-                                                    <option value="{{ $rl->id }}">{{ $rl->role_name }}</option>
+                                                @foreach ($role as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->role_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

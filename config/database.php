@@ -83,13 +83,13 @@ return [
 
         'oracle_temp' => [
             'driver' => 'oracle',
-            'host' => env('ORACLE_DB_HOST', '10.10.10.23'),
-            'port' => env('ORACLE_DB_PORT', '1521'),
-            'database' => env('ORACLE_DB_DATABASE', 'ORA2K'),
-            'username' => env('ORACLE_DB_USERNAME', 'daniel'),
-            'password' => env('ORACLE_DB_PASSWORD', 'sembarang'),
-            'charset' => env('ORACLE_DB_CHARSET', 'AL32UTF8'),
-            'prefix' => env('ORACLE_DB_PREFIX', ''),
+            'host' => env('DB_HOST_ORACLEDEV', '10.10.10.23'),
+            'port' => env('DB_PORT_ORACLEDEV', '1521'),
+            'database' => env('DB_DATABASE_ORACLEDEV', 'ORA2K'),
+            'username' => env('DB_USERNAME_ORACLEDEV', 'daniel'),
+            'password' => env('DB_PASSWORD_ORACLEDEV', 'sembarang'),
+            'charset' => env('DB_CHARSET_ORACLEDEV', 'AL32UTF8'),
+            'prefix' => env('DB_PREFIX_ORACLEDEV', ''),
         ]
 
     ],

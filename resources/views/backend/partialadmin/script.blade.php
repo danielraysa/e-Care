@@ -39,8 +39,8 @@
         }
     });
     // Enter your own Pusher App key
-    var pusher = new Pusher('8284629e5aa4b95ea203', {
-        cluster: 'ap1'
+    var pusher = new Pusher("{{ env('PUSHER_APP_KEY') }}", {
+        cluster: "{{ env('PUSHER_APP_CLUSTER') }}"
     });
     var channel = pusher.subscribe('chat-channel.'+my_id);
     var notif_channel = pusher.subscribe('notif-channel.'+my_id);
@@ -82,6 +82,7 @@
             '</div>'+
         '</div>');
         $('.toast').toast('show');
+        setTimeout(function() { $('.toast').toast('dispose'); }, 10000);
         console.log(data);
     });
 

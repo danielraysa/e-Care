@@ -101,7 +101,7 @@
     <!-- END: Content-->
 @endsection
 @push('js')
-<script src="https://cdn.rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.js"></script>
+{{-- <script src="https://cdn.rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.js"></script> --}}
 <script type="text/javascript">
     // Enter a unique channel you wish your users to be subscribed in.
     // var channel = pusher.subscribe('chat-channel');
@@ -111,9 +111,9 @@
         // var url_image = "{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}";
         // console.log(response);
         getChatList(user_selected);
-        if(respose.receiver_id == user_selected){
+        // if(response.receiver_id == user_selected){
             chatPushContainer(response);
-        }
+        // }
     });
     
     function getChatList(selectedUser = null){
@@ -140,15 +140,16 @@
         }else{
             var class_left = '';
         }
-        $('.chat-content').append(
-        '<div class="chat '+ class_left +'">'+
+        var html_content = '<div class="chat '+ class_left +'">'+
             '<div class="chat-body">'+
                 '<div class="chat-message">'+
                     '<p>'+ data.message + '</p>'+
                     '<span class="chat-time">'+ data.time +'</span>'+
                 '</div>'+
             '</div>'+
-        '</div>');
+        '</div>';
+        var cont = $('.chat-content').append(html_content);
+        console.log(cont);
         // Scroll to the bottom of the container when a new message becomes available
         // $(".chat-container").scrollTop($(".chat-container")[0].scrollHeight);
         $(".chat-container").scrollTop($(".chat-container > .chat-content").height());
@@ -199,6 +200,7 @@
             ajaxCall("{{ route('send-chat') }}", chat_message);
             // Clear the message input field
             $('#chatInput').val('');
+            $('.emojionearea-editor').html('');
         }
     });
     

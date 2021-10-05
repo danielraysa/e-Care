@@ -35,7 +35,7 @@
                             <li class="user-chat" data-id="{{ $usr->id }}">
                                 <div class="d-flex align-items-center">
                                     {{-- <div class="avatar m-0 mr-50"><img class="w-100 h-100" style="object-fit: cover;" src="{{ $mhs->foto_mhs() }}" height="36" width="36" alt="sidebar user image"> --}}
-                                    <div class="avatar m-0 mr-50"><img class="w-100 h-100" style="object-fit: cover;" src="{{ asset('assets/backend/app-assets/images/portrait/small/avatar-s-26.png') }}" height="36" width="36" alt="sidebar user image">
+                                    <div class="avatar m-0 mr-50"><img class="w-100 h-100" style="object-fit: cover;" src="{{ $usr->foto_user() }}" height="36" width="36" alt="sidebar user image">
                                         <span class="avatar-status-away"></span>
                                     </div>
                                     <div class="chat-sidebar-name">

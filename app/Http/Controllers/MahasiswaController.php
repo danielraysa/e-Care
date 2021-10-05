@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mahasiswa;
+use App\Appointment;
+use DB;
 
 class MahasiswaController extends Controller
 {
@@ -15,8 +17,11 @@ class MahasiswaController extends Controller
     public function index()
     {
         //
-        $mahasiswa = Mahasiswa::all();
-        // dd($mahasiswa);
+        $mahasiswa = Mahasiswa::with(['his_status' => function ($query) {
+            $query->orderBy('semester', 'desc');
+        },'role_mhs'])->whereHas('his_status', function ($query) {
+            $query->whereNotIn('sts_mhs', ['O','L']);
+        })->where('nim', 'like', '1641010%')->get();
         return view('backend.konselor.daftarmhs', compact('mahasiswa'));
     }
 
